@@ -1,0 +1,53 @@
+
+watch(package, name, test, icons, buttons, displayzones, globalVar, apps) ::= <<
+package <package>;
+
+import be.unamur.info.megao.watch.oapiday.Button;
+import be.unamur.info.megao.watch.oapiday.Displayzone;
+import be.unamur.info.megao.watch.oapiday.Icon;
+import be.unamur.info.megao.watch.oapiday.Time;
+import be.unamur.info.megao.watch.oapiday.Watch;
+
+public class <name>Watch extends Watch{
+
+    // Icons declarations
+    <icons:iconDecl()>
+    // Buttons declarations
+    <buttons:buttonDecl()>
+    // Displayzones declarations
+    <displayzones:displayzoneDecl()>
+    // Global variables
+    <globalVar:variableDecl()>
+
+    public <name>Watch(){
+        super("<name>");
+        // Icons
+        <icons:newIcon()>
+        // Buttons
+        <buttons:newButton()>
+        // DisplayZones
+        <displayzones:newdisplayzone()>
+        // Applications
+        <apps:applicationAdd()>
+
+    }
+}
+>>
+
+
+
+iconDecl(name) ::= "final Icon <name>Icon;<\n>"
+
+newIcon(name) ::= "<name>Icon = addIcon(\"<name>\");<\n>"
+
+buttonDecl(name) ::= "final Button <name>Button;<\n>"
+
+newButton(name) ::= "<name>Button = addButton(\"<name>\");<\n>"
+
+displayzoneDecl(name) ::= "final Displayzone <name>Displayzone;<\n>"
+
+newdisplayzone(name) ::= "<name>Displayzone = addDisplayzone(\"<name>\");<\n>"
+
+variableDecl(name) ::= "final Time <name> = new Time();<\n>"
+
+applicationAdd(name) ::= "addApplication(new <name>Application(this));<\n>"

@@ -1,0 +1,16 @@
+main(package, name) ::= <<
+package <package>;
+
+import org.archipelago.core.interfaces.MetaElement;
+import org.archipelago.core.interfaces.SimpleElement;
+import org.archipelago.core.interfaces.UnderMetaElement;
+
+
+@Table()
+public class Meta<className> extends MetaControl implements MetaElement {
+
+
+
+
+}
+>>
