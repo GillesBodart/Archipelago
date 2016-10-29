@@ -1,26 +1,34 @@
 package org.archipelago.test.main;
 
-import org.archipelago.test.domain.ClassOne;
-import org.archipelago.test.domain.ClassTwo;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.List;
 
-import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.archipelago.core.domain.GeneratedScript;
+import org.archipelago.core.domain.types.ArchipelagoGenerationType;
+import org.archipelago.core.runtime.ArchipelagoFactory;
 
 /**
  * Created by GJULESGB on 19/08/2016.
  */
 public class MainTest {
 
-	public static void main(String[] args) {
-		OObjectDatabaseTx db = new OObjectDatabaseTx("plocal:C:\\Users\\ABM589\\Desktop\\Output\\OrientDb\\tmp")
-				.open();
-		db.getEntityManager().registerEntityClass(ClassOne.class);
-		db.getEntityManager().registerEntityClass(ClassTwo.class);
+    protected final static Logger LOGGER = LogManager.getLogger(MainTest.class);
 
-		ClassTwo p = db.newInstance(ClassTwo.class);
-		p.setId(200l);  
-		
-		db.save( p );
-		db.close();
-	}
+    public static void main(String[] args)
+            throws ClassNotFoundException, IOException {
+        List<GeneratedScript> scripts = ArchipelagoFactory.generate(
+                Paths.get("C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain"),
+                ArchipelagoGenerationType.RELATIONAL_SQL);
+        for (GeneratedScript script : scripts) {
+            LOGGER.info(script);
+        }
+        // final ArchipelagoScriptBuilder builder = new OrientDBBuilder();
+        // final String script = builder.makeScript(Form.class);
+        // LOGGER.info(script);
+
+    }
 
 }

@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * Created by GJULESGB on 19/08/2016.
  */
 @Entity
-@Table(name = "")
+@Table(name = "DB_TAB")
 public class MetaHibernate {
     @Id
     @GeneratedValue(generator = "my_sec")

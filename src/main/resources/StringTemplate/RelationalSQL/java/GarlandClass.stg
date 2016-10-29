@@ -1,0 +1,67 @@
+GarlandClass(package, className, properties) ::= <<
+<package>;
+
+import org.archipelago.core.interfaces.MetaElement;
+import org.archipelago.core.interfaces.SimpleElement; 
+import org.archipelago.core.domain.MetaControl;   
+
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;   
+
+@Entity
+@Table(name="<className;format="upper">")
+public class <className> {
+
+	@Id
+    @GeneratedValue(generator = "<className;format="upper">_SEC")
+    @SequenceGenerator(name = "<className;format="upper">_SEC", sequenceName = "<className;format="upper">_SEC")
+    @Column(name = "<className;format="upper">_ID")
+	private Long id;
+	
+	
+	public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+	
+	<properties:implementProp()>
+	
+	
+	<properties:implementGetter()>
+	
+	
+	<properties:implementSetter()>
+
+} 
+>>
+
+implementProp(property) ::=<<
+	private <property.type.simpleName> <property.name>;
+
+>>
+implementGetter(property) ::=<<
+	public <property.type.simpleName> get<property.name;format="cap">(){
+		return <property.name>;
+	}
+
+>>
+implementSetter(property) ::=<<
+	public void set<property.name;format="cap">(<property.type.simpleName> <property.name>){
+		this.<property.name> = <property.name>;
+	}
+	
+>>

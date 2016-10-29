@@ -1,11 +1,11 @@
 package org.archipelago.test.domain;
 
-import org.archipelago.core.annotations.SimpleComponent;
+import org.archipelago.core.annotations.Garland;
 
 /**
  * Created by GJULESGB on 19/08/2016.
  */
-@SimpleComponent
+@Garland
 public class ClassTwo {
 
     private ClassOne link;

@@ -19,7 +19,7 @@ public abstract class MetaControl implements Comparable<MetaControl> {
         return insertedMeta;
     }
 
-    public void setInsertedMeta(Date insertedMeta) {
+    public void setInsertedMeta(final Date insertedMeta) {
         this.insertedMeta = insertedMeta;
     }
 
@@ -27,13 +27,13 @@ public abstract class MetaControl implements Comparable<MetaControl> {
         return deletedMeta;
     }
 
-    public void setDeletedMeta(Date deletedMeta) {
+    public void setDeletedMeta(final Date deletedMeta) {
         this.deletedMeta = deletedMeta;
     }
 
     @Override
-    public int compareTo(MetaControl o) {
-        int delComp = deletedMeta.compareTo(o.deletedMeta);
+    public int compareTo(final MetaControl o) {
+        final int delComp = deletedMeta.compareTo(o.deletedMeta);
         if (delComp == 0) {
             return insertedMeta.compareTo(o.insertedMeta);
         }
