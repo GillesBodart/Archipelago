@@ -1,6 +1,9 @@
 package org.archipelago.core.builder;
 
 import java.lang.reflect.Field;
+import java.sql.JDBCType;
+import java.sql.SQLData;
+import java.sql.SQLType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -11,6 +14,9 @@ import org.archipelago.core.annotations.Island;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.util.ArchipelagoUtils;
 import org.archipelago.core.util.StringTemplateFactory;
+import org.hibernate.Hibernate;
+import org.hibernate.boot.model.source.internal.hbm.HibernateTypeSourceImpl;
+import org.hibernate.type.descriptor.sql.JdbcTypeJavaClassMappings;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 
@@ -69,15 +75,29 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
         LOGGER.debug(String.format("generate UnderMetaclass %s [START]", clazz.getSimpleName()));
         classTemplatePath = TEMPLATE_ROOT_PATH + RELATIONAL_FOLDER + SQL_FOLDER + "\\Table.stg";
         group = StringTemplateFactory.buildSTGroup(classTemplatePath);
-        st = group.getInstanceOf("GarlandClass");
-        st.add("className", clazz.getSimpleName());
-        st.add("package", clazz.getPackage());
-        for (Field field : clazz.getDeclaredFields()) {
-            st.add("properties", field);
-        }
+        st = group.getInstanceOf("tableWrapper");
+        TableGeneratorWrapper table = scanTable(clazz);
+        st.add("tableWrapper", table);
         scripts.add(new GeneratedScript(String.format(CLASS_FILE_NAME_UNDER_META_FORMAT, clazz.getSimpleName()), st.render()));
         LOGGER.debug(String.format("generate UnderMetaclass %s [END]", clazz.getSimpleName()));
 
+    }
+
+    private TableGeneratorWrapper scanTable(Class<?> clazz) {
+        List<SQLPropertyWrapper> properties = new ArrayList<>();
+        for (Field f : clazz.getFields()){
+            JDBCType type = JDBCType.valueOf(JdbcTypeJavaClassMappings.INSTANCE.determineJdbcTypeCodeForJavaClass(f.getType()));
+            Integer size = null;
+            switch (type){
+                case CHAR:
+                case VARCHAR:
+                case NCHAR:
+                case NVARCHAR: size = 255;break;
+                default:break;
+            }
+            properties.add(new SQLPropertyWrapper(f.getName(), type.getName(), size));
+        }
+        return new TableGeneratorWrapper(properties);
     }
 
     private List<GeneratedScript> refactorClasses(Class<?> clazz, List<Class<?>> islands) {
@@ -139,5 +159,61 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
         scripts.add(new GeneratedScript(String.format(CLASS_FILE_NAME_META_FORMAT, clazz.getSimpleName()), st.render()));
         LOGGER.debug(String.format("generate MetaClass %s [END]", clazz.getSimpleName()));
     }
+
+    private class TableGeneratorWrapper {
+        private List<SQLPropertyWrapper> fields;
+
+        public TableGeneratorWrapper(List<SQLPropertyWrapper> fields) {
+            super();
+            this.fields = fields;
+        }
+
+        public List<SQLPropertyWrapper> getFields() {
+            return fields;
+        }
+
+        public void setFields(List<SQLPropertyWrapper> fields) {
+            this.fields = fields;
+        } 
+    }
+
+    private class SQLPropertyWrapper {
+        private String fieldName;
+        private String fieldType;
+        private Integer fieldSize;
+
+        public SQLPropertyWrapper(String fieldName, String fieldType, Integer fieldSize) {
+            super();
+            this.fieldName = fieldName;
+            this.fieldType = fieldType;
+            this.fieldSize = fieldSize;
+        }
+
+        public String getFieldName() {
+            return fieldName;
+        }
+
+        public void setFieldName(String fieldName) {
+            this.fieldName = fieldName;
+        }
+
+        public String getFieldType() {
+            return fieldType;
+        }
+
+        public void setFieldType(String fieldType) {
+            this.fieldType = fieldType;
+        }
+
+        public Integer getFieldSize() {
+            return fieldSize;
+        }
+
+        public void setFieldSize(Integer fieldSize) {
+            this.fieldSize = fieldSize;
+        }
+
+    }
+}
 
 }
