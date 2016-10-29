@@ -7,4 +7,4 @@ CREATE TABLE <tableWrapper.tableName> (
 
 >>
 
-field(property) ::= "<property.fieldName> <property.fieldType><if(property.fieldSize)>(<property.fieldSize>)<endif><n\>"
+field(property) ::= "<property.fieldName> <property.fieldType><if(property.fieldSize)>(<property.fieldSize>)<endif><n/>"
