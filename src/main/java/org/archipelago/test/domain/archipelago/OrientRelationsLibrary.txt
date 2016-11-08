@@ -1,2 +1,0 @@
-CREATE LINK LibrarybooksToBook TYPE LINKLIST FROM Library.books TO Book.ArchipelID
-

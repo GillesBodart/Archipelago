@@ -1,8 +1,0 @@
-
-CREATE CLASS Person ABSTRACT
-
-CREATE PROPERTY  Person.ArchipelID LONG 
-CREATE PROPERTY  Person.name STRING 
-CREATE PROPERTY  Person.lastName STRING 
- 
- 

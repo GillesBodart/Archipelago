@@ -3,3 +3,4 @@
 .checkstyle
 .project
 Archipelago.iml
+**/Orient*.txt

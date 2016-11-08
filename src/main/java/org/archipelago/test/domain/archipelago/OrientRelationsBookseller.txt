@@ -1,2 +1,0 @@
-CREATE LINK BooksellerlibraryToLibrary TYPE LINK FROM Bookseller.library TO Library.ArchipelID
-

@@ -1,8 +1,0 @@
-
-CREATE CLASS Book
-
-CREATE PROPERTY  Book.author LONG 
-CREATE PROPERTY  Book.amountPages INTEGER 
-CREATE PROPERTY  Book.publishDate DATETIME 
- 
- 
