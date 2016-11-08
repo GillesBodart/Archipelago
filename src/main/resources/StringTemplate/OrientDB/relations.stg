@@ -1,8 +1,8 @@
-RelationsOrientDB(relation) ::= <<
+RelationsOrientDB(property) ::= <<
 
-<relation:createLink()>
+<property:createProperty()>
 
 >>
 
-
+createProperty(property) ::= "CREATE PROPERTY  <property.parentClass>.<property.name> <property.type> <\n>" 
 createLink(relation) ::= "CREATE LINK <relation.from><relation.fromProp>To<relation.to> TYPE <relation.type> FROM <relation.from>.<relation.fromProp> TO <relation.to>.ArchipelID<\n>" 

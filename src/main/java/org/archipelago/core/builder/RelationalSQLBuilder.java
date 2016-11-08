@@ -46,28 +46,28 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
     }
 
     @Override
-    public List<GeneratedScript> makeScript(Class<?> clazz, List<Class<?>> islands) {
+    public List<GeneratedScript> makeScript(Class<?> clazz, List<Class<?>> archipels) {
         List<GeneratedScript> scripts = new ArrayList<>();
-        generateNewClasses(clazz, islands);
-        scripts.addAll(refactorClasses(clazz, islands));
+        generateNewClasses(clazz, archipels);
+        scripts.addAll(refactorClasses(clazz, archipels));
         // TODO Generate Table from new class not old one ...
-        scripts.addAll(generateTables(clazz, islands));
+        scripts.addAll(generateTables(clazz, archipels));
         return scripts;
 
     }
 
-    private void generateNewClasses(Class<?> clazz, List<Class<?>> islands) {
+    private void generateNewClasses(Class<?> clazz, List<Class<?>> archipels) {
 
         if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Archipel.class)) {
             generateNewMetaClasses(clazz);
             generateNewUnderMetaClasses(clazz);
         } else if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Island.class)) {
-            generateNewIslandClasses(clazz, islands);
+            generateNewIslandClasses(clazz, archipels);
         }
 
     }
 
-    private void generateNewIslandClasses(Class<?> clazz, List<Class<?>> islands) {
+    private void generateNewIslandClasses(Class<?> clazz, List<Class<?>> archipels) {
         // TODO Auto-generated method stub
 
     }
@@ -81,7 +81,7 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
 
     }
 
-    private Collection<? extends GeneratedScript> generateTables(Class<?> clazz, List<Class<?>> islands) {
+    private Collection<? extends GeneratedScript> generateTables(Class<?> clazz, List<Class<?>> archipels) {
         LOGGER.debug(String.format("generation of the sql table for class %s [START]", clazz.getSimpleName()));
         List<GeneratedScript> scripts = new LinkedList<>();
 
@@ -90,7 +90,7 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
             generateMetaTable(clazz, scripts);
             generateUnderMetaTable(clazz, scripts);
         } else if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Island.class)) {
-            generateIslandTable(clazz, islands, scripts);
+            generateIslandTable(clazz, archipels, scripts);
         }
         LOGGER.debug(String.format("generation of the sql table for class %s [END]", clazz.getSimpleName()));
         return scripts;
@@ -123,14 +123,14 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
 
     private TableGeneratorWrapper scanTable(Class<?> clazz) {
         List<SQLPropertyWrapper> properties = new ArrayList<>();
-        for (Field f : clazz.getDeclaredFields()) {
-            if (Collection.class.isAssignableFrom(f.getType())) {
+        for (Field field : clazz.getDeclaredFields()) {
+            if (Collection.class.isAssignableFrom(field.getType())) {
                 // TODO List, Set, ... collection case (Link into the other
                 // Table hint go to Map representation;
                 continue;
             }
             try {
-                JDBCType type = JDBCType.valueOf(JdbcTypeJavaClassMappings.INSTANCE.determineJdbcTypeCodeForJavaClass(f.getType()));
+                JDBCType type = JDBCType.valueOf(JdbcTypeJavaClassMappings.INSTANCE.determineJdbcTypeCodeForJavaClass(field.getType()));
                 Integer size = null;
                 switch (type) {
                     case CHAR:
@@ -142,7 +142,7 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
                     default:
                         break;
                 }
-                properties.add(new SQLPropertyWrapper(f.getName(), type.getName(), size));
+                properties.add(new SQLPropertyWrapper(field.getName(), type.getName(), size));
             } catch (IllegalArgumentException e) {
             }
         }
@@ -152,7 +152,7 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
         return new TableGeneratorWrapper(clazz.getSimpleName().toUpperCase(), properties);
     }
 
-    private List<GeneratedScript> refactorClasses(Class<?> clazz, List<Class<?>> islands) {
+    private List<GeneratedScript> refactorClasses(Class<?> clazz, List<Class<?>> archipels) {
         LOGGER.debug(String.format("refactoring of the data model for class %s [START]", clazz.getSimpleName()));
         List<GeneratedScript> scripts = new LinkedList<>();
 
@@ -161,7 +161,7 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
             generateMetaClass(clazz, scripts);
             generateUnderMetaClass(clazz, scripts);
         } else if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Island.class)) {
-            generateIslandClass(clazz, islands, scripts);
+            generateIslandClass(clazz, archipels, scripts);
         }
         LOGGER.debug(String.format("refactoring of the data model for class %s [END]", clazz.getSimpleName()));
         return scripts;

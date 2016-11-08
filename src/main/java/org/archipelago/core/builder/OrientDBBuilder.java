@@ -25,7 +25,7 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
     private static final String CLASS_FILE_NAME_CLASS_FORMAT = "OrientClass%s.txt";
     private static final String CLASS_FILE_NAME_RELATION_FORMAT = "OrientRelations%s.txt";
 
-    private List<RelationWrapper> relations = new ArrayList<>();
+    private List<PropertyWrapper> relations = new ArrayList<>();
 
     @Override
     public List<GeneratedScript> makeScript(final Class<?> clazz) {
@@ -33,7 +33,7 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
     }
 
     @Override
-    public List<GeneratedScript> makeScript(Class<?> clazz, List<Class<?>> islands) {
+    public List<GeneratedScript> makeScript(Class<?> clazz, List<Class<?>> archipels) {
         List<GeneratedScript> scripts = new ArrayList<>();
         scripts.add(makeClasses(clazz));
         scripts.add(makeRelations(clazz));
@@ -58,11 +58,12 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
                 if (Collection.class.isAssignableFrom(field.getType())) {
                     ParameterizedType genericType = (ParameterizedType) field.getGenericType();
                     Class<?> genericClass = (Class<?>) genericType.getActualTypeArguments()[0];
-                    relations.add(new RelationWrapper(clazz.getSimpleName(), genericClass.getSimpleName(), field.getName(), OType.LINKLIST));
+                    relations.add(new PropertyWrapper(clazz.getSimpleName(), field.getName(),
+                            String.format("%s %s", OType.LINKLIST, genericClass.getSimpleName())));
                 } else {
-                    relations.add(new RelationWrapper(clazz.getSimpleName(), field.getType().getSimpleName(), field.getName(), OType.LINK));
-                }
-                prop = new PropertyWrapper(clazz.getSimpleName(), field.getName(), OType.LONG);
+                    relations.add(
+                            new PropertyWrapper(clazz.getSimpleName(), field.getName(), String.format("%s %s", OType.LINK, field.getType().getSimpleName())));
+                } 
             } else {
                 prop = new PropertyWrapper(clazz.getSimpleName(), field.getName(), type);
             }
@@ -77,8 +78,8 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
         final String relationTemplatePath = TEMPLATE_ROOT_PATH + ORIENT_FOLDER + "/relations.stg";
         final STGroup group = StringTemplateFactory.buildSTGroup(relationTemplatePath);
         final ST st = group.getInstanceOf("RelationsOrientDB");
-        for (RelationWrapper relation : relations) {
-            st.add("relation", relation);
+        for (PropertyWrapper relation : relations) {
+            st.add("property", relation);
         }
         LOGGER.debug(String.format("Generation of script for relation %s [START]", clazz.getSimpleName()));
         return new GeneratedScript(String.format(CLASS_FILE_NAME_RELATION_FORMAT, clazz.getSimpleName()), st.render());
