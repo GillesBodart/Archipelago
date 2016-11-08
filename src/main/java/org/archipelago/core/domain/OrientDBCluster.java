@@ -1,5 +1,10 @@
 package org.archipelago.core.domain;
 
+/**
+ * 
+ * @author Gilles Bodart
+ *
+ */
 public class OrientDBCluster {
 
     private Integer clusterAmount;

@@ -27,9 +27,9 @@ public class MetaHibernate {
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "otherFieldName")
-    private SortedSet<ClassOne> ones = new TreeSet<>();
+    private SortedSet<Integer> ones = new TreeSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STOCK_ID", nullable = false)
-    private ClassTwo meta;
+    private String meta;
 }

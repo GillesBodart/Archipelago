@@ -5,6 +5,11 @@ import org.archipelago.core.builder.Neo4JBuilder;
 import org.archipelago.core.builder.OrientDBBuilder;
 import org.archipelago.core.builder.RelationalSQLBuilder;
 
+/**
+ * 
+ * @author Gilles Bodart
+ *
+ */
 public enum ArchipelagoGenerationType {
 
     ORIENT_DB {

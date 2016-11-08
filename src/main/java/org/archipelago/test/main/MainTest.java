@@ -11,24 +11,22 @@ import org.archipelago.core.domain.types.ArchipelagoGenerationType;
 import org.archipelago.core.runtime.ArchipelagoFactory;
 
 /**
- * Created by GJULESGB on 19/08/2016.
+ * Created by Gilles Bodart on 19/08/2016.
  */
 public class MainTest {
 
     protected final static Logger LOGGER = LogManager.getLogger(MainTest.class);
 
-    public static void main(String[] args)
-            throws ClassNotFoundException, IOException {
-        List<GeneratedScript> scripts = ArchipelagoFactory.generate(
-                Paths.get("C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain"),
-                ArchipelagoGenerationType.RELATIONAL_SQL);
+    private final static ArchipelagoGenerationType TEST_TYPE = ArchipelagoGenerationType.ORIENT_DB;
+    private final static String TEST_PATH = "C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain";
+
+    public static void main(String[] args) throws ClassNotFoundException, IOException {
+
+        List<GeneratedScript> scripts = ArchipelagoFactory.generate(Paths.get(TEST_PATH), TEST_TYPE);
+        // Show scripts
         for (GeneratedScript script : scripts) {
             LOGGER.info(script);
         }
-        // final ArchipelagoScriptBuilder builder = new OrientDBBuilder();
-        // final String script = builder.makeScript(Form.class);
-        // LOGGER.info(script);
-
     }
 
 }

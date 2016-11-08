@@ -4,10 +4,12 @@ import java.lang.reflect.Field;
 import java.sql.JDBCType;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
-import org.archipelago.core.annotations.Garland;
+import org.archipelago.core.annotations.Archipel;
 import org.archipelago.core.annotations.Island;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.util.ArchipelagoUtils;
@@ -16,6 +18,11 @@ import org.hibernate.type.descriptor.sql.JdbcTypeJavaClassMappings;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 
+/**
+ * 
+ * @author Gilles Bodart
+ *
+ */
 public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
 
     private static final String RELATIONAL_FOLDER = "\\RelationalSQL";
@@ -25,6 +32,14 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
     private static final String CLASS_FILE_NAME_UNDER_META_FORMAT = "%s.java";
     private static final String CLASS_FILE_NAME_GARLAND_FORMAT = "%s.java";
 
+    private static final String SQL_FILE_NAME_META_FORMAT = "Meta%s.sql";
+    private static final String SQL_FILE_NAME_UNDER_META_FORMAT = "%s.sql";
+    private static final String SQL_FILE_NAME_GARLAND_FORMAT = "%s.sql";
+
+    private Map<Class<?>, List<Field>> newMetaClassesMap = new HashMap<>();
+    private Map<Class<?>, List<Field>> newUnderMetaClassesMap = new HashMap<>();
+    private Map<Class<?>, List<Field>> newIslandClassesMap = new HashMap<>();
+
     @Override
     public List<GeneratedScript> makeScript(final Class<?> clazz) {
         return makeScript(clazz, null);
@@ -33,11 +48,36 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
     @Override
     public List<GeneratedScript> makeScript(Class<?> clazz, List<Class<?>> islands) {
         List<GeneratedScript> scripts = new ArrayList<>();
-
+        generateNewClasses(clazz, islands);
         scripts.addAll(refactorClasses(clazz, islands));
         // TODO Generate Table from new class not old one ...
         scripts.addAll(generateTables(clazz, islands));
         return scripts;
+
+    }
+
+    private void generateNewClasses(Class<?> clazz, List<Class<?>> islands) {
+
+        if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Archipel.class)) {
+            generateNewMetaClasses(clazz);
+            generateNewUnderMetaClasses(clazz);
+        } else if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Island.class)) {
+            generateNewIslandClasses(clazz, islands);
+        }
+
+    }
+
+    private void generateNewIslandClasses(Class<?> clazz, List<Class<?>> islands) {
+        // TODO Auto-generated method stub
+
+    }
+
+    private void generateNewUnderMetaClasses(Class<?> clazz) {
+        // TODO Auto-generated method stub
+
+    }
+
+    private void generateNewMetaClasses(Class<?> clazz) {
 
     }
 
@@ -46,17 +86,17 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
         List<GeneratedScript> scripts = new LinkedList<>();
 
         // Metaisation of the model
-        if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Island.class)) {
+        if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Archipel.class)) {
             generateMetaTable(clazz, scripts);
             generateUnderMetaTable(clazz, scripts);
-        } else if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Garland.class)) {
-            generateGarlandTable(clazz, islands, scripts);
+        } else if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Island.class)) {
+            generateIslandTable(clazz, islands, scripts);
         }
         LOGGER.debug(String.format("generation of the sql table for class %s [END]", clazz.getSimpleName()));
         return scripts;
     }
 
-    private void generateGarlandTable(Class<?> clazz, List<Class<?>> islands, List<GeneratedScript> scripts) {
+    private void generateIslandTable(Class<?> clazz, List<Class<?>> islands, List<GeneratedScript> scripts) {
         // TODO Auto-generated method stub
 
     }
@@ -76,8 +116,7 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
         st = group.getInstanceOf("SQLTable");
         TableGeneratorWrapper table = scanTable(clazz);
         st.add("tableWrapper", table);
-        // TODO Pay attention to the comas for the table generated
-        scripts.add(new GeneratedScript(String.format(CLASS_FILE_NAME_UNDER_META_FORMAT, clazz.getSimpleName()), st.render()));
+        scripts.add(new GeneratedScript(String.format(SQL_FILE_NAME_UNDER_META_FORMAT, clazz.getSimpleName()), st.render()));
         LOGGER.debug(String.format("generate UnderMetaclass %s [END]", clazz.getSimpleName()));
 
     }
@@ -86,22 +125,29 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
         List<SQLPropertyWrapper> properties = new ArrayList<>();
         for (Field f : clazz.getDeclaredFields()) {
             if (Collection.class.isAssignableFrom(f.getType())) {
-                // TODO List case
+                // TODO List, Set, ... collection case (Link into the other
+                // Table hint go to Map representation;
                 continue;
             }
-            JDBCType type = JDBCType.valueOf(JdbcTypeJavaClassMappings.INSTANCE.determineJdbcTypeCodeForJavaClass(f.getType()));
-            Integer size = null;
-            switch (type) {
-                case CHAR:
-                case VARCHAR:
-                case NCHAR:
-                case NVARCHAR:
-                    size = 255;
-                    break;
-                default:
-                    break;
+            try {
+                JDBCType type = JDBCType.valueOf(JdbcTypeJavaClassMappings.INSTANCE.determineJdbcTypeCodeForJavaClass(f.getType()));
+                Integer size = null;
+                switch (type) {
+                    case CHAR:
+                    case VARCHAR:
+                    case NCHAR:
+                    case NVARCHAR:
+                        size = 255;
+                        break;
+                    default:
+                        break;
+                }
+                properties.add(new SQLPropertyWrapper(f.getName(), type.getName(), size));
+            } catch (IllegalArgumentException e) {
             }
-            properties.add(new SQLPropertyWrapper(f.getName(), type.getName(), size));
+        }
+        if (properties.size() > 0) {
+            properties.get(properties.size() - 1).setLast(true);
         }
         return new TableGeneratorWrapper(clazz.getSimpleName().toUpperCase(), properties);
     }
@@ -111,24 +157,24 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
         List<GeneratedScript> scripts = new LinkedList<>();
 
         // Metaisation of the model
-        if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Island.class)) {
+        if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Archipel.class)) {
             generateMetaClass(clazz, scripts);
             generateUnderMetaClass(clazz, scripts);
-        } else if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Garland.class)) {
-            generateGarlandClass(clazz, islands, scripts);
+        } else if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Island.class)) {
+            generateIslandClass(clazz, islands, scripts);
         }
         LOGGER.debug(String.format("refactoring of the data model for class %s [END]", clazz.getSimpleName()));
         return scripts;
     }
 
-    private void generateGarlandClass(Class<?> clazz, List<Class<?>> islands, List<GeneratedScript> scripts) {
+    private void generateIslandClass(Class<?> clazz, List<Class<?>> islands, List<GeneratedScript> scripts) {
         String classTemplatePath;
         STGroup group;
         ST st;
         LOGGER.debug(String.format("generate UnderMetaclass %s [START]", clazz.getSimpleName()));
-        classTemplatePath = TEMPLATE_ROOT_PATH + RELATIONAL_FOLDER + JAVA_FOLDER + "\\GarlandClass.stg";
+        classTemplatePath = TEMPLATE_ROOT_PATH + RELATIONAL_FOLDER + JAVA_FOLDER + "\\IslandClass.stg";
         group = StringTemplateFactory.buildSTGroup(classTemplatePath);
-        st = group.getInstanceOf("GarlandClass");
+        st = group.getInstanceOf("IslandClass");
         st.add("className", clazz.getSimpleName());
         st.add("package", clazz.getPackage());
         for (Field field : clazz.getDeclaredFields()) {
@@ -190,6 +236,7 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
         private String fieldName;
         private String fieldType;
         private Integer fieldSize;
+        private boolean last = false;
 
         public SQLPropertyWrapper(String fieldName, String fieldType, Integer fieldSize) {
             super();
@@ -220,6 +267,14 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
 
         public void setFieldSize(Integer fieldSize) {
             this.fieldSize = fieldSize;
+        }
+
+        public boolean isLast() {
+            return last;
+        }
+
+        public void setLast(boolean last) {
+            this.last = last;
         }
 
     }

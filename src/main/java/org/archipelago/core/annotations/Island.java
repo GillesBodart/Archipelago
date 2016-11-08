@@ -7,13 +7,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by GJULESGB on 18/08/2016.
+ * Created by Gilles Bodart on 18/08/2016.
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Island {
-
-    String tableName() default "";
 
 }

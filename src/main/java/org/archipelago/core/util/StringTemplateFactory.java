@@ -9,6 +9,11 @@ import org.stringtemplate.v4.STGroupFile;
 import org.stringtemplate.v4.StringRenderer;
 import org.stringtemplate.v4.misc.ErrorBuffer;
 
+/**
+ * 
+ * @author Gilles Bodart
+ *
+ */
 public class StringTemplateFactory {
 
     public static STGroup buildSTGroup(final String ressourcePath) {

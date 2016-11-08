@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 /**
- * Created by GJULESGB on 19/08/2016.
+ * Created by Gilles Bodart on 19/08/2016.
  */
 @MappedSuperclass
 public abstract class MetaControl implements Comparable<MetaControl> {

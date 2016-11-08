@@ -2,7 +2,9 @@ package org.archipelago.core.builder;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.archipelago.core.domain.GeneratedScript;
@@ -12,11 +14,18 @@ import org.stringtemplate.v4.STGroup;
 
 import com.orientechnologies.orient.core.metadata.schema.OType;
 
+/**
+ * 
+ * @author Gilles Bodart
+ *
+ */
 public class OrientDBBuilder extends ArchipelagoScriptBuilder {
 
     private static final String ORIENT_FOLDER = "\\OrientDB";
-    private static final String CLASS_FILE_NAME_CLASS_FORMAT = "OrientClass%s";
-    private static final String CLASS_FILE_NAME_RELATION_FORMAT = "OrientRelations%s";
+    private static final String CLASS_FILE_NAME_CLASS_FORMAT = "OrientClass%s.txt";
+    private static final String CLASS_FILE_NAME_RELATION_FORMAT = "OrientRelations%s.txt";
+
+    private List<RelationWrapper> relations = new ArrayList<>();
 
     @Override
     public List<GeneratedScript> makeScript(final Class<?> clazz) {
@@ -35,7 +44,7 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
     private GeneratedScript makeClasses(final Class<?> clazz) {
         LOGGER.debug(String.format("Generation of script for class %s [START]", clazz.getSimpleName()));
         final String classTemplatePath = TEMPLATE_ROOT_PATH + ORIENT_FOLDER + "\\class.stg";
-        final STGroup group = StringTemplateFactory.buildSTGroup(classTemplatePath); 
+        final STGroup group = StringTemplateFactory.buildSTGroup(classTemplatePath);
         final ST st = group.getInstanceOf("ClassOrientDB");
         st.add("clazz", clazz);
         if (!clazz.getSuperclass().equals(Object.class)) {
@@ -44,8 +53,21 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
         st.add("abstract", Modifier.isAbstract(clazz.getModifiers()));
         for (Field field : clazz.getDeclaredFields()) {
             OType type = OType.getTypeByClass(field.getType());
-            st.add("properties", new PropertyWrapper(clazz.getSimpleName(), field.getName(), null == type?field.getType().getSimpleName():type));
-        } 
+            PropertyWrapper prop = null;
+            if (null == type || type.isEmbedded()) {
+                if (Collection.class.isAssignableFrom(field.getType())) {
+                    ParameterizedType genericType = (ParameterizedType) field.getGenericType();
+                    Class<?> genericClass = (Class<?>) genericType.getActualTypeArguments()[0];
+                    relations.add(new RelationWrapper(clazz.getSimpleName(), genericClass.getSimpleName(), field.getName(), OType.LINKLIST));
+                } else {
+                    relations.add(new RelationWrapper(clazz.getSimpleName(), field.getType().getSimpleName(), field.getName(), OType.LINK));
+                }
+                prop = new PropertyWrapper(clazz.getSimpleName(), field.getName(), OType.LONG);
+            } else {
+                prop = new PropertyWrapper(clazz.getSimpleName(), field.getName(), type);
+            }
+            st.add("properties", prop);
+        }
         LOGGER.debug(String.format("Generation of script for class %s [END]", clazz.getSimpleName()));
         return new GeneratedScript(String.format(CLASS_FILE_NAME_CLASS_FORMAT, clazz.getSimpleName()), st.render());
     }
@@ -55,6 +77,9 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
         final String relationTemplatePath = TEMPLATE_ROOT_PATH + ORIENT_FOLDER + "/relations.stg";
         final STGroup group = StringTemplateFactory.buildSTGroup(relationTemplatePath);
         final ST st = group.getInstanceOf("RelationsOrientDB");
+        for (RelationWrapper relation : relations) {
+            st.add("relation", relation);
+        }
         LOGGER.debug(String.format("Generation of script for relation %s [START]", clazz.getSimpleName()));
         return new GeneratedScript(String.format(CLASS_FILE_NAME_RELATION_FORMAT, clazz.getSimpleName()), st.render());
     }
@@ -70,6 +95,7 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
             this.name = name;
             this.type = type;
         }
+
         public String getParentClass() {
             return parentClass;
         }
@@ -93,13 +119,52 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
         public void setType(Object type) {
             this.type = type;
         }
+    }
 
-        /*
-         * [<link-type>|<link-class>] 
-( <property constraint> [, <property-constraint>]* ) 
-[UNSAFE] 
-         */
+    private class RelationWrapper {
+        private String from;
+        private String to;
+        private String fromProp;
+        private Object type;
 
+        public RelationWrapper(String from, String to, String fromProp, Object type) {
+            this.from = from;
+            this.to = to;
+            this.fromProp = fromProp;
+            this.type = type;
+        }
+
+        public String getFrom() {
+            return from;
+        }
+
+        public void setFrom(String from) {
+            this.from = from;
+        }
+
+        public String getTo() {
+            return to;
+        }
+
+        public void setTo(String to) {
+            this.to = to;
+        }
+
+        public String getFromProp() {
+            return fromProp;
+        }
+
+        public void setFromProp(String fromProp) {
+            this.fromProp = fromProp;
+        }
+
+        public Object getType() {
+            return type;
+        }
+
+        public void setType(Object type) {
+            this.type = type;
+        }
 
     }
 }

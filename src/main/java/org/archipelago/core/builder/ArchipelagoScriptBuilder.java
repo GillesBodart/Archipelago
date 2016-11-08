@@ -6,6 +6,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.domain.GeneratedScript;
 
+/**
+ * 
+ * @author Gilles Bodart
+ *
+ */
 public abstract class ArchipelagoScriptBuilder {
 
     public static final String TEMPLATE_ROOT_PATH = "StringTemplate";

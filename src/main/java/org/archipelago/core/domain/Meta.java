@@ -8,10 +8,9 @@ import org.archipelago.core.interfaces.SimpleElement;
 import org.archipelago.core.interfaces.UnderMetaElement;
 
 /**
- * Created by GJULESGB on 18/08/2016.
+ * Created by Gilles Bodart on 18/08/2016.
  */
-public class Meta<T extends UnderMetaElement> extends MetaControl
-        implements MetaElement {
+public class Meta<T extends UnderMetaElement> extends MetaControl implements MetaElement {
 
     private Collection<T> details;
     private Map<String, Collection<UnderMetaElement>> metaProperties;
@@ -39,8 +38,7 @@ public class Meta<T extends UnderMetaElement> extends MetaControl
         return metaProperties;
     }
 
-    public void setMetaProperties(
-            final Map<String, Collection<UnderMetaElement>> metaProperties) {
+    public void setMetaProperties(final Map<String, Collection<UnderMetaElement>> metaProperties) {
         this.metaProperties = metaProperties;
     }
 
@@ -48,8 +46,7 @@ public class Meta<T extends UnderMetaElement> extends MetaControl
         return simplesProperties;
     }
 
-    public void setSimplesProperties(
-            final Map<String, Collection<SimpleElement>> simplesProperties) {
+    public void setSimplesProperties(final Map<String, Collection<SimpleElement>> simplesProperties) {
         this.simplesProperties = simplesProperties;
     }
 

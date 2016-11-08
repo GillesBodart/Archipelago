@@ -1,24 +1,10 @@
 UnderMetaClass(package, className, properties) ::= <<
-<package>;
+<package>.archipelago;
 
-import org.archipelago.core.interfaces.MetaElement;
-import org.archipelago.core.interfaces.SimpleElement;
-import org.archipelago.core.interfaces.UnderMetaElement;
-import org.archipelago.core.domain.MetaControl;   
-
-import java.util.SortedSet;
-import java.util.TreeSet;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;   
+import org.archipelago.core.interfaces.*;
+import org.archipelago.core.domain.*;   
+import java.util.*; 
+import javax.persistence.*;   
 
 @Entity
 @Table(name="<className;format="upper">")
@@ -28,19 +14,19 @@ public class <className> extends UnderMeta\<Meta<className>\> {
     @GeneratedValue(generator = "<className;format="upper">_SEC")
     @SequenceGenerator(name = "<className;format="upper">_SEC", sequenceName = "<className;format="upper">_SEC")
     @Column(name = "<className;format="upper">_ID")
-	private Long id;
+	private Long archipelagoId;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "META_<className;format="upper">_ID", nullable = false)
 	private Meta<className> meta;
 	
 	
-	public Long getId() {
-        return id;
+	public Long getArchipelagoId() {
+        return archipelagoId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setArchipelagoId(Long archipelagoId) {
+        this.archipelagoId = archipelagoId;
     }
 	
 	<properties:implementProp()>
@@ -55,17 +41,33 @@ public class <className> extends UnderMeta\<Meta<className>\> {
 >>
 
 implementProp(property) ::=<<
+<if (property.type.interface)>
+private <property.genericType> <property.name>;
+<else>
 private <property.type.simpleName> <property.name>;
-
+<endif>  
 >>
 implementGetter(property) ::=<<
+<if (property.type.interface)>
+public <property.genericType> get<property.name;format="cap">(){
+	return <property.name>;
+<else>
 public <property.type.simpleName> get<property.name;format="cap">(){
 	return <property.name>;
+<endif>  
+
 }
 
 >>
 implementSetter(property) ::=<<
+<if (property.type.interface)>
+public void set<property.name;format="cap">(<property.genericType> <property.name>){
+	this.<property.name> = <property.name>;
+}
+<else>
 public void set<property.name;format="cap">(<property.type.simpleName> <property.name>){
 	this.<property.name> = <property.name>;
 }
+<endif> 
+
 >>	

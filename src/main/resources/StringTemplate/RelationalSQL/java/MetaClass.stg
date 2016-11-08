@@ -1,24 +1,10 @@
 MetaClass(package, className) ::= <<
-<package>;
+<package>.archipelago;
 
-import org.archipelago.core.interfaces.MetaElement;
-import org.archipelago.core.interfaces.SimpleElement;
-import org.archipelago.core.interfaces.UnderMetaElement;
-import org.archipelago.core.domain.MetaControl;   
-
-import java.util.SortedSet;
-import java.util.TreeSet;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;   
+import org.archipelago.core.interfaces.*;
+import org.archipelago.core.domain.*;   
+import java.util.*; 
+import javax.persistence.*;      
 
 @Entity
 @Table(name="META_<className;format="upper">")
@@ -28,20 +14,20 @@ public class Meta<className> extends MetaControl implements MetaElement {
     @GeneratedValue(generator = "META_<className;format="upper">_SEC")
     @SequenceGenerator(name = "META_<className;format="upper">_SEC", sequenceName = "META_<className;format="upper">_SEC")
     @Column(name = "META_<className;format="upper">_ID")
-	private Long id;
+	private Long archipelagoId;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "meta<className>")
 	private SortedSet\<<className>\> details;
 	
-	 public Long getId() {
-        return id;
+	public Long getArchipelagoId() {
+        return archipelagoId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setArchipelagoId(Long archipelagoId) {
+        this.archipelagoId = archipelagoId;
     }
 	
-	 public SortedSet\<<className>\> getDetails() {
+	public SortedSet\<<className>\> getDetails() {
         return details;
     }
 

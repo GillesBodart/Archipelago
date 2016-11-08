@@ -1,7 +1,7 @@
 package org.archipelago.core.exception;
 
 /**
- * Created by GJULESGB on 18/08/2016.
+ * Created by Gilles Bodart on 18/08/2016.
  */
 public class CheckException extends Exception {
     /**

@@ -1,17 +1,8 @@
 ClassOrientDB(clazz,parentClazz,cluster,abstract,properties) ::= <<
  
-CREATE CLASS <clazz.simpleName>
-<if (parentClazz)>
-EXTENDS <parentClazz.simpleName>
-<endif>
-<if (cluster)>
-CLUSTER <cluster.clusterName>
-CLUSTERS <cluster.clusterAmount>
-<endif>
-<if (abstract)>
-ABSTRACT
-<endif>
- 
+CREATE CLASS <clazz.simpleName><if (parentClazz)> EXTENDS <parentClazz.simpleName><endif><if (cluster)> CLUSTER <cluster.clusterName> CLUSTERS <cluster.clusterAmount><endif><if (abstract)> ABSTRACT<endif>
+
+<if (abstract)>CREATE PROPERTY  <clazz.simpleName>.ArchipelID LONG <endif>
 <properties : createProperty()> 
  
 >>
