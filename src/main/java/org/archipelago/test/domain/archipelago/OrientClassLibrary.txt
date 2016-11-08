@@ -1,0 +1,6 @@
+
+CREATE CLASS Library
+
+CREATE PROPERTY  Library.books LONG 
+ 
+ 

@@ -1,0 +1,2 @@
+CREATE LINK BookauthorToAuthor TYPE LINK FROM Book.author TO Author.ArchipelID
+

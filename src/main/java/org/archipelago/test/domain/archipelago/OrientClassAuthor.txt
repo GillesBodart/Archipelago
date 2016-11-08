@@ -1,0 +1,6 @@
+
+CREATE CLASS Author EXTENDS Person
+
+CREATE PROPERTY  Author.books LONG 
+ 
+ 

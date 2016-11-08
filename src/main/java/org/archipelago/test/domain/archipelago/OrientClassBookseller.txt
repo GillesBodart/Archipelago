@@ -1,0 +1,6 @@
+
+CREATE CLASS Bookseller EXTENDS Person
+
+CREATE PROPERTY  Bookseller.library LONG 
+ 
+ 
