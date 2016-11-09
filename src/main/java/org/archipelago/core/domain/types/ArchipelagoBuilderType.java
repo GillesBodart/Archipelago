@@ -10,7 +10,7 @@ import org.archipelago.core.builder.RelationalSQLBuilder;
  * @author Gilles Bodart
  *
  */
-public enum ArchipelagoGenerationType {
+public enum ArchipelagoBuilderType {
 
     ORIENT_DB {
         @Override

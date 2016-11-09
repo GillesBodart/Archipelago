@@ -1,0 +1,8 @@
+insertOrientDB(insert) ::= <<
+<insert:createInsert()>
+>>
+
+createInsert(insert) ::= "INSERT INTO <insert.parent> (ArchipelID<>)"
+
+// INSERT INTO Author (ArchipelID,name,lastName) VALUES (sequence('AuthorArchipelagoSeq').next(),"Gilles","Bodart") RETURN @this 
+// <names,phones:{ n,p | <n>: <p>}>

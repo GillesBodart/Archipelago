@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.archipelago.core.builder.ArchipelagoScriptBuilder;
 import org.archipelago.core.domain.GeneratedScript;
 
 /**
@@ -17,10 +16,8 @@ import org.archipelago.core.domain.GeneratedScript;
 public abstract class ArchipelagoScriptFeeder {
 
     public static final String TEMPLATE_ROOT_PATH = "StringTemplate";
-    protected final static Logger LOGGER = LogManager.getLogger(ArchipelagoScriptBuilder.class);
+    protected final static Logger LOGGER = LogManager.getLogger(ArchipelagoScriptFeeder.class);
 
-    public abstract List<GeneratedScript> makeScript(final Class<?> clazz);
-
-    public abstract List<GeneratedScript> makeScript(final Class<?> clazz, final List<Class<?>> archipels);
+    public abstract List<GeneratedScript> makeScript(final Object clazz);
 
 }

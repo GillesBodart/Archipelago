@@ -12,13 +12,11 @@ import org.archipelago.core.domain.GeneratedScript;
 public class Neo4JFeeder extends ArchipelagoScriptFeeder {
 
     @Override
-    public List<GeneratedScript> makeScript(final Class<?> clazz) {
-        return makeScript(clazz, null);
-    }
+    public List<GeneratedScript> makeScript(Object clazz) {
 
-    @Override
-    public List<GeneratedScript> makeScript(Class<?> clazz, List<Class<?>> archipels) {
         return null;
     }
+
+
 
 }

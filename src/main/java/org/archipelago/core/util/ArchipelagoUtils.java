@@ -3,6 +3,9 @@ package org.archipelago.core.util;
 import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -17,6 +20,9 @@ import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.AnnotationUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.archipelago.core.domain.GeneratedScript;
 
 /**
@@ -25,6 +31,8 @@ import org.archipelago.core.domain.GeneratedScript;
  *
  */
 public class ArchipelagoUtils {
+
+    private final static Logger LOGGER = LogManager.getLogger(ArchipelagoUtils.class);
 
     public static final String JAVA_EXTENSION = "java";
     public static final String CLASS_EXTENSION = "class";
@@ -86,6 +94,21 @@ public class ArchipelagoUtils {
             Files.deleteIfExists(classPath);
             Files.createFile(classPath);
             Files.write(classPath, script.getContent().getBytes(), StandardOpenOption.CREATE);
+        }
+    }
+
+    public static void scan(final Class<?> clazz) {
+        for (Annotation x : clazz.getAnnotations()) {
+            LOGGER.debug(String.format("Annotation : %s", AnnotationUtils.toString(x)));
+        }
+        for (Field x : clazz.getDeclaredFields()) {
+            LOGGER.debug(String.format("Field : %s", x.getName()));
+        }
+        for (Method x : clazz.getDeclaredMethods()) {
+            LOGGER.debug(String.format("Method : %s", x.getName()));
+        }
+        for (Constructor<?> x : clazz.getDeclaredConstructors()) {
+            LOGGER.debug(String.format("Constructor : %s", x.getName()));
         }
     }
 
