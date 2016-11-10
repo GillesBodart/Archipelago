@@ -3,11 +3,11 @@ package org.archipelago.test.domain;
 import org.archipelago.core.annotations.Island;
 
 @Island
-public class Bookseller extends Person {
+public class Librarian extends Person {
 
     private Library library;
 
-    public Bookseller() {
+    public Librarian() {
         super();
     }
 
@@ -19,7 +19,7 @@ public class Bookseller extends Person {
         this.library = library;
     }
 
-    public Bookseller(Library library) {
+    public Librarian(Library library) {
         super();
         this.library = library;
     }

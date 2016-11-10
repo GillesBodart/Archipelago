@@ -7,7 +7,7 @@ import org.archipelago.core.domain.GeneratedScript;
 public class RelationalSQLFeeder extends ArchipelagoScriptFeeder {
 
     @Override
-    public List<GeneratedScript> makeScript(Object clazz) {
+    public <T extends Object> List<GeneratedScript> makeScript(final List<T> objects) {
 
         return null;
     }

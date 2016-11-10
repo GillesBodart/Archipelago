@@ -8,6 +8,7 @@ import org.archipelago.core.annotations.Archipel;
 public class Book {
     private Author author;
     private int amountPages;
+    private String title;
     private Date publishDate;
 
     public Author getAuthor() {
@@ -34,11 +35,15 @@ public class Book {
         this.publishDate = publishDate;
     }
 
-    public Book(Author author, int amountPages, Date publishDate) {
-        super();
-        this.author = author;
-        this.amountPages = amountPages;
-        this.publishDate = publishDate;
+    public Book() {
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    };
 
 }

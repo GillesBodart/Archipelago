@@ -13,8 +13,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
@@ -110,6 +112,19 @@ public class ArchipelagoUtils {
         for (Constructor<?> x : clazz.getDeclaredConstructors()) {
             LOGGER.debug(String.format("Constructor : %s", x.getName()));
         }
+    }
+
+    public static Set<Field> getAllFields(Class<?> clazz) {
+        Set<Field> fields = new HashSet<>();
+
+        fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+
+        Class<?> superClazz = clazz.getSuperclass();
+        if (superClazz != null) {
+            fields.addAll(getAllFields(superClazz));
+        }
+
+        return fields;
     }
 
 }

@@ -18,6 +18,6 @@ public abstract class ArchipelagoScriptFeeder {
     public static final String TEMPLATE_ROOT_PATH = "StringTemplate";
     protected final static Logger LOGGER = LogManager.getLogger(ArchipelagoScriptFeeder.class);
 
-    public abstract List<GeneratedScript> makeScript(final Object clazz);
+    public abstract <T extends Object> List<GeneratedScript> makeScript(final List<T> objects);
 
 }

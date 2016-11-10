@@ -38,7 +38,7 @@ public class GeneratedScript {
 
     @Override
     public String toString() {
-        return String.format("File : %s \n \n %s", scriptName, content);
+        return String.format("File : %s \n \n%s", scriptName, content);
     }
 
 }
