@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * Created by GJULESGB on 19/08/2016.
  */
 @Entity
-@Table(name = "")
+@Table(name = "DB_TAB")
 public class MetaHibernate {
     @Id
     @GeneratedValue(generator = "my_sec")
@@ -27,9 +27,9 @@ public class MetaHibernate {
     private Long id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "otherFieldName")
-    private SortedSet<ClassOne> ones = new TreeSet<>();
+    private SortedSet<Integer> ones = new TreeSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STOCK_ID", nullable = false)
-    private ClassTwo meta;
+    private String meta;
 }

@@ -1,0 +1,39 @@
+MetaClass(package, className) ::= <<
+<package>.archipelago;
+
+import org.archipelago.core.interfaces.*;
+import org.archipelago.core.domain.*;   
+import java.util.*; 
+import javax.persistence.*;      
+
+@Entity
+@Table(name="META_<className;format="upper">")
+public class Meta<className> extends MetaControl implements MetaElement {
+
+	@Id
+    @GeneratedValue(generator = "META_<className;format="upper">_SEC")
+    @SequenceGenerator(name = "META_<className;format="upper">_SEC", sequenceName = "META_<className;format="upper">_SEC")
+    @Column(name = "META_<className;format="upper">_ID")
+	private Long archipelagoId;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "meta<className>")
+	private SortedSet\<<className>\> details;
+	
+	public Long getArchipelagoId() {
+        return archipelagoId;
+    }
+
+    public void setArchipelagoId(Long archipelagoId) {
+        this.archipelagoId = archipelagoId;
+    }
+	
+	public SortedSet\<<className>\> getDetails() {
+        return details;
+    }
+
+    public void setDetails(SortedSet\<<className>\> details) {
+        this.details = details;
+    }
+
+}
+>>
