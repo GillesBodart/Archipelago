@@ -13,6 +13,4 @@ CREATE PROPERTY  <property.parentClass><property.name>.in LINK <property.genType
 >>
 createLink(relation) ::= "CREATE LINK <relation.from><relation.fromProp>To<relation.to> TYPE <relation.type> FROM <relation.from>.<relation.fromProp> TO <relation.to>.ArchipelID<\n>" 
 
-
-create property Owns.out LINK Person
-orientdb> create property Owns.in LINK Car
+ 

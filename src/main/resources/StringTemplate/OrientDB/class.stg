@@ -1,12 +1,14 @@
 ClassOrientDB(clazz,parentClazz,cluster,abstract,properties) ::= <<
 CREATE CLASS <clazz.simpleName> EXTENDS <if (parentClazz)><parentClazz.simpleName><else> V <endif><if (cluster)> CLUSTER <cluster.clusterName> CLUSTERS <cluster.clusterAmount><endif><if (abstract)> ABSTRACT<endif>
-
-<if (!parentClazz)>CREATE PROPERTY  <clazz.simpleName>.archipelID LONG
-CREATE SEQUENCE <clazz.simpleName>ArchipelagoSeq TYPE ORDERED
-CREATE INDEX <clazz.simpleName>.ArchipelID UNIQUE
+<if (!parentClazz)>
+CREATE PROPERTY  <clazz.simpleName>.archipelID LONG
+CREATE INDEX <clazz.simpleName>.archipelID UNIQUE
 <endif>
 <properties : createProperty()> 
  
+<if (!parentClazz)>
+CREATE SEQUENCE <clazz.simpleName>ArchipelagoSeq TYPE ORDERED
+<endif>
 >>
 
 createProperty(property) ::= "CREATE PROPERTY  <property.parentClass>.<property.name> <property.type> <\n>" 
