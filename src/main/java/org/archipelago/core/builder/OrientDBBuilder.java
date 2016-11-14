@@ -59,13 +59,14 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
                     ParameterizedType genericType = (ParameterizedType) field.getGenericType();
                     Class<?> genericClass = (Class<?>) genericType.getActualTypeArguments()[0];
                     relations.add(new PropertyWrapper(clazz.getSimpleName(), field.getName(),
-                            String.format("%s %s", OType.LINKLIST, genericClass.getSimpleName())));
+                            String.format("%s %s", OType.LINKLIST, genericClass.getSimpleName()), genericClass));
                 } else {
                     relations.add(
-                            new PropertyWrapper(clazz.getSimpleName(), field.getName(), String.format("%s %s", OType.LINK, field.getType().getSimpleName())));
+                            new PropertyWrapper(clazz.getSimpleName(), field.getName(), String.format("%s %s", OType.LINK, field.getType().getSimpleName()),
+                                    field.getType()));
                 } 
             } else {
-                prop = new PropertyWrapper(clazz.getSimpleName(), field.getName(), type);
+                prop = new PropertyWrapper(clazz.getSimpleName(), field.getName(), type, null);
             }
             st.add("properties", prop);
         }
@@ -89,12 +90,14 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
         private String parentClass;
         private String name;
         private Object type;
+        private Object genType;
 
-        public PropertyWrapper(String parentClass, String name, Object type) {
+        public PropertyWrapper(String parentClass, String name, Object type, Object genType) {
             super();
             this.parentClass = parentClass;
             this.name = name;
             this.type = type;
+            this.genType = genType;
         }
 
         public String getParentClass() {
@@ -120,6 +123,15 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
         public void setType(Object type) {
             this.type = type;
         }
+
+        public Object getGenType() {
+            return genType;
+        }
+
+        public void setGenType(Object genType) {
+            this.genType = genType;
+        }
+
     }
 
     private class RelationWrapper {
