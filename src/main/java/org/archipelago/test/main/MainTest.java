@@ -2,6 +2,7 @@ package org.archipelago.test.main;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,10 +13,14 @@ import org.archipelago.core.domain.types.ArchipelagoBuilderType;
 import org.archipelago.core.domain.types.ArchipelagoFeederType;
 import org.archipelago.core.runtime.ArchipelagoBuilderFactory;
 import org.archipelago.core.runtime.ArchipelagoFeederFactory;
-import org.archipelago.test.domain.Author;
-import org.archipelago.test.domain.Book;
-import org.archipelago.test.domain.Librarian;
-import org.archipelago.test.domain.Library;
+import org.archipelago.test.domain.library.Author;
+import org.archipelago.test.domain.library.Book;
+import org.archipelago.test.domain.library.Librarian;
+import org.archipelago.test.domain.library.Library;
+import org.archipelago.test.domain.school.Person;
+import org.archipelago.test.domain.school.School;
+import org.archipelago.test.domain.school.Student;
+import org.archipelago.test.domain.school.Teacher;
 
 import com.google.common.collect.Lists;
 
@@ -27,15 +32,48 @@ public class MainTest {
     protected final static Logger LOGGER = LogManager.getLogger(MainTest.class);
 
     private final static ArchipelagoBuilderType TEST_TYPE = ArchipelagoBuilderType.ORIENT_DB;
-    private final static String TEST_PATH = "C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain";
+    private final static String TEST_SCHOOL_PATH = "C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain\\school";
+    private final static String TEST_LIBRARY_PATH = "C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain\\library";
+
+    private final static String TEST_CASE = "School";
 
     public static void main(String[] args) throws ClassNotFoundException, IOException {
 
-        testBuilder();
-        testFeeder();
+        testBuilder(TEST_CASE);
+        testFeeder(TEST_CASE);
     }
 
-    private static void testFeeder() throws ClassNotFoundException, IOException {
+    private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {
+        switch (testCase.toUpperCase()){
+            case "SCHOOL":
+                school();
+                break;
+            case "LIBRARY":
+                library();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private static void testBuilder(String testCase) throws ClassNotFoundException, IOException {
+        List<GeneratedScript> scripts = new ArrayList<>();
+        switch (testCase.toUpperCase()) {
+            case "SCHOOL":
+                scripts = ArchipelagoBuilderFactory.generate(Paths.get(TEST_SCHOOL_PATH), TEST_TYPE);
+                break;
+            case "LIBRARY":
+                scripts = ArchipelagoBuilderFactory.generate(Paths.get(TEST_LIBRARY_PATH), TEST_TYPE);
+                break;
+            default:
+                break;
+        }
+        for (GeneratedScript script : scripts) {
+            LOGGER.info(script);
+        }
+    }
+
+    private static void library() throws ClassNotFoundException, IOException {
         Book book = new Book();
         book.setAmountPages(200);
         book.setPublishDate(new Date());
@@ -51,20 +89,58 @@ public class MainTest {
         library.setBooks(Lists.newArrayList(book));
         librarian.setLibrary(library);
         book.setAuthor(author);
-        List<GeneratedScript> scripts = ArchipelagoFeederFactory.generate(Paths.get(TEST_PATH).resolve("archipelago"), Lists.newArrayList(book, author,
-                librarian, library),
+        List<GeneratedScript> scripts = ArchipelagoFeederFactory.generate(Paths.get(TEST_LIBRARY_PATH).resolve("archipelago"), Lists.newArrayList(book, author,
+                librarian, library), ArchipelagoFeederType.ORIENT_DB);
+        for (GeneratedScript script : scripts) {
+            LOGGER.info(script);
+        }
+    }
+
+    private static void school() throws ClassNotFoundException, IOException {
+        Person director = new Teacher();
+        director.setFirstName("Hans");
+        director.setLastName("Gys");
+        director.setSexe("M");
+        Person stu1 = new Student();
+        director.setFirstName("Gilles");
+        director.setLastName("Bodart");
+        director.setSexe("M");
+        Person stu2 = new Student();
+        director.setFirstName("Thomas");
+        director.setLastName("Blondiau");
+        director.setSexe("M");
+        Person stu3 = new Student();
+        director.setFirstName("Thomas");
+        director.setLastName("Reynders");
+        director.setSexe("M");
+        Person stu4 = new Student();
+        director.setFirstName("Hans");
+        director.setLastName("Gys");
+        director.setSexe("M");
+        Person stu5 = new Student();
+        director.setFirstName("Hans");
+        director.setLastName("Gys");
+        director.setSexe("M");
+        Person stu6 = new Student();
+        director.setFirstName("Hans");
+        director.setLastName("Gys");
+        director.setSexe("M");
+        Person stu7 = new Student();
+        director.setFirstName("Hans");
+        director.setLastName("Gys");
+        director.setSexe("M");
+
+
+        School school = new School();
+        school.setName("Saint Louis Namur");
+        school.setDirector(director);
+
+        
+        List<Object> objects = Lists.newArrayList(director, school);
+        List<GeneratedScript> scripts = ArchipelagoFeederFactory.generate(Paths.get(TEST_SCHOOL_PATH).resolve("archipelago"), objects,
                 ArchipelagoFeederType.ORIENT_DB);
         for (GeneratedScript script : scripts) {
             LOGGER.info(script);
         }
     }
-
-    private static void testBuilder() throws ClassNotFoundException, IOException {
-        List<GeneratedScript> scripts = ArchipelagoBuilderFactory.generate(Paths.get(TEST_PATH), TEST_TYPE);
-        // Show scripts
-        for (GeneratedScript script : scripts) {
-            LOGGER.info(script);
-        }
-    }
-
 }

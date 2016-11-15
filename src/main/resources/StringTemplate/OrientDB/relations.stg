@@ -9,7 +9,8 @@ createProperty(property) ::= "CREATE PROPERTY  <property.parentClass>.<property.
 createEdge(property) ::= <<
 CREATE CLASS  <property.parentClass><property.name> EXTENDS E
 CREATE PROPERTY  <property.parentClass><property.name>.out LINK <property.parentClass>
-CREATE PROPERTY  <property.parentClass><property.name>.in LINK <property.genType.simpleName>
+CREATE PROPERTY  <property.parentClass><property.name>.in LINK <property.genType.simpleName><\n>
+
 >>
 createLink(relation) ::= "CREATE LINK <relation.from><relation.fromProp>To<relation.to> TYPE <relation.type> FROM <relation.from>.<relation.fromProp> TO <relation.to>.ArchipelID<\n>" 
 

@@ -4,4 +4,4 @@
 .project
 Archipelago.iml
 **/Orient*.txt
-**/src/main/java/org/archipelago/test/domain/archipelago/*
+**/src/main/java/org/archipelago/test/domain/**/archipelago/*
