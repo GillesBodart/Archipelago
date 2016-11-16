@@ -102,41 +102,44 @@ public class MainTest {
         director.setLastName("Gys");
         director.setSexe("M");
         Person stu1 = new Student();
-        director.setFirstName("Gilles");
-        director.setLastName("Bodart");
-        director.setSexe("M");
+        stu1.setFirstName("Gilles");
+        stu1.setLastName("Bodart");
+        stu1.setSexe("M");
         Person stu2 = new Student();
-        director.setFirstName("Thomas");
-        director.setLastName("Blondiau");
-        director.setSexe("M");
+        stu2.setFirstName("Thomas");
+        stu2.setLastName("Blondiau");
+        stu2.setSexe("M");
         Person stu3 = new Student();
-        director.setFirstName("Thomas");
-        director.setLastName("Reynders");
-        director.setSexe("M");
+        stu3.setFirstName("Thomas");
+        stu3.setLastName("Reynders");
+        stu3.setSexe("M");
         Person stu4 = new Student();
-        director.setFirstName("Hans");
-        director.setLastName("Gys");
-        director.setSexe("M");
+        stu4.setFirstName("Charles-Antoine");
+        stu4.setLastName("Van Beers");
+        stu4.setSexe("M");
         Person stu5 = new Student();
-        director.setFirstName("Hans");
-        director.setLastName("Gys");
-        director.setSexe("M");
+        stu5.setFirstName("Antoine");
+        stu5.setLastName("Dumont");
+        stu5.setSexe("M");
         Person stu6 = new Student();
-        director.setFirstName("Hans");
-        director.setLastName("Gys");
-        director.setSexe("M");
+        stu6.setFirstName("Martin");
+        stu6.setLastName("Périlleux");
+        stu6.setSexe("M");
         Person stu7 = new Student();
-        director.setFirstName("Hans");
-        director.setLastName("Gys");
+        director.setFirstName("Benjamin");
+        director.setLastName("Leroy");
         director.setSexe("M");
-
+        Person teach1 = new Teacher();
+        teach1.setFirstName("Martin");
+        teach1.setLastName("Périlleux");
+        teach1.setSexe("M");
 
         School school = new School();
         school.setName("Saint Louis Namur");
         school.setDirector(director);
 
         
-        List<Object> objects = Lists.newArrayList(director, school);
+        List<Object> objects = Lists.newArrayList(director, school, stu1, stu2, stu3, stu4, stu5, stu6, stu7);
         List<GeneratedScript> scripts = ArchipelagoFeederFactory.generate(Paths.get(TEST_SCHOOL_PATH).resolve("archipelago"), objects,
                 ArchipelagoFeederType.ORIENT_DB);
         for (GeneratedScript script : scripts) {
