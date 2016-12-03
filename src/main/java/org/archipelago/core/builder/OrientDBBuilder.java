@@ -3,6 +3,7 @@ package org.archipelago.core.builder;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -57,15 +58,21 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
             if (null == type || type.isEmbedded()) {
                 if (Collection.class.isAssignableFrom(field.getType())) {
                     ParameterizedType genericType = (ParameterizedType) field.getGenericType();
-                    Class<?> genericClass = (Class<?>) genericType.getActualTypeArguments()[0];
+                    Class<?> genericClass = null;
+                    if (genericType.getActualTypeArguments()[0] instanceof WildcardType) {
+                        genericClass = (Class<?>) ((WildcardType) genericType.getActualTypeArguments()[0]).getUpperBounds()[0];
+                    } else {
+                        genericClass = (Class<?>) genericType.getActualTypeArguments()[0];
+                    }
                     relations.add(new PropertyWrapper(clazz.getSimpleName(), field.getName(),
-                            String.format("%s %s", OType.LINKLIST, genericClass.getSimpleName())));
+                            String.format("%s %s", OType.LINKLIST, genericClass.getSimpleName()), genericClass));
                 } else {
                     relations.add(
-                            new PropertyWrapper(clazz.getSimpleName(), field.getName(), String.format("%s %s", OType.LINK, field.getType().getSimpleName())));
+                            new PropertyWrapper(clazz.getSimpleName(), field.getName(), String.format("%s %s", OType.LINK, field.getType().getSimpleName()),
+                                    field.getType()));
                 } 
             } else {
-                prop = new PropertyWrapper(clazz.getSimpleName(), field.getName(), type);
+                prop = new PropertyWrapper(clazz.getSimpleName(), field.getName(), type, null);
             }
             st.add("properties", prop);
         }
@@ -89,12 +96,14 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
         private String parentClass;
         private String name;
         private Object type;
+        private Object genType;
 
-        public PropertyWrapper(String parentClass, String name, Object type) {
+        public PropertyWrapper(String parentClass, String name, Object type, Object genType) {
             super();
             this.parentClass = parentClass;
             this.name = name;
             this.type = type;
+            this.genType = genType;
         }
 
         public String getParentClass() {
@@ -120,6 +129,15 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
         public void setType(Object type) {
             this.type = type;
         }
+
+        public Object getGenType() {
+            return genType;
+        }
+
+        public void setGenType(Object genType) {
+            this.genType = genType;
+        }
+
     }
 
     private class RelationWrapper {

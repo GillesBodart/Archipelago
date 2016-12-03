@@ -42,8 +42,14 @@ public class OrientDBFeeder extends ArchipelagoScriptFeeder {
             Set<Field> fields = ArchipelagoUtils.getAllFields(clazz);
             for (Field field : fields) {
                 try {
-                    Method getter = clazz.getMethod(String.format("get%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
-                            .getName().length())));
+                    Method getter = null;
+                    if (field.getType().equals(boolean.class)) {
+                        getter = clazz.getMethod(String.format("is%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
+                                .getName().length())));
+                    } else {
+                        getter = clazz.getMethod(String.format("get%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
+                                .getName().length())));
+                    }
                     if (field.getType().isPrimitive()) {
                         properties.add(field.getName());
                         values.add(getter.invoke(object));
@@ -62,7 +68,11 @@ public class OrientDBFeeder extends ArchipelagoScriptFeeder {
                     LOGGER.debug(String.format("No usual getter for %s", field.getName()), e);
                 }
             }
-            st.add("insert", new InsertionWrapper(properties, clazz.getSimpleName(), values));
+            String superParent = null;
+            if (!clazz.getSuperclass().equals(Object.class)) {
+                superParent = clazz.getSuperclass().getSimpleName();
+            }
+            st.add("insert", new InsertionWrapper(properties, clazz.getSimpleName(), superParent, values));
         }
         scripts.add(new GeneratedScript(OBJECT_FILE_NAME, st.render()));
         return scripts;
@@ -77,13 +87,15 @@ public class OrientDBFeeder extends ArchipelagoScriptFeeder {
 
         private List<String> properties = new ArrayList<>();
         private String parent;
+        private String superParent;
         private List<Object> values = new ArrayList<>();
 
-        public InsertionWrapper(List<String> properties, String parent, List<Object> values) {
+        public InsertionWrapper(List<String> properties, String parent, String superParent, List<Object> values) {
             super();
-            this.properties.addAll(properties);
+            this.properties = properties;
             this.parent = parent;
-            this.values.addAll(values);
+            this.superParent = superParent;
+            this.values = values;
         }
 
         public List<String> getProperties() {
@@ -108,6 +120,14 @@ public class OrientDBFeeder extends ArchipelagoScriptFeeder {
 
         public void setValues(List<Object> values) {
             this.values = values;
+        }
+
+        public String getSuperParent() {
+            return superParent;
+        }
+
+        public void setSuperParent(String superParent) {
+            this.superParent = superParent;
         }
 
     }
