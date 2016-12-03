@@ -8,6 +8,14 @@ public class Lesson {
     private String name;
     private int hourPerWeek;
 
+    public Lesson() {
+    }
+    public Lesson(String name, int hourPerWeek) {
+        super();
+        this.name = name;
+        this.hourPerWeek = hourPerWeek;
+    }
+
     public String getName() {
         return name;
     }

@@ -10,6 +10,15 @@ public class Library extends Room {
     private List<String> books;
     private Person worker;
 
+    public Library() {
+    }
+
+    public Library(String roomName, List<String> books, Person worker) {
+        super(roomName);
+        this.books = books;
+        this.worker = worker;
+    }
+
     public List<String> getBooks() {
         return books;
     }

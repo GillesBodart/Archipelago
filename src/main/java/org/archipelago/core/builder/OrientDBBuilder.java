@@ -3,6 +3,7 @@ package org.archipelago.core.builder;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -57,7 +58,12 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
             if (null == type || type.isEmbedded()) {
                 if (Collection.class.isAssignableFrom(field.getType())) {
                     ParameterizedType genericType = (ParameterizedType) field.getGenericType();
-                    Class<?> genericClass = (Class<?>) genericType.getActualTypeArguments()[0];
+                    Class<?> genericClass = null;
+                    if (genericType.getActualTypeArguments()[0] instanceof WildcardType) {
+                        genericClass = (Class<?>) ((WildcardType) genericType.getActualTypeArguments()[0]).getUpperBounds()[0];
+                    } else {
+                        genericClass = (Class<?>) genericType.getActualTypeArguments()[0];
+                    }
                     relations.add(new PropertyWrapper(clazz.getSimpleName(), field.getName(),
                             String.format("%s %s", OType.LINKLIST, genericClass.getSimpleName()), genericClass));
                 } else {

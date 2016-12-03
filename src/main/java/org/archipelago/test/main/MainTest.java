@@ -2,6 +2,7 @@ package org.archipelago.test.main;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,10 +18,14 @@ import org.archipelago.test.domain.library.Author;
 import org.archipelago.test.domain.library.Book;
 import org.archipelago.test.domain.library.Librarian;
 import org.archipelago.test.domain.library.Library;
-import org.archipelago.test.domain.school.Person;
+import org.archipelago.test.domain.school.ClassRoom;
+import org.archipelago.test.domain.school.Lesson;
+import org.archipelago.test.domain.school.Promotion;
+import org.archipelago.test.domain.school.Room;
 import org.archipelago.test.domain.school.School;
 import org.archipelago.test.domain.school.Student;
 import org.archipelago.test.domain.school.Teacher;
+import org.archipelago.test.domain.school.Worker;
 
 import com.google.common.collect.Lists;
 
@@ -31,7 +36,7 @@ public class MainTest {
 
     protected final static Logger LOGGER = LogManager.getLogger(MainTest.class);
 
-    private final static ArchipelagoBuilderType TEST_TYPE = ArchipelagoBuilderType.ORIENT_DB;
+    private final static ArchipelagoBuilderType TEST_TYPE = ArchipelagoBuilderType.RELATIONAL_SQL;
     private final static String TEST_SCHOOL_PATH = "C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain\\school";
     private final static String TEST_LIBRARY_PATH = "C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain\\library";
 
@@ -40,11 +45,11 @@ public class MainTest {
     public static void main(String[] args) throws ClassNotFoundException, IOException {
 
         testBuilder(TEST_CASE);
-        testFeeder(TEST_CASE);
+        // testFeeder(TEST_CASE);
     }
 
     private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {
-        switch (testCase.toUpperCase()){
+        switch (testCase.toUpperCase()) {
             case "SCHOOL":
                 school();
                 break;
@@ -97,52 +102,94 @@ public class MainTest {
     }
 
     private static void school() throws ClassNotFoundException, IOException {
-        Person director = new Teacher();
-        director.setFirstName("Hans");
-        director.setLastName("Gys");
-        director.setSexe("M");
-        Person stu1 = new Student();
-        stu1.setFirstName("Gilles");
-        stu1.setLastName("Bodart");
-        stu1.setSexe("M");
-        Person stu2 = new Student();
-        stu2.setFirstName("Thomas");
-        stu2.setLastName("Blondiau");
-        stu2.setSexe("M");
-        Person stu3 = new Student();
-        stu3.setFirstName("Thomas");
-        stu3.setLastName("Reynders");
-        stu3.setSexe("M");
-        Person stu4 = new Student();
-        stu4.setFirstName("Charles-Antoine");
-        stu4.setLastName("Van Beers");
-        stu4.setSexe("M");
-        Person stu5 = new Student();
-        stu5.setFirstName("Antoine");
-        stu5.setLastName("Dumont");
-        stu5.setSexe("M");
-        Person stu6 = new Student();
-        stu6.setFirstName("Martin");
-        stu6.setLastName("Périlleux");
-        stu6.setSexe("M");
-        Person stu7 = new Student();
-        director.setFirstName("Benjamin");
-        director.setLastName("Leroy");
-        director.setSexe("M");
-        Person teach1 = new Teacher();
-        teach1.setFirstName("Martin");
-        teach1.setLastName("Périlleux");
-        teach1.setSexe("M");
+
+        Lesson math8 = new Lesson("Math", 8);
+        Lesson math6 = new Lesson("Math", 6);
+        Lesson math4 = new Lesson("Math", 4);
+        Lesson science6 = new Lesson("Science", 6);
+        Lesson science3 = new Lesson("Science", 3);
+        Lesson frans5 = new Lesson("Frans", 5);
+        Lesson frans6 = new Lesson("Frans", 6);
+        Lesson deutch2 = new Lesson("Deutch", 2);
+        Lesson deutch4 = new Lesson("Deutch", 4);
+        Lesson english2 = new Lesson("English", 2);
+        Lesson english4 = new Lesson("English", 4);
+        Lesson history = new Lesson("History", 2);
+        Lesson geography = new Lesson("Geography", 2);
+        Lesson religion = new Lesson("Religion", 2);
+        Lesson pE = new Lesson("Physical Education", 2);
+        Lesson greek = new Lesson("Greek ancient", 4);
+
+        Promotion p2011 = new Promotion(2011);
+        Promotion p2002 = new Promotion(2002);
+        Promotion p2010 = new Promotion(2010);
+
+        Teacher gys = new Teacher("Hans", "Gys", null, "M", Lists.newArrayList(deutch2, deutch4, english2, english4), Lists.newArrayList(deutch2, deutch4,
+                english2, english4), "Master");
+        Teacher goffin = new Teacher("Michel", "Goffin", null, "M", Lists.newArrayList(math8, math6, math4), Lists.newArrayList(math8, math6, math4), "Master");
+        Teacher massart = new Teacher("", "Massart", null, "M", Lists.newArrayList(math8, math6, math4), Lists.newArrayList(math8, math6, math4), "Master");
+        Teacher gouthers = new Teacher("Pierre-Yve", "Gouthers", null, "M", Lists.newArrayList(frans5, frans6, religion), Lists.newArrayList(math8, math6,
+                math4), "Master");
+        Teacher jacques = new Teacher("Christian", "Jacques", null, "M", Lists.newArrayList(geography), Lists.newArrayList(geography), "Master");
+
+        Student gilles = new Student("Gilles", "Bodart", LocalDate.of(1992, 4, 14), "M", Lists.newArrayList(math8, science6, deutch2, english4, history,
+                geography, religion, frans5, pE), null, null, p2011);
+        Student thomasB = new Student("Thomas", "Blondiau", LocalDate.of(1992, 1, 5), "M", Lists.newArrayList(math8, science3, deutch2, english4, history,
+                geography, religion, frans5, pE, greek), null, null, p2010);
+        Student thomasR = new Student("Thomas", "Reynders", LocalDate.of(1992, 1, 22), "M", Lists.newArrayList(math8, science6, deutch2, english4, history,
+                geography, religion, frans5, pE), null, null, p2010);
+        Student charly = new Student("Charles-Antoine", "Van Beers", LocalDate.of(1992, 4, 28), "M", Lists.newArrayList(math8, science3, deutch2, english4,
+                history, geography, religion, frans5, pE, greek), null, null, p2010);
+        Student antoine = new Student("Antoine", "Dumont", LocalDate.of(1992, 12, 28), "M", Lists.newArrayList(math6, science3, deutch4, english4, history,
+                geography, religion, frans5, pE, greek), null, null, p2010);
+        Student martin = new Student("Martin", "Périlleux", LocalDate.of(1992, 2, 28), "M", Lists.newArrayList(math6, science3, deutch4, english4, history,
+                geography, religion, frans5, pE, greek), null, null, p2010);
+        Student benjamin = new Student("Benjamin", "Leroy", LocalDate.of(1992, 10, 31), "M", Lists.newArrayList(math8, science3, deutch2, english4, history,
+                geography, religion, frans5, pE, greek), null, null, p2010);
+        Student antoineBo = new Student("Antoine", "Bodart", LocalDate.of(1985, 10, 18), "M", Lists.newArrayList(math6, science6, deutch2, english4, history,
+                geography, religion, frans5, pE), null, null, p2002);
+        Worker cassart = new Worker("", "Cassart", null, "M", null, null);
+        List<Room> rooms;
+        Room library = new org.archipelago.test.domain.school.Library("Library", Lists.newArrayList("Le livre du voyage", "Le tour du monde ne 80 jours",
+                "La nuit des enfants roi", "Le joueur d'échecs"), cassart);
+        cassart.setInChargeOf(Lists.newArrayList(library));
+        Room l003 = new ClassRoom("L003", 30, true, false, true);
+        Room c203 = new ClassRoom("C203", 30, true, false, true);
+        Room l306 = new ClassRoom("L306", 50, true, true, false);
+
+        gilles.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, martin, benjamin, antoineBo));
+        gilles.setFamilyMember(Lists.newArrayList(antoineBo));
+        thomasB.setFriends(Lists.newArrayList(gilles, thomasR, charly, antoine, martin, benjamin));
+        thomasR.setFriends(Lists.newArrayList(thomasB, gilles, charly, antoine, martin, benjamin));
+        charly.setFriends(Lists.newArrayList(thomasB, thomasR, gilles, antoine, martin, benjamin));
+        antoine.setFriends(Lists.newArrayList(thomasB, thomasR, charly, gilles, martin, benjamin));
+        martin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, gilles, benjamin));
+        benjamin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, martin, gilles));
 
         School school = new School();
         school.setName("Saint Louis Namur");
-        school.setDirector(director);
+        school.setDirector(gys);
+        school.setTeachers(Lists.newArrayList(goffin, gouthers, jacques, gys, massart));
+        school.setStudents(Lists.newArrayList(gilles, thomasB, thomasR, charly, antoine, martin, benjamin, antoineBo));
+        school.setRooms(Lists.newArrayList(library, l003, l306, c203));
+        school.setWorkers(Lists.newArrayList(cassart));
 
-        
-        List<Object> objects = Lists.newArrayList(director, school, stu1, stu2, stu3, stu4, stu5, stu6, stu7);
+        List<Object> objects = Lists.newArrayList();
+        objects.addAll(Lists.newArrayList(math8, math6, math4, science6, science3, deutch4, deutch2, english4, english2, history, geography, frans5, frans6,
+                religion, pE, greek));
+        objects.addAll(Lists.newArrayList(gilles, thomasB, thomasR, charly, antoine, martin, benjamin, antoineBo));
+        objects.addAll(Lists.newArrayList(goffin, gouthers, jacques, gys, cassart, massart));
+        objects.addAll(Lists.newArrayList(library, l003, l306, c203));
+        objects.addAll(Lists.newArrayList(p2010, p2011, p2002));
+        objects.add(school);
         List<GeneratedScript> scripts = ArchipelagoFeederFactory.generate(Paths.get(TEST_SCHOOL_PATH).resolve("archipelago"), objects,
                 ArchipelagoFeederType.ORIENT_DB);
+        List<GeneratedScript> scripts2 = ArchipelagoFeederFactory.generate(Paths.get(TEST_SCHOOL_PATH).resolve("archipelago"), school,
+                ArchipelagoFeederType.ORIENT_DB);
         for (GeneratedScript script : scripts) {
+            LOGGER.info(script);
+        }
+        for (GeneratedScript script : scripts2) {
             LOGGER.info(script);
         }
     }

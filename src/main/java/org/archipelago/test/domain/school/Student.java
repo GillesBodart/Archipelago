@@ -1,5 +1,6 @@
 package org.archipelago.test.domain.school;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +10,23 @@ import org.archipelago.core.annotations.Archipel;
 public class Student extends Person {
 
     private List<Lesson> lessons = new ArrayList<>();
-    private List<Person> friends = new ArrayList<>();
-    private List<Person> familyMember = new ArrayList<>();
+    private List<Student> friends = new ArrayList<>();
+    private List<? extends Person> familyMember = new ArrayList<>();
     private Promotion prom;
+
+    public Student() {
+        super();
+    }
+
+    public Student(String firstName, String lastName, LocalDate dateOfBirth, String sexe, List<Lesson> lessons, List<Student> friends,
+            List<Person> familyMember,
+            Promotion prom) {
+        super(firstName, lastName, dateOfBirth, sexe);
+        this.lessons = lessons;
+        this.friends = friends;
+        this.familyMember = familyMember;
+        this.prom = prom;
+    }
 
     public List<Lesson> getLessons() {
         return lessons;
@@ -21,19 +36,19 @@ public class Student extends Person {
         this.lessons = lessons;
     }
 
-    public List<Person> getFriends() {
+    public List<Student> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<Person> friends) {
+    public void setFriends(List<Student> friends) {
         this.friends = friends;
     }
 
-    public List<Person> getFamilyMember() {
+    public List<? extends Person> getFamilyMember() {
         return familyMember;
     }
 
-    public void setFamilyMember(List<Person> familyMember) {
+    public void setFamilyMember(List<? extends Person> familyMember) {
         this.familyMember = familyMember;
     }
 
@@ -45,12 +60,7 @@ public class Student extends Person {
         this.prom = prom;
     }
 
-    public Student(List<Lesson> lessons, List<Person> friends, List<Person> familyMember, Promotion prom) {
-        super();
-        this.lessons = lessons;
-        this.friends = friends;
-        this.familyMember = familyMember;
-        this.prom = prom;
-    }
+
+
 
 }

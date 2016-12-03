@@ -1,6 +1,6 @@
 package org.archipelago.test.domain.school;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.archipelago.core.annotations.Continent;
 
@@ -9,8 +9,19 @@ public abstract class Person {
 
     private String firstName;
     private String lastName;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String sexe;
+
+    public Person() {
+    }
+
+    public Person(String firstName, String lastName, LocalDate dateOfBirth, String sexe) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.sexe = sexe;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -28,11 +39,11 @@ public abstract class Person {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

@@ -7,6 +7,14 @@ public abstract class Room {
 
     private String roomName;
 
+    public Room() {
+    }
+
+    public Room(String roomName) {
+        super();
+        this.roomName = roomName;
+    }
+
     public String getRoomName() {
         return roomName;
     }

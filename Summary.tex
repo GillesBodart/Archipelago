@@ -1,0 +1,140 @@
+% format de la feuille
+% taille police globale (pas les titres)
+% recto (oneside) ou recto-verso (twoside)
+% fleqn pour numéroter les équations à droite
+% classe : article, book, report
+\documentclass[a4paper,12pt,twoside, fleqn]{report}
+
+% ---------------------------------------------------------------------------------------------------------
+% LANGUES ET POLICE
+\usepackage[frenchb, english]{babel} % langue principale : fran�ais
+\usepackage[utf8]{inputenc} % encodage
+\usepackage[T1]{fontenc} % accents
+\usepackage{lmodern} % police vectorielle
+\usepackage{ulem} % souligner
+\usepackage{color} % pour écrire en couleur
+
+% ---------------------------------------------------------------------------------------------------------
+% CARACTERES SPECIAUX + MATH
+\usepackage{csquotes} % beaux guillemets \enquote{texte}
+\usepackage{amssymb} % symboles mathématiques
+\usepackage{listings} % inclure du joli code
+\usepackage {amsmath} % formules mathématiques, flèches etc
+\usepackage{amsfonts} % fraktur etc.
+
+% ---------------------------------------------------------------------------------------------------------
+% LISTES
+\usepackage{enumitem} % customiser les listes
+%\frenchbsetup{StandardLists=true} % éviter les conflits avec enumitem
+\renewcommand{\labelitemi}{\textbullet} % un rond à la place du tiret dans les listes
+\setlist[itemize]{noitemsep, topsep=0pt}
+\setlist[enumerate]{noitemsep, topsep=0pt}
+\setlist[description]{noitemsep, topsep=0pt}
+% ---------------------------------------------------------------------------------------------------------
+% TABLEAUX ET FIGURES
+\usepackage[sc,footnotesize]{caption} % légendes des tableaux et figures
+\usepackage{subfig} % plusieurs figures côte à côte (subfloat)
+\usepackage{longtable} % autoriser que les longs tableaux débordent sur plusieurs pages
+\usepackage{multicol} % fusionner les colonnes dans un tableau
+\usepackage{multirow} % fusionner les lignes dans un tableau
+\usepackage{caption} % pour les légendes
+\usepackage{slashbox} % pour les Tableaux comparatifs
+\usepackage{graphicx} % insérer image
+\graphicspath{{figures/}} % dossier dans lequel sont les images
+
+% ---------------------------------------------------------------------------------------------------------
+% MISE EN PAGE 
+\usepackage{lscape}
+\usepackage[nodisplayskipstretch]{setspace}
+
+\raggedbottom
+
+% - Marges
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm ]{geometry} % marges
+
+% - Page style
+\pagestyle{headings}
+
+% - Alinéas et espacements entre paragraphes
+\usepackage{parskip}
+\parskip = 10pt % espace
+\parindent = 0pt % alinéa
+
+% - Style des sections
+\usepackage{titlesec}
+\titleformat*{\section}{\Large\scshape}
+\titleformat*{\subsection}{\large\scshape}
+\titleformat*{\subsubsection}{\scshape}
+
+\pagestyle{plain}
+% ---------------------------------------------------------------------------------------------------------
+ 
+\title{Archipelago : Un framework de peristence de graph de données. \\ https://github.com/GillesBodart/Archipelago}
+ 
+\author{Gilles Bodart}
+\date{\today}
+\begin{document}
+ 	\maketitle
+ 	
+\chapter{Introduction}
+\section{State of the art}	
+Le première objectif de ce mémoire est d'établir un état de l'art sur les différents types de bases de données. Le principal objectif de cette section sera de ressencé les différentes bases de données orienté graph présentes sur le marché à l'heure actuelle. Il fera une analyse détaillée sur ces différents éléments:
+\begin{itemize}
+\item Neo4J
+\item OrientDb
+\item Blazegraph
+\item InfiniteGraph
+\item Infogrid
+\item ArangoDb
+\end{itemize}
+\section{historique}
+
+Un historique sur le pourquoi et le comment les bases de données de types NoSql et plus précisément les BD orientées graph ont vu le jour.
+
+\chapter{Analyse technique}
+\section{Application possibles des BD orientées graph}
+Cette section se concentrera sur l'analyse des besoins utilisateurs, il tentera de répondre aux questions : 
+\begin{itemize}
+\item Pourquoi utiliser une BD orienté graph plutot qu'une base de donnée stantdard comme Oracle ou MySql ?
+\item On parles de Base de donnée orientée graph mais quelle est la différence avec une relation entre deux table
+\item Si nous devions choisir un exemple qui nécessiterai l'utilisation d'une base de donnée orientée graph, quel serait il ?
+\end{itemize}
+\section{Critères de comparaisons}
+L'établissement d'une liste non exaustive de critères de comparaisons objectifs sera établie. Elle me permettra de comparer de manière objective les différentes bases de données. Majoritairement, le critère sera de type boolean et permettra d'établir une recherche dichotomique sur base de besoins claires.
+\section{Comparaison des plus grandes DBOG} 
+\begin{center}
+ \begin{tabular}[c]{|l|c|c|c|}
+\hline
+\backslashbox {Critère}{Bases de données} & Neo4J & OrientDB & ArangoDB  \\
+\hline
+Critère 1 & \checkmark & & \checkmark \\
+\hline
+Critère 2 & & \checkmark & \\
+\hline
+Critère 3 & \checkmark & & \\
+\hline
+\end{tabular}
+\end{center}
+Une idée d'arbre de décision devrait, à la fin de cette section, permettre à un utilisateur muni de ses besoins de choisir la base de donnée la plus adaptée à ses besoins. 
+\chapter{Le framework}
+\section{Utilisation}
+Dans l'état actuele de l'avancement de ce mémoire, deux pistes sont envisagée:
+\begin{itemize}
+\item Création d'une API qui sera utilisée par l'application dans le but de simplifier les différentes oppérations sur la base de donnée. Exemple Hibernate pour JDBC.
+TODO Schema
+\item Création d'un systême d'abstraction qui va englober l'utilisation et de ce fait cacher l'implémentations des différentes oppérations.
+TODO Schema 
+\end{itemize}
+\section{Schema conceptuel}
+Les schémas conceptuels représentant une modèle exemple annoté des éléments du framework sera fourni et commenté dans cette section. Cela permettra au lecteur une meilleur compréhension.
+\section{Documentation}
+Une documentation claire et précise sur l'utilisation du framework Archipelago
+\section{Processus}
+Description du processus implémenté sur base d'un exemple claire. Explications des différents choix d'implémentations et de chaque étape.
+\section{Points forts}
+Autocritique du framework, sur base de test qualitatif et ou quantitatif. Evaluations : usability, performence, qualité, cohérence
+\section{Points faibles}
+Autocritique du framework, sur base de test qualitatif et ou quantitatif.
+Evaluations : usability, performence, qualité, cohérence
+
+\end{document}

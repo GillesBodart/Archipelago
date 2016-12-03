@@ -42,8 +42,14 @@ public class OrientDBFeeder extends ArchipelagoScriptFeeder {
             Set<Field> fields = ArchipelagoUtils.getAllFields(clazz);
             for (Field field : fields) {
                 try {
-                    Method getter = clazz.getMethod(String.format("get%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
-                            .getName().length())));
+                    Method getter = null;
+                    if (field.getType().equals(boolean.class)) {
+                        getter = clazz.getMethod(String.format("is%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
+                                .getName().length())));
+                    } else {
+                        getter = clazz.getMethod(String.format("get%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
+                                .getName().length())));
+                    }
                     if (field.getType().isPrimitive()) {
                         properties.add(field.getName());
                         values.add(getter.invoke(object));

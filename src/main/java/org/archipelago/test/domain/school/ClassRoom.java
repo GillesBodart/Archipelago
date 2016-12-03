@@ -11,6 +11,14 @@ public class ClassRoom extends Room {
     private boolean computer;
     private boolean beamer;
 
+    public ClassRoom(String roomName, int availableSeat, boolean television, boolean computer, boolean beamer) {
+        super(roomName);
+        this.availableSeat = availableSeat;
+        this.television = television;
+        this.computer = computer;
+        this.beamer = beamer;
+    }
+
     public int getAvailableSeat() {
         return availableSeat;
     }

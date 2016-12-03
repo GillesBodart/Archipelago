@@ -7,6 +7,11 @@ public class Promotion {
 
     private int year;
 
+    public Promotion(int year) {
+        super();
+        this.year = year;
+    }
+
     public int getYear() {
         return year;
     }
