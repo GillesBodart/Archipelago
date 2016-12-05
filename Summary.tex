@@ -8,11 +8,11 @@
 % ---------------------------------------------------------------------------------------------------------
 % LANGUES ET POLICE
 \usepackage[frenchb, english]{babel} % langue principale : français
-\usepackage[utf8]{inputenc} % encodage
+\usepackage[utf8]{inputenc} % encodage 
 \usepackage[T1]{fontenc} % accents
 \usepackage{lmodern} % police vectorielle
 \usepackage{ulem} % souligner
-\usepackage{color} % pour écrire en couleur
+\usepackage{color} % pour écrire en couleur 
 
 % ---------------------------------------------------------------------------------------------------------
 % CARACTERES SPECIAUX + MATH
@@ -68,7 +68,7 @@
 
 \pagestyle{plain}
 % ---------------------------------------------------------------------------------------------------------
-  
+\selectlanguage{frenchb}
 \author{Gilles Bodart}
 \date{\today}
 \title{%
@@ -81,11 +81,12 @@
 }
 \begin{document}
 \maketitle
- 	
+\tableofcontents
+\part{State of the art}
 \chapter{Introduction}
-\section{historique} 
+\section{Historique} 
 Un historique sur le pourquoi et le comment les bases de données de types NoSql et plus précisément les BD\footnote{Base de Donnée} orientées graphes ont vu le jour.
-\section{State of the art}	
+\section{De nos jours}	
 Le premier objectif de ce mémoire est d'établir un état de l'art sur les différents types de BD. Nous recencerons dans cette section, les différentes BDOG\footnote{Base de Donné Orientée Graphe}. présentes sur le marché à l'heure actuelle :
 \begin{itemize}
 \item Neo4J
@@ -98,8 +99,8 @@ Le premier objectif de ce mémoire est d'établir un état de l'art sur les diff
 Une explication de haut niveau sera faite sur les différence ainsi que sur les points communs de ces dernières. Chaque élément fera le sujet d'une analyse plus détaillée dans le chapitre "Analyse Technique".
 
 
-\chapter{Analyse technique}
-\section{Application possibles des BDOG}
+\part{Analyse technique}
+\chapter{Application possibles des BDOG}
 Cette section se concentrera sur l'analyse des besoins utilisateurs, il tentera de répondre aux questions suivantes: 
 \begin{itemize}
 \item Pourquoi utiliser une BDOG plutot qu'une BD relationnelle comme Oracle ou MySql ?
@@ -107,7 +108,7 @@ Cette section se concentrera sur l'analyse des besoins utilisateurs, il tentera 
 \item Si nous devions choisir un exemple qui nécessiterait l'utilisation d'une BDOG, quel serait il ?
 \end{itemize}
 \section{Critères de comparaisons}
-L'établissement d'une liste non exaustive de critères de comparaisons objectifs sera établie. Elle me permettra de comparer les différentes BDOG. Les possibilités de réponse à ces critère seront, dans les limites du possible rémmenée au choix dual, Oui/Non. Cela permettra d'établir un arbre de décision binaire sur base de besoins clairs.\\TODO Dessin arbre binaire
+L'établissement d'une liste non exaustive de critères de comparaisons objectifs sera établie. Elle me permettra de comparer les différentes BDOG. Les possibilités de réponse à ces critère seront, dans les limites du possible rammenée au choix dual, Oui/Non. Cela permettra d'établir un arbre de décision binaire sur base de besoins clairs.\\TODO Dessin arbre binaire
 
 \section{Comparaison des plus grandes BDOG} 
 \begin{center}
@@ -139,6 +140,7 @@ Les schémas conceptuels représentant une modèle exemple annoté des élément
 Une documentation claire et précise sur l'utilisation du framework Archipelago sera présente dans cette section. Un ensemble entre une documentation fonctionnelle et une documentation technique faite avec JavaDoc.
 \section{Processus}
 Description du processus implémenté sur base d'un exemple claire. Explications des différents choix d'implémentations et de chaque étape.
+\chapter{Evaluation}
 \section{Points forts}
 Autocritique du framework, sur base de test qualitatif et ou quantitatif. Evaluations : usability, performence, qualité, cohérence
 \section{Points faibles}
@@ -151,4 +153,12 @@ Si le temps nous le permet, une analyse des retours utilisateur sera faite en fi
 Une introspection sur le projet sera expliqué dans cette section, les idées innachevés y seront décrites en tant que piste de réflexions.
 \section{Archipelago en résumé}
 Le mémoire sera conclu avec un explication transversale et complète du framework, permettant au lecteur de garder une bonne impression sur le nouvl outil que sera ce framework.
+\part{Annexes}
+\chapter{Code Sources}
+\chapter{Bibliographie}
+\begin{itemize}
+\item https://neo4j.com/ consulté à de nombreuses reprises (Neo Technology, Inc)
+\item https://www.arangodb.com/ consulté à de nombreuses reprises (ArangoDB GmbH)
+\item https://orientdb.com/ consulté à de nombreuses reprises (OrientDB LTD)
+\end{itemize}
 \end{document}

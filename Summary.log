@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  5 DEC 2016 13:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  5 DEC 2016 14:57
 entering extended mode
 **./Summary.tex
 (Summary.tex
@@ -777,11 +777,32 @@ Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \titlewidthlast=\dimen158
 \titlewidthfirst=\dimen159
 )
+! Undefined control sequence.
+l.71 \select
+            @language{frenchb}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.71 \select@
+             language{frenchb}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
- (Summary.aux)
+(Summary.aux)
 \openout1 = `Summary.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
@@ -797,8 +818,7 @@ LaTeX Font Info:    ... okay on input line 82.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
 LaTeX Font Info:    ... okay on input line 82.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 82.
-
-(C:\Sand\miktex\tex\latex\lm\t1lmr.fd
+ (C:\Sand\miktex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Info: Redefining \degres on input line 82.
@@ -904,7 +924,11 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+[1
+
+{C:/Users/ABM589/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 LaTeX Font Info:    Try loading font information for T1+lmss on input line 83.
+
 (C:\Sand\miktex\tex\latex\lm\t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -946,56 +970,81 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 83.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 83.
- [1
+ [1] (Summary.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 5.
+)
+\tf@toc=\write3
+\openout3 = `Summary.toc'.
 
-{C:/Users/ABM589/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+ [2
+
+] [3
+
+]
 Chapter 1.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 87.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 87.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 87.
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 91.
+(Font)              <5> on input line 88.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 92.
 (C:\Sand\miktex\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 91.
- [2
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 92.
+ [4
+
+] [5
 
 ]
 Chapter 2.
-[3
+[6
 
 ]
 Chapter 3.
-[4
+[7
 
-] [5]
+]
 Chapter 4.
-[6
+[8
+
+]
+Chapter 5.
+[9
+
+] [10
+
+]
+Chapter 6.
+[11
+
+]
+Chapter 7.
+[12
 
 ] (Summary.aux) ) 
 Here is how much of TeX's memory you used:
- 9070 strings out of 493333
- 127153 string characters out of 3144820
- 220376 words of memory out of 3000000
- 12393 multiletter control sequences out of 15000+200000
- 75492 words of font info for 71 fonts, out of 3000000 for 9000
+ 9102 strings out of 493333
+ 127441 string characters out of 3144820
+ 220392 words of memory out of 3000000
+ 12422 multiletter control sequences out of 15000+200000
+ 81488 words of font info for 73 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,12n,38p,844b,439s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/f
-onts/enc/dvips/lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/public/amsfonts/lat
-xfont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Sand/mikt
-ex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr1
-0.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/miktex/fonts/typ
-e1/public/lm/lmr7.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/m
-iktex/fonts/type1/public/lm/lmssbx10.pfb><C:/Sand/miktex/fonts/type1/public/lm/
-lmsy10.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Summary.pdf (6 pages, 199839 bytes).
+onts/enc/dvips/lm/lm-mathsy.enc} <C:\Users\ABM589\AppData\Local\MiKTeX\2.9\font
+s\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk><C:/Sand/miktex/fonts/type1/public/a
+msfonts/latxfont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><C
+:/Sand/miktex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/pub
+lic/lm/lmr10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/mikte
+x/fonts/type1/public/lm/lmr7.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb
+><C:/Sand/miktex/fonts/type1/public/lm/lmssbx10.pfb><C:/Sand/miktex/fonts/type1
+/public/lm/lmsy10.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbols/msam1
+0.pfb>
+Output written on Summary.pdf (13 pages, 213503 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
+ 103 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
