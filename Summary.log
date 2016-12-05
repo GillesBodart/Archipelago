@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  5 DEC 2016 13:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  5 DEC 2016 13:56
 entering extended mode
 **./Summary.tex
 (Summary.tex
@@ -784,26 +784,26 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
  (Summary.aux)
 \openout1 = `Summary.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 81.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 82.
 
 (C:\Sand\miktex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \degres on input line 81.
-LaTeX Info: Redefining \dots on input line 81.
-LaTeX Info: Redefining \up on input line 81.
+LaTeX Info: Redefining \degres on input line 82.
+LaTeX Info: Redefining \dots on input line 82.
+LaTeX Info: Redefining \up on input line 82.
 
 (C:\Sand\miktex\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -904,64 +904,64 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 82.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 83.
 (C:\Sand\miktex\tex\latex\lm\t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 82.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 83.
  (C:\Sand\miktex\tex\latex\lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 82.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 83.
 (C:\Sand\miktex\tex\latex\lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 82.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 83.
 
  (C:\Sand\miktex\tex\latex\lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 82.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 83.
 
  (C:\Sand\miktex\tex\latex\lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <20.74> on input line 82.
+(Font)              <20.74> on input line 83.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 82.
+(Font)              <14.4> on input line 83.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 82.
-LaTeX Font Info:    Try loading font information for U+msa on input line 82.
+(Font)              <12> on input line 83.
+LaTeX Font Info:    Try loading font information for U+msa on input line 83.
 
 (C:\Sand\miktex\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 82.
+LaTeX Font Info:    Try loading font information for U+msb on input line 83.
 
 (C:\Sand\miktex\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 82.
+(Font)              <10> on input line 83.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 82.
+(Font)              <7> on input line 83.
  [1
 
 {C:/Users/ABM589/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 Chapter 1.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 86.
+(Font)              <8> on input line 87.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 86.
+(Font)              <6> on input line 87.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 86.
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 90.
+(Font)              <5> on input line 87.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 91.
 (C:\Sand\miktex\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 90.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 91.
  [2
 
 ]
@@ -972,7 +972,11 @@ Chapter 2.
 Chapter 3.
 [4
 
-] [5] (Summary.aux) ) 
+] [5]
+Chapter 4.
+[6
+
+] (Summary.aux) ) 
 Here is how much of TeX's memory you used:
  9070 strings out of 493333
  127153 string characters out of 3144820
@@ -981,17 +985,17 @@ Here is how much of TeX's memory you used:
  75492 words of font info for 71 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,12n,38p,844b,439s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/mikt
-ex/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/public/amsfonts
-/latxfont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Sand/
-miktex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/public/lm/
-lmr10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/miktex/fonts
-/type1/public/lm/lmr7.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sa
-nd/miktex/fonts/type1/public/lm/lmssbx10.pfb><C:/Sand/miktex/fonts/type1/public
-/lm/lmsy10.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Summary.pdf (5 pages, 197352 bytes).
+{C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/f
+onts/enc/dvips/lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/public/amsfonts/lat
+xfont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Sand/mikt
+ex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr1
+0.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/miktex/fonts/typ
+e1/public/lm/lmr7.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/m
+iktex/fonts/type1/public/lm/lmssbx10.pfb><C:/Sand/miktex/fonts/type1/public/lm/
+lmsy10.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on Summary.pdf (6 pages, 199839 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
+ 63 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

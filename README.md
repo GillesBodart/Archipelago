@@ -1,2 +1,3 @@
 # Archipelago
-Archipelago is a Java framework for the persistence and the historization of complexe data model
+Archipelago est un framework java qui permet à l'utilisateur de manipuler de manière simple et efficace des Bases de données orientées graphes.
+Il est le sujet d'un mémoire de L'université de Namur dans le cadre d'un Master en Informatique.
