@@ -7,7 +7,7 @@
 
 % ---------------------------------------------------------------------------------------------------------
 % LANGUES ET POLICE
-\usepackage[frenchb, english]{babel} % langue principale : fran�ais
+\usepackage[frenchb, english]{babel} % langue principale : français
 \usepackage[utf8]{inputenc} % encodage
 \usepackage[T1]{fontenc} % accents
 \usepackage{lmodern} % police vectorielle
@@ -20,8 +20,7 @@
 \usepackage{amssymb} % symboles mathématiques
 \usepackage{listings} % inclure du joli code
 \usepackage {amsmath} % formules mathématiques, flèches etc
-\usepackage{amsfonts} % fraktur etc.
-
+\usepackage{amsfonts} % fraktur etc. 
 % ---------------------------------------------------------------------------------------------------------
 % LISTES
 \usepackage{enumitem} % customiser les listes
@@ -41,6 +40,7 @@
 \usepackage{slashbox} % pour les Tableaux comparatifs
 \usepackage{graphicx} % insérer image
 \graphicspath{{figures/}} % dossier dans lequel sont les images
+\usepackage{tikz}
 
 % ---------------------------------------------------------------------------------------------------------
 % MISE EN PAGE 
@@ -68,17 +68,25 @@
 
 \pagestyle{plain}
 % ---------------------------------------------------------------------------------------------------------
- 
-\title{Archipelago : Un framework de peristence de graph de données. \\ https://github.com/GillesBodart/Archipelago}
- 
+  
 \author{Gilles Bodart}
 \date{\today}
+\title{%
+    \begin{minipage}\linewidth
+        \centering\bfseries\sffamily
+        Archipelago : Un framework de peristence de graph de données.
+        \vskip4pt
+        \large https://github.com/GillesBodart/Archipelago
+    \end{minipage}
+}
 \begin{document}
- 	\maketitle
+\maketitle
  	
 \chapter{Introduction}
+\section{historique} 
+Un historique sur le pourquoi et le comment les bases de données de types NoSql et plus précisément les BD\footnote{Base de Donnée} orientées graphes ont vu le jour.
 \section{State of the art}	
-Le première objectif de ce mémoire est d'établir un état de l'art sur les différents types de bases de données. Le principal objectif de cette section sera de ressencé les différentes bases de données orienté graph présentes sur le marché à l'heure actuelle. Il fera une analyse détaillée sur ces différents éléments:
+Le premier objectif de ce mémoire est d'établir un état de l'art sur les différents types de BD. Nous recencerons dans cette section, les différentes BDOG\footnote{Base de Donné Orientée Graphe}. présentes sur le marché à l'heure actuelle :
 \begin{itemize}
 \item Neo4J
 \item OrientDb
@@ -87,23 +95,23 @@ Le première objectif de ce mémoire est d'établir un état de l'art sur les di
 \item Infogrid
 \item ArangoDb
 \end{itemize}
-\section{historique}
+Une explication de haut niveau sera faite sur les différence ainsi que sur les points communs de ces dernières. Chaque élément fera le sujet d'une analyse plus détaillée dans le chapitre "Analyse Technique".
 
-Un historique sur le pourquoi et le comment les bases de données de types NoSql et plus précisément les BD orientées graph ont vu le jour.
 
 \chapter{Analyse technique}
-\section{Application possibles des BD orientées graph}
-Cette section se concentrera sur l'analyse des besoins utilisateurs, il tentera de répondre aux questions : 
+\section{Application possibles des BDOG}
+Cette section se concentrera sur l'analyse des besoins utilisateurs, il tentera de répondre aux questions suivantes: 
 \begin{itemize}
-\item Pourquoi utiliser une BD orienté graph plutot qu'une base de donnée stantdard comme Oracle ou MySql ?
-\item On parles de Base de donnée orientée graph mais quelle est la différence avec une relation entre deux table
-\item Si nous devions choisir un exemple qui nécessiterai l'utilisation d'une base de donnée orientée graph, quel serait il ?
+\item Pourquoi utiliser une BDOG plutot qu'une BD relationnelle comme Oracle ou MySql ?
+\item On parle de Base de donnée orientée graph mais quelle est la différence entre un lien entre deux noeud et une relation entre deux table ?
+\item Si nous devions choisir un exemple qui nécessiterait l'utilisation d'une BDOG, quel serait il ?
 \end{itemize}
 \section{Critères de comparaisons}
-L'établissement d'une liste non exaustive de critères de comparaisons objectifs sera établie. Elle me permettra de comparer de manière objective les différentes bases de données. Majoritairement, le critère sera de type boolean et permettra d'établir une recherche dichotomique sur base de besoins claires.
+L'établissement d'une liste non exaustive de critères de comparaisons objectifs sera établie. Elle me permettra de comparer les différentes BDOG. Les possibilités de réponse à ces critère seront, dans les limites du possible rémmenée au choix dual, Oui/Non. Cela permettra d'établir un arbre de décision binaire sur base de besoins clairs.
+
 \section{Comparaison des plus grandes DBOG} 
 \begin{center}
- \begin{tabular}[c]{|l|c|c|c|}
+\begin{tabular}[c]{|l|c|c|c|}
 \hline
 \backslashbox {Critère}{Bases de données} & Neo4J & OrientDB & ArangoDB  \\
 \hline
