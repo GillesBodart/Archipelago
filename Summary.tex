@@ -84,8 +84,42 @@
 \tableofcontents
 \part{State of the art}
 \chapter{Introduction}
-\section{Historique} 
-Un historique sur le pourquoi et le comment les bases de données de types NoSql et plus précisément les BD\footnote{Base de Donnée} orientées graphes ont vu le jour.
+
+\section{Historique}  
+
+Un SGBD\footnote{Système de gestion de base de données} est par définition un ensemble de procédés permettant d'organiser et de stocker des informations (potentiellement de gros volumes). Si stocker et retrouver l'information est un des plus grand challenge d'un SGBD, une communauté de développeur, pensent que ces système devraient pouvoir offrir d'autres fonctionnalités. 
+
+A partir des années 1980, le modèle relationnelle supplante les autres formes de structures de donnée.
+
+Les évolutions logicielles suivant naturellement les évolutions matérielles, la généralisation des interconnexion des réseaux, l'augmentation de la bande passante, la diminution du cout des machines, la miniaturisation des espaces de stockage, ... de nouvelles opportunités sont arrivé au XXI\up{e} siècle.
+
+Les entreprises comme Google, Amazon, Facebook, Twitter, ... sont tour à tour arrivés aux limites du modèle Relationnel. Que ce soit a cause de volumes astronomiques (plus de 100 pétaoctets ) ou du nombre de requêtes par secondes, il fallut développer une nouvelle façon de gérer les données.
+
+Le NoSql\footnote{Not Only Sql} découle de ce genre de problèmes, ces modèles arrivent avec des approche optimisée pour des secteurs spécifiques. \\
+Comme les modèles NoSql représentent ce qui n'est pas Relationel, par soucis de classification, nous allons distinguer 4 usages principaux :
+
+\begin{itemize}
+\item Performances : L'objectif du SGBD sera d'augmenter au maximum les performances de la manipulation des données. 
+\item Structures simples : Pour s'affranchir de la rigidité du modèle relationnel, la structure sera généralement simplifiée, en utilisant une représentation plus souple comme le JSON par exemple.
+\item Structures spécifiques : Certain moteur NoSql sont liés a des besoins spécifiques, la structure de représentation de donnée sera dès lors focalisée sur un cas d'utilisation.
+\item Volumétries : Un des principal aspect important des SGBD NoSql est leur capacité de gérer la montée en charge de données. La distribution des traitements au travers de plusieurs clusters est un facteur très important dans la pluspart des applications BigData.
+\end{itemize} 
+
+Et nous allons aussi distinguer 4 grandes familles de représentation de Schéma de données :
+
+\begin{itemize}
+\item Document : L'utilisations de format spécifiques tels que le très répendu JSON permet de stoquer les données sur base de fichier.
+\item Clé / Valeur : Le système le plus simple, il manipule des paires de clé/valeurs, ou accède à un élément en fonction d'une table de hachage.
+\item Colonne : Inspiré de Google BigTable, la structure ressemble à la table relationnelle. 
+\item Graph :
+\end{itemize} 
+ 
+En juillet 2008, une fondation open-source nommée Apache, sort Cassandra un  dit de type . Depuis, 
+
+Dans le milieu de développement, nous pouvons constater que les bases de donnée de type NoSql sont de plus en plus répandues. Avec l'essor de l'internet, des sociétés comme Google, 
+
+La principale raison d'utilisation de ce type de BD\footnote{Base de Donnée} est la performance. En pratique, des gains sont constatés lorsque la charge devient trop importante pour garder une utilisation classique des liens relationnel entre les tables.
+ 
 \section{De nos jours}	
 Le premier objectif de ce mémoire est d'établir un état de l'art sur les différents types de BD. Nous recencerons dans cette section, les différentes BDOG\footnote{Base de Donné Orientée Graphe}. présentes sur le marché à l'heure actuelle :
 \begin{itemize}
@@ -160,5 +194,19 @@ Le mémoire sera conclu avec un explication transversale et complète du framewo
 \item https://neo4j.com/ consulté à de nombreuses reprises (Neo Technology, Inc)
 \item https://www.arangodb.com/ consulté à de nombreuses reprises (ArangoDB GmbH)
 \item https://orientdb.com/ consulté à de nombreuses reprises (OrientDB LTD)
+\item https://snap.stanford.edu/data/
+\item https://networkx.github.io/
+\item http://igraph.org/redirect.html
+\item https://snap.stanford.edu/data/egonets-Facebook.html
+\item http://konect.uni-koblenz.de/
+\item https://icon.colorado.edu/\#!/networks
+\item https://neonx.readthedocs.io/en/latest/
+\item J. McAuley and J. Leskovec. Learning to Discover Social Circles in Ego Networks. NIPS, 2012.
+\item J. Leskovec, K. Lang, A. Dasgupta, M. Mahoney. Community Structure in Large Networks: Natural Cluster Sizes and the Absence of Large Well-Defined Clusters. Internet Mathematics 6(1) 29--123, 2009.
+\item https://www.infoq.com/fr/articles/graph-nosql-neo4j
+\item http://www.marginweb.com/blog/20121110/quand-et-pourquoi-utiliser-une-base-de-donnees-nosql
+\item http://www.silicon.fr/base-donnees-nosql-impose-sgbdr-93305.html
+\item https://prezi.com/4flswlgipwbo/nosql-not-only-sql/
+\item [LIVRE] http://www.eyrolles.com/Chapitres/9782212141559/9782212141559.pdf
 \end{itemize}
 \end{document}
