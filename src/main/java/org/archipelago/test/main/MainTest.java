@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.archipelago.core.connection.GraphConnect;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.domain.types.ArchipelagoBuilderType;
 import org.archipelago.core.domain.types.ArchipelagoFeederType;
@@ -43,8 +44,8 @@ public class MainTest {
     private final static String TEST_CASE = "School";
 
     public static void main(String[] args) throws ClassNotFoundException, IOException {
-
-        testBuilder(TEST_CASE);
+        GraphConnect.getInstance();
+        // testBuilder(TEST_CASE);
         // testFeeder(TEST_CASE);
     }
 

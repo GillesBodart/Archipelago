@@ -96,7 +96,7 @@ Les évolutions logicielles suivant naturellement les évolutions matérielles, 
 Les entreprises comme Google, Amazon, Facebook, Twitter, ... sont tour à tour arrivés aux limites du modèle Relationnel. Que ce soit a cause de volumes astronomiques (plus de 100 pétaoctets ) ou du nombre de requêtes par secondes, il fallut développer une nouvelle façon de gérer les données.
 
 Le NoSql\footnote{Not Only Sql} découle de ce genre de problèmes, ces modèles arrivent avec des approche optimisée pour des secteurs spécifiques. \\
-Comme les modèles NoSql représentent ce qui n'est pas Relationel, par soucis de classification, nous allons distinguer 4 usages principaux :
+Comme les modèles NoSql représentent ce qui n'est pas Relationnel, par soucis de classification, nous allons distinguer 4 usages principaux :
 
 \begin{itemize}
 \item Performances : L'objectif du SGBD sera d'augmenter au maximum les performances de la manipulation des données. 
@@ -108,20 +108,15 @@ Comme les modèles NoSql représentent ce qui n'est pas Relationel, par soucis d
 Et nous allons aussi distinguer 4 grandes familles de représentation de Schéma de données :
 
 \begin{itemize}
-\item Document : L'utilisations de format spécifiques tels que le très répendu JSON permet de stoquer les données sur base de fichier.
+\item Document : L'utilisation de format spécifiques tels que le très rependu JSON permet de stocker les données sur base de fichier.
 \item Clé / Valeur : Le système le plus simple, il manipule des paires de clé/valeurs, ou accède à un élément en fonction d'une table de hachage.
-\item Colonne : Inspiré de Google BigTable, la structure ressemble à la table relationnelle. 
-\item Graph :
+\item Colonne : Inspiré de Google BigTable, la structure ressemble à la table relationnelle. On peut la comparer à une table de hachage qui va référencer une ou plusieurs colonnes.
+\item Graph : La famille Graph se distingue du fait que les entitées ne sont pas considéré comme des entités indépendante, mais que la relation être ces objets est tout aussi important que le contenu.
 \end{itemize} 
  
-En juillet 2008, une fondation open-source nommée Apache, sort Cassandra un  dit de type . Depuis, 
-
-Dans le milieu de développement, nous pouvons constater que les bases de donnée de type NoSql sont de plus en plus répandues. Avec l'essor de l'internet, des sociétés comme Google, 
-
-La principale raison d'utilisation de ce type de BD\footnote{Base de Donnée} est la performance. En pratique, des gains sont constatés lorsque la charge devient trop importante pour garder une utilisation classique des liens relationnel entre les tables.
  
 \section{De nos jours}	
-Le premier objectif de ce mémoire est d'établir un état de l'art sur les différents types de BD. Nous recencerons dans cette section, les différentes BDOG\footnote{Base de Donné Orientée Graphe}. présentes sur le marché à l'heure actuelle :
+Le premier objectif de ce mémoire est d'établir un état de l'art sur les différents types de BD. Nous recenserons dans cette section, les différentes BDOG\footnote{Base de Donné Orientée Graphe}. présentes sur le marché à l'heure actuelle :
 \begin{itemize}
 \item Neo4J
 \item OrientDb
@@ -142,7 +137,7 @@ Cette section se concentrera sur l'analyse des besoins utilisateurs, il tentera 
 \item Si nous devions choisir un exemple qui nécessiterait l'utilisation d'une BDOG, quel serait il ?
 \end{itemize}
 \section{Critères de comparaisons}
-L'établissement d'une liste non exaustive de critères de comparaisons objectifs sera établie. Elle me permettra de comparer les différentes BDOG. Les possibilités de réponse à ces critère seront, dans les limites du possible rammenée au choix dual, Oui/Non. Cela permettra d'établir un arbre de décision binaire sur base de besoins clairs.\\TODO Dessin arbre binaire
+L'établissement d'une liste non exhaustive de critères de comparaisons objectifs sera établie. Elle me permettra de comparer les différentes BDOG. Les possibilités de réponse à ces critère seront, dans les limites du possible ramenée au choix dual, Oui/Non. Cela permettra d'établir un arbre de décision binaire sur base de besoins clairs.\\TODO Dessin arbre binaire
 
 \section{Comparaison des plus grandes BDOG} 
 \begin{center}

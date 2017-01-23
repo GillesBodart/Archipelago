@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  14 DEC 2016 15:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  20 JAN 2017 13:27
 entering extended mode
 **./Summary.tex
 (Summary.tex
@@ -965,50 +965,57 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ]
 Chapter 1.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 88.
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 92.
+(Font)              <5> on input line 90.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 102.
+
 (C:\Sand\miktex\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 92.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 102.
  [4
 
-] [5
+] [5] [6
 
 ]
 Chapter 2.
-[6
-
-]
-Chapter 3.
 [7
 
 ]
-Chapter 4.
+Chapter 3.
 [8
 
 ]
-Chapter 5.
+Chapter 4.
 [9
 
-] [10
+]
+Chapter 5.
+[10
+
+] [11
 
 ]
 Chapter 6.
-[11
+[12
 
 ]
 Chapter 7.
-[12
+
+Overfull \hbox (23.70885pt too wide) in paragraph at lines 202--203
+[]\T1/lmr/m/n/12 http://www.marginweb.com/blog/20121110/quand-et-pourquoi-utili
+ser-une-base-de-donnees-
+ []
+
+[13
 
 ] (Summary.aux) ) 
 Here is how much of TeX's memory you used:
- 9114 strings out of 493333
- 127579 string characters out of 3144820
+ 9116 strings out of 493333
+ 127606 string characters out of 3144820
  220645 words of memory out of 3000000
- 12434 multiletter control sequences out of 15000+200000
- 81488 words of font info for 73 fonts, out of 3000000 for 9000
+ 12435 multiletter control sequences out of 15000+200000
+ 84480 words of font info for 74 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,12n,38p,844b,439s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/f
@@ -1019,9 +1026,9 @@ ex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr1
 e1/public/lm/lmr7.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/m
 iktex/fonts/type1/public/lm/lmssbx10.pfb><C:/Sand/miktex/fonts/type1/public/lm/
 lmsy10.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Summary.pdf (12 pages, 209317 bytes).
+Output written on Summary.pdf (13 pages, 217034 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
+ 87 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

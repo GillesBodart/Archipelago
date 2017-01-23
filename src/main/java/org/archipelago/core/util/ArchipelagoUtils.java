@@ -56,15 +56,20 @@ public class ArchipelagoUtils {
 
     public static void compile(final List<File> javaClasses) {
         final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-        for (File javaClass : javaClasses) {
-            compiler.run(null, null, null, javaClass.getPath());
+        if (null != javaClasses) {
+            for (File javaClass : javaClasses) {
+                compiler.run(null, null, null, javaClass.getPath());
+            }
         }
     }
 
     public static void clean(final Path domainFolder) throws IOException {
         final List<File> javaCompiledClasses = analyse(domainFolder, CLASS_EXTENSION);
-        for (File compiledClass : javaCompiledClasses) {
-            Files.deleteIfExists(Paths.get(compiledClass.toURI()));
+        if (null != domainFolder) {
+            for (File compiledClass : javaCompiledClasses) {
+
+                Files.deleteIfExists(Paths.get(compiledClass.toURI()));
+            }
         }
     }
 
