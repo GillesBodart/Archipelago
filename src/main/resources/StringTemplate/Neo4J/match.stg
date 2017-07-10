@@ -1,0 +1,11 @@
+MatchNeo4J(clazz,props) ::= <<
+    MATCH (n:<clazz.simpleName>)
+    WHERE <props : createWhere(); separator=",\n">
+    RETURN <props : createProperty(); separator=",\n">
+>>
+
+createWhere(property) ::= "n.<property>= {<property>\}"
+
+
+//MATCH (a:Person) WHERE a.name = {name} " +
+//"RETURN a.name AS name, a.title AS title",
