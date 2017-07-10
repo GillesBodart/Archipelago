@@ -1,10 +1,14 @@
 MatchNeo4J(clazz,props) ::= <<
     MATCH (n:<clazz.simpleName>)
-    WHERE <props : createWhere(); separator=",\n">
-    RETURN <props : createProperty(); separator=",\n">
+    WHERE
+    <props : createWhere(); separator=",\n">
+    RETURN
+    <props : createReturn()>
+    ID(n) AS InternalId
 >>
 
-createWhere(property) ::= "n.<property>= {<property>\}"
+createWhere(property) ::= "\tn.<property> = {<property>\}"
+createReturn(property) ::= "\tn.<property> AS <property>,"
 
 
 //MATCH (a:Person) WHERE a.name = {name} " +

@@ -92,8 +92,17 @@ public class Neo4JBuilder extends ArchipelagoScriptBuilder {
         return parameters;
     }
 
-    public String exactMatch(Object object) {
-        return "";
+    public String makeMatch(Class<?> clazz) {
+        final String nodeTemplatePath = TEMPLATE_ROOT_PATH + NEO4J_FOLDER + "\\match.stg";
+        final STGroup group = StringTemplateFactory.buildSTGroup(nodeTemplatePath);
+        final ST st = group.getInstanceOf("MatchNeo4J");
+        st.add("clazz", clazz);
+        for (Field field : ArchipelagoUtils.getAllFields(clazz)) {
+            st.add("props", field.getName());
+        }
+        String match = st.render();
+        LOGGER.debug(String.format("MATCH for class %s : [%s]", clazz.getSimpleName(), match));
+        return match;
     }
 
 }

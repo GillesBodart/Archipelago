@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.builder.Neo4JBuilder;
 import org.archipelago.test.domain.school.ClassRoom;
-import org.archipelago.test.domain.school.Person;
 import org.archipelago.test.domain.school.Teacher;
 import org.neo4j.driver.v1.AuthTokens;
 import org.neo4j.driver.v1.Driver;
@@ -41,7 +40,7 @@ public class GraphConnect {
         p.setLastName("Bodart");
         p.setSexe("M");
         p.setDiploma("Master");
-        persist(p);
+        LOGGER.debug(BUILDER.makeMatch(p.getClass()));
         driver.close();
 
     }
@@ -63,6 +62,8 @@ public class GraphConnect {
         try (Session s = this.driver.session()) {
             s.run(BUILDER.makeCreate(object.getClass()),
                     parameters(BUILDER.fillCreate(object).toArray()));
+            s.run(BUILDER.makeMatch(object.getClass()),
+                    parameters(BUILDER.fillCreate(object).toArray()));
 
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
@@ -70,6 +71,25 @@ public class GraphConnect {
         }
         return 1;
     }
+
+    /**
+     * Persits an object in the database
+     *
+     * @param object the object to persist
+     * @return the internal Id of the object
+     */
+    public int getID(Object object) {
+        try (Session s = this.driver.session()) {
+            s.run(BUILDER.makeMatch(object.getClass()),
+                    parameters(BUILDER.fillCreate(object).toArray()));
+
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            throw e;
+        }
+        return 1;
+    }
+
 
     public Session getSession() {
         return driver.session();
