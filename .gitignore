@@ -16,3 +16,7 @@ hs_err_pid*
 Archipelago.iml
 **/Orient*.txt
 **/src/main/java/org/archipelago/test/domain/**/archipelago/*
+.idea/
+.settings/
+Archipelago-core.iml
+target/

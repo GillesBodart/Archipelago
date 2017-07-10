@@ -45,7 +45,7 @@ public class MainTest {
 
     public static void main(String[] args) throws ClassNotFoundException, IOException {
         GraphConnect.getInstance();
-        // testBuilder(TEST_CASE);
+        //testBuilder(TEST_CASE);
         // testFeeder(TEST_CASE);
     }
 
@@ -143,7 +143,7 @@ public class MainTest {
                 history, geography, religion, frans5, pE, greek), null, null, p2010);
         Student antoine = new Student("Antoine", "Dumont", LocalDate.of(1992, 12, 28), "M", Lists.newArrayList(math6, science3, deutch4, english4, history,
                 geography, religion, frans5, pE, greek), null, null, p2010);
-        Student martin = new Student("Martin", "Périlleux", LocalDate.of(1992, 2, 28), "M", Lists.newArrayList(math6, science3, deutch4, english4, history,
+        Student martin = new Student("Martin", "Pï¿½rilleux", LocalDate.of(1992, 2, 28), "M", Lists.newArrayList(math6, science3, deutch4, english4, history,
                 geography, religion, frans5, pE, greek), null, null, p2010);
         Student benjamin = new Student("Benjamin", "Leroy", LocalDate.of(1992, 10, 31), "M", Lists.newArrayList(math8, science3, deutch2, english4, history,
                 geography, religion, frans5, pE, greek), null, null, p2010);
@@ -152,7 +152,7 @@ public class MainTest {
         Worker cassart = new Worker("", "Cassart", null, "M", null, null);
         List<Room> rooms;
         Room library = new org.archipelago.test.domain.school.Library("Library", Lists.newArrayList("Le livre du voyage", "Le tour du monde ne 80 jours",
-                "La nuit des enfants roi", "Le joueur d'échecs"), cassart);
+                "La nuit des enfants roi", "Le joueur d'ï¿½checs"), cassart);
         cassart.setInChargeOf(Lists.newArrayList(library));
         Room l003 = new ClassRoom("L003", 30, true, false, true);
         Room c203 = new ClassRoom("C203", 30, true, false, true);
