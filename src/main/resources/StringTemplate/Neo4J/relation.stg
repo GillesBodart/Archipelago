@@ -1,3 +1,6 @@
-ClassNeo4J(clazz,properties) ::= <<
- 
+RelationNeo4J(idA,idB,name,properties) ::= <<
+
+    MATCH (n) where ID(n) = <idA>
+    MATCH (m) where ID(m) = <idB>
+    CREATE (n)-[r:<name>]->(m) return r
 >>

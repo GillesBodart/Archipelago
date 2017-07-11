@@ -1,12 +1,6 @@
 package org.archipelago.test.main;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
+import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.connection.GraphConnect;
@@ -19,16 +13,14 @@ import org.archipelago.test.domain.library.Author;
 import org.archipelago.test.domain.library.Book;
 import org.archipelago.test.domain.library.Librarian;
 import org.archipelago.test.domain.library.Library;
-import org.archipelago.test.domain.school.ClassRoom;
-import org.archipelago.test.domain.school.Lesson;
-import org.archipelago.test.domain.school.Promotion;
-import org.archipelago.test.domain.school.Room;
-import org.archipelago.test.domain.school.School;
-import org.archipelago.test.domain.school.Student;
-import org.archipelago.test.domain.school.Teacher;
-import org.archipelago.test.domain.school.Worker;
+import org.archipelago.test.domain.school.*;
 
-import com.google.common.collect.Lists;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Gilles Bodart on 19/08/2016.
@@ -44,9 +36,22 @@ public class MainTest {
     private final static String TEST_CASE = "School";
 
     public static void main(String[] args) throws ClassNotFoundException, IOException {
-        GraphConnect.getInstance();
-        //testBuilder(TEST_CASE);
-        // testFeeder(TEST_CASE);
+        GraphConnect gc = GraphConnect.getInstance();
+        //Session session = driver.session();
+        ClassRoom cr = new ClassRoom("l003", 23, true, false, false);
+        Teacher m = new Teacher();
+        m.setDateOfBirth(LocalDate.of(2017, 07, 10));
+        m.setFirstName("Marie");
+        m.setLastName("Van Cutsem");
+        m.setSexe("F");
+        m.setDiploma("Logopède");
+        Teacher g = new Teacher();
+        g.setDateOfBirth(LocalDate.of(2017, 07, 10));
+        g.setFirstName("Gilles");
+        g.setLastName("Bodart");
+        g.setSexe("M");
+        g.setDiploma("Master");
+        gc.link(m, cr,  ,false);
     }
 
     private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {

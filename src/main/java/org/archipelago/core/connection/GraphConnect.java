@@ -3,21 +3,14 @@ package org.archipelago.core.connection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.builder.Neo4JBuilder;
-import org.archipelago.test.domain.school.ClassRoom;
-import org.archipelago.test.domain.school.Teacher;
-import org.neo4j.driver.v1.AuthTokens;
-import org.neo4j.driver.v1.Driver;
-import org.neo4j.driver.v1.GraphDatabase;
-import org.neo4j.driver.v1.Session;
-
-import java.time.LocalDate;
+import org.neo4j.driver.v1.*;
 
 import static org.neo4j.driver.v1.Values.parameters;
 
 /**
  * @author Gilles Bodart
  */
-public class GraphConnect {
+public class GraphConnect implements AutoCloseable {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final String HOST = "gbodart.be";
@@ -32,17 +25,6 @@ public class GraphConnect {
     private GraphConnect() {
         this.driver = GraphDatabase.driver(String.format("bolt://%s:%d", HOST, BOLD_PORT),
                 AuthTokens.basic(USERNAME, PASSWORD));
-        //Session session = driver.session();
-        ClassRoom cr = new ClassRoom("l003", 23, true, false, false);
-        Teacher p = new Teacher();
-        p.setDateOfBirth(LocalDate.now());
-        p.setFirstName("Gilles");
-        p.setLastName("Bodart");
-        p.setSexe("M");
-        p.setDiploma("Master");
-        LOGGER.debug(BUILDER.makeMatch(p.getClass()));
-        driver.close();
-
     }
 
     public static GraphConnect getInstance() {
@@ -53,23 +35,56 @@ public class GraphConnect {
     }
 
     /**
-     * Persits an object in the database
+     * Persist an object in the database
      *
      * @param object the object to persist
-     * @return the internal Id of the object
+     * @return the internal Id of the object (null in case or error)
      */
     public int persist(Object object) {
+        Integer id = null;
         try (Session s = this.driver.session()) {
             s.run(BUILDER.makeCreate(object.getClass()),
                     parameters(BUILDER.fillCreate(object).toArray()));
-            s.run(BUILDER.makeMatch(object.getClass()),
-                    parameters(BUILDER.fillCreate(object).toArray()));
+            id = getId(object);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            throw e;
+        }
+        return id;
+    }
+
+
+    public void link(Object first, Object second, boolean biDirectional) {
+        link(first, second, null, biDirectional);
+    }
+
+    public void link(Object first, Object second, Object descriptor, boolean biDirectional) {
+        boolean haveDescriptor = null != descriptor;
+        try (Session s = this.driver.session()) {
+            int idA = getId(first);
+            int idB = getId(second);
+            String name;
+            if (haveDescriptor) {
+                name = descriptor.getClass().getSimpleName();
+            } else {
+                name = String.format("%s_%s", first.getClass().getSimpleName(), second.getClass().getSimpleName());
+            }
+            if (haveDescriptor) {
+                s.run(BUILDER.makeRelation(idA, idB, name, descriptor.getClass()), parameters(BUILDER.fillCreate(descriptor)));
+                if (biDirectional) {
+                    s.run(BUILDER.makeRelation(idB, idA, name, descriptor.getClass()), parameters(BUILDER.fillCreate(descriptor)));
+                }
+            } else {
+                s.run(BUILDER.makeRelation(idA, idB, name, null));
+                if (biDirectional) {
+                    s.run(BUILDER.makeRelation(idB, idA, name, null));
+                }
+            }
 
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             throw e;
         }
-        return 1;
     }
 
     /**
@@ -78,16 +93,22 @@ public class GraphConnect {
      * @param object the object to persist
      * @return the internal Id of the object
      */
-    public int getID(Object object) {
+    public Integer getId(Object object) {
+        Integer id = null;
         try (Session s = this.driver.session()) {
-            s.run(BUILDER.makeMatch(object.getClass()),
-                    parameters(BUILDER.fillCreate(object).toArray()));
+            String stmt = BUILDER.makeMatch(object.getClass(), false);
+            Object[] params = BUILDER.fillCreate(object).toArray();
+            StatementResult result = s.run(stmt, parameters(params));
 
+            while (result.hasNext()) {
+                Record record = result.next();
+                id = record.get("InternalId").asInt();
+            }
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             throw e;
         }
-        return 1;
+        return id;
     }
 
 
@@ -95,4 +116,8 @@ public class GraphConnect {
         return driver.session();
     }
 
+    @Override
+    public void close() throws Exception {
+        driver.close();
+    }
 }

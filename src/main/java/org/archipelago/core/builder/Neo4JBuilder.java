@@ -93,7 +93,11 @@ public class Neo4JBuilder extends ArchipelagoScriptBuilder {
     }
 
     public String makeMatch(Class<?> clazz) {
-        final String nodeTemplatePath = TEMPLATE_ROOT_PATH + NEO4J_FOLDER + "\\match.stg";
+        return makeMatch(clazz, true);
+    }
+
+    public String makeMatch(Class<?> clazz, boolean allObject) {
+        final String nodeTemplatePath = String.format("%s/%s/%s%s", TEMPLATE_ROOT_PATH, NEO4J_FOLDER, "\\match", allObject ? ".stg" : "Id.stg");
         final STGroup group = StringTemplateFactory.buildSTGroup(nodeTemplatePath);
         final ST st = group.getInstanceOf("MatchNeo4J");
         st.add("clazz", clazz);
@@ -103,6 +107,25 @@ public class Neo4JBuilder extends ArchipelagoScriptBuilder {
         String match = st.render();
         LOGGER.debug(String.format("MATCH for class %s : [%s]", clazz.getSimpleName(), match));
         return match;
+    }
+
+    public String makeRelation(int idA, int idB, String name, Class<?> descriptor) {
+        boolean haveProp = null != descriptor;
+
+        final String nodeTemplatePath = String.format("%s/%s/%s%s", TEMPLATE_ROOT_PATH, NEO4J_FOLDER, "\\relation", haveProp ? "WithProp.stg" : ".stg");
+        final STGroup group = StringTemplateFactory.buildSTGroup(nodeTemplatePath);
+        final ST st = group.getInstanceOf("RelationNeo4J");
+        st.add("idA", idA);
+        st.add("idB", idB);
+        st.add("name", name);
+        if (haveProp) {
+            for (Field field : ArchipelagoUtils.getAllFields(descriptor)) {
+                st.add("props", field.getName());
+            }
+        }
+        String relationQuery = st.render();
+        LOGGER.debug(String.format("CREATE Relation from %d to %d : [%s]", idA, idB, relationQuery));
+        return relationQuery;
     }
 
 }

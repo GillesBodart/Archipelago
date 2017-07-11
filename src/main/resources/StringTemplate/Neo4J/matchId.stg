@@ -2,10 +2,7 @@ MatchNeo4J(clazz,props) ::= <<
     MATCH (n:<clazz.simpleName>)
     WHERE
     <props : createWhere(); separator=" AND ">
-    RETURN
-    <props : createReturn()>
-    ID(n) AS InternalId
+    RETURN ID(n) AS InternalId
 >>
 
 createWhere(property) ::= "n.<property> = {<property>\}"
-createReturn(property) ::= "n.<property> AS <property>,\n"
