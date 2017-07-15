@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  14 JUL 2017 21:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  15 JUL 2017 11:10
 entering extended mode
 **./Summary.tex
 (Summary.tex
@@ -975,43 +975,51 @@ LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 102.
  [4
 
-] [5] [6] [7
+] [5] [6]
+(C:\Sand\miktex\tex\latex\listings\lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+Overfull \hbox (200.14899pt too wide) in paragraph at lines 195--196
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[7] [8
 
 ]
 Chapter 2.
-[8
-
-]
-Chapter 3.
 [9
 
 ]
-Chapter 4.
+Chapter 3.
 [10
 
 ]
-Chapter 5.
+Chapter 4.
 [11
 
-] [12
+]
+Chapter 5.
+[12
+
+] [13
 
 ]
 Chapter 6.
-[13
+[14
 
 ]
 Chapter 7.
-[14
+[15
 
 ] (Summary.aux) ) 
 Here is how much of TeX's memory you used:
- 9383 strings out of 493333
- 129700 string characters out of 3144820
- 222645 words of memory out of 3000000
- 12702 multiletter control sequences out of 15000+200000
+ 9658 strings out of 493333
+ 132985 string characters out of 3144820
+ 235030 words of memory out of 3000000
+ 12973 multiletter control sequences out of 15000+200000
  87275 words of font info for 75 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,12n,38p,844b,1540s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 40i,12n,42p,844b,1544s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/f
 onts/enc/dvips/lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/public/amsfonts/lat
 xfont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Sand/mikt
@@ -1020,9 +1028,9 @@ ex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr1
 e1/public/lm/lmr7.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/m
 iktex/fonts/type1/public/lm/lmssbx10.pfb><C:/Sand/miktex/fonts/type1/public/lm/
 lmsy10.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Summary.pdf (14 pages, 220478 bytes).
+Output written on Summary.pdf (15 pages, 225244 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
+ 93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

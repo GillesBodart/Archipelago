@@ -131,6 +131,22 @@ Exemple de requête Cypher :
 
 \begin{lstlisting}
 
+	CREATE (mo:Person {name:"Mamours"})
+	CREATE (mc:Person {name:"Mamyco"})
+	CREATE (g:Person {name:"Gilles"})
+	CREATE (m:Person {name:"Marie"})
+	CREATE (b:Person {name:"Enfant"})
+	CREATE (mo)-[:PARENT_OF]->(g)
+	CREATE (mc)-[:PARENT_OF]->(m)
+	CREATE (m)-[:PARENT_OF]->(b)
+	CREATE (g)-[:PARENT_OF]->(b)
+	
+\end{lstlisting}
+
+Ces requêtes vont créer 5 noeud et 4 relations PARENT\_OF, nous pouvons aisément comprendre que "Mamyco" est parente de "Marie"
+
+\begin{lstlisting}
+
 	MATCH (n:Person)-[:PARENT_OF]->(c:Person) 
 	RETURN DISTINCT (n)
 	
@@ -166,6 +182,45 @@ Ce SGBD est composé de trois grands éléments
 Chaque Document ou Vertex appartient à une "Class", celle-ci peut être strictement définie ou plus laxiste. Comme dans la programmation orientée objet, OrientDB offre le principe de polymorphisme avec un système d'héritage entre les classes. 
 
 OrientDB utilise une sorte de SQL avancée pour interpréter les requêtes. On peut de plus utiliser le langage Gremlin.
+
+Voici quelques exemples d'utilisation du SQL avancé dans OrientDB.
+
+\begin{lstlisting}[language=SQL]
+	CREATE CLASS Person EXTENDS V
+	CREATE CLASS Company EXTENDS V
+	CREATE CLASS WorkAt EXTENDS E
+	CREATE PROPERTY Person.firstname string
+	CREATE PROPERTY Person.lastname string
+	CREATE PROPERTY Company.name string
+	INSERT INTO Person(firstname, lastname) VALUES ("Gilles","Bodart"),("Marie","Van Cutsem")
+	ou
+	INSERT INTO Company set name = "ACME"
+
+\end{lstlisting}
+
+Cet ensemble de requête ressemblant au langage SQL permet de créer deux vertex, Person et Company , un Edge WorkAt et leur associe certaine propriétés. Les deux types d'insert différent permettent comme en SQL d'ajouter un noeud.  
+
+\begin{lstlisting}[language=SQL]
+	SELECT FROM V
+\end{lstlisting}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+   \hline
+   \multicolumn{3}{|c|}{Metadata} & \multicolumn{3}{c|}{Properties} \\
+   \hline
+   @rid & @version & @class & firstname & lastname & name \\
+   \hline
+   10:0 & 1 & Person & Marie & Van Cutsem &  \\
+   10:1 & 1 & Person & Gilles & Bodart &  \\
+   11:0 & 1 & Company &  &  & ACME \\
+   \hline
+\end{tabular}
+\end{center}
+
+
+\begin{lstlisting}[language=SQL]
+	CREATE Edge WorkAt from 10:1 to 11:0
+\end{lstlisting}
 
 
 \part{Analyse technique}
@@ -243,5 +298,6 @@ Le mémoire sera conclu avec un explication transversale et complète du framewo
 \item https://prezi.com/4flswlgipwbo/nosql-not-only-sql/
 \item [LIVRE] http://www.eyrolles.com/Chapitres/9782212141559/9782212141559.pdf
 \item https://db-engines.com
+\item https://www.udemy.com/orientdb-getting-started
 \end{itemize}
 \end{document}
