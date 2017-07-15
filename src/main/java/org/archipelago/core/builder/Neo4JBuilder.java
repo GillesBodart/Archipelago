@@ -120,7 +120,7 @@ public class Neo4JBuilder extends ArchipelagoScriptBuilder {
         st.add("name", name);
         if (haveProp) {
             for (Field field : ArchipelagoUtils.getAllFields(descriptor)) {
-                st.add("props", field.getName());
+                st.add("properties", field.getName());
             }
         }
         String relationQuery = st.render();

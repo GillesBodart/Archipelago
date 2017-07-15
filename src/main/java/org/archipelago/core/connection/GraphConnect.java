@@ -40,7 +40,7 @@ public class GraphConnect implements AutoCloseable {
      * @param object the object to persist
      * @return the internal Id of the object (null in case or error)
      */
-    public int persist(Object object) {
+    public Integer persist(Object object) {
         Integer id = null;
         try (Session s = this.driver.session()) {
             s.run(BUILDER.makeCreate(object.getClass()),
@@ -70,9 +70,9 @@ public class GraphConnect implements AutoCloseable {
                 name = String.format("%s_%s", first.getClass().getSimpleName(), second.getClass().getSimpleName());
             }
             if (haveDescriptor) {
-                s.run(BUILDER.makeRelation(idA, idB, name, descriptor.getClass()), parameters(BUILDER.fillCreate(descriptor)));
+                s.run(BUILDER.makeRelation(idA, idB, name, descriptor.getClass()), parameters(BUILDER.fillCreate(descriptor).toArray()));
                 if (biDirectional) {
-                    s.run(BUILDER.makeRelation(idB, idA, name, descriptor.getClass()), parameters(BUILDER.fillCreate(descriptor)));
+                    s.run(BUILDER.makeRelation(idB, idA, name, descriptor.getClass()), parameters(BUILDER.fillCreate(descriptor).toArray()));
                 }
             } else {
                 s.run(BUILDER.makeRelation(idA, idB, name, null));

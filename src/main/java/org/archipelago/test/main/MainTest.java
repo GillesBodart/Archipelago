@@ -29,29 +29,15 @@ public class MainTest {
 
     protected final static Logger LOGGER = LogManager.getLogger(MainTest.class);
 
-    private final static ArchipelagoBuilderType TEST_TYPE = ArchipelagoBuilderType.RELATIONAL_SQL;
+    private final static ArchipelagoBuilderType TEST_TYPE = ArchipelagoBuilderType.ORIENT_DB;
     private final static String TEST_SCHOOL_PATH = "C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain\\school";
     private final static String TEST_LIBRARY_PATH = "C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain\\library";
 
     private final static String TEST_CASE = "School";
 
     public static void main(String[] args) throws ClassNotFoundException, IOException {
-        GraphConnect gc = GraphConnect.getInstance();
-        //Session session = driver.session();
-        ClassRoom cr = new ClassRoom("l003", 23, true, false, false);
-        Teacher m = new Teacher();
-        m.setDateOfBirth(LocalDate.of(2017, 07, 10));
-        m.setFirstName("Marie");
-        m.setLastName("Van Cutsem");
-        m.setSexe("F");
-        m.setDiploma("Logopède");
-        Teacher g = new Teacher();
-        g.setDateOfBirth(LocalDate.of(2017, 07, 10));
-        g.setFirstName("Gilles");
-        g.setLastName("Bodart");
-        g.setSexe("M");
-        g.setDiploma("Master");
-        gc.link(m, cr,  ,false);
+        testBuilder(TEST_CASE);
+        testFeeder(TEST_CASE);
     }
 
     private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {
@@ -199,4 +185,6 @@ public class MainTest {
             LOGGER.info(script);
         }
     }
+
+
 }

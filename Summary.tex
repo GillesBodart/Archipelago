@@ -102,7 +102,7 @@ Comme les modèles NoSql représentent ce qui n'est pas Relationnel, par soucis 
 \item Performances : L'objectif du SGBD sera d'augmenter au maximum les performances de la manipulation des données. 
 \item Structures simples : Pour s'affranchir de la rigidité du modèle relationnel, la structure sera généralement simplifiée, en utilisant une représentation plus souple comme le JSON par exemple.
 \item Structures spécifiques : Certain moteur NoSql sont liés a des besoins spécifiques, la structure de représentation de donnée sera dès lors focalisée sur un cas d'utilisation.
-\item Volumétries : Un des principal aspect important des SGBD NoSql est leur capacité de gérer la montée en charge de données. La distribution des traitements au travers de plusieurs clusters est un facteur très important dans la pluspart des applications BigData.
+\item Volumétries : Un des principal aspect important des SGBD NoSql est leur capacité de gérer la montée en charge de données. La distribution des traitements au travers de plusieurs clusters est un facteur très important dans la plupart des applications BigData.
 \end{itemize} 
 
 Et nous allons aussi distinguer 4 grandes familles de représentation de Schéma de données :
@@ -111,21 +111,61 @@ Et nous allons aussi distinguer 4 grandes familles de représentation de Schéma
 \item Document : L'utilisation de format spécifiques tels que le très rependu JSON permet de stocker les données sur base de fichier.
 \item Clé / Valeur : Le système le plus simple, il manipule des paires de clé/valeurs, ou accède à un élément en fonction d'une table de hachage.
 \item Colonne : Inspiré de Google BigTable, la structure ressemble à la table relationnelle. On peut la comparer à une table de hachage qui va référencer une ou plusieurs colonnes.
-\item Graph : La famille Graph se distingue du fait que les entitées ne sont pas considéré comme des entités indépendante, mais que la relation être ces objets est tout aussi important que le contenu.
+\item Graph : La famille Graph se distingue du fait que les entités ne sont pas considéré comme des entités indépendante, mais que la relation être ces objets est tout aussi important que le contenu.
 \end{itemize} 
  
  
 \section{De nos jours}	
-Le premier objectif de ce mémoire est d'établir un état de l'art sur les différents types de BD. Nous recenserons dans cette section, les différentes BDOG\footnote{Base de Donné Orientée Graphe}. présentes sur le marché à l'heure actuelle :
+
+Les implémentations de bases de données de types graph sont de plus en plus nombreuses, les relations entre les éléments permettent de parcourir le graph de manière très performante les rendent de plus en plus intéressante pour les entreprises possédant des millions de données. L'utilisation de ce genre de SGBD est dès lors tout a fait recommandé pour des entreprises intéressé entre les relations de ces donnés tels que des profils sociaux, des liens de cause a effet, des liens géographiques et bien d'autre.
+
+\subsection{Neo4J}
+
+Créé par Neo Technologie, une sociétée suédo-américaine, elle est actuellement (selon db-engines.com) la base de donnée orienté graph la plus utilisée dans le monde. Développé en java sous licence GPL V3, AGPL ou licence commerciale, Neo4J représente les données sous formes de "Noeuds" et de "Relations", chacun de ces éléments peuvent contenir une ou plusieurs propriétés. Les propriétés sont des couples clés/valeurs de type simple, comme des chaines de caractères ou des valeurs numériques, des coordonnées spatiales, ... 
+
+Une des particularité de Neo4J est l'absence de structure définie, un noeud peut être labellisé afin de permettre de travailler sur un ensemble d'éléments, mais il n'y aura aucune contrainte sur les propriétés du noeud. Cette particularité rend ce SGBD bien adapté pour les modèles évoluant fréquemment.
+
+Le langage de requête propre à Neo4J se nomme "Cypher", il a pour but de réaliser plus simplement que SQL les opérations de parcours ou d'analyse de proximité.
+
+Exemple de requête Cypher : 
+
+\begin{lstlisting}
+
+	MATCH (n:Person)-[:PARENT_OF]->(c:Person) 
+	RETURN DISTINCT (n)
+	
+\end{lstlisting}
+
+Cette query va retourner tout les nœuds distinct qui ont une relation :PARENT\_OF avec un autre noeud.
+
+\begin{lstlisting}
+
+	MATCH (n:Person)-[:PARENT_OF*2]->(c:Person) 
+	RETURN DISTINCT (n)
+	
+\end{lstlisting}
+
+Celle-ci quant à elle va retourner toutes les personnes qui sont parent de parent et donc grand parents. 
+
+ces deux exemples peuvent montrer la force de l'utilisation d'un SGBD de type graph pour représenter un ensemble hierarchique de données par rapport au SGBD relationnelles qui nécessiterai une double jointure sur la Table "Person"
+
+\subsection{OrientDB}
+
+OrientDB est un SGBD initialement développé en C++(Orient ODBMS) ensuite repris en 2010 en Java par Luca Garulli dans une version multi-modèle sous licence Apache 2.0, GPL et AGPL. actuellement 3ème mondial (selon db-engines.com) il offre de nombreuses fonctionnalités intéressante. 
+
+OrientDB est base de donnée associant Document et Graph. Elle combine la rapidité et la flexibilité du type document ainsi que les fonctionnalités de relations des bases de données graph. 
+
+Ce SGBD est composé de trois grands éléments 
+
 \begin{itemize}
-\item Neo4J
-\item OrientDb
-\item Blazegraph
-\item InfiniteGraph
-\item Infogrid
-\item ArangoDb
+\item Document \& Vertex : Source de contenu, ces élements peuvent être considéré comme des container de données, on peut le comparer avec la ligne d'une base de données relationnelle.
+\item Links \& Edge : Une arrête orientés reliant deux éléments non nécessairement distinct.
+\item Property : Typée ou embarquée dans un document JSON, ceci va représenter le contenu de l'information. Ces propriétés sont bien entendu primordiales pour ordonner, rechercher, ...
 \end{itemize}
-Une explication de haut niveau sera faite sur les différence ainsi que sur les points communs de ces dernières. Chaque élément fera le sujet d'une analyse plus détaillée dans le chapitre "Analyse Technique".
+
+Chaque Document ou Vertex appartient à une "Class", celle-ci peut être strictement définie ou plus laxiste. Comme dans la programmation orientée objet, OrientDB offre le principe de polymorphisme avec un système d'héritage entre les classes. 
+
+OrientDB utilise une sorte de SQL avancée pour interpréter les requêtes. On peut de plus utiliser le langage Gremlin.
 
 
 \part{Analyse technique}
@@ -145,11 +185,11 @@ L'établissement d'une liste non exhaustive de critères de comparaisons objecti
 \hline
 \backslashbox {Critère}{Bases de données} & Neo4J & OrientDB & ArangoDB  \\
 \hline
-Critère 1 & \checkmark & & \checkmark \\
+Schema de donnée strict & X & X & \checkmark \\
 \hline
-Critère 2 & & \checkmark & \\
+Format de donnée & JSON & JSON & \\
 \hline
-Critère 3 & \checkmark & & \\
+Principe d'héritage & X & \checkmark & \\
 \hline
 \end{tabular}
 \end{center}
@@ -199,9 +239,9 @@ Le mémoire sera conclu avec un explication transversale et complète du framewo
 \item J. McAuley and J. Leskovec. Learning to Discover Social Circles in Ego Networks. NIPS, 2012.
 \item J. Leskovec, K. Lang, A. Dasgupta, M. Mahoney. Community Structure in Large Networks: Natural Cluster Sizes and the Absence of Large Well-Defined Clusters. Internet Mathematics 6(1) 29--123, 2009.
 \item https://www.infoq.com/fr/articles/graph-nosql-neo4j
-\item http://www.marginweb.com/blog/20121110/quand-et-pourquoi-utiliser-une-base-de-donnees-nosql
 \item http://www.silicon.fr/base-donnees-nosql-impose-sgbdr-93305.html
 \item https://prezi.com/4flswlgipwbo/nosql-not-only-sql/
 \item [LIVRE] http://www.eyrolles.com/Chapitres/9782212141559/9782212141559.pdf
+\item https://db-engines.com
 \end{itemize}
 \end{document}
