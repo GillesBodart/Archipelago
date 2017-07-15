@@ -204,24 +204,26 @@ Cet ensemble de requête ressemblant au langage SQL permet de créer deux vertex
 	SELECT FROM V
 \end{lstlisting}
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|c|}
-   \hline
-   \multicolumn{3}{|c|}{Metadata} & \multicolumn{3}{c|}{Properties} \\
-   \hline
-   @rid & @version & @class & firstname & lastname & name \\
-   \hline
-   10:0 & 1 & Person & Marie & Van Cutsem &  \\
-   10:1 & 1 & Person & Gilles & Bodart &  \\
-   11:0 & 1 & Company &  &  & ACME \\
-   \hline
-\end{tabular}
+	\begin{tabular}{|c|c|c|c|c|c|}
+   		\hline
+  		\multicolumn{3}{|c|}{Metadata} & \multicolumn{3}{c|}{Properties} \\
+   		\hline
+   		@rid & @version & @class & firstname & lastname & name \\
+   		\hline
+   		10:0 & 1 & Person & Marie & Van Cutsem &  \\
+   		10:1 & 1 & Person & Gilles & Bodart &  \\
+   		11:0 & 1 & Company &  &  & ACME \\
+   		\hline
+	\end{tabular}
 \end{center}
 
+Nous pouvons observer qu'OrientDB se charge de qualifier les document de plusieurs métadata en leur octroyant par exemple un identifiant unique (n°cluster:position), un numéro de version pour permettre une gestion de transaction "full optimistic"\footnote{On laisse l'utilisateur continuer sa transaction et le refus se fera lors du commit si il y a eu une modification concurrente du même document} et le \@class représente la structure du document.
 
 \begin{lstlisting}[language=SQL]
 	CREATE Edge WorkAt from 10:1 to 11:0
 \end{lstlisting}
 
+Cette petite requête va lier le document ayant l'id 10:1 au document dont l'id est 11:0 par une relation WorkAt. Nous pouvons traduire en français que Marie Van Cutsem travaille chez ACME.
 
 \part{Analyse technique}
 \chapter{Application possibles des BDOG}

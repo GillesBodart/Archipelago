@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  15 JUL 2017 11:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  15 JUL 2017 19:11
 entering extended mode
 **./Summary.tex
 (Summary.tex
@@ -983,6 +983,21 @@ Overfull \hbox (200.14899pt too wide) in paragraph at lines 195--196
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
+
+! Package inputenc Error: Unicode char ° (U+B0)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.220 ...nt par exemple un identifiant unique (n°
+                                                  cluster:position), un num�...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 [7] [8
 
 ]
@@ -1013,10 +1028,10 @@ Chapter 7.
 
 ] (Summary.aux) ) 
 Here is how much of TeX's memory you used:
- 9658 strings out of 493333
- 132985 string characters out of 3144820
- 235030 words of memory out of 3000000
- 12973 multiletter control sequences out of 15000+200000
+ 9661 strings out of 493333
+ 133006 string characters out of 3144820
+ 237030 words of memory out of 3000000
+ 12976 multiletter control sequences out of 15000+200000
  87275 words of font info for 75 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,12n,42p,844b,1544s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1028,7 +1043,7 @@ ex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr1
 e1/public/lm/lmr7.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/m
 iktex/fonts/type1/public/lm/lmssbx10.pfb><C:/Sand/miktex/fonts/type1/public/lm/
 lmsy10.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Summary.pdf (15 pages, 225244 bytes).
+Output written on Summary.pdf (15 pages, 227910 bytes).
 PDF statistics:
  93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
