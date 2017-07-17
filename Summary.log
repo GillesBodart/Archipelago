@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  17 JUL 2017 15:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  17 JUL 2017 16:02
 entering extended mode
 **./Summary.tex
 (Summary.tex
@@ -16,8 +16,8 @@ Applying: [2015/01/01] Make \] robust on input line 74.
 LaTeX Info: Redefining \] on input line 75.
 Already applied: [0000/00/00] Make \] robust on input line 83.
 )
-(C:\Sand\miktex\tex\latex\base\size10.clo
-File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+(C:\Sand\miktex\tex\latex\base\size12.clo
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -943,12 +943,12 @@ Package caption Info: End \AtBeginDocument code.
 * \topmargin=-52.36449pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=10.0pt
+* \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=57.0pt
-* \marginparsep=11.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -980,11 +980,11 @@ LaTeX Font Info:    Try loading font information for OMX+lmex on input line 119
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 119.
+(Font)              <12> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 119.
+(Font)              <8> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 119.
+(Font)              <6> on input line 119.
 LaTeX Font Info:    Try loading font information for U+msa on input line 119.
 
 (C:\Sand\miktex\tex\latex\amsfonts\umsa.fd
@@ -1016,93 +1016,87 @@ unamur.pdf>] (Summary.toc)
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 159.
+(Font)              <10> on input line 159.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 159.
+(Font)              <7> on input line 159.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 159.
 LaTeX Font Info:    Try loading font information for OMS+lmr on input line 171.
 
  (C:\Sand\miktex\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 171.
  [5
 
-]
+] [6]
 Chapter 1.
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 200.
 
 (C:\Sand\miktex\tex\latex\lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [6
+) [7
 
-] [7]
+] [8]
 Chapter 2.
 (C:\Sand\miktex\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [8
+) [9
 
-] [9]
+] [10]
 Chapter 3.
-[10
+[11
 
-] [11
+] [12
 
 ]
 Chapter 4.
-[12
-
-]
-Chapter 5.
-
-Overfull \hbox (21.72548pt too wide) in paragraph at lines 367--368
-\T1/lmr/m/n/10 Description du pro-ces-sus im-plé-menté sur base d'un ex-em-ple 
-claire. Ex-pli-ca-tions des dif-férents choix d'implémentations
- []
-
 [13
 
 ]
-Chapter 6.
+Chapter 5.
 [14
 
 ]
-Chapter 7.
+Chapter 6.
 [15
 
-] [16
+]
+Chapter 7.
+[16
+
+] [17
 
 ]
 Chapter 8.
-[17
+[18
 
 ]
 Chapter 9.
-[18
+[19
 
 ] (Summary.aux) ) 
 Here is how much of TeX's memory you used:
- 10634 strings out of 493333
- 144872 string characters out of 3144820
- 272654 words of memory out of 3000000
- 13928 multiletter control sequences out of 15000+200000
- 75637 words of font info for 60 fonts, out of 3000000 for 9000
+ 10642 strings out of 493333
+ 144972 string characters out of 3144820
+ 273694 words of memory out of 3000000
+ 13935 multiletter control sequences out of 15000+200000
+ 73973 words of font info for 64 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,13n,42p,844b,1638s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,13n,42p,844b,1862s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/f
 onts/enc/dvips/lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/public/amsfonts/lat
-xfont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx10.pfb><C:/Sand/mikt
-ex/fonts/type1/public/lm/lmbx12.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmcsc
-10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr10.pfb><C:/Sand/miktex/fonts/ty
-pe1/public/lm/lmr12.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr5.pfb><C:/Sand
-/miktex/fonts/type1/public/lm/lmr6.pfb><C:/Sand/miktex/fonts/type1/public/lm/lm
-r7.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/miktex/fonts/typ
-e1/public/lm/lmr9.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmsy10.pfb><C:/Sand
-/miktex/fonts/type1/public/lm/lmtt10.pfb><C:/Sand/miktex/fonts/type1/public/ams
-fonts/symbols/msam10.pfb>
-Output written on Summary.pdf (18 pages, 504219 bytes).
+xfont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Sand/mikt
+ex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr1
+0.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/miktex/fonts/typ
+e1/public/lm/lmr6.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr7.pfb><C:/Sand/m
+iktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmsy
+10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/t
+ype1/public/amsfonts/symbols/msam10.pfb>
+Output written on Summary.pdf (19 pages, 432210 bytes).
 PDF statistics:
- 129 PDF objects out of 1000 (max. 8388607)
+ 121 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
