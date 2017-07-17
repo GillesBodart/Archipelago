@@ -268,6 +268,9 @@ Ce SGBD est composé de trois grands éléments
 
 Chaque Document ou Vertex appartient à une "Class", celle-ci peut être strictement définie ou plus laxiste. Comme dans la programmation orientée objet, OrientDB offre le principe de polymorphisme avec un système d'héritage entre les classes. 
 
+OrientDB vient dans sa version community avec un système de clustering permettant à l'utilisateur de correctement gérer les montées en charges. chaque document est identifié avec une partie désignant le cluster dans lequel l'information est stockée et une autre partie désignant sa position dans ce dernier (exemple @rid: 10:12). Chaque classe peut être associée a un ou plusieur Cluster, permettant d'optimiser les accès dans des catégories plus fines.
+
+Par exemple, imaginons une entreprise multinationale, un définition de Cluster par zone géographique, permettrai de confiner les recherche dans un ensemble plus réduit d'informations sans pour autant avoir une réelle duplication des informations. 
 
 \section{Langage de requête}
 
