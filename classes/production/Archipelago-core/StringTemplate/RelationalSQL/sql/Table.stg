@@ -1,0 +1,10 @@
+SQLTable(tableWrapper) ::= <<
+
+CREATE TABLE <tableWrapper.tableName> (
+	<tableWrapper.fields:field()>
+);
+
+
+>>
+
+field(property) ::= "<property.fieldName> <property.fieldType><if(property.fieldSize)>(<property.fieldSize>)<endif><n/>"

@@ -1,0 +1,73 @@
+UnderMetaClass(package, className, properties) ::= <<
+<package>.archipelago;
+
+import org.archipelago.core.interfaces.*;
+import org.archipelago.core.domain.*;   
+import java.util.*; 
+import javax.persistence.*;   
+
+@Entity
+@Table(name="<className;format="upper">")
+public class <className> extends UnderMeta\<Meta<className>\> {
+
+	@Id
+    @GeneratedValue(generator = "<className;format="upper">_SEC")
+    @SequenceGenerator(name = "<className;format="upper">_SEC", sequenceName = "<className;format="upper">_SEC")
+    @Column(name = "<className;format="upper">_ID")
+	private Long archipelagoId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "META_<className;format="upper">_ID", nullable = false)
+	private Meta<className> meta;
+	
+	
+	public Long getArchipelagoId() {
+        return archipelagoId;
+    }
+
+    public void setArchipelagoId(Long archipelagoId) {
+        this.archipelagoId = archipelagoId;
+    }
+	
+	<properties:implementProp()>
+	
+	
+	<properties:implementGetter()>
+	
+	
+	<properties:implementSetter()>
+
+}  
+>>
+
+implementProp(property) ::=<<
+<if (property.type.interface)>
+private <property.genericType> <property.name>;
+<else>
+private <property.type.simpleName> <property.name>;
+<endif>  
+>>
+implementGetter(property) ::=<<
+<if (property.type.interface)>
+public <property.genericType> get<property.name;format="cap">(){
+	return <property.name>;
+<else>
+public <property.type.simpleName> get<property.name;format="cap">(){
+	return <property.name>;
+<endif>  
+
+}
+
+>>
+implementSetter(property) ::=<<
+<if (property.type.interface)>
+public void set<property.name;format="cap">(<property.genericType> <property.name>){
+	this.<property.name> = <property.name>;
+}
+<else>
+public void set<property.name;format="cap">(<property.type.simpleName> <property.name>){
+	this.<property.name> = <property.name>;
+}
+<endif> 
+
+>>	

@@ -20,3 +20,4 @@ Archipelago.iml
 .settings/
 Archipelago-core.iml
 target/
+classes/

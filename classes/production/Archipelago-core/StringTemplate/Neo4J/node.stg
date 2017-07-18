@@ -1,0 +1,5 @@
+ClassNeo4J(clazz,props) ::= <<
+    MERGE (a:<clazz.simpleName> {<props : createProperty(); separator=", ">})
+>>
+
+createProperty(property) ::= "<property>: {<property>\}"

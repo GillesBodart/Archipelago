@@ -1,0 +1,8 @@
+RelationNeo4J(idA,idB,name,properties) ::= <<
+
+    MATCH (n) where ID(n) = <idA>
+    MATCH (m) where ID(m) = <idB>
+    MERGE (n)-[r:<name> {<properties : property(); separator=", ">}]->(m) RETURN r
+>>
+
+property(prop) ::= "<prop> : {<prop>}"
