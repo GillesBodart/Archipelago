@@ -3,10 +3,11 @@ package org.archipelago.test.main;
 import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.archipelago.core.connection.GraphConnect;
+import org.archipelago.core.connection.Archipelago;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.domain.types.ArchipelagoBuilderType;
 import org.archipelago.core.domain.types.ArchipelagoFeederType;
+import org.archipelago.core.exception.CheckException;
 import org.archipelago.core.runtime.ArchipelagoBuilderFactory;
 import org.archipelago.core.runtime.ArchipelagoFeederFactory;
 import org.archipelago.test.domain.library.Author;
@@ -35,9 +36,10 @@ public class MainTest {
 
     private final static String TEST_CASE = "School";
 
-    public static void main(String[] args) throws ClassNotFoundException, IOException {
-        testBuilder(TEST_CASE);
-        testFeeder(TEST_CASE);
+    public static void main(String[] args) throws ClassNotFoundException, IOException, CheckException {
+        Archipelago a = Archipelago.getInstance();
+        Integer id = a.persist(new Lesson("Math", 8));
+        LOGGER.info(id);
     }
 
     private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {

@@ -268,9 +268,8 @@ Ce SGBD est composé de trois grands éléments
 
 Chaque Document ou Vertex appartient à une "Class", celle-ci peut être strictement définie ou plus laxiste. Comme dans la programmation orientée objet, OrientDB offre le principe de polymorphisme avec un système d'héritage entre les classes. 
 
-OrientDB vient dans sa version community avec un système de clustering permettant à l'utilisateur de correctement gérer les montées en charges. chaque document est identifié avec une partie désignant le cluster dans lequel l'information est stockée et une autre partie désignant sa position dans ce dernier (exemple @rid: 10:12). Chaque classe peut être associée a un ou plusieur Cluster, permettant d'optimiser les accès dans des catégories plus fines.
+OrientDB vient dans sa version community avec un système de clustering permettant à l'utilisateur de correctement gérer les montées en charges. chaque document est identifié avec une partie désignant le cluster dans lequel l'information est stockée et une autre partie désignant sa position dans ce dernier (exemple @rid: 10:12). Chaque classe peut être associée a un ou plusieur Cluster, permettant d'optimiser les accès dans des ensembles  plus petits.
 
-Par exemple, imaginons une entreprise multinationale, un définition de Cluster par zone géographique, permettrai de confiner les recherche dans un ensemble plus réduit d'informations sans pour autant avoir une réelle duplication des informations. 
 
 \section{Langage de requête}
 
@@ -321,11 +320,73 @@ Cette petite requête va lier le document ayant l'id 10:1 au document dont l'id 
 
 \section{Communication}
 
+OrientDB embarque une API Rest complète, toute actions pouvant être faite sur les interfaces web et consoles peuvent être reproduites au travers de cette API. 
+
 
 
 \chapter{Les librairies existantes}
 
-Bien que les système de liaisons entre les bases de données et les composants logiciels sont de plus en plus fréquent, 
+Bien que l'utilisation des librairies NoSQL se font de plus en plus fréquentes, il n'existe encore à l'heure actuelle que peux de frameworks facilitant leurs utilisations dans les langages modernes. 
+
+Ce manque de librairie peut venir du manque de normalisation entre ces différent SGBD, ce qui oblige a mettre au point des solutions spécifiques pour chaque technologie. 
+
+\section*{Hibernate}
+
+Hibernate, soutenu et développé par JBoss, à mis au point un système de relation entre le code Java et le SGBD Néo4J, en réutilisant les mêmes annotations de relations que celles employées pour les bases de données relationnelles, à savoir  :
+
+\begin{itemize}
+\item @OneToOne
+\item @OneToOne
+\item @ManyToOne
+\item @OneToMany
+\item @ManyToMany
+\end{itemize}
+
+
+\section*{Spring Data}
+
+Spring data à nouveau possède un module de communication avec le SGBD Néo4J, il intègre au célèbre Framework Spring les fonctionnalités de Néo4J-OGM\footnote{Object Graph Mapper}, permettant de qualifier une classe avec certaines annotations facilitant la séréalisation et le déséréalisation vers la représentation graphique.
+
+Exemple : 
+
+\begin{lstlisting}
+@NodeEntity(label="Film")
+public class Movie {
+
+   @GraphId Long id;
+
+   @Property(name="title")
+   private String name;
+}
+
+@NodeEntity
+public class Actor extends DomainObject {
+
+   @GraphId
+   private Long id;
+
+   @Property(name="name")
+   private String fullName;
+
+   @Relationship(type="ACTED_IN", direction=Relationship.OUTGOING)
+   private List<Role> filmography;
+
+}
+
+@RelationshipEntity(type="ACTED_IN")
+public class Role {
+    @GraphId   
+    private Long relationshipId;
+    @Property  
+    private String title;
+    @StartNode 
+    private Actor actor;
+    @EndNode   
+    private Movie movie;
+}
+\end{lstlisting}
+
+
 
 \part{Analyse technique}
 \chapter{Application possibles des BDOG}

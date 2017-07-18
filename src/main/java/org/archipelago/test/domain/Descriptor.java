@@ -11,7 +11,7 @@
 // and any use thereof shall be subject to the terms and conditions of use, as agreed upon with Electrabel in writing.
 //
 ////////////////////////////////////////////////////////////////////
-package org.archipelago.test.main;
+package org.archipelago.test.domain;
 
 import java.time.LocalDate;
 
