@@ -3,15 +3,22 @@ package org.archipelago.core.connection;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.archipelago.core.builder.ArchipelagoQuery;
 import org.archipelago.core.builder.ArchipelagoScriptBuilder;
 import org.archipelago.core.builder.Neo4JBuilder;
 import org.archipelago.core.configurator.ArchipelagoConfig;
 import org.archipelago.core.configurator.DatabaseConfig;
+import org.archipelago.core.configurator.DatabaseType;
 import org.archipelago.core.exception.CheckException;
+import org.archipelago.core.util.ArchipelagoUtils;
 import org.neo4j.driver.v1.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import static org.archipelago.core.configurator.DatabaseType.NEO4J;
 import static org.neo4j.driver.v1.Values.parameters;
@@ -22,11 +29,15 @@ import static org.neo4j.driver.v1.Values.parameters;
 public class Archipelago implements AutoCloseable {
 
     public static final String CONFIG_LOCATION = "config.archipelago.json";
+    public static final String ARCHIPELAGO_ID = "ArchipelagoId";
+
     public static final Logger LOGGER = LogManager.getLogger();
 
     private static Archipelago instance;
 
     private final ArchipelagoConfig archipelagoConfig;
+    private DatabaseType databaseType;
+
     private Driver driver;
     private ArchipelagoScriptBuilder builder;
 
@@ -34,9 +45,9 @@ public class Archipelago implements AutoCloseable {
         // Initialization of the configuration
         this.archipelagoConfig = getConfig();
         DatabaseConfig dc = archipelagoConfig.getDatabase();
-
         // Personalisation of the connection
         if (NEO4J.equals(dc.getType()) && !dc.getEmbedded()) {
+            this.databaseType = NEO4J;
             this.driver = GraphDatabase.driver(
                     String.format("bolt://%s:%d", dc.getUrl(), dc.getPort()),
                     AuthTokens.basic(dc.getUsername(), dc.getPassword()));
@@ -148,5 +159,32 @@ public class Archipelago implements AutoCloseable {
     @Override
     public void close() throws Exception {
         driver.close();
+    }
+
+    public List<Object> execute(ArchipelagoQuery aq) throws CheckException {
+        List<Object> nodes = new LinkedList<>();
+        if (NEO4J.equals(databaseType)) {
+            try (Session s = this.driver.session()) {
+                StatementResult result = s.run(aq.getQuery());
+                Map<String, Object> nodeValues = new HashMap<>();
+
+                while (result.hasNext()) {
+                    Record record = result.next();
+                    aq.getKeys().stream().forEach(key -> {
+                        nodeValues.put(key, record.get(key).asObject());
+                    });
+                    Object node = aq.getTarget().getConstructor().newInstance();
+                    if (aq.isWithId()) {
+                        ArchipelagoUtils.feedId(node, nodeValues.get(ARCHIPELAGO_ID));
+                    }
+                    ArchipelagoUtils.feedObject(node, nodeValues);
+                    nodes.add(node);
+                }
+            } catch (Exception e) {
+                LOGGER.error(e.getMessage(), e);
+                throw new CheckException(e.getMessage());
+            }
+        }
+        return nodes;
     }
 }
