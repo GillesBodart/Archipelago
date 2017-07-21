@@ -1,0 +1,11 @@
+{
+  "database": {
+    "type": "NEO4J",
+    "username": "neo4j",
+    "password": "MemoryGilles",
+    "url": "gbodart.be",
+    "name": "memory",
+    "embedded": false,
+    "port": 7687
+  }
+}

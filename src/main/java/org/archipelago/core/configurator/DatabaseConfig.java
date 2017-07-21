@@ -25,6 +25,9 @@ public class DatabaseConfig {
     @JsonProperty
     private Boolean embedded;
 
+    @JsonProperty
+    private String name;
+
     public DatabaseConfig() {
     }
 
@@ -74,5 +77,13 @@ public class DatabaseConfig {
 
     public void setPort(int port) {
         this.port = port;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

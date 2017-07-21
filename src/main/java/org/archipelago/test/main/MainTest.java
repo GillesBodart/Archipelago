@@ -3,7 +3,10 @@ package org.archipelago.test.main;
 import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.archipelago.core.builder.*;
+import org.archipelago.core.builder.ArchipelagoQuery;
+import org.archipelago.core.builder.ConditionQualifier;
+import org.archipelago.core.builder.QueryBuilder;
+import org.archipelago.core.builder.QueryElement;
 import org.archipelago.core.connection.Archipelago;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.domain.types.ArchipelagoBuilderType;
@@ -39,12 +42,14 @@ public class MainTest {
 
     public static void main(String[] args) throws ClassNotFoundException, IOException, CheckException {
         Archipelago a = Archipelago.getInstance();
-        QueryBuilder qb = Neo4JQueryImpl.init();
-        ArchipelagoQuery aq = qb.getId()
+        QueryBuilder qb = a.getQueryBuilder();
+        ArchipelagoQuery aq = qb.getObject()
                 .of(Lesson.class)
+                .withId()
                 .where(QueryElement.of("hourPerWeek", new Integer(4)), ConditionQualifier.STRICT_MORE_THAN)
                 .and(QueryElement.of("name", "Math"), ConditionQualifier.EQUAL)
                 .or(QueryElement.of("name", "Frans"), ConditionQualifier.EQUAL)
+                .and(QueryElement.ofId(new Integer(16)), ConditionQualifier.EQUAL)
                 .build();
         LOGGER.info(aq.getQuery());
         List<Object> nodes = a.execute(aq);

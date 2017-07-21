@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.annotations.ArchipelId;
 import org.archipelago.core.domain.GeneratedScript;
-import org.archipelago.core.exception.CheckException;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
@@ -133,7 +132,7 @@ public class ArchipelagoUtils {
     public static void feedObject(Object o, Map<String, Object> properties) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String fieldName = entry.getKey();
-            if (!ARCHIPELAGO_ID.equalsIgnoreCase(fieldName)) {
+            if (!ARCHIPELAGO_ID.equalsIgnoreCase(fieldName) && null != entry.getValue()) {
                 Method setter = o.getClass().getMethod(String.format("set%s%s", ("" + fieldName.charAt(0)).toUpperCase(), fieldName.substring(1, fieldName.length())), entry.getValue().getClass());
                 setter.invoke(o, entry.getValue());
             }
@@ -148,21 +147,18 @@ public class ArchipelagoUtils {
         return formated;
     }
 
-    public static void feedId(Object node, Object value) throws InvocationTargetException, IllegalAccessException, CheckException, NoSuchMethodException {
-        Set<Field> fields = getAllFields(node.getClass());
-        for (Field f : fields) {
-            boolean present = f.isAnnotationPresent(ArchipelId.class);
-        }
-        Field archipelagoId = fields.stream()
+    public static void feedId(Object node, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Optional<Field> archipelagoId = getAllFields(node.getClass())
+                .stream()
                 .filter(field -> field.isAnnotationPresent(ArchipelId.class))
-                .findFirst()
-                .get();
-        if (null != archipelagoId) {
-            String fieldName = archipelagoId.getName();
-            Method setter = node.getClass().getMethod(String.format("set%s%s", ("" + fieldName.charAt(0)).toUpperCase(), fieldName.substring(1, fieldName.length())), value.getClass());
+                .findFirst();
+        if (archipelagoId.isPresent()) {
+            String fieldName = archipelagoId.get().getName();
+            Method setter = node.getClass()
+                    .getMethod(String.format("set%s%s", ("" + fieldName.charAt(0)).toUpperCase(), fieldName.substring(1, fieldName.length())), value.getClass());
             setter.invoke(node, value);
         } else {
-            throw new CheckException(String.format("No ArchipelId annotation in the class %s", node.getClass()));
+            LOGGER.error(String.format("No ArchipelId annotation in the class %s", node.getClass()));
         }
 
     }

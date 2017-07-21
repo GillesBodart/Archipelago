@@ -1,4 +1,4 @@
-package org.archipelago.core.builder;
+package org.archipelago.core.builder.old;
 
 import com.google.common.collect.Lists;
 import org.archipelago.core.domain.GeneratedScript;

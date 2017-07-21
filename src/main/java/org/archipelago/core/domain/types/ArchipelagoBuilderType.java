@@ -1,9 +1,9 @@
 package org.archipelago.core.domain.types;
 
-import org.archipelago.core.builder.ArchipelagoScriptBuilder;
-import org.archipelago.core.builder.Neo4JBuilder;
-import org.archipelago.core.builder.OrientDBBuilder;
-import org.archipelago.core.builder.RelationalSQLBuilder;
+import org.archipelago.core.builder.old.ArchipelagoScriptBuilder;
+import org.archipelago.core.builder.old.Neo4JBuilder;
+import org.archipelago.core.builder.old.OrientDBBuilder;
+import org.archipelago.core.builder.old.RelationalSQLBuilder;
 
 /**
  * 

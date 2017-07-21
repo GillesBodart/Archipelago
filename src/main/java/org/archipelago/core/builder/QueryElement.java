@@ -6,19 +6,26 @@ package org.archipelago.core.builder;
 public class QueryElement {
     private final String key;
     private final Object value;
+    private final Boolean id;
 
-    private QueryElement(String key, Object value) {
+    private QueryElement(String key, Object value, Boolean id) {
         this.key = key;
         this.value = value;
+        this.id = id;
     }
 
     public static QueryElement qualifier(String qualifier) {
-        QueryElement qe = new QueryElement(qualifier, "");
+        QueryElement qe = new QueryElement(qualifier, "", false);
         return qe;
     }
 
     public static QueryElement of(String key, Object value) {
-        QueryElement qe = new QueryElement(key, value);
+        QueryElement qe = new QueryElement(key, value, false);
+        return qe;
+    }
+
+    public static QueryElement ofId(Object value) {
+        QueryElement qe = new QueryElement("", value, true);
         return qe;
     }
 
@@ -30,4 +37,7 @@ public class QueryElement {
         return value;
     }
 
+    public Boolean isId() {
+        return id;
+    }
 }

@@ -4,8 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.builder.ArchipelagoQuery;
-import org.archipelago.core.builder.ArchipelagoScriptBuilder;
-import org.archipelago.core.builder.Neo4JBuilder;
+import org.archipelago.core.builder.Neo4JQueryImpl;
+import org.archipelago.core.builder.OrientDBQueryImpl;
+import org.archipelago.core.builder.QueryBuilder;
+import org.archipelago.core.builder.old.ArchipelagoScriptBuilder;
+import org.archipelago.core.builder.old.Neo4JBuilder;
+import org.archipelago.core.builder.old.OrientDBBuilder;
 import org.archipelago.core.configurator.ArchipelagoConfig;
 import org.archipelago.core.configurator.DatabaseConfig;
 import org.archipelago.core.configurator.DatabaseType;
@@ -13,6 +17,11 @@ import org.archipelago.core.exception.CheckException;
 import org.archipelago.core.util.ArchipelagoUtils;
 import org.neo4j.driver.v1.*;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -20,7 +29,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static org.archipelago.core.configurator.DatabaseType.NEO4J;
 import static org.neo4j.driver.v1.Values.parameters;
 
 /**
@@ -41,17 +49,43 @@ public class Archipelago implements AutoCloseable {
     private Driver driver;
     private ArchipelagoScriptBuilder builder;
 
+    private Client jerseyClient;
+    private WebTarget rootTarget;
+
     private Archipelago() throws CheckException {
         // Initialization of the configuration
         this.archipelagoConfig = getConfig();
         DatabaseConfig dc = archipelagoConfig.getDatabase();
         // Personalisation of the connection
-        if (NEO4J.equals(dc.getType()) && !dc.getEmbedded()) {
-            this.databaseType = NEO4J;
-            this.driver = GraphDatabase.driver(
-                    String.format("bolt://%s:%d", dc.getUrl(), dc.getPort()),
-                    AuthTokens.basic(dc.getUsername(), dc.getPassword()));
-            this.builder = new Neo4JBuilder();
+
+        this.databaseType = dc.getType();
+        switch (dc.getType()) {
+            case NEO4J:
+                if (!dc.getEmbedded()) {
+                    String url = String.format("bolt://%s:%d", dc.getUrl(), dc.getPort());
+                    LOGGER.info("Connecting to Neo4J remote server on " + url);
+                    this.driver = GraphDatabase.driver(url, AuthTokens.basic(dc.getUsername(), dc.getPassword()));
+                    LOGGER.info("Connected to Neo4J remote server");
+                    this.builder = new Neo4JBuilder();
+                } else {
+                    //TODO EMBEDDED Neo4J
+                }
+                break;
+            case ORIENT_DB:
+                this.jerseyClient = ClientBuilder.newClient();
+                String url = String.format("http://%s:%d/", dc.getUrl(), dc.getPort());
+                LOGGER.info("Connecting to Orient remote server on " + url);
+                this.rootTarget = jerseyClient.target(url);
+                this.builder = new OrientDBBuilder();
+                Response response = this.rootTarget.path(String.format("connect/%s", dc.getName())).request(MediaType.APPLICATION_JSON).get();
+                if (response.getStatus() != 204) {
+                    throw new CheckException("Unable to connect to Orient Remote server");
+                } else {
+                    LOGGER.info("Connected to Orient remote server");
+                }
+                break;
+            default:
+                throw new CheckException("Only NEO4J and ORIENT_DB are supported for the moment!");
         }
     }
 
@@ -60,6 +94,18 @@ public class Archipelago implements AutoCloseable {
             instance = new Archipelago();
         }
         return instance;
+    }
+
+    public QueryBuilder getQueryBuilder() throws CheckException {
+        switch (databaseType) {
+            case NEO4J:
+                return Neo4JQueryImpl.init();
+            case ORIENT_DB:
+                return OrientDBQueryImpl.init();
+            default:
+                throw new CheckException("Only NEO4J and ORIENT_DB are supported for the moment!");
+
+        }
     }
 
     private ArchipelagoConfig getConfig() throws CheckException {
@@ -163,27 +209,39 @@ public class Archipelago implements AutoCloseable {
 
     public List<Object> execute(ArchipelagoQuery aq) throws CheckException {
         List<Object> nodes = new LinkedList<>();
-        if (NEO4J.equals(databaseType)) {
-            try (Session s = this.driver.session()) {
-                StatementResult result = s.run(aq.getQuery());
-                Map<String, Object> nodeValues = new HashMap<>();
-
-                while (result.hasNext()) {
-                    Record record = result.next();
-                    aq.getKeys().stream().forEach(key -> {
-                        nodeValues.put(key, record.get(key).asObject());
-                    });
-                    Object node = aq.getTarget().getConstructor().newInstance();
-                    if (aq.isWithId()) {
-                        ArchipelagoUtils.feedId(node, nodeValues.get(ARCHIPELAGO_ID));
+        switch (databaseType) {
+            case NEO4J:
+                try (Session s = this.driver.session()) {
+                    StatementResult result = s.run(aq.getQuery());
+                    Map<String, Object> nodeValues = new HashMap<>();
+                    while (result.hasNext()) {
+                        Record record = result.next();
+                        aq.getKeys().stream().forEach(key -> {
+                            if (ARCHIPELAGO_ID.equalsIgnoreCase(key)) {
+                                nodeValues.put(key, record.get(key).asInt());
+                            } else {
+                                nodeValues.put(key, record.get(key).asObject());
+                            }
+                        });
+                        Object node = aq.getTarget().getConstructor().newInstance();
+                        if (!(aq.isWithId() && aq.getKeys().size() == 1)) {
+                            ArchipelagoUtils.feedObject(node, nodeValues);
+                        }
+                        if (aq.isWithId()) {
+                            ArchipelagoUtils.feedId(node, nodeValues.get(ARCHIPELAGO_ID));
+                        }
+                        nodes.add(node);
                     }
-                    ArchipelagoUtils.feedObject(node, nodeValues);
-                    nodes.add(node);
+                } catch (Exception e) {
+                    LOGGER.error(e.getMessage(), e);
+                    throw new CheckException(e.getMessage());
                 }
-            } catch (Exception e) {
-                LOGGER.error(e.getMessage(), e);
-                throw new CheckException(e.getMessage());
-            }
+                break;
+            case ORIENT_DB:
+                Response response = this.rootTarget.path(String.format("command/%s/sql/%s", getConfig().getDatabase().getName(), aq.getQuery()))
+                        .request(MediaType.APPLICATION_JSON)
+                        .get();
+                break;
         }
         return nodes;
     }

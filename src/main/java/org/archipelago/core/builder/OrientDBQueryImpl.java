@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Gilles Bodart on 19/07/2017.
  */
-public class Neo4JQueryImpl extends QueryBuilder {
+public class OrientDBQueryImpl extends QueryBuilder {
 
     private StringBuilder pending = new StringBuilder();
     private Class<?> target;
@@ -22,7 +22,7 @@ public class Neo4JQueryImpl extends QueryBuilder {
     private List<String> elementToReturn = new ArrayList<>();
 
     public static QueryBuilder init() {
-        return new Neo4JQueryImpl();
+        return new OrientDBQueryImpl();
     }
 
     @Override

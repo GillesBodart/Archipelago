@@ -1,4 +1,4 @@
-package org.archipelago.core.builder;
+package org.archipelago.core.builder.old;
 
 import java.lang.reflect.Field;
 import java.sql.JDBCType;

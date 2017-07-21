@@ -8,7 +8,7 @@ import org.archipelago.core.annotations.Island;
 public class Lesson {
 
     @ArchipelId
-    private String id;
+    private Integer id;
 
     private String name;
     private Long hourPerWeek;
@@ -38,17 +38,18 @@ public class Lesson {
         this.hourPerWeek = hourPerWeek;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .append("id", id)
                 .append("name", name)
                 .append("hourPerWeek", hourPerWeek)
                 .toString();
