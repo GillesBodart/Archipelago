@@ -44,19 +44,18 @@ public class MainTest {
         Archipelago a = Archipelago.getInstance();
         QueryBuilder qb = a.getQueryBuilder();
         ArchipelagoQuery aq = qb.getObject()
-                .of(Lesson.class)
+                .of(ClassRoom.class)
                 .withId()
-                .where(QueryElement.of("hourPerWeek", new Integer(4)), ConditionQualifier.STRICT_MORE_THAN)
-                .and(QueryElement.of("name", "Math"), ConditionQualifier.EQUAL)
-                .or(QueryElement.of("name", "Frans"), ConditionQualifier.EQUAL)
-                .and(QueryElement.ofId(new Integer(16)), ConditionQualifier.EQUAL)
+                .where(QueryElement.of("beamer", true), ConditionQualifier.EQUAL)
+                //.and(QueryElement.of("name", "Math"), ConditionQualifier.EQUAL)
+                //.or(QueryElement.of("name", "Frans"), ConditionQualifier.EQUAL)
+                //.and(QueryElement.ofId(new Integer(16)), ConditionQualifier.EQUAL)
                 .build();
         LOGGER.info(aq.getQuery());
         List<Object> nodes = a.execute(aq);
         nodes.stream().forEach(System.out::println);
-
-        /*Integer id = a.persist(new Lesson("Math", 8));
-        LOGGER.info(id);*/
+        Integer id = a.persist(new Lesson("Math", 8l));
+        LOGGER.info(id);
     }
 
     private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {

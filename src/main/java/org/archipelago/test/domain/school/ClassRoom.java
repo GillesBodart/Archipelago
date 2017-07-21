@@ -1,15 +1,23 @@
 package org.archipelago.test.domain.school;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.archipelago.core.annotations.Archipel;
+import org.archipelago.core.annotations.ArchipelId;
 
 @Archipel
 public class ClassRoom extends Room {
 
-    private int availableSeat;
+    @ArchipelId
+    private Integer id;
 
-    private boolean television;
-    private boolean computer;
-    private boolean beamer;
+    private Integer availableSeat;
+
+    private Boolean television;
+    private Boolean computer;
+    private Boolean beamer;
+
+    public ClassRoom() {
+    }
 
     /**
      * @param roomName
@@ -18,7 +26,7 @@ public class ClassRoom extends Room {
      * @param computer
      * @param beamer
      */
-    public ClassRoom(String roomName, int availableSeat, boolean television, boolean computer, boolean beamer) {
+    public ClassRoom(String roomName, Integer availableSeat, Boolean television, Boolean computer, Boolean beamer) {
         super(roomName);
         this.availableSeat = availableSeat;
         this.television = television;
@@ -26,36 +34,54 @@ public class ClassRoom extends Room {
         this.beamer = beamer;
     }
 
-    public int getAvailableSeat() {
+    public Integer getAvailableSeat() {
         return availableSeat;
     }
 
-    public void setAvailableSeat(int availableSeat) {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setAvailableSeat(Integer availableSeat) {
         this.availableSeat = availableSeat;
     }
 
-    public boolean isTelevision() {
+    public Boolean isTelevision() {
         return television;
     }
 
-    public void setTelevision(boolean television) {
+    public void setTelevision(Boolean television) {
         this.television = television;
     }
 
-    public boolean isComputer() {
+    public Boolean isComputer() {
         return computer;
     }
 
-    public void setComputer(boolean computer) {
+    public void setComputer(Boolean computer) {
         this.computer = computer;
     }
 
-    public boolean isBeamer() {
+    public Boolean isBeamer() {
         return beamer;
     }
 
-    public void setBeamer(boolean beamer) {
+    public void setBeamer(Boolean beamer) {
         this.beamer = beamer;
     }
 
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("availableSeat", availableSeat)
+                .append("television", television)
+                .append("computer", computer)
+                .append("beamer", beamer)
+                .toString();
+    }
 }

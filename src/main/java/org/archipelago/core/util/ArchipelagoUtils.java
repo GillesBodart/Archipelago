@@ -129,12 +129,28 @@ public class ArchipelagoUtils {
     }
 
 
-    public static void feedObject(Object o, Map<String, Object> properties) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public static void feedObject(Object o, Map<String, Object> properties) {
         for (Map.Entry<String, Object> entry : properties.entrySet()) {
             String fieldName = entry.getKey();
-            if (!ARCHIPELAGO_ID.equalsIgnoreCase(fieldName) && null != entry.getValue()) {
-                Method setter = o.getClass().getMethod(String.format("set%s%s", ("" + fieldName.charAt(0)).toUpperCase(), fieldName.substring(1, fieldName.length())), entry.getValue().getClass());
-                setter.invoke(o, entry.getValue());
+            if (!ARCHIPELAGO_ID.equalsIgnoreCase(fieldName) && null != entry.getValue() && !"@".equalsIgnoreCase("" + fieldName.charAt(0))) {
+                Method setter = null;
+                String methodName = String.format("set%s%s", ("" + fieldName.charAt(0)).toUpperCase(), fieldName.substring(1, fieldName.length()));
+                try {
+                    if (Integer.class.equals(entry.getValue().getClass())) {
+                        try {
+                            setter = o.getClass().getMethod(methodName, Integer.class);
+                            setter.invoke(o, Integer.valueOf("" + entry.getValue()));
+                        } catch (NoSuchMethodException e) {
+                            setter = o.getClass().getMethod(methodName, Long.class);
+                            setter.invoke(o, Long.valueOf("" + entry.getValue()));
+                        }
+                    } else {
+                        setter = o.getClass().getMethod(methodName, entry.getValue().getClass());
+                        setter.invoke(o, entry.getValue());
+                    }
+                } catch (Exception e) {
+                    LOGGER.debug(String.format("Method not found %s with param %s", methodName, entry.getValue().getClass()));
+                }
             }
         }
     }

@@ -13,12 +13,15 @@ import org.archipelago.core.builder.old.OrientDBBuilder;
 import org.archipelago.core.configurator.ArchipelagoConfig;
 import org.archipelago.core.configurator.DatabaseConfig;
 import org.archipelago.core.configurator.DatabaseType;
+import org.archipelago.core.domain.OrientDBResultWrapper;
 import org.archipelago.core.exception.CheckException;
 import org.archipelago.core.util.ArchipelagoUtils;
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.neo4j.driver.v1.*;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -72,7 +75,9 @@ public class Archipelago implements AutoCloseable {
                 }
                 break;
             case ORIENT_DB:
+                HttpAuthenticationFeature feature = HttpAuthenticationFeature.basic(dc.getUsername(), dc.getPassword());
                 this.jerseyClient = ClientBuilder.newClient();
+                jerseyClient.register(feature);
                 String url = String.format("http://%s:%d/", dc.getUrl(), dc.getPort());
                 LOGGER.info("Connecting to Orient remote server on " + url);
                 this.rootTarget = jerseyClient.target(url);
@@ -127,16 +132,30 @@ public class Archipelago implements AutoCloseable {
      * @param object the object to persist
      * @return the internal Id of the object (null in case or error)
      */
-    public Integer persist(Object object) {
+    public Integer persist(Object object) throws CheckException {
         Integer id = null;
-        try (Session s = this.driver.session()) {
-            s.run(builder.makeCreate(object.getClass()),
-                    parameters(builder.fillCreate(object).toArray()));
-            id = getId(object);
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-            throw e;
+        switch (databaseType) {
+            case NEO4J:
+                try (Session s = this.driver.session()) {
+                    s.run(builder.makeCreate(object.getClass()),
+                            parameters(builder.fillCreate(object).toArray()));
+                    id = getId(object);
+                } catch (Exception e) {
+                    LOGGER.error(e.getMessage(), e);
+                    throw e;
+                }
+                break;
+            case ORIENT_DB:
+                Integer nextId = this.rootTarget.path(String.format("function/%s/sequence(\"%sArchipelagoSeq\"\")", getConfig().getDatabase().getName(), object.getClass().getSimpleName()))
+                        .request(MediaType.APPLICATION_JSON)
+                        .get(Integer.class);
+
+                Response response = this.rootTarget.path(String.format("document/%s", getConfig().getDatabase().getName()))
+                        .request(MediaType.APPLICATION_JSON)
+                        .post(Entity.entity(object, MediaType.APPLICATION_JSON));
+                break;
         }
+
         return id;
     }
 
@@ -207,7 +226,7 @@ public class Archipelago implements AutoCloseable {
         driver.close();
     }
 
-    public List<Object> execute(ArchipelagoQuery aq) throws CheckException {
+    public List<Object> execute(ArchipelagoQuery aq) throws CheckException, IOException {
         List<Object> nodes = new LinkedList<>();
         switch (databaseType) {
             case NEO4J:
@@ -238,9 +257,27 @@ public class Archipelago implements AutoCloseable {
                 }
                 break;
             case ORIENT_DB:
-                Response response = this.rootTarget.path(String.format("command/%s/sql/%s", getConfig().getDatabase().getName(), aq.getQuery()))
-                        .request(MediaType.APPLICATION_JSON)
-                        .get();
+                try {
+                    String json = this.rootTarget.path(String.format("command/%s/sql/%s", getConfig().getDatabase().getName(), aq.getQuery()))
+                            .request(MediaType.APPLICATION_JSON)
+                            .get(String.class);
+                    ObjectMapper om = new ObjectMapper();
+                    OrientDBResultWrapper resultWrapper = om.readValue(json, OrientDBResultWrapper.class);
+                    json = json;
+                    for (Map<String, Object> map : resultWrapper.getResult()) {
+                        Object node = aq.getTarget().getConstructor().newInstance();
+                        if (!(aq.isWithId() && aq.getKeys().size() == 1)) {
+                            ArchipelagoUtils.feedObject(node, map);
+                        }
+                        if (aq.isWithId()) {
+                            ArchipelagoUtils.feedId(node, map.get(ARCHIPELAGO_ID));
+                        }
+                        nodes.add(node);
+                    }
+                } catch (Exception e) {
+                    LOGGER.error(e.getMessage(), e);
+                    throw new CheckException(e.getMessage());
+                }
                 break;
         }
         return nodes;
