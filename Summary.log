@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  18 JUL 2017 15:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  22 JUL 2017 10:21
 entering extended mode
 **./Summary.tex
 (Summary.tex
@@ -1004,15 +1004,15 @@ Package pdftex.def Info: figures/unamur.pdf used on input line 125.
 [1
 
 {C:/Users/ABM589/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./figures/
-unamur.pdf>] (Summary.toc)
+unamur.pdf>] (Summary.toc [2
+
+])
 \tf@toc=\write4
 \openout4 = `Summary.toc'.
 
- [2
+ [3] [4
 
-] [3
-
-] [4
+] [5
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1023,22 +1023,23 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 159.
 LaTeX Font Info:    Try loading font information for OMS+lmr on input line 171.
 
- (C:\Sand\miktex\tex\latex\lm\omslmr.fd
+
+(C:\Sand\miktex\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 171.
- [5
+ [6
 
-] [6]
+] [7]
 Chapter 1.
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 200.
 
 (C:\Sand\miktex\tex\latex\lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [7
+) [8
 
-] [8]
+] [9]
 Chapter 2.
 
 Overfull \hbox (11.88756pt too wide) in paragraph at lines 271--272
@@ -1046,41 +1047,47 @@ Overfull \hbox (11.88756pt too wide) in paragraph at lines 271--272
 e clus-ter-ing per-me-t-tant à l'utilisateur
  []
 
-[9
+[10
 
 ] (C:\Sand\miktex\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [10]
+) [11]
 Chapter 3.
-[11
+[12
 
-] [12] [13
+] [13] [14
 
 ]
 Chapter 4.
-[14
 
-]
-Chapter 5.
+Overfull \hbox (0.85796pt too wide) in paragraph at lines 395--396
+\T1/lmr/m/n/12 L'utilisation des SGBD re-la-tion-nelle pour tout type de prob-l
+ème est révolue. Grâce à l'apparition
+ []
+
 [15
+
+] [16]
+Chapter 5.
+[17
 
 ]
 Chapter 6.
-[16
+[18
 
 ]
 Chapter 7.
-[17
+[19
 
-] [18
+] [20
 
 ]
 Chapter 8.
-[19
+[21
 
 ]
 Chapter 9.
-[20
+[22
 
 ] (Summary.aux) ) 
 Here is how much of TeX's memory you used:
@@ -1100,9 +1107,9 @@ e1/public/lm/lmr6.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr7.pfb><C:/Sand/m
 iktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmsy
 10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on Summary.pdf (20 pages, 437440 bytes).
+Output written on Summary.pdf (22 pages, 442095 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
+ 130 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

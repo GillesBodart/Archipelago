@@ -1,10 +1,11 @@
 {
   "database": {
-    "type": "ORIENT_DB",
-    "username": "gilles",
-    "password": "orient",
+    "type": "NEO4J",
+    "username": "neo4j",
+    "password": "MemoryGilles",
     "url": "gbodart.be",
-    "name": "memoire",
-    "port": 2480
+    "name": "memory",
+    "embedded": false,
+    "port": 7687
   }
 }

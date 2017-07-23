@@ -2,6 +2,7 @@ package org.archipelago.test.domain.school;
 
 import java.time.LocalDate;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.archipelago.core.annotations.Continent;
 
 @Continent
@@ -55,4 +56,14 @@ public abstract class Person {
         this.sexe = sexe;
     }
 
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("firstName", firstName)
+                .append("lastName", lastName)
+                .append("dateOfBirth", dateOfBirth)
+                .append("sexe", sexe)
+                .toString();
+    }
 }

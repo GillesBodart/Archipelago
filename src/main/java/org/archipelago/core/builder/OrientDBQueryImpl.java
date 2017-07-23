@@ -1,6 +1,5 @@
 package org.archipelago.core.builder;
 
-import org.archipelago.core.connection.Archipelago;
 import org.archipelago.core.util.ArchipelagoUtils;
 
 import java.util.ArrayList;
@@ -53,10 +52,6 @@ public class OrientDBQueryImpl extends QueryBuilder {
         return this;
     }
 
-    @Override
-    public QueryBuilder with(QueryElement element) {
-        return this;
-    }
 
     @Override
     public QueryBuilder where(QueryElement element, ConditionQualifier conditionQualifier) {
@@ -84,6 +79,6 @@ public class OrientDBQueryImpl extends QueryBuilder {
 
     @Override
     public ArchipelagoQuery build() {
-        return new ArchipelagoQuery(pending.toString(), elementToReturn, target, wantId);
+        return new ArchipelagoQuery(pending.toString(), elementToReturn, target, wantId, relation, from, to, descriptor, biDirectionnal);
     }
 }

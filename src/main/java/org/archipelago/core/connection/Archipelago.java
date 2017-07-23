@@ -13,6 +13,7 @@ import org.archipelago.core.builder.old.OrientDBBuilder;
 import org.archipelago.core.configurator.ArchipelagoConfig;
 import org.archipelago.core.configurator.DatabaseConfig;
 import org.archipelago.core.configurator.DatabaseType;
+import org.archipelago.core.domain.DescriptorWrapper;
 import org.archipelago.core.domain.OrientDBResultWrapper;
 import org.archipelago.core.exception.CheckException;
 import org.archipelago.core.util.ArchipelagoUtils;
@@ -27,10 +28,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.neo4j.driver.v1.Values.parameters;
 
@@ -137,8 +135,7 @@ public class Archipelago implements AutoCloseable {
         switch (databaseType) {
             case NEO4J:
                 try (Session s = this.driver.session()) {
-                    s.run(builder.makeCreate(object.getClass()),
-                            parameters(builder.fillCreate(object).toArray()));
+                    s.run(builder.makeCreate(object.getClass()), parameters(builder.fillCreate(object).toArray()));
                     id = getId(object);
                 } catch (Exception e) {
                     LOGGER.error(e.getMessage(), e);
@@ -181,15 +178,26 @@ public class Archipelago implements AutoCloseable {
                     s.run(builder.makeRelation(idB, idA, name, descriptor.getClass()), parameters(builder.fillCreate(descriptor).toArray()));
                 }
             } else {
-                s.run(builder.makeRelation(idA, idB, name, null));
+                s.run(builder.makeRelation(idA, idB, name));
                 if (biDirectional) {
-                    s.run(builder.makeRelation(idB, idA, name, null));
+                    s.run(builder.makeRelation(idB, idA, name));
                 }
             }
+        }
+    }
 
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-            throw e;
+    public void link(Object first, Object second, String descriptorName, boolean biDirectional) {
+        DescriptorWrapper dw = new DescriptorWrapper(descriptorName);
+        dw.setName(descriptorName);
+        try (Session s = this.driver.session()) {
+            int idA = getId(first);
+            int idB = getId(second);
+            List<String> props = new ArrayList<>();
+            props.add("created");
+            s.run(builder.makeRelation(idA, idB, dw.getName(), props), parameters(builder.fillCreate(dw).toArray()));
+            if (biDirectional) {
+                s.run(builder.makeRelation(idB, idA, dw.getName(), props), parameters(builder.fillCreate(dw).toArray()));
+            }
         }
     }
 
@@ -231,25 +239,29 @@ public class Archipelago implements AutoCloseable {
         switch (databaseType) {
             case NEO4J:
                 try (Session s = this.driver.session()) {
-                    StatementResult result = s.run(aq.getQuery());
-                    Map<String, Object> nodeValues = new HashMap<>();
-                    while (result.hasNext()) {
-                        Record record = result.next();
-                        aq.getKeys().stream().forEach(key -> {
-                            if (ARCHIPELAGO_ID.equalsIgnoreCase(key)) {
-                                nodeValues.put(key, record.get(key).asInt());
-                            } else {
-                                nodeValues.put(key, record.get(key).asObject());
+                    if (aq.isRelation()) {
+                        link(aq.getFrom(), aq.getTo(), aq.getDescriptor(), aq.isBiDirectionnal());
+                    } else {
+                        StatementResult result = s.run(aq.getQuery());
+                        Map<String, Object> nodeValues = new HashMap<>();
+                        while (result.hasNext()) {
+                            Record record = result.next();
+                            aq.getKeys().stream().forEach(key -> {
+                                if (ARCHIPELAGO_ID.equalsIgnoreCase(key)) {
+                                    nodeValues.put(key, record.get(key).asInt());
+                                } else {
+                                    nodeValues.put(key, record.get(key).asObject());
+                                }
+                            });
+                            Object node = aq.getTarget().getConstructor().newInstance();
+                            if (!(aq.isWithId() && aq.getKeys().size() == 1)) {
+                                ArchipelagoUtils.feedObject(node, nodeValues);
                             }
-                        });
-                        Object node = aq.getTarget().getConstructor().newInstance();
-                        if (!(aq.isWithId() && aq.getKeys().size() == 1)) {
-                            ArchipelagoUtils.feedObject(node, nodeValues);
+                            if (aq.isWithId()) {
+                                ArchipelagoUtils.feedId(node, nodeValues.get(ARCHIPELAGO_ID));
+                            }
+                            nodes.add(node);
                         }
-                        if (aq.isWithId()) {
-                            ArchipelagoUtils.feedId(node, nodeValues.get(ARCHIPELAGO_ID));
-                        }
-                        nodes.add(node);
                     }
                 } catch (Exception e) {
                     LOGGER.error(e.getMessage(), e);

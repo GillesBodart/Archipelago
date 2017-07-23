@@ -17,6 +17,7 @@ public class Neo4JQueryImpl extends QueryBuilder {
     private boolean wantObject = false;
     private boolean wantId = false;
 
+
     private List<QueryElement> conditionElements = new ArrayList<>();
 
     private List<String> elementToReturn = new ArrayList<>();
@@ -31,6 +32,7 @@ public class Neo4JQueryImpl extends QueryBuilder {
         pending.append("MATCH ");
         return this;
     }
+
 
     @Override
     public QueryBuilder getId() {
@@ -50,11 +52,6 @@ public class Neo4JQueryImpl extends QueryBuilder {
     @Override
     public QueryBuilder withId() {
         this.wantId = true;
-        return this;
-    }
-
-    @Override
-    public QueryBuilder with(QueryElement element) {
         return this;
     }
 
@@ -95,6 +92,6 @@ public class Neo4JQueryImpl extends QueryBuilder {
             //remove the last ",\n"
             pending.setLength(pending.length() - 1);
         }
-        return new ArchipelagoQuery(pending.toString(), elementToReturn, target, wantId);
+        return new ArchipelagoQuery(pending.toString(), elementToReturn, target, wantId, relation, from, to, descriptor, biDirectionnal);
     }
 }

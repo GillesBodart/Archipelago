@@ -390,12 +390,21 @@ public class Role {
 
 \part{Analyse technique}
 \chapter{Application possibles des BDOG}
-Cette section se concentrera sur l'analyse des besoins utilisateurs, il tentera de répondre aux questions suivantes: 
-\begin{itemize}
-\item Pourquoi utiliser une BDOG plutot qu'une BD relationnelle comme Oracle ou MySql ?
-\item On parle de Base de donnée orientée graph mais quelle est la différence entre un lien entre deux noeud et une relation entre deux table ?
-\item Si nous devions choisir un exemple qui nécessiterait l'utilisation d'une BDOG, quel serait il ?
-\end{itemize}
+\section{Pourquoi utiliser une BDOG plutôt qu'une BD relationnelle comme Oracle ou MySql ?}
+
+L'utilisation des SGBD relationnelle pour tout type de problème est révolue. Grâce à l'apparition de SGBD NoSQL spécifique permet dès à présent une approche plus personnalisée. En effet, comme tout système, le relationnelle a ses limites, l'approche actuelle des entreprises est plus orienté "Big Data", elles veulent tout stocker afin d'avoir le plus d'informations possible, or du fait que le relationnelle cadenasse les données dans une table préalablement définie, on se doit de tronquer l'information ou alors, mettre a jour le schéma de définition des tables. Dans une BDOG tel que Neo4J, nous pouvons ajouter toutes les informations que nous voulons sans condition préalable, cette approche oriente plus un contrôle de l'intégrité des donnée aux applications.
+
+Si l'objectif de l'applicatif est de représenter un système récursif comme une arborescence de fichier, de la généalogie, ... le modèle relationnelle se basera sur une table faisant référence à elle même, l'utilisateur devra donc réaliser une jointure par profondeur, si l'arborescence descend jusqu'à 15 niveau, cela peut devenir problématique. L'approche BDOG permet de parcourir une arborescence sans pour autant charger l'ensemble des nœuds ayant le même label, plus besoins de projection ensembliste pour pouvoir continuer le chemin.
+
+En relationnel, il existe de nombreux moyen d'historiser les données, cependant, lorsque le schéma comprend des relations cycliques, cette opération devient plus complexe. L'utilisation d'un BDOG rend ça plus simple, il suffit de créer un nouveau noeud avec les anciennes données, lier ce noeud avec une relation historique en y spécifiant la date de mise à jour et ensuite changer les valeur du noeud référencé par le cycle. Ce procédé peut être mis au point dans n'importe quelle représentations et ne nécessite aucune refonte globale du modèle de donnée.
+
+\section{On parle de Base de donnée orientée graph mais quelle est la différence entre une relation entre deux noeud et une relation entre deux table ?}
+Les relations entre deux tables se font à l'aide de clé étrangère définie lors de la création du schéma de données elles apporte de l'information supplémentaire en permettant de réaliser des jointure entre plusieurs tables. 
+
+La relation dans les BDOG est une information à part entière, elle peut posséder autant de donnée que le noeud lui même, la force de ce genre de système est de pouvoir lier deux noeud distinct par n'importe quelle relation et ce à tout moment. 
+
+
+\section{Si nous devions choisir un exemple qui nécessiterait l'utilisation d'une BDOG, quel serait il ?}
 \section{Critères de comparaisons}
 L'établissement d'une liste non exhaustive de critères de comparaisons objectifs sera établie. Elle me permettra de comparer les différentes BDOG. Les possibilités de réponse à ces critère seront, dans les limites du possible ramenée au choix dual, Oui/Non. Cela permettra d'établir un arbre de décision binaire sur base de besoins clairs.\\TODO Dessin arbre binaire
 

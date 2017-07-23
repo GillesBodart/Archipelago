@@ -7,9 +7,10 @@ import java.lang.annotation.*;
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
+@Target(ElementType.FIELD)
 public @interface Bridge {
 
-    Class<?> descriptor();
+
+    String descriptor() default "";
 
 }

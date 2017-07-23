@@ -12,11 +12,22 @@ public class ArchipelagoQuery {
     private final Class<?> target;
     private final boolean withId;
 
-    public ArchipelagoQuery(String query, List<String> keys, Class<?> target,boolean withId) {
+    private final boolean relation;
+    private final Object from;
+    private final Object to;
+    private final Object descriptor;
+    private final boolean biDirectionnal;
+
+    public ArchipelagoQuery(String query, List<String> keys, Class<?> target, boolean withId, boolean relation, Object from, Object to, Object descriptor, boolean biDirectionnal) {
         this.query = query;
         this.keys = keys;
         this.target = target;
         this.withId = withId;
+        this.from = from;
+        this.to = to;
+        this.relation = relation;
+        this.descriptor = descriptor;
+        this.biDirectionnal = biDirectionnal;
     }
 
     public String getQuery() {
@@ -33,6 +44,26 @@ public class ArchipelagoQuery {
 
     public boolean isWithId() {
         return withId;
+    }
+
+    public boolean isRelation() {
+        return relation;
+    }
+
+    public Object getFrom() {
+        return from;
+    }
+
+    public Object getTo() {
+        return to;
+    }
+
+    public Object getDescriptor() {
+        return descriptor;
+    }
+
+    public boolean isBiDirectionnal() {
+        return biDirectionnal;
     }
 
     @Override

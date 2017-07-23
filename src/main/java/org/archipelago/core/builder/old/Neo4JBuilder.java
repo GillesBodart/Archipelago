@@ -1,6 +1,8 @@
 package org.archipelago.core.builder.old;
 
 import com.google.common.collect.Lists;
+import org.archipelago.core.annotations.ArchipelId;
+import org.archipelago.core.annotations.Bridge;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.util.ArchipelagoUtils;
 import org.archipelago.core.util.StringTemplateFactory;
@@ -42,7 +44,9 @@ public class Neo4JBuilder extends ArchipelagoScriptBuilder {
         final ST st = group.getInstanceOf("ClassNeo4J");
         st.add("clazz", clazz);
         for (Field field : ArchipelagoUtils.getAllFields(clazz)) {
-            st.add("props", field.getName());
+            if (!field.isAnnotationPresent(Bridge.class) && !field.isAnnotationPresent(ArchipelId.class)) {
+                st.add("props", field.getName());
+            }
         }
         String create = st.render();
         LOGGER.debug(String.format("CREATE for class %s : [%s]", clazz.getSimpleName(), create));
@@ -55,38 +59,40 @@ public class Neo4JBuilder extends ArchipelagoScriptBuilder {
         Set<Field> fields = ArchipelagoUtils.getAllFields(clazz);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
         for (Field field : fields) {
-            try {
-                Method getter = null;
-                if (field.getType().equals(boolean.class)) {
-                    getter = clazz.getMethod(String.format("is%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
-                            .getName().length())));
-                } else {
-                    getter = clazz.getMethod(String.format("get%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
-                            .getName().length())));
-                }
-                Object prop = getter.invoke(object);
-                if (null != prop) {
-                    parameters.add(field.getName());
-                    switch (field.getType().getSimpleName().toLowerCase()) {
-                        case "date":
-                            parameters.add(sdf.format((Date) getter.invoke(object)));
-                            break;
-                        case "localdate":
-                            parameters.add(((LocalDate) getter.invoke(object)).format(DateTimeFormatter.ISO_LOCAL_DATE));
-                            break;
-                        case "localtime":
-                            parameters.add(((LocalTime) getter.invoke(object)).format(DateTimeFormatter.ISO_LOCAL_DATE));
-                            break;
-                        case "localdatetime":
-                            parameters.add(((LocalDateTime) getter.invoke(object)).format(DateTimeFormatter.ISO_LOCAL_DATE));
-                            break;
-                        default: {
-                            parameters.add(getter.invoke(object));
+            if (!field.isAnnotationPresent(Bridge.class) && !field.isAnnotationPresent(ArchipelId.class)) {
+                try {
+                    Method getter = null;
+                    if (field.getType().equals(boolean.class)) {
+                        getter = clazz.getMethod(String.format("is%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
+                                .getName().length())));
+                    } else {
+                        getter = clazz.getMethod(String.format("get%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
+                                .getName().length())));
+                    }
+                    Object prop = getter.invoke(object);
+                    if (null != prop) {
+                        parameters.add(field.getName());
+                        switch (field.getType().getSimpleName().toLowerCase()) {
+                            case "date":
+                                parameters.add(sdf.format((Date) getter.invoke(object)));
+                                break;
+                            case "localdate":
+                                parameters.add(((LocalDate) getter.invoke(object)).format(DateTimeFormatter.ISO_LOCAL_DATE));
+                                break;
+                            case "localtime":
+                                parameters.add(((LocalTime) getter.invoke(object)).format(DateTimeFormatter.ISO_LOCAL_DATE));
+                                break;
+                            case "localdatetime":
+                                parameters.add(((LocalDateTime) getter.invoke(object)).format(DateTimeFormatter.ISO_LOCAL_DATE));
+                                break;
+                            default: {
+                                parameters.add(getter.invoke(object));
+                            }
                         }
                     }
+                } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                    LOGGER.debug(String.format("No usual getter for %s found", field.getName()), e);
                 }
-            } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                LOGGER.debug(String.format("No usual getter for %s found", field.getName()), e);
             }
         }
         return parameters;
@@ -102,26 +108,52 @@ public class Neo4JBuilder extends ArchipelagoScriptBuilder {
         final ST st = group.getInstanceOf("MatchNeo4J");
         st.add("clazz", clazz);
         for (Field field : ArchipelagoUtils.getAllFields(clazz)) {
-            st.add("props", field.getName());
+            if (!field.isAnnotationPresent(ArchipelId.class) && !field.isAnnotationPresent(Bridge.class)) {
+                st.add("props", field.getName());
+            }
         }
         String match = st.render();
         LOGGER.debug(String.format("MATCH for class %s : [%s]", clazz.getSimpleName(), match));
         return match;
     }
 
-    public String makeRelation(int idA, int idB, String name, Class<?> descriptor) {
-        boolean haveProp = null != descriptor;
-
-        final String nodeTemplatePath = String.format("%s/%s/%s%s", TEMPLATE_ROOT_PATH, NEO4J_FOLDER, "\\relation", haveProp ? "WithProp.stg" : ".stg");
+    public String makeRelation(int idA, int idB, String name) {
+        final String nodeTemplatePath = String.format("%s/%s/%s%s", TEMPLATE_ROOT_PATH, NEO4J_FOLDER, "\\relation.stg");
         final STGroup group = StringTemplateFactory.buildSTGroup(nodeTemplatePath);
         final ST st = group.getInstanceOf("RelationNeo4J");
         st.add("idA", idA);
         st.add("idB", idB);
         st.add("name", name);
-        if (haveProp) {
+        String relationQuery = st.render();
+        LOGGER.debug(String.format("CREATE Relation from %d to %d : [%s]", idA, idB, relationQuery));
+        return relationQuery;
+    }
+
+    public String makeRelation(int idA, int idB, String name, Class<?> descriptor) {
+
+        final String nodeTemplatePath = String.format("%s/%s/%s%s", TEMPLATE_ROOT_PATH, NEO4J_FOLDER, "\\relationWithProp.stg");
+        final STGroup group = StringTemplateFactory.buildSTGroup(nodeTemplatePath);
+        final ST st = group.getInstanceOf("RelationNeo4J");
+        st.add("idA", idA);
+        st.add("idB", idB);
+        st.add("name", name);
             for (Field field : ArchipelagoUtils.getAllFields(descriptor)) {
                 st.add("properties", field.getName());
             }
+        String relationQuery = st.render();
+        LOGGER.debug(String.format("CREATE Relation from %d to %d : [%s]", idA, idB, relationQuery));
+        return relationQuery;
+    }
+
+    public String makeRelation(int idA, int idB, String name, List<String> props) {
+        final String nodeTemplatePath = String.format("%s/%s/%s%s", TEMPLATE_ROOT_PATH, NEO4J_FOLDER, "\\relationWithProp.stg");
+        final STGroup group = StringTemplateFactory.buildSTGroup(nodeTemplatePath);
+        final ST st = group.getInstanceOf("RelationNeo4J");
+        st.add("idA", idA);
+        st.add("idB", idB);
+        st.add("name", name);
+        for (String prop : props) {
+            st.add("properties", prop);
         }
         String relationQuery = st.render();
         LOGGER.debug(String.format("CREATE Relation from %d to %d : [%s]", idA, idB, relationQuery));

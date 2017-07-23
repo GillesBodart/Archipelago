@@ -4,9 +4,7 @@ import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.builder.ArchipelagoQuery;
-import org.archipelago.core.builder.ConditionQualifier;
 import org.archipelago.core.builder.QueryBuilder;
-import org.archipelago.core.builder.QueryElement;
 import org.archipelago.core.connection.Archipelago;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.domain.types.ArchipelagoBuilderType;
@@ -14,6 +12,7 @@ import org.archipelago.core.domain.types.ArchipelagoFeederType;
 import org.archipelago.core.exception.CheckException;
 import org.archipelago.core.runtime.ArchipelagoBuilderFactory;
 import org.archipelago.core.runtime.ArchipelagoFeederFactory;
+import org.archipelago.test.domain.Descriptor;
 import org.archipelago.test.domain.library.Author;
 import org.archipelago.test.domain.library.Book;
 import org.archipelago.test.domain.library.Librarian;
@@ -43,19 +42,31 @@ public class MainTest {
     public static void main(String[] args) throws ClassNotFoundException, IOException, CheckException {
         Archipelago a = Archipelago.getInstance();
         QueryBuilder qb = a.getQueryBuilder();
-        ArchipelagoQuery aq = qb.getObject()
-                .of(ClassRoom.class)
-                .withId()
-                .where(QueryElement.of("beamer", true), ConditionQualifier.EQUAL)
-                //.and(QueryElement.of("name", "Math"), ConditionQualifier.EQUAL)
-                //.or(QueryElement.of("name", "Frans"), ConditionQualifier.EQUAL)
-                //.and(QueryElement.ofId(new Integer(16)), ConditionQualifier.EQUAL)
-                .build();
-        LOGGER.info(aq.getQuery());
-        List<Object> nodes = a.execute(aq);
-        nodes.stream().forEach(System.out::println);
-        Integer id = a.persist(new Lesson("Math", 8l));
-        LOGGER.info(id);
+        List<Object> nodesToPersist = new ArrayList<>();
+        Promotion p2011 = new Promotion(2011);
+        Promotion p2002 = new Promotion(2002);
+        Promotion p2010 = new Promotion(2010);
+        Student gilles = new Student("Gilles", "Bodart", LocalDate.of(1992, 4, 14), "M", null, null, null, p2011);
+        Student thomasB = new Student("Thomas", "Blondiau", LocalDate.of(1992, 1, 5), "M", null, null, null, p2010);
+        Student thomasR = new Student("Thomas", "Reynders", LocalDate.of(1992, 1, 22), "M", null, null, null, p2010);
+        Student charly = new Student("Charles-Antoine", "Van Beers", LocalDate.of(1992, 4, 28), "M", null, null, null, p2010);
+        Student antoine = new Student("Antoine", "Dumont", LocalDate.of(1992, 12, 28), "M", null, null, null, p2010);
+        Student martin = new Student("Martin", "Périlleux", LocalDate.of(1992, 2, 28), "M", null, null, null, p2010);
+        Student benjamin = new Student("Benjamin", "Leroy", LocalDate.of(1992, 10, 31), "M", null, null, null, p2010);
+        Student antoineBo = new Student("Antoine", "Bodart", LocalDate.of(1985, 10, 18), "M", null, null, null, p2002);
+        List<ArchipelagoQuery> queries = new ArrayList<>();
+        queries.add(qb.linkObjects()
+                .from(gilles)
+                .to(thomasB)
+                .build());
+        queries.stream().forEach(aq -> {
+            try {
+                List<Object> nodes = a.execute(aq);
+                nodes.stream().forEach(System.out::println);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {

@@ -1,17 +1,23 @@
 package org.archipelago.test.domain.school;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.archipelago.core.annotations.Archipel;
+import org.archipelago.core.annotations.Bridge;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.archipelago.core.annotations.Archipel;
-
 @Archipel
 public class Student extends Person {
 
+    @Bridge
     private List<Lesson> lessons = new ArrayList<>();
+    @Bridge
     private List<Student> friends = new ArrayList<>();
+    @Bridge
     private List<? extends Person> familyMember = new ArrayList<>();
+    @Bridge
     private Promotion prom;
 
     public Student() {
@@ -19,8 +25,8 @@ public class Student extends Person {
     }
 
     public Student(String firstName, String lastName, LocalDate dateOfBirth, String sexe, List<Lesson> lessons, List<Student> friends,
-            List<Person> familyMember,
-            Promotion prom) {
+                   List<Person> familyMember,
+                   Promotion prom) {
         super(firstName, lastName, dateOfBirth, sexe);
         this.lessons = lessons;
         this.friends = friends;
@@ -60,7 +66,8 @@ public class Student extends Person {
         this.prom = prom;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

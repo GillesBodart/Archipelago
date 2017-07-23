@@ -37,4 +37,12 @@ public abstract class ArchipelagoScriptBuilder {
     public String makeRelation(int idA, int idB, String name, Class<?> descriptor) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
+
+    public String makeRelation(int idA, int idB, String name, List<String> props) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public String makeRelation(int idA, int idB, String name) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
