@@ -1,14 +1,16 @@
 package org.archipelago.test.domain.school;
 
+import org.archipelago.core.annotations.Archipel;
+import org.archipelago.core.annotations.Bridge;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.archipelago.core.annotations.Archipel;
-
 @Archipel
 public class Worker extends Person {
 
+    @Bridge(descriptor = "Manage")
     private List<Room> inChargeOf = new ArrayList<>();
     private String diploma;
 

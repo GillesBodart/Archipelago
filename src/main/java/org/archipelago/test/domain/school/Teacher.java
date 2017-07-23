@@ -1,17 +1,31 @@
 package org.archipelago.test.domain.school;
 
+import org.archipelago.core.annotations.Archipel;
+import org.archipelago.core.annotations.Bridge;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.archipelago.core.annotations.Archipel;
-
 @Archipel
 public class Teacher extends Person {
-
+    @Bridge(descriptor = "CanTeach")
     private List<Lesson> capabilities = new ArrayList<>();
+    @Bridge(descriptor = "Teach")
     private List<Lesson> dispensed = new ArrayList<>();
+
     private String diploma;
+
+    public Teacher() {
+        super();
+    }
+
+    public Teacher(String firstName, String lastName, LocalDate dateOfBirth, String sexe, List<Lesson> capabilities, List<Lesson> dispensed, String diploma) {
+        super(firstName, lastName, dateOfBirth, sexe);
+        this.capabilities = capabilities;
+        this.dispensed = dispensed;
+        this.diploma = diploma;
+    }
 
     public List<Lesson> getCapabilities() {
         return capabilities;
@@ -34,17 +48,6 @@ public class Teacher extends Person {
     }
 
     public void setDiploma(String diploma) {
-        this.diploma = diploma;
-    }
-
-    public Teacher() {
-        super();
-    }
-
-    public Teacher(String firstName, String lastName, LocalDate dateOfBirth, String sexe, List<Lesson> capabilities, List<Lesson> dispensed, String diploma) {
-        super(firstName, lastName, dateOfBirth, sexe);
-        this.capabilities = capabilities;
-        this.dispensed = dispensed;
         this.diploma = diploma;
     }
 

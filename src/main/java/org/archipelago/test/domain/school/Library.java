@@ -1,13 +1,16 @@
 package org.archipelago.test.domain.school;
 
-import java.util.List;
-
+import org.archipelago.core.annotations.Bridge;
 import org.archipelago.core.annotations.Island;
+
+import java.util.List;
 
 @Island
 public class Library extends Room {
 
+    @Bridge(descriptor = "Have")
     private List<String> books;
+    @Bridge(descriptor = "ManagedBy")
     private Person worker;
 
     public Library() {

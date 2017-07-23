@@ -11,20 +11,23 @@ import java.util.List;
 @Archipel
 public class Student extends Person {
 
-    @Bridge
+    @Bridge(descriptor = "Follow")
     private List<Lesson> lessons = new ArrayList<>();
-    @Bridge
+    @Bridge(descriptor = "FriendOf")
     private List<Student> friends = new ArrayList<>();
-    @Bridge
+    @Bridge(descriptor = "FamilyMember", biDirectionnal = true)
     private List<? extends Person> familyMember = new ArrayList<>();
-    @Bridge
+    @Bridge(descriptor = "PromotedIn")
     private Promotion prom;
 
     public Student() {
         super();
     }
 
-    public Student(String firstName, String lastName, LocalDate dateOfBirth, String sexe, List<Lesson> lessons, List<Student> friends,
+    public Student(String firstName, String lastName, LocalDate dateOfBirth,
+                   String sexe,
+                   List<Lesson> lessons,
+                   List<Student> friends,
                    List<Person> familyMember,
                    Promotion prom) {
         super(firstName, lastName, dateOfBirth, sexe);

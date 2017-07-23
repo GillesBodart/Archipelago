@@ -12,5 +12,6 @@ public @interface Bridge {
 
 
     String descriptor() default "";
+    boolean biDirectionnal() default false;
 
 }

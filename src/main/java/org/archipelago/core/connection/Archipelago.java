@@ -1,6 +1,7 @@
 package org.archipelago.core.connection;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.builder.ArchipelagoQuery;
@@ -15,6 +16,7 @@ import org.archipelago.core.configurator.DatabaseConfig;
 import org.archipelago.core.configurator.DatabaseType;
 import org.archipelago.core.domain.DescriptorWrapper;
 import org.archipelago.core.domain.OrientDBResultWrapper;
+import org.archipelago.core.domain.RelationWrapper;
 import org.archipelago.core.exception.CheckException;
 import org.archipelago.core.util.ArchipelagoUtils;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
@@ -52,6 +54,8 @@ public class Archipelago implements AutoCloseable {
 
     private Client jerseyClient;
     private WebTarget rootTarget;
+
+    private Map<Object, Object> sessionObject = new HashMap<>();
 
     private Archipelago() throws CheckException {
         // Initialization of the configuration
@@ -124,21 +128,44 @@ public class Archipelago implements AutoCloseable {
         return ac;
     }
 
+    public Integer persist(Object object) throws CheckException {
+        return persist(object, 0);
+    }
+
     /**
      * Persist an object in the database
      *
-     * @param object the object to persist
+     * @param object   the object to persist
+     * @param deepness current deepness of the introspection
      * @return the internal Id of the object (null in case or error)
      */
-    public Integer persist(Object object) throws CheckException {
+    private Integer persist(Object object, Integer deepness) throws CheckException {
         Integer id = null;
         switch (databaseType) {
             case NEO4J:
+                Object[] params = builder.fillCreate(object).toArray();
                 try (Session s = this.driver.session()) {
-                    s.run(builder.makeCreate(object.getClass()), parameters(builder.fillCreate(object).toArray()));
-                    id = getId(object);
+                    s.run(builder.makeCreate(object), parameters(builder.fillCreate(object).toArray()));
+                    //TODO Duplicate with scanForLink
+                    if (deepness < archipelagoConfig.getDeepness()) {
+                        List<RelationWrapper> relations = ArchipelagoUtils.getChilds(object);
+                        relations.stream().forEach((relationWrapper -> {
+                            Object to = relationWrapper.getTo();
+                            if (null == getId(to)) {
+                                try {
+                                    persist(to, deepness + 1);
+                                } catch (CheckException e) {
+                                    LOGGER.error(e.getMessage(), e);
+                                }
+                            } else {
+                                scanForLink(to, deepness + 1);
+                            }
+                            link(object, relationWrapper.getTo(), relationWrapper.getName(), relationWrapper.isBiDirectionnal());
+                        }));
+                    }
+                    id = (Integer) getId(object);
                 } catch (Exception e) {
-                    LOGGER.error(e.getMessage(), e);
+                    LOGGER.debug(String.format("Param [%s]", StringUtils.join(params, ';')));
                     throw e;
                 }
                 break;
@@ -156,48 +183,79 @@ public class Archipelago implements AutoCloseable {
         return id;
     }
 
-
-    public void link(Object first, Object second, boolean biDirectional) {
-        link(first, second, null, biDirectional);
-    }
-
-    public void link(Object first, Object second, Object descriptor, boolean biDirectional) {
-        boolean haveDescriptor = null != descriptor;
-        try (Session s = this.driver.session()) {
-            int idA = getId(first);
-            int idB = getId(second);
-            String name;
-            if (haveDescriptor) {
-                name = descriptor.getClass().getSimpleName();
-            } else {
-                name = String.format("%s_%s", first.getClass().getSimpleName(), second.getClass().getSimpleName());
-            }
-            if (haveDescriptor) {
-                s.run(builder.makeRelation(idA, idB, name, descriptor.getClass()), parameters(builder.fillCreate(descriptor).toArray()));
-                if (biDirectional) {
-                    s.run(builder.makeRelation(idB, idA, name, descriptor.getClass()), parameters(builder.fillCreate(descriptor).toArray()));
+    private void scanForLink(Object object, Integer deepness) {
+        if (deepness < archipelagoConfig.getDeepness()) {
+            List<RelationWrapper> relations = ArchipelagoUtils.getChilds(object);
+            relations.stream().forEach((relationWrapper -> {
+                Object to = relationWrapper.getTo();
+                if (null == getId(to)) {
+                    try {
+                        persist(to, deepness + 1);
+                    } catch (CheckException e) {
+                        LOGGER.error(e.getMessage(), e);
+                    }
+                } else {
+                    scanForLink(to, deepness + 1);
                 }
-            } else {
-                s.run(builder.makeRelation(idA, idB, name));
-                if (biDirectional) {
-                    s.run(builder.makeRelation(idB, idA, name));
-                }
-            }
+                link(object, relationWrapper.getTo(), relationWrapper.getName(), relationWrapper.isBiDirectionnal());
+            }));
         }
     }
 
+    public void link(Object first, Object second, Object descriptor, boolean biDirectionnal) {
+        switch (databaseType) {
+            case NEO4J:
+                boolean haveDescriptor = null != descriptor;
+                try (Session s = this.driver.session()) {
+                    Integer idA = (Integer) getId(first);
+                    Integer idB = (Integer) getId(second);
+                    if (idA != null && idB != null) {
+                        String name;
+                        if (haveDescriptor) {
+                            name = descriptor.getClass().getSimpleName();
+                        } else {
+                            name = String.format("%sTo%s", first.getClass().getSimpleName(), second.getClass().getSimpleName());
+                        }
+                        if (haveDescriptor) {
+                            s.run(builder.makeRelation(idA, idB, name, descriptor.getClass()), parameters(builder.fillCreate(descriptor).toArray()));
+                            if (biDirectionnal) {
+                                s.run(builder.makeRelation(idB, idA, name, descriptor.getClass()), parameters(builder.fillCreate(descriptor).toArray()));
+                            }
+                        } else {
+                            s.run(builder.makeRelation(idA, idB, name));
+                            if (biDirectionnal) {
+                                s.run(builder.makeRelation(idB, idA, name));
+                            }
+                        }
+                    }
+                }
+                break;
+            case ORIENT_DB:
+                break;
+        }
+
+    }
+
     public void link(Object first, Object second, String descriptorName, boolean biDirectional) {
-        DescriptorWrapper dw = new DescriptorWrapper(descriptorName);
-        dw.setName(descriptorName);
-        try (Session s = this.driver.session()) {
-            int idA = getId(first);
-            int idB = getId(second);
-            List<String> props = new ArrayList<>();
-            props.add("created");
-            s.run(builder.makeRelation(idA, idB, dw.getName(), props), parameters(builder.fillCreate(dw).toArray()));
-            if (biDirectional) {
-                s.run(builder.makeRelation(idB, idA, dw.getName(), props), parameters(builder.fillCreate(dw).toArray()));
-            }
+        switch (databaseType) {
+            case NEO4J:
+                DescriptorWrapper dw = new DescriptorWrapper(descriptorName);
+                dw.setName("".equalsIgnoreCase(descriptorName) ? String.format("%sTo%s", first.getClass().getSimpleName(), second.getClass().getSimpleName()) : descriptorName);
+                try (Session s = this.driver.session()) {
+                    Integer idA = (Integer) getId(first);
+                    Integer idB = (Integer) getId(second);
+                    if (idA != null && idB != null) {
+                        List<String> props = new ArrayList<>();
+                        props.add("created");
+                        s.run(builder.makeRelation(idA, idB, dw.getName(), props), parameters(builder.fillCreate(dw).toArray()));
+                        if (biDirectional) {
+                            s.run(builder.makeRelation(idB, idA, dw.getName(), props), parameters(builder.fillCreate(dw).toArray()));
+                        }
+                    }
+                }
+                break;
+            case ORIENT_DB:
+                break;
         }
     }
 
@@ -207,26 +265,31 @@ public class Archipelago implements AutoCloseable {
      * @param object the object to persist
      * @return the internal Id of the object
      */
-    public Integer getId(Object object) {
-        Integer id = null;
-        try (Session s = this.driver.session()) {
-            String stmt = builder.makeMatch(object.getClass(), false);
-            Object[] params = builder.fillCreate(object).toArray();
-            StatementResult result = s.run(stmt, parameters(params));
-            while (result.hasNext()) {
-                Record record = result.next();
-                id = record.get("InternalId").asInt();
-            }
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-            throw e;
+    public Object getId(Object object) {
+        if (sessionObject.containsKey(object)) return sessionObject.get(object);
+        switch (databaseType) {
+            case NEO4J:
+                Integer id = null;
+                Object[] params = builder.fillCreate(object).toArray();
+                try (Session s = this.driver.session()) {
+                    String stmt = builder.makeMatch(object, false);
+                    StatementResult result = s.run(stmt, parameters(params));
+                    while (result.hasNext()) {
+                        Record record = result.next();
+                        id = record.get("InternalId").asInt();
+                    }
+                } catch (Exception e) {
+                    LOGGER.error(String.format("Params [%s]", StringUtils.join(params, ',')));
+                    LOGGER.error(e.getMessage(), e);
+                    throw e;
+                }
+                if (null != id) sessionObject.put(object, id);
+                return id;
+            case ORIENT_DB:
+                break;
+            default:
         }
-        return id;
-    }
-
-
-    public Session getSession() {
-        return driver.session();
+        return null;
     }
 
     @Override
@@ -275,7 +338,6 @@ public class Archipelago implements AutoCloseable {
                             .get(String.class);
                     ObjectMapper om = new ObjectMapper();
                     OrientDBResultWrapper resultWrapper = om.readValue(json, OrientDBResultWrapper.class);
-                    json = json;
                     for (Map<String, Object> map : resultWrapper.getResult()) {
                         Object node = aq.getTarget().getConstructor().newInstance();
                         if (!(aq.isWithId() && aq.getKeys().size() == 1)) {

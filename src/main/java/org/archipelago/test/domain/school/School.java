@@ -1,22 +1,29 @@
 package org.archipelago.test.domain.school;
 
+import org.archipelago.core.annotations.Bridge;
+import org.archipelago.core.annotations.Island;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.archipelago.core.annotations.Island;
-
 @Island
 public class School {
-    
+
     private String name;
+    @Bridge(descriptor = "HeldBy")
     private Person director;
+    @Bridge(descriptor = "Employ")
     private List<? extends Person> teachers = new ArrayList<>();
+    @Bridge
     private List<? extends Person> students = new ArrayList<>();
+    @Bridge(descriptor = "Employ")
     private List<? extends Person> workers = new ArrayList<>();
+    @Bridge(descriptor = "Contains")
     private List<Room> rooms = new ArrayList<>();
 
     public School() {
     }
+
     public School(String name, Person director, List<Person> teachers, List<Person> students, List<Person> workers, List<Room> rooms) {
         super();
         this.name = name;

@@ -38,16 +38,16 @@ public class ClassRoom extends Room {
         return availableSeat;
     }
 
+    public void setAvailableSeat(Integer availableSeat) {
+        this.availableSeat = availableSeat;
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public void setAvailableSeat(Integer availableSeat) {
-        this.availableSeat = availableSeat;
     }
 
     public Boolean isTelevision() {

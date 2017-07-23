@@ -10,6 +10,9 @@ public class ArchipelagoConfig {
     @JsonProperty()
     private DatabaseConfig database;
 
+    @JsonProperty
+    private Integer deepness;
+
     public ArchipelagoConfig() {
     }
 
@@ -19,5 +22,13 @@ public class ArchipelagoConfig {
 
     public void setDatabase(DatabaseConfig database) {
         this.database = database;
+    }
+
+    public Integer getDeepness() {
+        return deepness;
+    }
+
+    public void setDeepness(Integer deepness) {
+        this.deepness = deepness;
     }
 }

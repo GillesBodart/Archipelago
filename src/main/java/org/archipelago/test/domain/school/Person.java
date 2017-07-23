@@ -1,13 +1,15 @@
 package org.archipelago.test.domain.school;
 
-import java.time.LocalDate;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.archipelago.core.annotations.ArchipelId;
 import org.archipelago.core.annotations.Continent;
+
+import java.time.LocalDate;
 
 @Continent
 public abstract class Person {
-
+    @ArchipelId
+    private Long id;
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
@@ -56,6 +58,13 @@ public abstract class Person {
         this.sexe = sexe;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {

@@ -5,7 +5,9 @@ import org.apache.commons.lang3.AnnotationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.annotations.ArchipelId;
+import org.archipelago.core.annotations.Bridge;
 import org.archipelago.core.domain.GeneratedScript;
+import org.archipelago.core.domain.RelationWrapper;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
@@ -176,6 +178,66 @@ public class ArchipelagoUtils {
         } else {
             LOGGER.error(String.format("No ArchipelId annotation in the class %s", node.getClass()));
         }
-
     }
+
+    public static List<RelationWrapper> getChilds(Object object) {
+        List<RelationWrapper> relations = new ArrayList<>();
+        Class<?> clazz = object.getClass();
+        for (Field field : getAllFields(clazz)) {
+            if (field.isAnnotationPresent(Bridge.class)) {
+                try {
+                    Method getter = null;
+                    if (field.getType().equals(boolean.class)) {
+                        getter = clazz.getMethod(String.format("is%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
+                                .getName().length())));
+                    } else {
+                        getter = clazz.getMethod(String.format("get%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
+                                .getName().length())));
+                    }
+                    Object prop = getter.invoke(object);
+                    List<Object> props = new ArrayList<>();
+                    if (null != prop) {
+                        if (prop instanceof Collection) {
+                            Iterator i = ((Collection) prop).iterator();
+                            while (i.hasNext()) {
+                                Object child = i.next();
+                                props.add(child);
+                            }
+                        } else {
+                            props.add(prop);
+                        }
+                    }
+                    props.stream().forEach(p -> {
+                        RelationWrapper rw = new RelationWrapper();
+                        rw.setName(field.getAnnotation(Bridge.class).descriptor());
+                        rw.setTo(p);
+                        rw.setBiDirectionnal(field.getAnnotation(Bridge.class).biDirectionnal());
+                        relations.add(rw);
+                    });
+                } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                    LOGGER.debug(String.format("No usual getter for %s found", field.getName()), e);
+                }
+            }
+        }
+        return relations;
+    }
+
+    public static Object get(Class<?> clazz, Field field, Object object) {
+        Method getter = null;
+        try {
+            if (field.getType().equals(boolean.class) || field.getType().equals(Boolean.class)) {
+                getter = clazz.getMethod(String.format("is%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
+                        .getName().length())));
+            } else {
+                getter = clazz.getMethod(String.format("get%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field
+                        .getName().length())));
+            }
+            return getter.invoke(object);
+        } catch (Exception e) {
+            LOGGER.debug(String.format("No usual getter for %s found", field.getName()), e);
+            LOGGER.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
 }

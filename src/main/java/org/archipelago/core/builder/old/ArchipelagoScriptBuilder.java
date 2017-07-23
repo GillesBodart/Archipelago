@@ -18,7 +18,7 @@ public abstract class ArchipelagoScriptBuilder {
 
     public abstract List<GeneratedScript> makeScript(final Class<?> clazz, final List<Class<?>> archipels);
 
-    public String makeCreate(Class<?> aClass) {
+    public String makeCreate(Object object) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
@@ -26,11 +26,11 @@ public abstract class ArchipelagoScriptBuilder {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public String makeMatch(Class<?> clazz) {
+    public String makeMatch(Object object) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public String makeMatch(Class<?> clazz, boolean allObject) {
+    public String makeMatch(Object object, boolean allObject) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
