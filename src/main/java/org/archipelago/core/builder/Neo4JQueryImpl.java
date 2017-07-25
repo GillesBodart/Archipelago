@@ -1,6 +1,5 @@
 package org.archipelago.core.builder;
 
-import org.archipelago.core.connection.Archipelago;
 import org.archipelago.core.util.ArchipelagoUtils;
 
 import java.util.ArrayList;
@@ -13,12 +12,6 @@ public class Neo4JQueryImpl extends QueryBuilder {
 
     private StringBuilder pending = new StringBuilder();
     private Class<?> target;
-    private boolean creation = false;
-    private boolean wantObject = false;
-    private boolean wantId = false;
-
-
-    private List<QueryElement> conditionElements = new ArrayList<>();
 
     private List<String> elementToReturn = new ArrayList<>();
 
@@ -28,30 +21,15 @@ public class Neo4JQueryImpl extends QueryBuilder {
 
     @Override
     public QueryBuilder getObject() {
-        this.wantObject = true;
-        pending.append("MATCH ");
-        return this;
-    }
-
-
-    @Override
-    public QueryBuilder getId() {
-        this.wantId = true;
         pending.append("MATCH ");
         return this;
     }
 
     @Override
     public QueryBuilder of(Class<?> clazz) {
-        pending.append(String.format("(n:%s) ", clazz.getSimpleName()));
+        pending.append(String.format("p=(n:%s)-[rel]-() ", clazz.getSimpleName()));
         this.target = clazz;
         ArchipelagoUtils.getAllFields(clazz).stream().forEach(field -> elementToReturn.add(field.getName()));
-        return this;
-    }
-
-    @Override
-    public QueryBuilder withId() {
-        this.wantId = true;
         return this;
     }
 
@@ -74,24 +52,12 @@ public class Neo4JQueryImpl extends QueryBuilder {
     }
 
     private void condition(QueryElement element, ConditionQualifier conditionQualifier, String logicSym) {
-
-        pending.append(String.format("\n\t%s %s %s %s", logicSym,
-                element.isId() ? "ID(n)" : "n." + element.getKey(), conditionQualifier.getSymbol(), ArchipelagoUtils.formatQueryValue(element.getValue())));
+        pending.append(String.format(" %s %s %s %s", logicSym, "n." + element.getKey(), conditionQualifier.getSymbol(), ArchipelagoUtils.formatQueryValue(element.getValue())));
     }
 
     @Override
     public ArchipelagoQuery build() {
-        pending.append("\nRETURN");
-        if (wantObject) {
-            elementToReturn.stream().forEach(element -> pending.append(String.format("\n\tn.%s AS %s,", element, element)));
-        }
-        if (wantId) {
-            elementToReturn.add(Archipelago.ARCHIPELAGO_ID);
-            pending.append(String.format("\n\tID(n) as %s", Archipelago.ARCHIPELAGO_ID));
-        } else {
-            //remove the last ",\n"
-            pending.setLength(pending.length() - 1);
-        }
-        return new ArchipelagoQuery(pending.toString(), elementToReturn, target, wantId, relation, from, to, descriptor, biDirectionnal);
+        pending.append(" RETURN p");
+        return new ArchipelagoQuery(pending.toString(), elementToReturn, target, relation, from, to, descriptor, biDirectionnal);
     }
 }

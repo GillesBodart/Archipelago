@@ -1,6 +1,3 @@
 RelationNeo4J(idA,idB,name) ::= <<
-
-    MATCH (n) where ID(n) = <idA>
-    MATCH (m) where ID(m) = <idB>
-    MERGE (n)-[r:<name>]->(m) return r
+MATCH (n) where ID(n) = <idA> MATCH (m) where ID(m) = <idB> MERGE (n)-[r:<name>]->(m) return r
 >>

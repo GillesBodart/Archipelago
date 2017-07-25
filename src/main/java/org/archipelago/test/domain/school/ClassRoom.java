@@ -7,7 +7,7 @@ import org.archipelago.core.annotations.ArchipelId;
 @Archipel
 public class ClassRoom extends Room {
 
-    @ArchipelId
+
     private Integer id;
 
     private Integer availableSeat;

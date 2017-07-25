@@ -6,5 +6,7 @@
     "url": "gbodart.be",
     "name": "memoire",
     "port": 2480
-  }
+  },
+  "deepness":3,
+  "domainRootPackage":"org.archipelago.test.domain.school"
 }

@@ -9,7 +9,7 @@ import java.time.LocalDate;
  */
 public class DescriptorWrapper {
 
-    @Bridge
+    @Bridge(descriptor = "")
     private String name;
     private LocalDate created;
 

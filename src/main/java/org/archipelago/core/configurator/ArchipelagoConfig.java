@@ -13,6 +13,9 @@ public class ArchipelagoConfig {
     @JsonProperty
     private Integer deepness;
 
+    @JsonProperty
+    private String domainRootPackage;
+
     public ArchipelagoConfig() {
     }
 
@@ -30,5 +33,13 @@ public class ArchipelagoConfig {
 
     public void setDeepness(Integer deepness) {
         this.deepness = deepness;
+    }
+
+    public String getDomainRootPackage() {
+        return domainRootPackage;
+    }
+
+    public void setDomainRootPackage(String domainRootPackage) {
+        this.domainRootPackage = domainRootPackage;
     }
 }

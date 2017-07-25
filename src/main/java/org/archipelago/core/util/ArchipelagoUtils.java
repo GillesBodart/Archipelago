@@ -14,10 +14,7 @@ import javax.tools.ToolProvider;
 import java.io.File;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -25,6 +22,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.archipelago.core.connection.Archipelago.ARCHIPELAGO_ID;
 
@@ -35,6 +34,7 @@ public class ArchipelagoUtils {
 
     public static final String JAVA_EXTENSION = "java";
     public static final String CLASS_EXTENSION = "class";
+    private static final Pattern pattern = Pattern.compile("\\w+To(\\w+)");
     private final static Logger LOGGER = LogManager.getLogger(ArchipelagoUtils.class);
 
     public static boolean doesContainsAnnotation(List<Annotation> annotations, Class<? extends Annotation>... classes) {
@@ -240,4 +240,42 @@ public class ArchipelagoUtils {
         return null;
     }
 
+
+    public static Class getClassOf(Field field) {
+        Class clazz;
+        if (Collection.class.isAssignableFrom(field.getType())) {
+            ParameterizedType genericType = (ParameterizedType) field.getGenericType();
+            if (genericType.getActualTypeArguments()[0] instanceof WildcardType) {
+                clazz = (Class<?>) ((WildcardType) genericType.getActualTypeArguments()[0]).getUpperBounds()[0];
+            } else {
+                clazz = (Class<?>) genericType.getActualTypeArguments()[0];
+            }
+        } else {
+            clazz = field.getType();
+        }
+        return clazz;
+    }
+
+    public static Class<?> getClassOf(Set<Class<?>> classes, String className) {
+        for (Class clazz : classes) {
+            if (clazz.getSimpleName().equalsIgnoreCase(className)) {
+                return clazz;
+            }
+        }
+        return null;
+    }
+
+    public static Field getFieldFromBridgeName(Class<?> clazz, String type) {
+        Field field = null;
+        Matcher m = pattern.matcher(type);
+        Set<Field> fields = getAllFields(clazz);
+
+        for (Field f : fields) {
+            if (f.isAnnotationPresent(Bridge.class)
+                    && type.equalsIgnoreCase(f.getAnnotation(Bridge.class).descriptor())) {
+                return f;
+            }
+        }
+        return field;
+    }
 }

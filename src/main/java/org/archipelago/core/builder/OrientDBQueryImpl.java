@@ -12,11 +12,6 @@ public class OrientDBQueryImpl extends QueryBuilder {
 
     private StringBuilder pending = new StringBuilder();
     private Class<?> target;
-    private boolean creation = false;
-    private boolean wantObject = false;
-    private boolean wantId = false;
-
-    private List<QueryElement> conditionElements = new ArrayList<>();
 
     private List<String> elementToReturn = new ArrayList<>();
 
@@ -26,15 +21,7 @@ public class OrientDBQueryImpl extends QueryBuilder {
 
     @Override
     public QueryBuilder getObject() {
-        this.wantObject = true;
         pending.append("SELECT ");
-        return this;
-    }
-
-    @Override
-    public QueryBuilder getId() {
-        this.wantId = true;
-        pending.append("SELECT @rid ");
         return this;
     }
 
@@ -46,11 +33,6 @@ public class OrientDBQueryImpl extends QueryBuilder {
         return this;
     }
 
-    @Override
-    public QueryBuilder withId() {
-        this.wantId = true;
-        return this;
-    }
 
 
     @Override
@@ -73,12 +55,11 @@ public class OrientDBQueryImpl extends QueryBuilder {
 
     private void condition(QueryElement element, ConditionQualifier conditionQualifier, String logicSym) {
 
-        pending.append(String.format(" %s %s %s %s", logicSym,
-                element.isId() ? "@rid" : "" + element.getKey(), conditionQualifier.getSymbol(), ArchipelagoUtils.formatQueryValue(element.getValue())));
+        pending.append(String.format(" %s %s %s %s", logicSym, "" + element.getKey(), conditionQualifier.getSymbol(), ArchipelagoUtils.formatQueryValue(element.getValue())));
     }
 
     @Override
     public ArchipelagoQuery build() {
-        return new ArchipelagoQuery(pending.toString(), elementToReturn, target, wantId, relation, from, to, descriptor, biDirectionnal);
+        return new ArchipelagoQuery(pending.toString(), elementToReturn, target, relation, from, to, descriptor, biDirectionnal);
     }
 }

@@ -12,9 +12,9 @@ public class School {
     private String name;
     @Bridge(descriptor = "HeldBy")
     private Person director;
-    @Bridge(descriptor = "Employ")
+    @Bridge(descriptor = "ComposedOf")
     private List<? extends Person> teachers = new ArrayList<>();
-    @Bridge
+    @Bridge(descriptor = "TeachTo")
     private List<? extends Person> students = new ArrayList<>();
     @Bridge(descriptor = "Employ")
     private List<? extends Person> workers = new ArrayList<>();

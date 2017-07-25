@@ -31,6 +31,7 @@ public abstract class QueryBuilder {
         this.to = to;
         return this;
     }
+
     public QueryBuilder biDirectionnal() {
         this.biDirectionnal = biDirectionnal;
         return this;
@@ -43,11 +44,7 @@ public abstract class QueryBuilder {
         return this;
     }
 
-    public abstract QueryBuilder getId();
-
     public abstract QueryBuilder of(Class<?> element);
-
-    public abstract QueryBuilder withId();
 
     public abstract QueryBuilder where(QueryElement element, ConditionQualifier conditionQualifier);
 

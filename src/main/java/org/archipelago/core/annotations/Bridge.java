@@ -11,7 +11,8 @@ import java.lang.annotation.*;
 public @interface Bridge {
 
 
-    String descriptor() default "";
+    String descriptor();
+
     boolean biDirectionnal() default false;
 
 }

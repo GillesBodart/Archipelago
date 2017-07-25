@@ -21,6 +21,11 @@ import org.archipelago.core.exception.CheckException;
 import org.archipelago.core.util.ArchipelagoUtils;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.neo4j.driver.v1.*;
+import org.neo4j.driver.v1.types.Node;
+import org.neo4j.driver.v1.types.Path;
+import org.neo4j.driver.v1.types.Relationship;
+import org.reflections.ReflectionUtils;
+import org.reflections.Reflections;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -30,9 +35,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 import static org.neo4j.driver.v1.Values.parameters;
+import static org.reflections.ReflectionUtils.withModifier;
+import static org.reflections.ReflectionUtils.withPrefix;
 
 /**
  * @author Gilles Bodart
@@ -55,6 +65,7 @@ public class Archipelago implements AutoCloseable {
     private Client jerseyClient;
     private WebTarget rootTarget;
 
+    private Reflections reflections;
     private Map<Object, Object> sessionObject = new HashMap<>();
 
     private Archipelago() throws CheckException {
@@ -64,6 +75,7 @@ public class Archipelago implements AutoCloseable {
         // Personalisation of the connection
 
         this.databaseType = dc.getType();
+        this.reflections = new Reflections(archipelagoConfig.getDomainRootPackage());
         switch (dc.getType()) {
             case NEO4J:
                 if (!dc.getEmbedded()) {
@@ -140,6 +152,7 @@ public class Archipelago implements AutoCloseable {
      * @return the internal Id of the object (null in case or error)
      */
     private Integer persist(Object object, Integer deepness) throws CheckException {
+        //TODO Transaction
         Integer id = null;
         switch (databaseType) {
             case NEO4J:
@@ -299,6 +312,8 @@ public class Archipelago implements AutoCloseable {
 
     public List<Object> execute(ArchipelagoQuery aq) throws CheckException, IOException {
         List<Object> nodes = new LinkedList<>();
+        LOGGER.debug(String.format("Query : %s", aq.getQuery()));
+        final Map<Long, Object> startNodes = new HashMap<>();
         switch (databaseType) {
             case NEO4J:
                 try (Session s = this.driver.session()) {
@@ -306,30 +321,55 @@ public class Archipelago implements AutoCloseable {
                         link(aq.getFrom(), aq.getTo(), aq.getDescriptor(), aq.isBiDirectionnal());
                     } else {
                         StatementResult result = s.run(aq.getQuery());
-                        Map<String, Object> nodeValues = new HashMap<>();
                         while (result.hasNext()) {
                             Record record = result.next();
-                            aq.getKeys().stream().forEach(key -> {
-                                if (ARCHIPELAGO_ID.equalsIgnoreCase(key)) {
-                                    nodeValues.put(key, record.get(key).asInt());
-                                } else {
-                                    nodeValues.put(key, record.get(key).asObject());
+                            Path p = record.get("p").asPath();
+                            p.forEach(segment -> {
+                                try {
+                                    Object startNode = null;
+                                    Node start = segment.start();
+                                    if (!startNodes.containsKey(start.id())) {
+                                        startNode = aq.getTarget().getConstructor().newInstance();
+                                        ArchipelagoUtils.feedObject(startNode, start.asMap());
+                                        startNodes.put(start.id(), startNode);
+
+                                    } else {
+                                        startNode = startNodes.get(start.id());
+                                    }
+                                    Relationship rel = segment.relationship();
+                                    Field field = ArchipelagoUtils.getFieldFromBridgeName(startNode.getClass(), rel.type());
+                                    //Get the label as the ClassName
+                                    Set<Class<?>> supers = this.reflections.getSubTypesOf(ArchipelagoUtils.getClassOf(field));
+                                    Class<?> endClass = ArchipelagoUtils
+                                            .getClassOf(supers, segment.end().labels().iterator().next());
+                                    Object endNode = endClass
+                                            .getConstructor()
+                                            .newInstance();
+                                    ArchipelagoUtils.feedObject(endNode, segment.end().asMap());
+                                    LOGGER.info(endNode);
+                                    if (Collection.class.isAssignableFrom(field.getType())) {
+                                        ((Collection) ArchipelagoUtils.get(aq.getTarget(), field, startNode)).add(endNode);
+                                    } else {
+                                        String methodName = String.format("set%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field.getName().length()));
+                                        //Must have exactly one match
+                                        Method method = ReflectionUtils.getAllMethods(aq.getTarget(),
+                                                withModifier(Modifier.PUBLIC), withPrefix(String.format(methodName)))
+                                                .stream()
+                                                .findFirst()
+                                                .get();
+                                        method.invoke(startNode, endNode);
+                                    }
+                                } catch (Exception e) {
+                                    LOGGER.error(e.getMessage(), e);
                                 }
                             });
-                            Object node = aq.getTarget().getConstructor().newInstance();
-                            if (!(aq.isWithId() && aq.getKeys().size() == 1)) {
-                                ArchipelagoUtils.feedObject(node, nodeValues);
-                            }
-                            if (aq.isWithId()) {
-                                ArchipelagoUtils.feedId(node, nodeValues.get(ARCHIPELAGO_ID));
-                            }
-                            nodes.add(node);
                         }
                     }
                 } catch (Exception e) {
                     LOGGER.error(e.getMessage(), e);
                     throw new CheckException(e.getMessage());
                 }
+                nodes.addAll(startNodes.values());
                 break;
             case ORIENT_DB:
                 try {
@@ -340,12 +380,7 @@ public class Archipelago implements AutoCloseable {
                     OrientDBResultWrapper resultWrapper = om.readValue(json, OrientDBResultWrapper.class);
                     for (Map<String, Object> map : resultWrapper.getResult()) {
                         Object node = aq.getTarget().getConstructor().newInstance();
-                        if (!(aq.isWithId() && aq.getKeys().size() == 1)) {
-                            ArchipelagoUtils.feedObject(node, map);
-                        }
-                        if (aq.isWithId()) {
-                            ArchipelagoUtils.feedId(node, map.get(ARCHIPELAGO_ID));
-                        }
+                        ArchipelagoUtils.feedObject(node, map);
                         nodes.add(node);
                     }
                 } catch (Exception e) {

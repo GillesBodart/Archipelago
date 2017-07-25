@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Continent
 public abstract class Person {
-    @ArchipelId
+
     private Long id;
     private String firstName;
     private String lastName;

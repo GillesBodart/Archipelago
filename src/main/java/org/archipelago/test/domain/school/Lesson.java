@@ -7,7 +7,7 @@ import org.archipelago.core.annotations.Island;
 @Island
 public class Lesson {
 
-    @ArchipelId
+
     private Integer id;
 
     private String name;

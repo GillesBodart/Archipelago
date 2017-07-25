@@ -7,5 +7,7 @@
     "name": "memory",
     "embedded": false,
     "port": 7687
-  }
+  },
+  "deepness": 3,
+  "domainRootPackage": "org.archipelago.test.domain.school"
 }
