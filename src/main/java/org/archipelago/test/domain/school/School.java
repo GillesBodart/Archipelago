@@ -1,5 +1,6 @@
 package org.archipelago.test.domain.school;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.archipelago.core.annotations.Bridge;
 import org.archipelago.core.annotations.Island;
 
@@ -82,5 +83,15 @@ public class School {
         this.workers = workers;
     }
 
-
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("name", name)
+                .append("director", director)
+                .append("teachers", teachers)
+                .append("students", students)
+                .append("workers", workers)
+                .append("rooms", rooms)
+                .toString();
+    }
 }

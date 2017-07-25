@@ -3,12 +3,10 @@ package org.archipelago.test.main;
 import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.archipelago.core.builder.ArchipelagoQuery;
-import org.archipelago.core.builder.ConditionQualifier;
-import org.archipelago.core.connection.Archipelago;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.domain.types.ArchipelagoBuilderType;
 import org.archipelago.core.domain.types.ArchipelagoFeederType;
+import org.archipelago.core.framework.Archipelago;
 import org.archipelago.core.runtime.ArchipelagoBuilderFactory;
 import org.archipelago.core.runtime.ArchipelagoFeederFactory;
 import org.archipelago.test.domain.library.Author;
@@ -23,8 +21,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static org.archipelago.core.builder.QueryElement.of;
 
 /**
  * Created by Gilles Bodart on 19/08/2016.
@@ -41,14 +37,16 @@ public class MainTest {
 
     public static void main(String[] args) throws Exception {
         Archipelago a = Archipelago.getInstance();
-        //a.persist(school());
-        ArchipelagoQuery aq = a.getQueryBuilder()
+        //OrientDBBuilder o = new OrientDBBuilder();
+        //LOGGER.info(o.makeMatch(new Lesson("Science", 6l)));
+        a.persist(school());
+        /*ArchipelagoQuery aq = a.getQueryBuilder()
                 .getObject()
                 .of(School.class)
                 .where(of("name", "Saint Louis Namur"), ConditionQualifier.EQUAL)
                 .build();
         List<Object> nodes = a.execute(aq);
-        nodes.stream().forEach(System.out::println);
+        nodes.stream().forEach(System.out::println);*/
 
     }
 

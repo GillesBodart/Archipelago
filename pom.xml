@@ -86,11 +86,6 @@
             <version>2.26-b03</version>
         </dependency>
         <dependency>
-            <groupId>com.tinkerpop.blueprints</groupId>
-            <artifactId>blueprints-core</artifactId>
-            <version>2.6.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.antlr</groupId>
             <artifactId>ST4</artifactId>
             <version>4.0.8</version>

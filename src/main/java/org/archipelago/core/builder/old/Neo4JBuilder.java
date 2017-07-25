@@ -58,45 +58,7 @@ public class Neo4JBuilder extends ArchipelagoScriptBuilder {
         return create;
     }
 
-    public List<Object> fillCreate(Object object) {
-        final List<Object> parameters = Lists.newArrayList();
-        Class<?> clazz = object.getClass();
-        Set<Field> fields = ArchipelagoUtils.getAllFields(clazz);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-        if (String.class.equals(clazz)) {
-            parameters.add("name");
-            parameters.add(object);
-        } else {
-            for (Field field : fields) {
-                if (!field.isAnnotationPresent(Bridge.class) && !field.isAnnotationPresent(ArchipelId.class)) {
-                    Object prop = ArchipelagoUtils.get(clazz, field, object);
-                    if (null != prop) {
-                        parameters.add(field.getName());
-                        switch (field.getType().getSimpleName().toLowerCase()) {
-                            case "date":
-                                parameters.add(sdf.format((Date) prop));
-                                break;
-                            case "localdate":
-                                parameters.add(((LocalDate) prop).format(DateTimeFormatter.ISO_LOCAL_DATE));
-                                break;
-                            case "localtime":
-                                parameters.add(((LocalTime) prop).format(DateTimeFormatter.ISO_LOCAL_DATE));
-                                break;
-                            case "localdatetime":
-                                parameters.add(((LocalDateTime) prop).format(DateTimeFormatter.ISO_LOCAL_DATE));
-                                break;
-                            default: {
-                                parameters.add(prop);
-                            }
-                        }
-                    }
 
-                }
-            }
-        }
-
-        return parameters;
-    }
 
     public String makeMatch(Object object) {
         return makeMatch(object, true);

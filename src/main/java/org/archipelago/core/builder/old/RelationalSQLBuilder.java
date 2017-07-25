@@ -56,6 +56,11 @@ public class RelationalSQLBuilder extends ArchipelagoScriptBuilder {
 
     }
 
+    @Override
+    public String makeCreate(Object object) {
+        return null;
+    }
+
     private void generateNewClasses(Class<?> clazz, List<Class<?>> archipels) {
 
         if (ArchipelagoUtils.doesContainsAnnotation(clazz.getAnnotations(), Archipel.class)) {

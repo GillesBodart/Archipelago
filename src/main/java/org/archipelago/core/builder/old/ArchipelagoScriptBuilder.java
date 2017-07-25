@@ -1,10 +1,16 @@
 package org.archipelago.core.builder.old;
 
+import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.archipelago.core.annotations.ArchipelId;
+import org.archipelago.core.annotations.Bridge;
 import org.archipelago.core.domain.GeneratedScript;
+import org.archipelago.core.util.ArchipelagoUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Gilles Bodart
@@ -18,12 +24,28 @@ public abstract class ArchipelagoScriptBuilder {
 
     public abstract List<GeneratedScript> makeScript(final Class<?> clazz, final List<Class<?>> archipels);
 
-    public String makeCreate(Object object) {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
+    public abstract String makeCreate(Object object);
 
     public List<Object> fillCreate(Object object) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        final List<Object> parameters = Lists.newArrayList();
+        Class<?> clazz = object.getClass();
+        Set<Field> fields = ArchipelagoUtils.getAllFields(clazz);
+        if (String.class.equals(clazz)) {
+            parameters.add("name");
+            parameters.add(object);
+        } else {
+            for (Field field : fields) {
+                if (!field.isAnnotationPresent(Bridge.class) && !field.isAnnotationPresent(ArchipelId.class)) {
+                    Object prop = ArchipelagoUtils.get(clazz, field, object);
+                    if (null != prop) {
+                        parameters.add(field.getName());
+                        parameters.add(ArchipelagoUtils.formatQueryValue(prop));
+                    }
+                }
+            }
+        }
+
+        return parameters;
     }
 
     public String makeMatch(Object object) {

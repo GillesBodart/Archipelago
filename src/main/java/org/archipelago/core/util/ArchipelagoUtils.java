@@ -4,7 +4,6 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.AnnotationUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.archipelago.core.annotations.ArchipelId;
 import org.archipelago.core.annotations.Bridge;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.domain.RelationWrapper;
@@ -21,11 +20,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.archipelago.core.connection.Archipelago.ARCHIPELAGO_ID;
+import static org.archipelago.core.framework.Archipelago.ARCHIPELAGO_ID;
 
 /**
  * @author Gilles Bodart
@@ -159,26 +163,31 @@ public class ArchipelagoUtils {
 
     public static Object formatQueryValue(Object o) {
         Object formated = o;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
         if (formated instanceof String) {
             formated = String.format("\"%s\"", formated);
+        }else {
+            switch (o.getClass().getSimpleName().toLowerCase()) {
+                case "date":
+                    formated = (sdf.format((Date) o));
+                    break;
+                case "localdate":
+                    formated = ((LocalDate) o).format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    break;
+                case "localtime":
+                    formated = ((LocalTime) o).format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    break;
+                case "localdatetime":
+                    formated = ((LocalDateTime) o).format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    break;
+                default: {
+                    formated = o;
+                }
+            }
         }
         return formated;
     }
 
-    public static void feedId(Object node, Object value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-        Optional<Field> archipelagoId = getAllFields(node.getClass())
-                .stream()
-                .filter(field -> field.isAnnotationPresent(ArchipelId.class))
-                .findFirst();
-        if (archipelagoId.isPresent()) {
-            String fieldName = archipelagoId.get().getName();
-            Method setter = node.getClass()
-                    .getMethod(String.format("set%s%s", ("" + fieldName.charAt(0)).toUpperCase(), fieldName.substring(1, fieldName.length())), value.getClass());
-            setter.invoke(node, value);
-        } else {
-            LOGGER.error(String.format("No ArchipelId annotation in the class %s", node.getClass()));
-        }
-    }
 
     public static List<RelationWrapper> getChilds(Object object) {
         List<RelationWrapper> relations = new ArrayList<>();
