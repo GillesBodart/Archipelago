@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.annotations.ArchipelId;
 import org.archipelago.core.annotations.Bridge;
+import org.archipelago.core.domain.DescriptorWrapper;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.util.ArchipelagoUtils;
 
@@ -39,7 +40,7 @@ public abstract class ArchipelagoScriptBuilder {
                     Object prop = ArchipelagoUtils.get(clazz, field, object);
                     if (null != prop) {
                         parameters.add(field.getName());
-                        parameters.add(ArchipelagoUtils.formatQueryValue(prop));
+                        parameters.add(ArchipelagoUtils.formatQueryValue(prop, true));
                     }
                 }
             }
@@ -64,7 +65,11 @@ public abstract class ArchipelagoScriptBuilder {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public String makeRelation(int idA, int idB, String name) {
+    public String makeRelation(Object idA, Object idB, DescriptorWrapper description) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public String makeRelation(Object idA, Object idB, String description) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }

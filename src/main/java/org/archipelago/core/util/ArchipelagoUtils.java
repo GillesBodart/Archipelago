@@ -162,23 +162,32 @@ public class ArchipelagoUtils {
     }
 
     public static Object formatQueryValue(Object o) {
+        return formatQueryValue(o, false);
+    }
+
+    public static Object formatQueryValue(Object o, boolean stringDate) {
         Object formated = o;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
         if (formated instanceof String) {
             formated = String.format("\"%s\"", formated);
-        }else {
+        } else {
+            String elm = null;
             switch (o.getClass().getSimpleName().toLowerCase()) {
                 case "date":
-                    formated = (sdf.format((Date) o));
+                    elm = sdf.format((Date) o);
+                    formated = stringDate ? String.format("\"%s\"", elm) : elm;
                     break;
                 case "localdate":
-                    formated = ((LocalDate) o).format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    elm = ((LocalDate) o).format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    formated = stringDate ? String.format("\"%s\"", elm) : elm;
                     break;
                 case "localtime":
-                    formated = ((LocalTime) o).format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    elm = ((LocalTime) o).format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    formated = stringDate ? String.format("\"%s\"", elm) : elm;
                     break;
                 case "localdatetime":
-                    formated = ((LocalDateTime) o).format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    elm = ((LocalDateTime) o).format(DateTimeFormatter.ISO_LOCAL_DATE);
+                    formated = stringDate ? String.format("\"%s\"", elm) : elm;
                     break;
                 default: {
                     formated = o;

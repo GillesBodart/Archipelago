@@ -3,6 +3,8 @@ package org.archipelago.test.main;
 import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.archipelago.core.builder.ArchipelagoQuery;
+import org.archipelago.core.builder.ConditionQualifier;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.domain.types.ArchipelagoBuilderType;
 import org.archipelago.core.domain.types.ArchipelagoFeederType;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static org.archipelago.core.builder.QueryElement.of;
+
 /**
  * Created by Gilles Bodart on 19/08/2016.
  */
@@ -39,14 +43,38 @@ public class MainTest {
         Archipelago a = Archipelago.getInstance();
         //OrientDBBuilder o = new OrientDBBuilder();
         //LOGGER.info(o.makeMatch(new Lesson("Science", 6l)));
-        a.persist(school());
-        /*ArchipelagoQuery aq = a.getQueryBuilder()
+        /*Student gilles = new Student("Gilles", "Bodart", LocalDate.of(1992, 4, 14), "M", Lists.newArrayList(), null, null, null);
+        Student thomasB = new Student("Thomas", "Blondiau", LocalDate.of(1992, 1, 5), "M", Lists.newArrayList(), null, null, null);
+        Student thomasR = new Student("Thomas", "Reynders", LocalDate.of(1992, 1, 22), "M", Lists.newArrayList(), null, null, null);
+        Student charly = new Student("Charles-Antoine", "Van Beers", LocalDate.of(1992, 4, 28), "M", Lists.newArrayList(), null, null, null);
+        Student antoine = new Student("Antoine", "Dumont", LocalDate.of(1992, 12, 28), "M", Lists.newArrayList(), null, null, null);
+        Student martin = new Student("Martin", "Périlleux", LocalDate.of(1992, 2, 28), "M", Lists.newArrayList(), null, null, null);
+        Student benjamin = new Student("Benjamin", "Leroy", LocalDate.of(1992, 10, 31), "M", Lists.newArrayList(), null, null, null);
+        Student antoineBo = new Student("Antoine", "Bodart", LocalDate.of(1985, 10, 18), "M", Lists.newArrayList(), null, null, null);
+        thomasB.setFriends(Lists.newArrayList(gilles, thomasR, charly, antoine, martin, benjamin));
+        thomasR.setFriends(Lists.newArrayList(thomasB, gilles, charly, antoine, martin, benjamin));
+        charly.setFriends(Lists.newArrayList(thomasB, thomasR, gilles, antoine, martin, benjamin));
+        antoine.setFriends(Lists.newArrayList(thomasB, thomasR, charly, gilles, martin, benjamin));
+        martin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, gilles, benjamin));
+        benjamin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, martin, gilles));
+        Object l1 = new Lesson("Deutch", 2l);
+        Teacher gys = new Teacher("Hans", "Gys", null, "M", Lists.newArrayList(), Lists.newArrayList(), "Master");
+        a.persist(gilles);
+        a.persist(thomasB);
+        a.persist(charly);
+        a.persist(thomasR);
+        a.persist(antoine);
+        a.persist(martin);
+        a.persist(benjamin);
+        a.persist(antoineBo);*/
+        //a.persist(school());
+        ArchipelagoQuery aq = a.getQueryBuilder()
                 .getObject()
                 .of(School.class)
                 .where(of("name", "Saint Louis Namur"), ConditionQualifier.EQUAL)
                 .build();
         List<Object> nodes = a.execute(aq);
-        nodes.stream().forEach(System.out::println);*/
+        nodes.stream().forEach(System.out::println);
 
     }
 
@@ -112,8 +140,8 @@ public class MainTest {
         Lesson science3 = new Lesson("Science", 3l);
         Lesson frans5 = new Lesson("Frans", 5l);
         Lesson frans6 = new Lesson("Frans", 6l);
-        Lesson dutch2 = new Lesson("Deutch", 2l);
-        Lesson dutch4 = new Lesson("Deutch", 4l);
+        Lesson dutch2 = new Lesson("Dutch", 2l);
+        Lesson dutch4 = new Lesson("Dutch", 4l);
         Lesson english2 = new Lesson("English", 2l);
         Lesson english4 = new Lesson("English", 4l);
         Lesson history = new Lesson("History", 2l);
@@ -130,7 +158,7 @@ public class MainTest {
                 english2, english4), "Master");
         Teacher goffin = new Teacher("Michel", "Goffin", null, "M", Lists.newArrayList(math8, math6, math4), Lists.newArrayList(math8, math6, math4), "Master");
         Teacher massart = new Teacher("Gabriel", "Massart", null, "M", Lists.newArrayList(math8, math6, math4), Lists.newArrayList(math8, math6, math4), "Master");
-        Teacher gouthers = new Teacher("Pierre-Yve", "Gouthers", null, "M", Lists.newArrayList(frans5, frans6, religion), Lists.newArrayList(frans5, frans6, religion), "Master");
+        Teacher gouthers = new Teacher("Yves", "Gouthers", null, "M", Lists.newArrayList(frans5, frans6, religion), Lists.newArrayList(frans5, frans6, religion), "Master");
         Teacher jacques = new Teacher("Christian", "Jacques", null, "M", Lists.newArrayList(geography), Lists.newArrayList(geography), "Master");
 
         Student gilles = new Student("Gilles", "Bodart", LocalDate.of(1992, 4, 14), "M", Lists.newArrayList(math8, science6, dutch2, english4, history,

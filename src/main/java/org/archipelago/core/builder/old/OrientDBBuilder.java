@@ -3,6 +3,7 @@ package org.archipelago.core.builder.old;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import org.archipelago.core.annotations.ArchipelId;
 import org.archipelago.core.annotations.Bridge;
+import org.archipelago.core.domain.DescriptorWrapper;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.util.ArchipelagoUtils;
 import org.archipelago.core.util.StringTemplateFactory;
@@ -107,6 +108,12 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
         return sb.toString();
     }
 
+    @Override
+    public String makeRelation(Object idA, Object idB, DescriptorWrapper description) {
+        return String.format("CREATE EDGE %s FROM %s TO %s SET created = %s",
+                description.getName(), idA, idB, ArchipelagoUtils.formatQueryValue(description.getCreated(), true));
+    }
+
     public String makeMatch(Object object) {
         Class<?> clazz = object.getClass();
         final String nodeTemplatePath = String.format("%s/%s/%s", TEMPLATE_ROOT_PATH, ORIENT_FOLDER, "\\match.stg");
@@ -120,7 +127,7 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
                 if (!field.isAnnotationPresent(Bridge.class) && !field.isAnnotationPresent(ArchipelId.class)) {
                     Object o = ArchipelagoUtils.get(clazz, field, object);
                     if (null != o) {
-                        st.add("props", new ValueWrapper(field.getName(), ArchipelagoUtils.formatQueryValue(o)));
+                        st.add("props", new ValueWrapper(field.getName(), ArchipelagoUtils.formatQueryValue(o, true)));
                     }
                 }
             }
