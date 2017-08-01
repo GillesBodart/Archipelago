@@ -150,6 +150,18 @@ public class Archipelago implements AutoCloseable {
     }
 
     /**
+     * Persist an object into the database
+     *
+     * @param objects the objects to persist
+     * @return the Id of the persisted object
+     * @throws CheckException Object can't be null;
+     */
+    public void persist(List<Object> objects) throws CheckException {
+        for (Object object : objects){
+        persist(object, 0);}
+    }
+
+    /**
      * Flush the objects stored in the session
      *
      * @return the amount of flushed elements

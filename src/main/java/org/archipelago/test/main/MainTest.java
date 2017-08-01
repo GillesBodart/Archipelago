@@ -41,41 +41,35 @@ public class MainTest {
 
     public static void main(String[] args) throws Exception {
         Archipelago a = Archipelago.getInstance();
-        //OrientDBBuilder o = new OrientDBBuilder();
-        //LOGGER.info(o.makeMatch(new Lesson("Science", 6l)));
-        /*Student gilles = new Student("Gilles", "Bodart", LocalDate.of(1992, 4, 14), "M", Lists.newArrayList(), null, null, null);
+        List<Object> students = Lists.newArrayList();
+        Student gilles = new Student("Gilles", "Bodart", LocalDate.of(1992, 4, 14), "M", Lists.newArrayList(), null, null, null);
         Student thomasB = new Student("Thomas", "Blondiau", LocalDate.of(1992, 1, 5), "M", Lists.newArrayList(), null, null, null);
         Student thomasR = new Student("Thomas", "Reynders", LocalDate.of(1992, 1, 22), "M", Lists.newArrayList(), null, null, null);
         Student charly = new Student("Charles-Antoine", "Van Beers", LocalDate.of(1992, 4, 28), "M", Lists.newArrayList(), null, null, null);
         Student antoine = new Student("Antoine", "Dumont", LocalDate.of(1992, 12, 28), "M", Lists.newArrayList(), null, null, null);
         Student martin = new Student("Martin", "Périlleux", LocalDate.of(1992, 2, 28), "M", Lists.newArrayList(), null, null, null);
         Student benjamin = new Student("Benjamin", "Leroy", LocalDate.of(1992, 10, 31), "M", Lists.newArrayList(), null, null, null);
-        Student antoineBo = new Student("Antoine", "Bodart", LocalDate.of(1985, 10, 18), "M", Lists.newArrayList(), null, null, null);
         thomasB.setFriends(Lists.newArrayList(gilles, thomasR, charly, antoine, martin, benjamin));
         thomasR.setFriends(Lists.newArrayList(thomasB, gilles, charly, antoine, martin, benjamin));
         charly.setFriends(Lists.newArrayList(thomasB, thomasR, gilles, antoine, martin, benjamin));
         antoine.setFriends(Lists.newArrayList(thomasB, thomasR, charly, gilles, martin, benjamin));
         martin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, gilles, benjamin));
         benjamin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, martin, gilles));
-        Object l1 = new Lesson("Deutch", 2l);
-        Teacher gys = new Teacher("Hans", "Gys", null, "M", Lists.newArrayList(), Lists.newArrayList(), "Master");
-        a.persist(gilles);
-        a.persist(thomasB);
-        a.persist(charly);
-        a.persist(thomasR);
-        a.persist(antoine);
-        a.persist(martin);
-        a.persist(benjamin);
-        a.persist(antoineBo);*/
-        //a.persist(school());
+        students.add(gilles);
+        students.add(thomasB);
+        students.add(thomasR);
+        students.add(charly);
+        students.add(antoine);
+        students.add(martin);
+        students.add(benjamin);
+        a.persist(students);
         ArchipelagoQuery aq = a.getQueryBuilder()
                 .getObject()
                 .of(School.class)
-                .where(of("name", "Saint Louis Namur"), ConditionQualifier.EQUAL)
+                .where(of("firstname", "Thomas"), ConditionQualifier.EQUAL)
                 .build();
         List<Object> nodes = a.execute(aq);
         nodes.stream().forEach(System.out::println);
-
     }
 
     private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {
