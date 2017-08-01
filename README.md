@@ -46,7 +46,46 @@ public class MainTest {
     }
 }
 ```
+## Configuration
 
-## If friendship is a graph Archipelago will persist it
+Archipelago est une couche abstraite au dessus de la couche de persistence.
+
+Pour configurer le framework, il suffit de mettre un fichier nommé `config.archipelago.json` dans les ressources.
+
+### Neo4J configuration
+
+```json
+{
+  "database": {
+    "type": "NEO4J",
+    "username": "neo4j",
+    "password": "********",
+    "url": "*********",
+    "name": "memory",
+    "embedded": false,
+    "port": 4567
+  },
+  "deepness": 3,
+  "domainRootPackage": "org.archipelago.test.domain.school"
+}
+```
 ![neo4J](./figures/Neo4jFriends.png "Neo4J")
+
+### OrientDB configuration
+```json
+{
+  "database": {
+    "type": "ORIENT_DB",
+    "username": "gilles",
+    "password": "*******",
+    "url": "********",
+    "name": "memoire",
+    "port": 1234
+  },
+  "deepness":3,
+  "domainRootPackage":"org.archipelago.test.domain.school"
+}
+```
 ![OrientDB](./figures/OrientFriends.png "OrientDB")
+
+> If friendship is a graph Archipelago will persist it
