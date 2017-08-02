@@ -19,7 +19,7 @@
 \contentsline {subsection}{\numberline {3.1.4}Librairie OrientDB}{14}
 \contentsline {section}{\numberline {3.2}Les frameworks}{15}
 \contentsline {subsection}{\numberline {3.2.1}Apache TinkerPop}{15}
-\contentsline {part}{II\hspace {1em}Analyse technique}{17}
+\contentsline {part}{II\hspace {1em}Contribution}{17}
 \contentsline {chapter}{\numberline {4}Application possibles des BDOG}{18}
 \contentsline {section}{\numberline {4.1}L'exemple parfait}{18}
 \contentsline {section}{\numberline {4.2}Crit\IeC {\`e}res de comparaisons}{18}
