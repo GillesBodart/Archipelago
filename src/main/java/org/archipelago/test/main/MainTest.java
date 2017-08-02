@@ -4,10 +4,10 @@ import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.builder.ArchipelagoQuery;
-import org.archipelago.core.builder.ConditionQualifier;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.domain.types.ArchipelagoBuilderType;
 import org.archipelago.core.domain.types.ArchipelagoFeederType;
+import org.archipelago.core.exception.CheckException;
 import org.archipelago.core.framework.Archipelago;
 import org.archipelago.core.runtime.ArchipelagoBuilderFactory;
 import org.archipelago.core.runtime.ArchipelagoFeederFactory;
@@ -16,13 +16,23 @@ import org.archipelago.test.domain.library.Book;
 import org.archipelago.test.domain.library.Librarian;
 import org.archipelago.test.domain.library.Library;
 import org.archipelago.test.domain.school.*;
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.archipelago.core.builder.QueryElement.of;
 
@@ -41,7 +51,7 @@ public class MainTest {
 
     public static void main(String[] args) throws Exception {
         Archipelago a = Archipelago.getInstance();
-        List<Object> students = Lists.newArrayList();
+       /* List<Object> students = Lists.newArrayList();
         Student gilles = new Student("Gilles", "Bodart", LocalDate.of(1992, 4, 14), "M", Lists.newArrayList(), null, null, null);
         Student thomasB = new Student("Thomas", "Blondiau", LocalDate.of(1992, 1, 5), "M", Lists.newArrayList(), null, null, null);
         Student thomasR = new Student("Thomas", "Reynders", LocalDate.of(1992, 1, 22), "M", Lists.newArrayList(), null, null, null);
@@ -62,14 +72,26 @@ public class MainTest {
         students.add(antoine);
         students.add(martin);
         students.add(benjamin);
-        a.persist(students);
-        ArchipelagoQuery aq = a.getQueryBuilder()
+        a.persist(students);*/
+        LocalDateTime start = LocalDateTime.now();
+        /*ArchipelagoQuery aq = a.getQueryBuilder()
                 .getObject()
-                .of(School.class)
-                .where(of("firstname", "Thomas"), ConditionQualifier.EQUAL)
+                .of(Student.class)
+                .where(of("firstName", "Thomas"), ConditionQualifier.EQUAL)
                 .build();
-        List<Object> nodes = a.execute(aq);
-        nodes.stream().forEach(System.out::println);
+        a.execute(aq);*/
+
+        LocalDateTime end = LocalDateTime.now();
+        Duration dur = Duration.between(start, end);
+        long millis = dur.toMillis();
+
+        LOGGER.info(String.format("%02d:%02d:%02d",
+                TimeUnit.MILLISECONDS.toHours(millis),
+                TimeUnit.MILLISECONDS.toMinutes(millis) -
+                        TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
+                TimeUnit.MILLISECONDS.toSeconds(millis) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))));
+        //nodes.stream().forEach(System.out::println);
     }
 
     private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {

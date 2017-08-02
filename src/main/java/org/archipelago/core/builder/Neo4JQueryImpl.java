@@ -52,7 +52,12 @@ public class Neo4JQueryImpl extends QueryBuilder {
     }
 
     private void condition(QueryElement element, ConditionQualifier conditionQualifier, String logicSym) {
-        pending.append(String.format(" %s %s %s %s", logicSym, "n." + element.getKey(), conditionQualifier.getSymbol(), ArchipelagoUtils.formatQueryValue(element.getValue())));
+        Object formatedValue = ArchipelagoUtils.formatQueryValue(element.getValue());
+        pending.append(String.format(" %s %s %s %s",
+                logicSym,
+                "n." + element.getKey(),
+                conditionQualifier.getSymbol(),
+                element.getValue() instanceof String ? "\"" + formatedValue + "\"" : formatedValue));
     }
 
     @Override

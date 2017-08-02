@@ -38,8 +38,8 @@ public class MainTest {
         a.persist(students);
         ArchipelagoQuery aq = a.getQueryBuilder()
                 .getObject()
-                .of(School.class)
-                .where(of("firstname", "Thomas"), ConditionQualifier.EQUAL)
+                .of(Student.class)
+                .where(of("firstName", "Thomas"), ConditionQualifier.EQUAL)
                 .build();
         List<Object> nodes = a.execute(aq);
         nodes.stream().forEach(System.out::println);

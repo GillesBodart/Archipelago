@@ -89,7 +89,7 @@ public class Archipelago implements AutoCloseable {
             case ORIENT_DB:
                 HttpAuthenticationFeature feature = HttpAuthenticationFeature.basic(dc.getUsername(), dc.getPassword());
                 this.jerseyClient = ClientBuilder.newClient();
-                jerseyClient.register(feature);
+                this.jerseyClient.register(feature);
                 String url = String.format("http://%s:%d/", dc.getUrl(), dc.getPort());
                 LOGGER.info("Connecting to Orient remote server on " + url);
                 this.rootTarget = jerseyClient.target(url);
@@ -157,8 +157,9 @@ public class Archipelago implements AutoCloseable {
      * @throws CheckException Object can't be null;
      */
     public void persist(List<Object> objects) throws CheckException {
-        for (Object object : objects){
-        persist(object, 0);}
+        for (Object object : objects) {
+            persist(object, 0);
+        }
     }
 
     /**
@@ -478,8 +479,13 @@ public class Archipelago implements AutoCloseable {
                                     Field field = ArchipelagoUtils.getFieldFromBridgeName(startNode.getClass(), rel.type());
                                     //Get the label as the ClassName
                                     Set<Class<?>> supers = this.reflections.getSubTypesOf(ArchipelagoUtils.getClassOf(field));
-                                    Class<?> endClass = ArchipelagoUtils
-                                            .getClassOf(supers, segment.end().labels().iterator().next());
+                                    Class<?> endClass = null;
+                                    if (supers.size() > 0) {
+                                        endClass = ArchipelagoUtils
+                                                .getClassOf(supers, segment.end().labels().iterator().next());
+                                    } else {
+                                        endClass = ArchipelagoUtils.getClassOf(field);
+                                    }
                                     Object endNode = endClass
                                             .getConstructor()
                                             .newInstance();
@@ -553,8 +559,15 @@ public class Archipelago implements AutoCloseable {
                                                 .get(String.class);
                                         OrientDBResultWrapper link = OM.readValue(linkedJson, OrientDBResultWrapper.class);
                                         for (Map<String, Object> linkedProps : link.getResult()) {
-                                            Class<?> endClass = ArchipelagoUtils
-                                                    .getClassOf(supers, (String) linkedProps.get("@class"));
+                                            Class<?> endClass = null;
+                                            if (supers.size() > 0) {
+                                                endClass = ArchipelagoUtils
+                                                        .getClassOf(supers, (String) linkedProps.get("@class"));
+                                            } else {
+
+                                                // TODO reTest
+                                                endClass = ArchipelagoUtils.getClassOf(field);
+                                            }
                                             Object endNode = endClass
                                                     .getConstructor()
                                                     .newInstance();

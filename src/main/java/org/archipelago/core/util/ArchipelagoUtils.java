@@ -166,9 +166,12 @@ public class ArchipelagoUtils {
     }
 
     public static Object formatQueryValue(Object o, boolean stringDate) {
+        return formatQueryValue(o, stringDate, false);
+    }
+    public static Object formatQueryValue(Object o, boolean stringDate, boolean appendString) {
         Object formated = o;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-        if (formated instanceof String) {
+        if (formated instanceof String && appendString) {
             formated = String.format("\"%s\"", formated);
         } else {
             String elm = null;

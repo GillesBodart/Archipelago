@@ -127,7 +127,7 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
                 if (!field.isAnnotationPresent(Bridge.class) && !field.isAnnotationPresent(ArchipelId.class)) {
                     Object o = ArchipelagoUtils.get(clazz, field, object);
                     if (null != o) {
-                        st.add("props", new ValueWrapper(field.getName(), ArchipelagoUtils.formatQueryValue(o, true)));
+                        st.add("props", new ValueWrapper(field.getName(), ArchipelagoUtils.formatQueryValue(o, true, true)));
                     }
                 }
             }

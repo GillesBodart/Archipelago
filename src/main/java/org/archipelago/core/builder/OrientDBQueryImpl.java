@@ -34,7 +34,6 @@ public class OrientDBQueryImpl extends QueryBuilder {
     }
 
 
-
     @Override
     public QueryBuilder where(QueryElement element, ConditionQualifier conditionQualifier) {
         condition(element, conditionQualifier, "WHERE");
@@ -55,7 +54,11 @@ public class OrientDBQueryImpl extends QueryBuilder {
 
     private void condition(QueryElement element, ConditionQualifier conditionQualifier, String logicSym) {
 
-        pending.append(String.format(" %s %s %s %s", logicSym, "" + element.getKey(), conditionQualifier.getSymbol(), ArchipelagoUtils.formatQueryValue(element.getValue())));
+        pending.append(String.format(" %s %s %s %s",
+                logicSym,
+                "" + element.getKey(),
+                conditionQualifier.getSymbol(),
+                ArchipelagoUtils.formatQueryValue(element.getValue(), true, true)));
     }
 
     @Override
