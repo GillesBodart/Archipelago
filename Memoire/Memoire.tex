@@ -619,12 +619,21 @@ antoine.setFriend(gilles);
 arch.persist(gilles);
 \end{lstlisting}
 
-Ainsi avec cette valeur sentinelle nous rompons la boucle de persistance apres avoir atteint la profondeur souhaité.
+Ainsi avec cette valeur sentinelle nous rompons la boucle de persistance après avoir atteint la profondeur souhaité.
+
 \begin{center}
 \includegraphics[scale=0.5]{figures/Persist.png}
 \label{fig:Persist}
 \end{center}
     
+Pour ce qui est de la persistance du lien entre deux objets, nous avons fait le choix de ne créer que des relations orientée et unidirectionnelles, pour spécifier cette information de lien, il faut apposer une annotation \textit{@Bridge} sur la propriété d'où part le lien. Nous avons cependant ajouter la possibilité d'avoir une relation réciproque en spécifiant dans cette annotation que nous voulons que ce soit bidirectionnelle. 
+
+Exemple avec la Classe \textit{Student.java}
+
+\begin{lstlisting}
+
+\end{lstlisting}
+
 
 \subsection{La récupération}
 
@@ -728,7 +737,9 @@ Le mémoire sera conclu avec un explication transversale et complète du framewo
 \end{center}
 
 \chapter*{Code Sources}
-\include{cdSource.tex}
+
+\include{./cdSource}
+
 \chapter*{Bibliographie}
 \begin{itemize}
 \item https://neo4j.com/ consulté à de nombreuses reprises (Neo Technology, Inc)

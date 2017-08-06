@@ -29,8 +29,8 @@
 \contentsline {section}{\numberline {5.1}Utilisation}{20}
 \contentsline {subsection}{\numberline {5.1.1}La persistance}{20}
 \contentsline {subsection}{\numberline {5.1.2}La r\IeC {\'e}cup\IeC {\'e}ration}{21}
-\contentsline {section}{\numberline {5.2}Schema conceptuel}{22}
-\contentsline {section}{\numberline {5.3}Documentation}{22}
+\contentsline {section}{\numberline {5.2}Schema conceptuel}{23}
+\contentsline {section}{\numberline {5.3}Documentation}{23}
 \contentsline {section}{\numberline {5.4}Processus}{23}
 \contentsline {chapter}{\numberline {6}Evaluation}{24}
 \contentsline {section}{\numberline {6.1}Points forts}{24}
