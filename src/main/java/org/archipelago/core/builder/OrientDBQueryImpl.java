@@ -16,13 +16,9 @@ public class OrientDBQueryImpl extends QueryBuilder {
     private List<String> elementToReturn = new ArrayList<>();
 
     public static QueryBuilder init() {
-        return new OrientDBQueryImpl();
-    }
-
-    @Override
-    public QueryBuilder getObject() {
-        pending.append("SELECT ");
-        return this;
+        OrientDBQueryImpl impl = new OrientDBQueryImpl();
+        impl.pending.append("SELECT ");
+        return impl;
     }
 
     @Override

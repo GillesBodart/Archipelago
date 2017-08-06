@@ -45,6 +45,44 @@
          {é}{{\'e}}1
          {è}{{\`e}}1
          {ú}{{\'u}}1   
+         {ù}{{\`u}}1
+         {Á}{{\'A}}1
+         {É}{{\'E}}1
+         {ê}{{\^e}}1
+         {Ê}{{\^E}}1
+}
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{white},
+    literate=
+     *{0}{{{\color{MidnightBlue}0}}}{1}
+      {1}{{{\color{MidnightBlue}1}}}{1}
+      {2}{{{\color{MidnightBlue}2}}}{1}
+      {3}{{{\color{MidnightBlue}3}}}{1}
+      {4}{{{\color{MidnightBlue}4}}}{1}
+      {5}{{{\color{MidnightBlue}5}}}{1}
+      {6}{{{\color{MidnightBlue}6}}}{1}
+      {7}{{{\color{MidnightBlue}7}}}{1}
+      {8}{{{\color{MidnightBlue}8}}}{1}
+      {9}{{{\color{MidnightBlue}9}}}{1}
+      {:}{{{\color{black}{:}}}}{1}
+      {,}{{{\color{black}{,}}}}{1}
+      {\{}{{{\color{ForestGreen}{\{}}}}{1}
+      {\}}{{{\color{ForestGreen}{\}}}}}{1}
+      {[}{{{\color{ForestGreen}{[}}}}{1}
+      {]}{{{\color{ForestGreen}{]}}}}{1},
+      literate=%
+         {é}{{\'e}}1
+         {è}{{\`e}}1
+         {ú}{{\'u}}1
+         {ù}{{\`u}}1
          {Á}{{\'A}}1
          {É}{{\'E}}1
          {ê}{{\^e}}1
@@ -67,6 +105,10 @@
 \usepackage{caption} % pour les légendes
 \usepackage{slashbox} % pour les Tableaux comparatifs
 \usepackage{graphicx} % insérer image
+\usepackage{rotating}
+\usepackage{epstopdf}
+\usepackage{wrapfig}
+
 \usepackage{fancybox}
 \graphicspath{{figures/}} % dossier dans lequel sont les images
 %\usepackage{tikz} 	% outil de modélisation de formes
@@ -168,7 +210,7 @@ A contrario, le mouvement NoSql pour "Not Only SQL" ne se base pas sur un fondem
 \part{État de l'art}
 
 \chapter{L'évolution du NoSql}
-
+\label{NoSqlEvol}
 
 Un SGBD est par définition un ensemble de procédés permettant d'organiser et de stocker des informations (potentiellement de gros volumes). Si stocker et retrouver l'information est un des plus grand challenge d'un SGBD, une communauté de développeur, pensent que ces système devraient pouvoir offrir d'autres fonctionnalités. 
 
@@ -480,10 +522,17 @@ Comme expliqué plus haut, le langage doit être exécuté dans un invite de com
 
 \section{L'exemple parfait}
 
+Pour la suite de ce mémoire, il est primordiale d'avoir un exemple concret de modèle habituellement persisté avec un modèle relationnelle mais qui serait sans le moindre problème transposable dans une BDOG.
 
+\subsection*{L'école}
+
+Imaginons la représentation d'une école composée d'élèves, de professeurs, de classes, de salles techniques, de travailleurs, ... dont   le diagramme de classes se trouve en Annexe (\ref{fig:SchoolDiagram}).
+
+Les liens entre les différents objets peuvent être fortement nombreux, nous pouvons imaginer que les étudiants sont amis, membres de famille, ennemis, amoureux, ... de même que pour les professeurs, ils peuvent avoir les mêmes relations que les étudiants mais de plus peuvent être assigné a des cours, a des classes, ... toutes ces liaisons peuvent être fortement compliquées à représenter sur une base de donnée relationnelles. L'utilisation d'une BDOG semble être tout à fait adéquate. Durant la suite de ce mémoire, nous utiliserons donc ce modèle.
 
 \section{Critères de comparaisons}
-L'établissement d'une liste non exhaustive de critères de comparaisons objectifs sera établie. Elle me permettra de comparer les différentes BDOG. Les possibilités de réponse à ces critère seront, dans les limites du possible ramenée au choix dual, Oui/Non. Cela permettra d'établir un arbre de décision binaire sur base de besoins clairs.\\TODO Dessin arbre binaire
+
+Dans un premier temps, il est primordiale de mettre en place une liste de critères permettant de faciliter le choix de la BDOG.
 
 \section{Comparaison des plus grandes BDOG} 
 \begin{center}
@@ -504,20 +553,138 @@ Communication & BOLT (protocole propriétaire) & REST (via HTTP) \tabularnewline
 \hline
 Évolutivité & L'absence de schéma strict entraîne une grande liberté dans la création et la modification des nœuds & Les classes doivent préalablement configurées sur le serveur \tabularnewline \hline
 Rapidité\footnotemark & 7m 10s & 4m 31s \tabularnewline \hline
+Modèle de représentation & Uniquement graph & multimodèle \tabularnewline \hline
 
 \end{tabular}
 \end{center}
 \footnotetext{10 000 requêtes sur le même graph de donnée avec la même requête au travers d'un appel Java}
 Une idée d'arbre de décision devrait, à la fin de cette section, permettre à un utilisateur muni de ses besoins, de choisir la BDOG la plus adaptée à son projet. 
+
+\section{Piste de normalisation}
+
+Comme nous l'avons présenter dans le point \ref{NoSqlEvol} nous nous apercevons que le problème principal du NoSql est le manque de standard d'utilisation de ces SGBD, pour ce faire, nous allons tenter de lister un des objectifs de normalisations.
+
+\begin{itemize}
+\item Utilisation d'un langage unique
+\item Système de transaction 
+\item Opération de base de persistances CRUD
+\item Possibilité de créer des méthodes stockée 
+\item Contrôle sur les propriétés.
+\end{itemize}
+
+La suite de ce mémoire portant sur le développement d'un framework java, tentera d'offrir ces objectifs de manière abstraite aux développeurs.
+
 \chapter{Le framework}
 \section{Utilisation}
-Dans l'état actuele de l'avancement de ce mémoire, deux pistes sont envisagée:
-\begin{itemize}
-\item Création d'une API qui sera utilisée par l'application dans le but de simplifier les différentes oppérations sur la base de donnée. Exemple Hibernate pour JDBC.\\
-TODO Schema
-\item Création d'un systême d'abstraction qui va englober l'utilisation et de ce fait cacher l'implémentations des différentes oppérations.\\
-TODO Schema 
-\end{itemize}
+
+Ce framework à été basé sur l'utilisation d'annotations, à l'heure actuelle, il permet d'effectuer deux opérations:
+
+\subsection{La persistance}
+
+La persistance est l'élément primordiale de ce framework, afin de ne pas avoir de lien avec une BDOG propre, nous nous sommes basé sur le modèle orienté objet. La persistance de celui-ci ainsi que des éléments qui lui sont lié est paramétrisation dans un fichier de configuration nécessaire à l'initialisation de cet outil.
+
+Le fichier de configuration doit se nommer "config.archipelago.json" et être présent dans les ressources du projet.
+
+Voici le canevas de ce fichier :
+
+\begin{lstlisting}[language=json]
+{
+  "database": {
+    "type": "", // Choix entre NEO4J et ORIENT_DB
+    "username": "",
+    "password": "",
+    "url": "",
+    "name": "", // Nom de la base de donnée
+    "embedded": false, // boolean Optionnel
+    "port": 1234 // 
+  },
+  "deepness": 3, // Profondeur de persistance voir ci-après
+  "domainRootPackage": "org.archipelago.test.domain.school" 
+  // package où se trouve les classes du domaine 
+}
+\end{lstlisting}
+Afin d'assurer la persistance des éléments liés, nous avons opté pour une approche récursive en "depth-first" avec marquage de sommet, en effet, pour créer un lien entre deux éléments, il faut absolument que ceux si soit présent dans la base de donnée.
+
+La propriété "deepness" est primordiale pour la performance de ce framework, elle permet de définir la profondeur de persistance d'un objet. Ce procédé empêche de tomber dans des boucles infinies, courante lorsque nous travaillons avec de modèles ayant de relations bidirectionnelles comme suit : 
+
+\begin{lstlisting}
+Archipelago arch = Archipelago.getInstance();
+
+Student gilles = new Student();
+Student antoine = new Student();
+
+gilles.setFriend(antoine);
+antoine.setFriend(gilles);
+
+arch.persist(gilles);
+\end{lstlisting}
+
+Ainsi avec cette valeur sentinelle nous rompons la boucle de persistance apres avoir atteint la profondeur souhaité.
+\begin{center}
+\includegraphics[scale=0.5]{figures/Persist.png}
+\label{fig:Persist}
+\end{center}
+    
+
+\subsection{La récupération}
+
+La récupération de l'information est la raison pour laquelle nous la stockons. A quoi bon enregistrer une valeur dans une base de donnée si nous ne souhaitons jamais l'utiliser ultérieurement ?
+
+Pour cela, Archipelago vient avec un système de création de requête. Grâce à ce procédé, que votre BDOG soit OrientDB ou Neo4J, vous serez en mesure de récupérer votre objet sans changer votre code source. 
+
+Voici un exemple:
+
+\begin{lstlisting}
+Archipelago arch = Archipelago.getInstance();
+
+ArchipelagoQuery aq = a.getQueryBuilder()
+                .of(Student.class)
+                .build();
+List<Object> nodes = arch.execute(aq);
+\end{lstlisting}
+
+Cette requête va rechercher l'ensemble des étudiants de la base de donnée ainsi que les objets qui leurs sont liés.
+
+Un système de condition est également mit en place, il permet d'affiner le résultat obtenu: 
+
+\begin{lstlisting}
+Archipelago arch = Archipelago.getInstance();
+
+ArchipelagoQuery aq = a.getQueryBuilder()
+                .of(Student.class)
+                .where(of("firstName","Gilles"), ConditionQualifier.Equal)
+                .build();
+List<Object> nodes = arch.execute(aq);
+\end{lstlisting}
+
+Cette requête va quant à elle rechercher les étudiants ayant "Gilles" comme prénom.
+
+Nous pouvons aussi ajouter des opérateurs logique "OU" et "ET" comme suit :
+\begin{lstlisting}
+Archipelago arch = Archipelago.getInstance();
+
+ArchipelagoQuery aq = a.getQueryBuilder()
+                .of(Student.class)
+                .where(of("lastName", "Bodart"), ConditionQualifier.EQUAL)
+                .and(of("firstName", "Gilles"), ConditionQualifier.EQUAL)
+                .or(of("firstName", "Thomas"), ConditionQualifier.EQUAL)
+                .build();
+List<Object> nodes = arch.execute(aq);
+\end{lstlisting}
+
+Le procédé mit en place à l'heure actuel ne permet pas de faire des conditions fortement complexes, il va ajouter l'élément de condition à la suite de la requête actuelle, pour l'exemple précédent, nous aurons donc : 
+
+\begin{lstlisting}[language=SQL]
+lastName = "Bodart" AND ( firstName = "Gilles" OR firstName = "Thomas")
+\end{lstlisting}
+
+ce qui se retournera donc la liste des étudiants ayant "Bodart" comme nom de famille et "Gilles" ou "Thomas" comme prénom. \`A L'heure actuelle, il n'est cependant pas possible d'effectuer des requêtes sur les relations entre les objets, cette piste est primordiale pour une deuxième version de ce framework.
+
+\begin{center}
+\includegraphics[scale=0.4]{figures/query.png}
+\label{fig:Query}
+\end{center}
+
 \section{Schema conceptuel}
 Les schémas conceptuels représentant une modèle exemple annoté des éléments du framework sera fourni et commenté dans cette section. Cela permettra au lecteur une meilleur compréhension.
 \section{Documentation}
@@ -538,24 +705,31 @@ Une introspection sur le projet sera expliqué dans cette section, les idées in
 \section{Archipelago en résumé}
 Le mémoire sera conclu avec un explication transversale et complète du framework, permettant au lecteur de garder une bonne impression sur le nouvel outil que sera ce framework.
 \part{Annexes}
+\begin{sidewaysfigure}[ht]
+    \includegraphics[scale=0.8]{figures/SchoolDiag.png}
+    \caption{Diagramme de Classe du modèle École}
+    \label{fig:SchoolDiagram}
+\end{sidewaysfigure}
 \chapter*{Lexique}
 \begin{center}
-\begin{tabular}[c]{ l l }
- SQL  & Structured Query Language \\ 
- NoSQL  & Not only SQL \\ 
- SGBD  & Système de gestion de base de données \\ 
- SGBDR  & Système de gestion de base de données relationnelles \\ 
- BDOG  & Base de donnée orientée graph \\ 
- JSON  & JavaScript Object Notation \\ 
- Vertex  & Sommet \\ 
- Edge  & bord \\ 
- Cluster  & littéralement grappe, cela représente en informatique un groupe d'élément \\ 
- API  & Application Programming Interface  \\ 
- REST  & Representational state transfer, style d'architecture pour les systèmes hypermédia distribués \\ 
+\begin{tabular}[c]{ l p{14cm} }
+ SQL  & Structured Query Language \\ \hline
+ NoSQL  & Not only SQL \\ \hline
+ SGBD  & Système de gestion de base de données \\ \hline
+ SGBDR  & Système de gestion de base de données relationnelles \\ \hline
+ BDOG  & Base de donnée orientée graph \\ \hline
+ JSON  & JavaScript Object Notation \\ \hline
+ Vertex  & Sommet \\ \hline
+ Edge  & bord \\ \hline
+ Cluster  & littéralement grappe, cela représente en informatique un groupe d'élément \\ \hline
+ API  & Application Programming Interface  \\ \hline
+ REST  & Representational state transfer, style d'architecture pour les systèmes hypermédia distribués \\ \hline
 \end{tabular}
 \end{center}
 
 \chapter*{Code Sources}
+\textbf{ArchipelagoConfig.java}
+\lstinputlisting{./src/main/java/org/archipelago/core/configurator/ArchipelagoConfig.java}
 \chapter*{Bibliographie}
 \begin{itemize}
 \item https://neo4j.com/ consulté à de nombreuses reprises (Neo Technology, Inc)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  3 AUG 2017 00:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  6 AUG 2017 18:12
 entering extended mode
 **./Memoire.tex
 (Memoire.tex
@@ -790,114 +790,22 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 \Gin@req@height=\dimen147
 \Gin@req@width=\dimen148
 )
-(C:\Sand\miktex\tex\latex\fancybox\fancybox.sty
-Package: fancybox 2010/05/15 1.4
+(C:\Sand\miktex\tex\latex\graphics\rotating.sty
+Package: rotating 2016/05/22 v2.16c rotated objects in LaTeX
 
-Style option: `fancybox' v1.4 <2010/05/15> (tvz)
-\@fancybox=\box67
-\shadowsize=\dimen149
-\@Sbox=\box68
-\do@VerbBox=\toks31
-\the@fancyput=\toks32
-\this@fancyput=\toks33
-\EndVerbatimTokens=\toks34
-\Verbatim@Outfile=\write3
-\Verbatim@Infile=\read1
-) (C:\Sand\miktex\tex\latex\graphics\lscape.sty
-Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+(C:\Sand\miktex\tex\latex\base\ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(C:\Sand\miktex\tex\latex\setspace\setspace.sty
-Package: setspace 2011/12/19 v6.7a set line spacing
+\c@r@tfl@t=\count150
+\rotFPtop=\skip71
+\rotFPbot=\skip72
+\rot@float@box=\box67
+\rot@mess@toks=\toks31
 )
-(C:\Sand\miktex\tex\latex\tools\verbatim.sty
-Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks35
-\verbatim@line=\toks36
-\verbatim@in@stream=\read2
-)
-(C:\Sand\miktex\tex\latex\geometry\geometry.sty
-Package: geometry 2010/09/12 v5.6 Page Geometry
+(C:\Sand\miktex\tex\latex\oberdiek\epstopdf.sty
+Package: epstopdf 2016/05/15 v2.6 Conversion with epstopdf on the fly (HO)
 
-(C:\Sand\miktex\tex\generic\oberdiek\ifvtex.sty
-Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-)
-(C:\Sand\miktex\tex\generic\ifxetex\ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-\Gm@cnth=\count150
-\Gm@cntv=\count151
-\c@Gm@tempcnt=\count152
-\Gm@bindingoffset=\dimen150
-\Gm@wd@mp=\dimen151
-\Gm@odd@mp=\dimen152
-\Gm@even@mp=\dimen153
-\Gm@layoutwidth=\dimen154
-\Gm@layoutheight=\dimen155
-\Gm@layouthoffset=\dimen156
-\Gm@layoutvoffset=\dimen157
-\Gm@dimlist=\toks37
-
-(C:\Sand\miktex\tex\latex\geometry\geometry.cfg))
-   defining Unicode char U+00A0 (decimal 160)
-
-(C:\Sand\miktex\tex\latex\ltxmisc\parskip.sty
-Package: parskip 2001/04/09 non-zero parskip adjustments
-)
-(C:\Sand\miktex\tex\latex\titlesec\titlesec.sty
-Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
-\ttl@box=\box69
-\beforetitleunit=\skip71
-\aftertitleunit=\skip72
-\ttl@plus=\dimen158
-\ttl@minus=\dimen159
-\ttl@toksa=\toks38
-\titlewidth=\dimen160
-\titlewidthlast=\dimen161
-\titlewidthfirst=\dimen162
-)
-Package csquotes Info: Checking for multilingual support...
-Package csquotes Info: ... found 'babel' package.
-Package csquotes Info: Adjusting default style.
-Package csquotes Info: Redefining alias 'default' -> 'english'.
- (Memoire.aux)
-\openout1 = `Memoire.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 106.
-
-(C:\Sand\miktex\tex\latex\lm\t1lmr.fd
-File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Info: Redefining \degres on input line 106.
-LaTeX Info: Redefining \dots on input line 106.
-LaTeX Info: Redefining \up on input line 106.
-
-(C:\Sand\miktex\tex\context\base\supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count153
-\scratchdimen=\dimen163
-\scratchbox=\box70
-\nofMPsegments=\count154
-\nofMParguments=\count155
-\everyMPshowfont=\toks39
-\MPscratchCnt=\count156
-\MPscratchDim=\dimen164
-\MPnumerator=\count157
-\makeMPintoPDFobject=\count158
-\everyMPtoPDFconversion=\toks40
-) (C:\Sand\miktex\tex\latex\oberdiek\epstopdf-base.sty
+(C:\Sand\miktex\tex\latex\oberdiek\epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
 (C:\Sand\miktex\tex\latex\oberdiek\grfext.sty
@@ -925,15 +833,132 @@ Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
+))
+(C:\Sand\miktex\tex\latex\wrapfig\wrapfig.sty
+\wrapoverhang=\dimen149
+\WF@size=\dimen150
+\c@WF@wrappedlines=\count151
+\WF@box=\box68
+\WF@everypar=\toks32
+Package: wrapfig 2003/01/31  v 3.6
 )
-\c@lstlisting=\count159
+(C:\Sand\miktex\tex\latex\fancybox\fancybox.sty
+Package: fancybox 2010/05/15 1.4
+
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+\@fancybox=\box69
+\shadowsize=\dimen151
+\@Sbox=\box70
+\do@VerbBox=\toks33
+\the@fancyput=\toks34
+\this@fancyput=\toks35
+\EndVerbatimTokens=\toks36
+\Verbatim@Outfile=\write3
+\Verbatim@Infile=\read1
+) (C:\Sand\miktex\tex\latex\graphics\lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+(C:\Sand\miktex\tex\latex\setspace\setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(C:\Sand\miktex\tex\latex\tools\verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks37
+\verbatim@line=\toks38
+\verbatim@in@stream=\read2
+)
+(C:\Sand\miktex\tex\latex\geometry\geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(C:\Sand\miktex\tex\generic\oberdiek\ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(C:\Sand\miktex\tex\generic\ifxetex\ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count152
+\Gm@cntv=\count153
+\c@Gm@tempcnt=\count154
+\Gm@bindingoffset=\dimen152
+\Gm@wd@mp=\dimen153
+\Gm@odd@mp=\dimen154
+\Gm@even@mp=\dimen155
+\Gm@layoutwidth=\dimen156
+\Gm@layoutheight=\dimen157
+\Gm@layouthoffset=\dimen158
+\Gm@layoutvoffset=\dimen159
+\Gm@dimlist=\toks39
+
+(C:\Sand\miktex\tex\latex\geometry\geometry.cfg))
+   defining Unicode char U+00A0 (decimal 160)
+
+(C:\Sand\miktex\tex\latex\ltxmisc\parskip.sty
+Package: parskip 2001/04/09 non-zero parskip adjustments
+)
+(C:\Sand\miktex\tex\latex\titlesec\titlesec.sty
+Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
+\ttl@box=\box71
+\beforetitleunit=\skip73
+\aftertitleunit=\skip74
+\ttl@plus=\dimen160
+\ttl@minus=\dimen161
+\ttl@toksa=\toks40
+\titlewidth=\dimen162
+\titlewidthlast=\dimen163
+\titlewidthfirst=\dimen164
+)
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'english'.
+ (Memoire.aux)
+\openout1 = `Memoire.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 148.
+
+(C:\Sand\miktex\tex\latex\lm\t1lmr.fd
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Info: Redefining \degres on input line 148.
+LaTeX Info: Redefining \dots on input line 148.
+LaTeX Info: Redefining \up on input line 148.
+
+(C:\Sand\miktex\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count155
+\scratchdimen=\dimen165
+\scratchbox=\box72
+\nofMPsegments=\count156
+\nofMParguments=\count157
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count158
+\MPscratchDim=\dimen166
+\MPnumerator=\count159
+\makeMPintoPDFobject=\count160
+\everyMPtoPDFconversion=\toks42
+)
+\c@lstlisting=\count161
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: longtable package is loaded.
-
-(C:\Sand\miktex\tex\latex\caption\ltcaption.sty
+ (C:\Sand\miktex\tex\latex\caption\ltcaption.sty
 Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
+Package caption Info: rotating package is loaded.
+Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 *geometry* driver: auto-detecting
@@ -970,39 +995,39 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 129.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 171.
 
 (C:\Sand\miktex\tex\latex\lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 129.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 171.
 
  (C:\Sand\miktex\tex\latex\lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 129
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 171
 .
 (C:\Sand\miktex\tex\latex\lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 129
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 171
 .
 
 (C:\Sand\miktex\tex\latex\lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 129.
+(Font)              <12> on input line 171.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 129.
+(Font)              <8> on input line 171.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 129.
-LaTeX Font Info:    Try loading font information for U+msa on input line 129.
+(Font)              <6> on input line 171.
+LaTeX Font Info:    Try loading font information for U+msa on input line 171.
 
 (C:\Sand\miktex\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 129.
+LaTeX Font Info:    Try loading font information for U+msb on input line 171.
 
 (C:\Sand\miktex\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1010,7 +1035,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <figures/unamur.pdf, id=1, 130.32689pt x 170.3163pt>
 File: figures/unamur.pdf Graphic file (type pdf)
  <use figures/unamur.pdf>
-Package pdftex.def Info: figures/unamur.pdf used on input line 135.
+Package pdftex.def Info: figures/unamur.pdf used on input line 177.
 (pdftex.def)             Requested size: 193.47578pt x 252.86719pt.
 
 [1
@@ -1028,31 +1053,31 @@ unamur.pdf>] (Memoire.toc [2
 
 ]
 Chapter 1.
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 185.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 227.
 
 (C:\Sand\miktex\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 185.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 227.
  [6
 
 ]
-Overfull \hbox (0.85796pt too wide) in paragraph at lines 204--205
+Overfull \hbox (0.85796pt too wide) in paragraph at lines 246--247
 \T1/lmr/m/n/12 L'utilisation des SGBD re-la-tion-nelle pour tout type de prob-l
 ème est révolue. Grâce à l'apparition
  []
 
 [7] [8]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 228.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 270.
 
 (C:\Sand\miktex\tex\latex\lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [9
 
 ] [10]
-Overfull \hbox (11.88756pt too wide) in paragraph at lines 288--289
+Overfull \hbox (11.88756pt too wide) in paragraph at lines 330--331
 []\T1/lmr/m/n/12 OrientDB vient dans sa ver-sion com-mu-nity avec un sys-tème d
 e clus-ter-ing per-me-t-tant à l'utilisateur
  []
@@ -1061,11 +1086,11 @@ e clus-ter-ing per-me-t-tant à l'utilisateur
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 329.
+(Font)              <10> on input line 371.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 329.
+(Font)              <7> on input line 371.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 329.
+(Font)              <5> on input line 371.
  [11] [12]
 Chapter 3.
 [13
@@ -1076,40 +1101,56 @@ Chapter 3.
 Chapter 4.
 [18
 
-]
+] [19]
 Chapter 5.
-[19
-
-]
-Chapter 6.
 [20
+
+] <figures/Persist.png, id=87, 809.0225pt x 472.76625pt>
+File: figures/Persist.png Graphic file (type png)
+
+<use figures/Persist.png>
+Package pdftex.def Info: figures/Persist.png used on input line 624.
+(pdftex.def)             Requested size: 404.51027pt x 236.38254pt.
+ [21 <./figures/Persist.png>]
+<figures/query.png, id=93, 999.735pt x 721.69624pt>
+File: figures/query.png Graphic file (type png)
+ <use figures/query.png>
+Package pdftex.def Info: figures/query.png used on input line 684.
+(pdftex.def)             Requested size: 399.88692pt x 288.67339pt.
+
+[22] [23 <./figures/query.png>]
+Chapter 6.
+[24
 
 ]
 Chapter 7.
-[21
+[25
 
-] [22
+] [26
+
+] <figures/SchoolDiag.png, id=111, 811.833pt x 255.95625pt>
+File: figures/SchoolDiag.png Graphic file (type png)
+
+<use figures/SchoolDiag.png>
+Package pdftex.def Info: figures/SchoolDiag.png used on input line 709.
+(pdftex.def)             Requested size: 649.46727pt x 204.76526pt.
+ [27 <./figures/SchoolDiag.png>] [28
 
 ]
-Overfull \hbox (56.72067pt too wide) in paragraph at lines 543--556
- [] 
- []
+(src/main/java/org/archipelago/core/configurator/ArchipelagoConfig.java
+[29
 
-[23
-
-] [24
-
-] [25
+]) [30] [31
 
 ] (Memoire.aux) ) 
 Here is how much of TeX's memory you used:
- 10901 strings out of 493333
- 148967 string characters out of 3144820
- 285471 words of memory out of 3000000
- 14185 multiletter control sequences out of 15000+200000
- 76768 words of font info for 65 fonts, out of 3000000 for 9000
+ 11178 strings out of 493333
+ 152740 string characters out of 3144820
+ 291312 words of memory out of 3000000
+ 14440 multiletter control sequences out of 15000+200000
+ 79563 words of font info for 66 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,13n,42p,844b,1658s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,13n,42p,844b,1659s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/f
 onts/enc/dvips/lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/public/amsfonts/lat
 xfont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Sand/mikt
@@ -1119,9 +1160,9 @@ e1/public/lm/lmr6.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr7.pfb><C:/Sand/m
 iktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmsy
 10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on Memoire.pdf (25 pages, 453307 bytes).
+Output written on Memoire.pdf (31 pages, 556392 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
+ 165 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

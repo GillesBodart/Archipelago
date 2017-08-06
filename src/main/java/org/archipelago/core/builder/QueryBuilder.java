@@ -37,8 +37,6 @@ public abstract class QueryBuilder {
         return this;
     }
 
-    public abstract QueryBuilder getObject();
-
     public QueryBuilder with(Object descriptor) {
         this.descriptor = descriptor;
         return this;

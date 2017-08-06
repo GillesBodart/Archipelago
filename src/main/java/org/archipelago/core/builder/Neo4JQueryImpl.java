@@ -16,13 +16,9 @@ public class Neo4JQueryImpl extends QueryBuilder {
     private List<String> elementToReturn = new ArrayList<>();
 
     public static QueryBuilder init() {
-        return new Neo4JQueryImpl();
-    }
-
-    @Override
-    public QueryBuilder getObject() {
-        pending.append("MATCH ");
-        return this;
+        Neo4JQueryImpl impl = new Neo4JQueryImpl();
+        impl.pending.append("MATCH ");
+        return impl;
     }
 
     @Override

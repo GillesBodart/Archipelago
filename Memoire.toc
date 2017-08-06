@@ -23,17 +23,20 @@
 \contentsline {chapter}{\numberline {4}Application possibles des BDOG}{18}
 \contentsline {section}{\numberline {4.1}L'exemple parfait}{18}
 \contentsline {section}{\numberline {4.2}Crit\IeC {\`e}res de comparaisons}{18}
-\contentsline {section}{\numberline {4.3}Comparaison des plus grandes BDOG}{18}
-\contentsline {chapter}{\numberline {5}Le framework}{19}
-\contentsline {section}{\numberline {5.1}Utilisation}{19}
-\contentsline {section}{\numberline {5.2}Schema conceptuel}{19}
-\contentsline {section}{\numberline {5.3}Documentation}{19}
-\contentsline {section}{\numberline {5.4}Processus}{19}
-\contentsline {chapter}{\numberline {6}Evaluation}{20}
-\contentsline {section}{\numberline {6.1}Points forts}{20}
-\contentsline {section}{\numberline {6.2}Points faibles}{20}
-\contentsline {section}{\numberline {6.3}Retour d'information}{20}
-\contentsline {chapter}{\numberline {7}Conclusion}{21}
-\contentsline {section}{\numberline {7.1}Piste de r\IeC {\'e}flexions}{21}
-\contentsline {section}{\numberline {7.2}Archipelago en r\IeC {\'e}sum\IeC {\'e}}{21}
-\contentsline {part}{III\hspace {1em}Annexes}{22}
+\contentsline {section}{\numberline {4.3}Comparaison des plus grandes BDOG}{19}
+\contentsline {section}{\numberline {4.4}Piste de normalisation}{19}
+\contentsline {chapter}{\numberline {5}Le framework}{20}
+\contentsline {section}{\numberline {5.1}Utilisation}{20}
+\contentsline {subsection}{\numberline {5.1.1}La persistance}{20}
+\contentsline {subsection}{\numberline {5.1.2}La r\IeC {\'e}cup\IeC {\'e}ration}{21}
+\contentsline {section}{\numberline {5.2}Schema conceptuel}{23}
+\contentsline {section}{\numberline {5.3}Documentation}{23}
+\contentsline {section}{\numberline {5.4}Processus}{23}
+\contentsline {chapter}{\numberline {6}Evaluation}{24}
+\contentsline {section}{\numberline {6.1}Points forts}{24}
+\contentsline {section}{\numberline {6.2}Points faibles}{24}
+\contentsline {section}{\numberline {6.3}Retour d'information}{24}
+\contentsline {chapter}{\numberline {7}Conclusion}{25}
+\contentsline {section}{\numberline {7.1}Piste de r\IeC {\'e}flexions}{25}
+\contentsline {section}{\numberline {7.2}Archipelago en r\IeC {\'e}sum\IeC {\'e}}{25}
+\contentsline {part}{III\hspace {1em}Annexes}{26}

@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.builder.ArchipelagoQuery;
+import org.archipelago.core.builder.ConditionQualifier;
 import org.archipelago.core.domain.GeneratedScript;
 import org.archipelago.core.domain.types.ArchipelagoBuilderType;
 import org.archipelago.core.domain.types.ArchipelagoFeederType;
@@ -74,12 +75,13 @@ public class MainTest {
         students.add(benjamin);
         a.persist(students);*/
         LocalDateTime start = LocalDateTime.now();
-        /*ArchipelagoQuery aq = a.getQueryBuilder()
-                .getObject()
+        ArchipelagoQuery aq = a.getQueryBuilder()
                 .of(Student.class)
-                .where(of("firstName", "Thomas"), ConditionQualifier.EQUAL)
+                .where(of("lastName", "Bodart"), ConditionQualifier.EQUAL)
+                .and(of("firstName", "gilles"), ConditionQualifier.EQUAL)
+                .or(of("firstName", "Thomas"), ConditionQualifier.EQUAL)
                 .build();
-        a.execute(aq);*/
+        a.execute(aq);
 
         LocalDateTime end = LocalDateTime.now();
         Duration dur = Duration.between(start, end);
