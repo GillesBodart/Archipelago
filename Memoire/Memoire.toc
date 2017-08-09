@@ -28,15 +28,15 @@
 \contentsline {chapter}{\numberline {5}Le framework}{20}
 \contentsline {section}{\numberline {5.1}Utilisation}{20}
 \contentsline {subsection}{\numberline {5.1.1}La persistance}{20}
-\contentsline {subsection}{\numberline {5.1.2}La r\IeC {\'e}cup\IeC {\'e}ration}{21}
+\contentsline {subsection}{\numberline {5.1.2}La r\IeC {\'e}cup\IeC {\'e}ration}{22}
 \contentsline {section}{\numberline {5.2}Schema conceptuel}{23}
-\contentsline {section}{\numberline {5.3}Documentation}{23}
-\contentsline {section}{\numberline {5.4}Processus}{23}
-\contentsline {chapter}{\numberline {6}Evaluation}{24}
-\contentsline {section}{\numberline {6.1}Points forts}{24}
-\contentsline {section}{\numberline {6.2}Points faibles}{24}
-\contentsline {section}{\numberline {6.3}Retour d'information}{24}
-\contentsline {chapter}{\numberline {7}Conclusion}{25}
-\contentsline {section}{\numberline {7.1}Piste de r\IeC {\'e}flexions}{25}
-\contentsline {section}{\numberline {7.2}Archipelago en r\IeC {\'e}sum\IeC {\'e}}{25}
-\contentsline {part}{III\hspace {1em}Annexes}{26}
+\contentsline {section}{\numberline {5.3}Documentation}{24}
+\contentsline {section}{\numberline {5.4}Processus}{24}
+\contentsline {chapter}{\numberline {6}Evaluation}{25}
+\contentsline {section}{\numberline {6.1}Points forts}{25}
+\contentsline {section}{\numberline {6.2}Points faibles}{25}
+\contentsline {section}{\numberline {6.3}Retour d'information}{25}
+\contentsline {chapter}{\numberline {7}Conclusion}{26}
+\contentsline {section}{\numberline {7.1}Piste de r\IeC {\'e}flexions}{26}
+\contentsline {section}{\numberline {7.2}Archipelago en r\IeC {\'e}sum\IeC {\'e}}{26}
+\contentsline {part}{III\hspace {1em}Annexes}{27}

@@ -161,7 +161,7 @@ Ann\'ee acad\'emique 2017--2018
 \large
 \begin{spacing}{1.2}
 \begin{center}
-\textbf{Archipelago : Un framework de peristence pour bases de données orientées graph.}
+\textbf{Archipelago : Un framework de persistance pour bases de données orientées graph.}
 \\
 \vspace{0.5cm}
 Gilles Bodart
@@ -201,67 +201,68 @@ Master en Sciences Informatiques.
 
 \chapter*{Introduction}
 
-De nos jours, les unités de stockages sont de plus en plus accessible au grand public, les différentes entreprises impliquées dans le développement des systèmes de gestion de base de données l'ont bien compris. Depuis plusieurs années, L'hégémonie des bases de données relationnelles se fait de moins en moins écrasante, le solutions alternatives du NoSql séduisent jours après jours de grandes entreprises. 
+De nos jours, les unités de stockage sont de plus en plus accessibles au grand public, les différentes entreprises impliquées dans le développement des systèmes de gestion de base de données l'ont bien compris. Depuis plusieurs années, l'hégémonie des bases de données relationnelles se fait de moins en moins écrasante, les solutions alternatives du NoSql séduisent jour après jour de grandes entreprises. 
 
-La grande force des SGBDR provient des fondement théorique mis en place en 1970 par Edgar Frank Codd, IBM défini le langage "Structured Query Language" (SQL) pour utiliser ce système. Cette normalisation de la représentation de l'information génère un sentiment de sûreté pour les architectes de logiciels.
+La grande force des SGBDR provient des fondements théoriques mis en place en 1970 par Edgar Frank Codd. IBM définit le langage "Structured Query Language" (SQL) pour utiliser ce système. Cette normalisation de la représentation de l'information génère un sentiment de sûreté pour les architectes de logiciels.
 
-A contrario, le mouvement NoSql pour "Not Only SQL" ne se base pas sur un fondement théorique commun. Que ce soit la théorie des graphs, les systèmes de hash key/value avec partitions, ... chaque système choisit ce sur quoi il va se baser. Mais si il existait une sorte de contrat liant les SGBD NoSql entre eux afin d'assurer une cohérence d'utilisation, ce mémoire va se concentrer sur les implémentations de la théorie des graph, en essayant de mettre en place un système de comparaison, nous allons tenter de spécifier certains objectifs commun et développer un framework Java permettant d'utiliser de manière agnostique l'une ou l'autre base de donnée.
+A contrario, le mouvement NoSql pour "Not Only SQL" ne se base pas sur un fondement théorique commun. Que ce soient la théorie des graphs, les systèmes de hash key/value avec partitions, ... chaque système choisit ce sur quoi il va se baser. Mais s'il existait une sorte de contrat liant les SGBD NoSql entre eux afin d'assurer une cohérence d'utilisation, ce mémoire va se concentrer sur les implémentations de la théorie des graph, en essayant de mettre en place un système de comparaison, nous allons tenter de spécifier certains objectifs communs et développer un framework Java permettant d'utiliser de manière agnostique l'une ou l'autre base de donnée.
  
 \part{État de l'art}
 
 \chapter{L'évolution du NoSql}
 \label{NoSqlEvol}
 
-Un SGBD est par définition un ensemble de procédés permettant d'organiser et de stocker des informations (potentiellement de gros volumes). Si stocker et retrouver l'information est un des plus grand challenge d'un SGBD, une communauté de développeur, pensent que ces système devraient pouvoir offrir d'autres fonctionnalités. 
+Un SGBD est par définition un ensemble de procédés permettant d'organiser et de stocker des informations (potentiellement de gros volumes). Si stocker et retrouver l'information est un des plus grand challenge d'un SGBD, une communauté de développeurs, pense que ces systèmes devraient pouvoir offrir d'autres fonctionnalités. 
 
-A partir des années 1980, le modèle relationnelle supplante les autres formes de structures de donnée.
+A partir des années 1980, le modèle relationnel supplante les autres formes de structures de données.
 
-Les évolutions logicielles suivant naturellement les évolutions matérielles, la généralisation des interconnexion des réseaux, l'augmentation de la bande passante, la diminution du cout des machines, la miniaturisation des espaces de stockage, ... de nouvelles opportunités sont arrivé au XXI\up{e} siècle.
+Les évolutions logicielles suivant naturellement les évolutions matérielles, la généralisation des interconnexions des réseaux, l'augmentation de la bande passante, la diminution du coût des machines, la miniaturisation des espaces de stockage, ... de nouvelles opportunités sont apparues au XXI\up{e} siècle.
 
-Les entreprises comme Google, Amazon, Facebook, Twitter, ... sont tour à tour arrivés aux limites du modèle Relationnel. Que ce soit a cause de volumes astronomiques (plus de 100 pétaoctets ) ou du nombre de requêtes par secondes, il fallut développer une nouvelle façon de gérer les données.
+Les entreprises comme Google, Amazon, Facebook, Twitter, ... sont tour à tour arrivées aux limites du modèle relationnel. Que ce soit à cause de volumes astronomiques (plus de 100 pétaoctets) ou du nombre de requêtes par seconde, il fallut développer une nouvelle façon de gérer les données.
 
-Le NoSql découle de ce genre de problèmes, ces modèles arrivent avec des approche optimisée pour des secteurs spécifiques. \\
-Comme ces modèles représentent ce qui n'est pas Relationnel, par soucis de classification, nous allons distinguer 4 usages principaux :
+Le NoSql découle de ce genre de problèmes, ces modèles arrivent avec des approches optimisées pour des secteurs spécifiques. \\
+Comme ces modèles représentent ce qui n'est pas relationnel, par souci de classification, nous allons distinguer 4 usages principaux :
 
 \begin{itemize}
 \item Performances : L'objectif du SGBD sera d'augmenter au maximum les performances de la manipulation des données. 
-\item Structures simples : Pour s'affranchir de la rigidité du modèle relationnel, la structure sera généralement simplifiée, en utilisant une représentation plus souple comme le JSON par exemple.
-\item Structures spécifiques : Certain moteur NoSql sont liés a des besoins spécifiques, la structure de représentation de donnée sera dès lors focalisée sur un cas d'utilisation.
-\item Volumétries : Un des principal aspect important des SGBD NoSql est leur capacité de gérer la montée en charge de données. La distribution des traitements au travers de plusieurs clusters est un facteur très important dans la plupart des applications BigData.
+\item Structures simples : Pour s’affranchir de la rigidité du modèle relationnel, la structure sera généralement simplifiée, en utilisant une représentation plus souple comme le JSON par exemple.
+\item Structures spécifiques : Certains moteurs NoSql sont liés à des besoins spécifiques. La structure de représentation de données sera dès lors focalisée sur un cas d'utilisation.
+\item Volumétries : Un des principaux aspects importants des SGBD NoSql est leur capacité de gérer la montée en charge de données. La distribution des traitements au travers de plusieurs clusters est un facteur essentiel dans la plupart des applications BigData.
 \end{itemize} 
 
-Et nous allons aussi distinguer 4 grandes familles de représentation de Schéma de données :
+Nous allons aussi distinguer 4 grandes familles de représentation de schéma de données :
 
 \begin{itemize}
-\item Document : L'utilisation de format spécifiques tels que le très rependu JSON permet de stocker les données sur base de fichier.
-\item Clé / Valeur : Le système le plus simple, il manipule des paires de clé/valeurs, ou accède à un élément en fonction d'une table de hachage.
+\item Document : L'utilisation de formats spécifiques tels que le très répandu "JSON" permet de stocker les données sur base de fichier.
+\item Clé / Valeur : Le système le plus simple, il manipule des paires de clé/valeur, ou accède à un élément en fonction d'une table de hachage.
 \item Colonne : Inspiré de Google BigTable, la structure ressemble à la table relationnelle. On peut la comparer à une table de hachage qui va référencer une ou plusieurs colonnes.
-\item Graph : La famille Graph se distingue du fait que les entités ne sont pas considéré comme des entités indépendante, mais que la relation être ces objets est tout aussi important que le contenu.
+\item Graph : La famille Graph se distingue du fait que les entités ne sont pas considéré comme des entités indépendantes, mais que la relation entre ces objets est tout aussi importante que le contenu.
 \end{itemize} 
 
-Les implémentations de bases de données de types graph sont de plus en plus nombreuses, les relations entre les éléments permettent de parcourir le graph de manière très performante les rendent de plus en plus intéressante pour les entreprises possédant des millions de données. L'utilisation de ce genre de SGBD est dès lors tout a fait recommandé pour des entreprises intéressé entre les relations de ces donnés tels que des profils sociaux, des liens de cause a effet, des liens géographiques et bien d'autre.
+Les implémentations de bases de données de types graph sont de plus en plus nombreuses, les relations entre les éléments permettent de parcourir le graph de manière très performante les rendant de plus en plus intéressantes pour les entreprises possédant des millions de données. L'utilisation de ce genre de SGBD est dès lors tout à fait recommandée pour des entreprises intéressées entre les relations de ces données telles que des profils sociaux, des liens de cause à effet, des liens géographiques et bien d’autres encore.
 
 \section*{Pourquoi utiliser une BDOG plutôt qu'une BD relationnelle comme Oracle ou MySql ?}
 
-L'utilisation des SGBD relationnelle pour tout type de problème est révolue. Grâce à l'apparition de SGBD NoSQL spécifique permet dès à présent une approche plus personnalisée. En effet, comme tout système, le relationnelle a ses limites, l'approche actuelle des entreprises est plus orienté "Big Data", elles veulent tout stocker afin d'avoir le plus d'informations possible, or du fait que le relationnelle cadenasse les données dans une table préalablement définie, on se doit de tronquer l'information ou alors, mettre a jour le schéma de définition des tables. Dans une BDOG tel que Neo4J, nous pouvons ajouter toutes les informations que nous voulons sans condition préalable, cette approche oriente plus un contrôle de l'intégrité des donnée aux applications.
+L’utilisation des SGBD relationnelles pour tout type de problème est révolue. L’apparition de SGBD NoSQL spécifique, permet dès à présent une approche plus personnalisée. En effet, comme tout système, le relationnel a ses limites. L’approche actuelle des entreprises est plus orientée "Big Data" ; les entreprises veulent tout stocker afin d’avoir le plus d’informations possible. Or comme le relationnel cadenasse les données dans une table préalablement définie, on se doit de tronquer l’information ou de mettre à jour le schéma de définition des tables. Dans une BDOG telle que Neo4J, nous pouvons ajouter toutes les informations que nous voulons sans condition préalable. Cette approche permet davantage un contrôle de l’intégrité des données aux applications.
 
-Si l'objectif de l'applicatif est de représenter un système récursif comme une arborescence de fichier, de la généalogie, ... le modèle relationnelle se basera sur une table faisant référence à elle même, l'utilisateur devra donc réaliser une jointure par profondeur, si l'arborescence descend jusqu'à 15 niveau, cela peut devenir problématique. L'approche BDOG permet de parcourir une arborescence sans pour autant charger l'ensemble des nœuds ayant le même label, plus besoins de projection ensembliste pour pouvoir continuer le chemin.
+Si l’objectif de l’applicatif est de représenter un système récursif comme une arborescence de fichier, de la généalogie, ... le modèle relationnel se basera sur une table faisant référence à elle-même, l’utilisateur devra donc réaliser une jointure par profondeur. Si l’arborescence descend jusqu’à 15 niveaux, cela peut devenir problématique. L’approche BDOG permet de parcourir une arborescence sans pour autant charger l’ensemble des nœuds ayant le même label. Dès lors, plus besoin de projection « d’ensemble" pour pouvoir continuer le chemin.
 
-En relationnel, il existe de nombreux moyen d'historiser les données, cependant, lorsque le schéma comprend des relations cycliques, cette opération devient plus complexe. L'utilisation d'un BDOG rend ça plus simple, il suffit de créer un nouveau noeud avec les anciennes données, lier ce noeud avec une relation historique en y spécifiant la date de mise à jour et ensuite changer les valeur du noeud référencé par le cycle. Ce procédé peut être mis au point dans n'importe quelle représentations et ne nécessite aucune refonte globale du modèle de donnée.
+En relationnel, il existe de nombreux moyens d’historiser les données, cependant, lorsque le schéma comprend des relations cycliques, cette opération devient plus complexe. L’utilisation d’un BDOG rend la démarche plus simple, il suffit de créer un nouveau nœud avec les anciennes données, lier ce nœud avec une relation historique en y spécifiant la date de mise à jour, et ensuite de changer les valeurs du nœud référencé par le cycle. Ce procédé peut être mis au point dans n’importe quelle représentation et ne nécessite aucune refonte globale du modèle de données.
 
-\section*{On parle de Base de donnée orientée graph mais quelle est la différence entre une relation entre deux noeud et une relation entre deux table ?}
-Les relations entre deux tables se font à l'aide de clé étrangère définie lors de la création du schéma de données elles apporte de l'information supplémentaire en permettant de réaliser des jointure entre plusieurs tables. 
+\section*{On parle de base de données orientée graph mais quelle est la différence entre une relation entre deux nœuds et une relation entre deux tables ?}
+Les relations entre deux tables se font à l’aide de clé étrangère définie lors de la création du schéma de données. Elles apportent de l’information supplémentaire en permettant de réaliser des jointures entre plusieurs tables.
 
-La relation dans les BDOG est une information à part entière, elle peut posséder autant de donnée que le noeud lui même, la force de ce genre de système est de pouvoir lier deux noeud distinct par n'importe quelle relation et ce à tout moment. 
+La relation dans les BDOG est une information à part entière, elle peut posséder autant de données que le nœud lui-même, la force de ce genre de système est de pouvoir lier deux nœuds distincts par n’importe quelle relation et ce, à tout moment.
 
 \chapter{Backgroud technique}
 \section{Neo4J}
 
 \subsection{Description}
 
-Créé par Neo Technologie, une sociétée suédo-américaine, elle est actuellement (selon db-engines.com) la base de donnée orienté graph la plus utilisée dans le monde. Développé en java sous licence GPL V3, AGPL ou licence commerciale, Neo4J représente les données sous formes de "Noeuds" et de "Relations", chacun de ces éléments peuvent contenir une ou plusieurs propriétés. Les propriétés sont des couples clés/valeurs de type simple, comme des chaines de caractères ou des valeurs numériques, des coordonnées spatiales, ... 
+Créé par Neo Technologie, une société américaine et suédoise, elle est actuellement (selon db-engines.com) la base de donnée orientée graph, la plus utilisée dans le monde. Développé en java sous licence GPL V3, AGPL ou licence commerciale, Neo4J représente les données sous forme de "Nœuds" et de "Relations". Chacun de ces éléments peuvent contenir une ou plusieurs propriétés. Les propriétés sont des couples clés/valeurs de type simple, comme des chaines de caractères ou des valeurs numériques, des coordonnées spatiales, ...
 
-Une des particularité de Neo4J est l'absence de structure définie, un noeud peut être labellisé afin de permettre de travailler sur un ensemble d'éléments, mais il n'y aura aucune contrainte sur les propriétés du noeud. Cette particularité rend ce SGBD bien adapté pour les modèles évoluant fréquemment.
+Une des particularités de Neo4J est l’absence de structure définie, un nœud peut être labellisé afin de permettre de travailler sur un ensemble d’éléments, mais il n’y aura aucune contrainte sur les propriétés du nœud. Cette particularité rend ce SGBD bien adapté pour les modèles évoluant fréquemment.
+
 
 \subsection{Langage de requête}
 
@@ -279,7 +280,7 @@ CREATE (marie)-[:PARENT_OF]->(bebe)
 CREATE (gilles)-[:PARENT_OF]->(bebe)
 \end{lstlisting}
 
-Ces requêtes vont créer 5 noeud et 4 relations PARENT\_OF, nous pouvons aisément comprendre que "Mamyco" est parente de "Marie"
+Ces requêtes vont créer 5 nœuds et 4 relations PARENT\_OF, nous pouvons aisément comprendre que "Mamyco" est parente de "Marie"
 
 \begin{lstlisting}[language=java, frame=single]
 MATCH (p:Person)-[:PARENT_OF]->(c:Person) 
@@ -287,7 +288,7 @@ RETURN DISTINCT (p)
 	
 \end{lstlisting}
 
-Cette query va retourner tout les nœuds distinct qui ont une relation :PARENT\_OF avec un autre noeud.
+Cette query va retourner tous les nœuds distincts qui ont une relation :PARENT\_OF avec un autre nœud.
 
 \begin{lstlisting}[language=java, frame=single]
 MATCH (gp:Person)-[:PARENT_OF*2]->(c:Person) 
@@ -295,39 +296,42 @@ RETURN DISTINCT (gp)
 	
 \end{lstlisting}
 
-Celle-ci quant à elle va retourner toutes les personnes qui sont parent de parent et donc grand parents. 
+Celle-ci quant à elle va retourner toutes les personnes qui sont parent de parent et donc grand-parents. 
 
-ces deux exemples peuvent montrer la force de l'utilisation d'un SGBD de type graph pour représenter un ensemble hierarchique de données par rapport au SGBD relationnelles qui nécessiterai une double jointure sur la Table "Person".
+Ces deux exemples peuvent montrer la force de l’utilisation d’un SGBD de type graph pour représenter un ensemble hiérarchique de données par rapport aux SGBD relationnels qui nécessiteraient une double jointure sur la Table "Person".
 
 \subsection{Communication}
 
-Neo4J peut être utilisé sous plusieurs formes. 
+Neo4J peut être utilisé sous plusieurs formes.
 
 La première option est une solution embarquée, ce choix peut être très intéressant en alternatif au très célèbre SQLite relationnel.
 
-La deuxième, pour toute application distribuée, est une solution autonome pouvant tourner comme un service sur tout type de plateforme. Le protocol "Bolt", développé par "Néo Technologie" est grandement conseillé pour communiquer avec ces serveurs distants. 
+La deuxième, pour toute application distribuée, est une solution autonome pouvant tourner comme un service sur tout type de plateforme. Le protocole "Bolt", développé par "Néo Technologie" est grandement conseillé pour communiquer avec ces serveurs distants.
 
-Son utilisation est simple grâce à l'utilisation de la libraire native à Néo4J pour java (neo4j-java-drive) ou avec l'utilisation de l'API Rest déployée en même temps que le SGBD.
+Son utilisation est simple grâce à l’utilisation de la librairie native à Néo4J pour java (neo4j-java-drive) ou avec l’utilisation de l’API Rest déployée en même temps que le SGBD.
 
 \section{OrientDB}
 
 \subsection{Description}
 
-OrientDB est un SGBD initialement développé en C++(Orient ODBMS) ensuite repris en 2010 en Java par Luca Garulli dans une version multi-modèle sous licence Apache 2.0, GPL et AGPL. actuellement 3ème mondial (selon db-engines.com) il offre de nombreuses fonctionnalités intéressante. 
+OrientDB est un SGBD initialement développé en C++ (Orient ODBMS), repris ensuite en 2010 en Java par Luca Garulli dans une version multi-modèle sous licence Apache 2.0, GPL et AGPL. Actuellement 3ème mondial (selon db-engines.com) il offre de nombreuses fonctionnalités intéressantes.
 
-OrientDB est base de donnée associant Document et Graph. Elle combine la rapidité et la flexibilité du type document ainsi que les fonctionnalités de relations des bases de données graph. 
+OrientDB est base de données associant Document et Graph. Elle combine la rapidité et la flexibilité du type document ainsi que les fonctionnalités de relations des bases de données graph.
+
 
 Ce SGBD est composé de trois grands éléments 
 
 \begin{itemize}
-\item Document \& Vertex : Source de contenu, ces élements peuvent être considéré comme des container de données, on peut le comparer avec la ligne d'une base de données relationnelle.
-\item Links \& Edge : Une arrête orientés reliant deux éléments non nécessairement distinct.
+\item Document \& Vertex : Source de contenu, ces éléments peuvent être considérés comme des containers de données. On peut le comparer avec la ligne d'une base de données relationnelles.
+\item Links \& Edge : Une arrête orientée reliant deux éléments non nécessairement distincts.
 \item Property : Typée ou embarquée dans un document JSON, ceci va représenter le contenu de l'information. Ces propriétés sont bien entendu primordiales pour ordonner, rechercher, ...
 \end{itemize}
 
 Chaque Document ou Vertex appartient à une "Class", celle-ci peut être strictement définie ou plus laxiste. Comme dans la programmation orientée objet, OrientDB offre le principe de polymorphisme avec un système d'héritage entre les classes. 
 
-OrientDB vient dans sa version community avec un système de clustering permettant à l'utilisateur de correctement gérer les montées en charges. chaque document est identifié avec une partie désignant le cluster dans lequel l'information est stockée et une autre partie désignant sa position dans ce dernier (exemple @rid: 10:12). Chaque classe peut être associée a un ou plusieur cluster, permettant d'optimiser les accès dans des ensembles  plus petits.
+Chaque Document ou Vertex appartient à une "Class", celle-ci peut être strictement définie ou plus laxiste. Comme dans la programmation orientée objet, OrientDB offre le principe de polymorphisme avec un système d’héritage entre les classes.
+
+OrientDB vient dans sa version community avec un système de clustering permettant à l’utilisateur de gérer correctement les montées en charge. Chaque document est identifié avec une partie désignant le cluster dans lequel l’information est stockée et une autre partie désignant sa position dans ce dernier (exemple @rid: 10:12). Chaque classe peut être associée à un ou plusieurs clusters, permettant d’optimiser les accès dans des ensembles plus petits.
 
 
 \subsection{Langage de requête}
@@ -349,7 +353,7 @@ INSERT INTO Company set name = "ACME"
 
 \end{lstlisting}
 
-Cet ensemble de requête ressemblant au langage SQL permet de créer deux vertex, Person et Company , un Edge WorkAt et leur associe certaine propriétés. Les deux types d'insert différent permettent comme en SQL d'ajouter un noeud.  
+Cet ensemble de requêtes ressemblant au langage SQL permet de créer deux vertex, Person et Company, un Edge WorkAt et leur associe certaines propriétés. Les deux types d’insert différents permettent comme en SQL d’ajouter un nœud.
 
 \begin{lstlisting}[language=SQL]
 SELECT FROM V
@@ -368,7 +372,7 @@ SELECT FROM V
 	\end{tabular}
 \end{center}
 
-Nous pouvons observer qu'OrientDB se charge de qualifier les document de plusieurs métadata en leur octroyant par exemple un identifiant unique (\no cluster:position), un numéro de version pour permettre une gestion de transaction "full optimistic"\footnote{On laisse l'utilisateur continuer sa transaction et le refus se fera lors du commit si il y a eu une modification concurrente du même document} et le \@class représente la structure du document.
+Nous pouvons observer qu'OrientDB se charge de qualifier les documents de plusieurs métadata en leur octroyant par exemple un identifiant unique (\no cluster:position), un numéro de version pour permettre une gestion de transaction "full optimistic"\footnote{On laisse l'utilisateur continuer sa transaction et le refus se fera lors du commit si il y a eu une modification concurrente du même document} et le \@class représente la structure du document.
 
 \begin{lstlisting}[language=SQL]
 CREATE Edge WorkAt from 10:1 to 11:0
@@ -379,7 +383,7 @@ Cette petite requête va lier le document ayant l'id 10:1 au document dont l'id 
 
 \subsection{Communication}
 
-OrientDB embarque une API Rest complète, toute actions pouvant être faite sur les interfaces web et consoles peuvent être reproduites au travers de cette API. 
+OrientDB embarque une API Rest complète, toute action pouvant être faite sur les interfaces web et consoles, peuvent être reproduites au travers de cette API.
 
 
 \chapter{Solutions existantes}
@@ -389,7 +393,7 @@ OrientDB embarque une API Rest complète, toute actions pouvant être faite sur 
 
 \subsection{Hibernate}
 
-Hibernate, soutenu et développé par JBoss, à mis au point un système de relation entre le code Java et le SGBD Néo4J, en réutilisant les mêmes annotations de relations que celles employées pour les bases de données relationnelles, à savoir :
+Hibernate, soutenu et développé par JBoss, a mis au point un système de relation entre le code Java et le SGBD Néo4J, en réutilisant les mêmes annotations de relations que celles employées pour les bases de données relationnelles, à savoir :
 
 \begin{itemize}
 \item @OneToOne : Relation 1-1
@@ -402,7 +406,7 @@ Bien qu'à l'heure actuelle, aucune intégration avec OrientDB, un ticket est ou
 
 \subsection{Spring Data}
 
-Spring data à nouveau possède un module de communication avec le SGBD Néo4J, il intègre au célèbre Framework Spring les fonctionnalités de Néo4J-OGM\footnote{Object Graph Mapper}, permettant de qualifier une classe avec certaines annotations facilitant la séréalisation et le déséréalisation vers la représentation graphique.
+Spring data à nouveau possède un module de communication avec le SGBD Néo4J, il intègre au célèbre Framework Spring, les fonctionnalités de Néo4J-OGM\footnote{Object Graph Mapper}, permettant de qualifier une classe avec certaines annotations facilitant la sérialisation et la dé sérialisation vers la représentation graphique.
 
 Exemple : 
 
@@ -445,7 +449,7 @@ public class Role {
 
 \subsection{Librairie Neo4J}
 
-Une librairie java développée par NeoTechnologie existe, elle permet de travailler aisément avec une base de donnée Neo4J embarquée ou à distance. Elle est en constante évolution et se trouve sur une plateforme open source. 
+Une librairie java développée par NeoTechnologie existe, elle permet de travailler aisément avec une base de données Neo4J embarquée ou à distance. Elle est en constante évolution et se trouve sur une plateforme open source. 
 
 Exemple de communication avec la librairie Neo4J le protocol "Bolt":
 
@@ -470,69 +474,69 @@ La librairie OrientDB pour java est composée de trois éléments:
 \item Object API
 \end{itemize}
 
-La graph API d'OrientDB couvre 80\% des uses cases classique d'un utilisateur, elle supporte tout les modèles de représentations comme un unique multi-modele de donnée. Elle travaille sur des "Vertex" et des "Edges", respectivement nœud et relations et est compatible avec le standard TinkerPop
+La graph API d’OrientDB couvre 80\% des uses cases classiques d’un utilisateur, elle supporte tous les modèles de représentations comme un unique multi-modèle de données. Elle travaille sur des "Vertex" et des "Edges", respectivement nœuds et relations et est compatible avec le standard TinkerPop
 
-La document API elle permet de couvrir les 20\% restants, elle est plus simple d'utilisation mais n'offre une utilisation plus atomique, les relations ne peuvent par exemple qu'être unidirectionnelles tandis que la bidirectionnalité est offerte dans l'API précédent. Un document est un élément unique, pour gérer les relations entre les différents nœuds de notre modèle, il faudra gérer manuellement chaque connexion.
+Le document API permet de couvrir les 20\% restants, il est plus simple d’utilisation mais offre une utilisation plus atomique, les relations ne peuvent être par exemple qu’unidirectionnelles tandis que la bidirectionnalité est offerte dans l’API précédent. Un document API est un élément unique pour gérer les relations entre les différents nœuds de notre modèle, il faudra gérer manuellement chaque connexion.
 
-La dernière librairie se focalise sur les objets java, elle n'a plus été améliorée depuis la version 1.5 d'OrientDB\footnote{À l'heure de l'écriture de ce mémoire, nous sommes à la version 2.2 et la version 3 à bientôt fini sa phase de "bêta test"}
+La dernière librairie se focalise sur les objets java, elle n'a plus été améliorée depuis la version 1.5 d'OrientDB\footnote{À l'heure de l'écriture de ce mémoire, nous sommes à la version 2.2 et la version 3 a bientôt terminé sa phase de "bêta test"}
 
 \section{Les frameworks}
 
 \subsection{Apache TinkerPop}
 
-Apache TinkerPop est Framework open source d'utilisation de graph, il regroupe un grand ensemble de fonctionnalités et d'algorithmes. Son écosystème est de plus en plus agrémenté de librairies externes développées par de tierces personnes.
+Apache TinkerPop est Framework open source d’utilisation de graph, il regroupe un grand ensemble de fonctionnalités et d’algorithmes. Son écosystème est de plus en plus agrémenté de librairies externes développées par de tierces personnes.
 
-Il se considère lui-même comme étant complexe d'utilisation pour les nouveaux développeurs car il nécessite l'utilisation d'un environnement qui leur est propre, la "Gremlin-console".
+Il se considère lui-même comme étant d’utilisation complexe pour les nouveaux développeurs car il nécessite l’utilisation d’un environnement qui lui est propre, la "Gremlin-console".
 
-Les développeurs de ce framework on mit au point un langage de travail sur les graphs appelé "Gremlin". Le langage dont nous avons parlé en section \ref{Cypher} s'est grandement inspirer de ce dernier.
+Les développeurs de ce framework ont mis au point un langage de travail sur les graphs appelé "Gremlin". Le langage dont nous avons parlé en section \ref{Cypher} s’est grandement inspiré de ce dernier.
 
-Exemple d'utilisation 
+Exemple d’utilisation
 
 \begin{lstlisting}
-gremlin> g.V() /* récupère tout les noeuds du graph */
+gremlin> g.V() /* récupère tous les nœuds du graph */
 ==>v[1]
 ==>v[2]
 ==>v[3]
 ==>v[4]
 ==>v[5]
 ==>v[6]
-gremlin> g.V(1) /* récupère le noeud d'Id 1 du graph*/
+gremlin> g.V(1) /* récupère le nœud d'Id 1 du graph*/
 ==>v[1]
-gremlin> g.V(1).values('name') /* récupère le noeud d'Id 1 du graph et renvoie sa propriété 'name' */
+gremlin> g.V(1).values('name') /* récupère le nœud d'Id 1 du graph et renvoie sa propriété 'name' */
 ==>marko
 gremlin> g.V(1).outE('knows') /* récupère les relations 'knows' partant du noeud d'Id 1 */
 ==>e[7][1-knows->2]
 ==>e[8][1-knows->4]
-gremlin> g.V(1).outE('knows').inV().values('name') /* retourne le nom des personnes que le noeud 1 connait */
+gremlin> g.V(1).outE('knows').inV().values('name') /* retourne le nom des personnes que le nœud 1 connait */
 ==>vadas
 ==>josh
 gremlin> g.V(1).out('knows').values('name') /* même résultat */
 ==>vadas
 ==>josh
-gremlin> g.V(1).out('knows').has('age', gt(30)).values('name') /* retourne le nom des personnes plus vielle que 30 ans que le noeud 1 connait */
+gremlin> g.V(1).out('knows').has('age', gt(30)).values('name') /* retourne le nom des personnes âgées de plus de 30 ans que le nœud 1 connait */
 ==>josh
 \end{lstlisting}
 
-Comme expliqué plus haut, le langage doit être exécuté dans un invite de commande ou dans un serveur Gremlin, nous sommes dès lors contraint d'installer et de configurer ce dernier pour pointer vers l'un ou l'autre SGBD.
+Comme expliqué plus haut, le langage doit être exécuté dans une invite de commande ou dans un serveur Gremlin, nous sommes dès lors contraints d’installer et de configurer ce dernier pour pointer vers l’un ou l’autre SGBD.
 
 
 
 \part{Contribution}
-\chapter{Application possibles des BDOG}
+\chapter{Applications possibles des BDOG}
 
 \section{L'exemple parfait}
 
-Pour la suite de ce mémoire, il est primordiale d'avoir un exemple concret de modèle habituellement persisté avec un modèle relationnelle mais qui serait sans le moindre problème transposable dans une BDOG.
+Pour la suite de ce mémoire, il est primordial d'avoir un exemple concret de modèle habituellement persisté avec un modèle relationnel mais qui pourrait néanmoins être transposable dans une BDOG.
 
 \subsection*{L'école}
 
 Imaginons la représentation d'une école composée d'élèves, de professeurs, de classes, de salles techniques, de travailleurs, ... dont   le diagramme de classes se trouve en Annexe (\ref{fig:SchoolDiagram}).
 
-Les liens entre les différents objets peuvent être fortement nombreux, nous pouvons imaginer que les étudiants sont amis, membres de famille, ennemis, amoureux, ... de même que pour les professeurs, ils peuvent avoir les mêmes relations que les étudiants mais de plus peuvent être assigné a des cours, a des classes, ... toutes ces liaisons peuvent être fortement compliquées à représenter sur une base de donnée relationnelles. L'utilisation d'une BDOG semble être tout à fait adéquate. Durant la suite de ce mémoire, nous utiliserons donc ce modèle.
+Les liens entre les différents objets peuvent être très nombreux, nous pouvons imaginer que les étudiants sont amis, membres de famille, ennemis, amoureux, ... il en est de même pour les professeurs, ils peuvent avoir les mêmes relations que les étudiants mais en outre ils vont être assignés à des cours, à des classes, ... toutes ces liaisons peuvent être fortement compliquées à représenter sur une base de donnée relationnelles. L’utilisation d’une BDOG dans ce cas, semble tout à fait adéquate. Durant la suite de ce mémoire, nous utiliserons donc ce modèle.
 
-\section{Critères de comparaisons}
+\section{Critères de comparaison}
 
-Dans un premier temps, il est primordiale de mettre en place une liste de critères permettant de faciliter le choix de la BDOG.
+Dans un premier temps, il est primordial de mettre en place une liste de critères permettant de faciliter le choix de la BDOG.
 
 \section{Comparaison des plus grandes BDOG} 
 \begin{center}
@@ -631,9 +635,27 @@ Pour ce qui est de la persistance du lien entre deux objets, nous avons fait le 
 Exemple avec la Classe \textit{Student.java}
 
 \begin{lstlisting}
+public class Student extends Person {
 
+    @Bridge(descriptor = "Follow")
+    private List<Lesson> lessons = new ArrayList<>();
+    
+    @Bridge(descriptor = "FriendOf")
+    private List<Student> friends = new ArrayList<>();
+    
+    @Bridge(descriptor = "FamilyMember", biDirectionnal = true)
+    private List<? extends Person> familyMember = new ArrayList<>();
+    
+    @Bridge(descriptor = "PromotedIn")
+    private Promotion prom;
+    
+    ...
+    
 \end{lstlisting}
 
+Le descriptor qui est obligatoire, se doit d'être unique, il va représenter dans le BDOG le type de lien entre deux noeuds.
+
+La beauté derrière cette utilisation est qu'au moindre changement de modèle, comme un ajout de propriété, l'ensemble de la couche de persistance sera adaptée à ce changement sans devoir exécuter le moindre script (exception de la création d'une nouvelle classe pour OrientDB).
 
 \subsection{La récupération}
 
@@ -738,7 +760,7 @@ Le mémoire sera conclu avec un explication transversale et complète du framewo
 
 \chapter*{Code Sources}
 
-\include{./cdSource}
+%\include{./cdSource}
 
 \chapter*{Bibliographie}
 \begin{itemize}

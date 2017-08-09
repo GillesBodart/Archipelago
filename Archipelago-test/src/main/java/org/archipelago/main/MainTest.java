@@ -29,54 +29,17 @@ public class MainTest {
 
     protected final static Logger LOGGER = LogManager.getLogger(MainTest.class);
 
-    private final static String TEST_SCHOOL_PATH = "C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain\\school";
-    private final static String TEST_LIBRARY_PATH = "C:\\Sand\\IdeaProjects\\Archipelago\\src\\main\\java\\org\\archipelago\\test\\domain\\library";
-
-    private final static String TEST_CASE = "School";
-
     public static void main(String[] args) throws Exception {
         Archipelago a = Archipelago.getInstance();
-       /* List<Object> students = Lists.newArrayList();
-        Student gilles = new Student("Gilles", "Bodart", LocalDate.of(1992, 4, 14), "M", Lists.newArrayList(), null, null, null);
-        Student thomasB = new Student("Thomas", "Blondiau", LocalDate.of(1992, 1, 5), "M", Lists.newArrayList(), null, null, null);
-        Student thomasR = new Student("Thomas", "Reynders", LocalDate.of(1992, 1, 22), "M", Lists.newArrayList(), null, null, null);
-        Student charly = new Student("Charles-Antoine", "Van Beers", LocalDate.of(1992, 4, 28), "M", Lists.newArrayList(), null, null, null);
-        Student antoine = new Student("Antoine", "Dumont", LocalDate.of(1992, 12, 28), "M", Lists.newArrayList(), null, null, null);
-        Student martin = new Student("Martin", "Périlleux", LocalDate.of(1992, 2, 28), "M", Lists.newArrayList(), null, null, null);
-        Student benjamin = new Student("Benjamin", "Leroy", LocalDate.of(1992, 10, 31), "M", Lists.newArrayList(), null, null, null);
-        thomasB.setFriends(Lists.newArrayList(gilles, thomasR, charly, antoine, martin, benjamin));
-        thomasR.setFriends(Lists.newArrayList(thomasB, gilles, charly, antoine, martin, benjamin));
-        charly.setFriends(Lists.newArrayList(thomasB, thomasR, gilles, antoine, martin, benjamin));
-        antoine.setFriends(Lists.newArrayList(thomasB, thomasR, charly, gilles, martin, benjamin));
-        martin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, gilles, benjamin));
-        benjamin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, martin, gilles));
-        students.add(gilles);
-        students.add(thomasB);
-        students.add(thomasR);
-        students.add(charly);
-        students.add(antoine);
-        students.add(martin);
-        students.add(benjamin);
-        a.persist(students);*/
-        LocalDateTime start = LocalDateTime.now();
-        ArchipelagoQuery aq = a.getQueryBuilder()
+        a.persist(school());
+        /*ArchipelagoQuery aq = a.getQueryBuilder()
                 .of(Student.class)
                 .where(of("lastName", "Bodart"), ConditionQualifier.EQUAL)
                 .and(of("firstName", "gilles"), ConditionQualifier.EQUAL)
                 .or(of("firstName", "Thomas"), ConditionQualifier.EQUAL)
                 .build();
-        a.execute(aq);
 
-        LocalDateTime end = LocalDateTime.now();
-        Duration dur = Duration.between(start, end);
-        long millis = dur.toMillis();
-
-        LOGGER.info(String.format("%02d:%02d:%02d",
-                TimeUnit.MILLISECONDS.toHours(millis),
-                TimeUnit.MILLISECONDS.toMinutes(millis) -
-                        TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
-                TimeUnit.MILLISECONDS.toSeconds(millis) -
-                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))));
+        List<Object> nodes = a.execute(aq);*/
         //nodes.stream().forEach(System.out::println);
     }
 

@@ -1,5 +1,0 @@
-http://sql.sh/1879-base-donnees-departements-francais
-http://sql.sh/514-liste-pays-csv-xml
-http://sql.sh/736-base-donnees-villes-francaises
-http://sql.sh/2299-atomes-tableau-periodique
-http://www.exploredata.net/Downloads/Baseball-Data-Set

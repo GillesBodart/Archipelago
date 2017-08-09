@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  6 AUG 2017 19:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  9 AUG 2017 17:16
 entering extended mode
 **./Memoire.tex
 (Memoire.tex
@@ -912,7 +912,8 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
- (Memoire.aux (cdSource.aux))
+
+No file Memoire.aux.
 \openout1 = `Memoire.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 148.
@@ -928,7 +929,6 @@ LaTeX Font Info:    ... okay on input line 148.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 148.
 LaTeX Font Info:    ... okay on input line 148.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 148.
-
 (C:\Sand\miktex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1063,21 +1063,20 @@ LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
  [6
 
 ]
-Overfull \hbox (0.85796pt too wide) in paragraph at lines 246--247
-\T1/lmr/m/n/12 L'utilisation des SGBD re-la-tion-nelle pour tout type de prob-l
-Ëme est rÈvolue. Gr‚ce ‡ l'apparition
+Overfull \hbox (3.1735pt too wide) in paragraph at lines 252--252
+|\T1/lmr/m/sc/17.28 On parle de base de don-nÈes ori-en-tÈe graph mais quelle
  []
 
 [7] [8]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 270.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 271.
 
 (C:\Sand\miktex\tex\latex\lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [9
 
 ] [10]
-Overfull \hbox (11.88756pt too wide) in paragraph at lines 330--331
+Overfull \hbox (11.88756pt too wide) in paragraph at lines 334--335
 []\T1/lmr/m/n/12 OrientDB vient dans sa ver-sion com-mu-nity avec un sys-tËme d
 e clus-ter-ing per-me-t-tant ‡ l'utilisateur
  []
@@ -1086,22 +1085,77 @@ e clus-ter-ing per-me-t-tant ‡ l'utilisateur
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 371.
+(Font)              <10> on input line 375.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 371.
+(Font)              <7> on input line 375.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 371.
+(Font)              <5> on input line 375.
  [11] [12]
 Chapter 3.
 [13
 
-] [14] [15] [16] [17
+] [14]
+
+LaTeX Warning: Reference `Cypher' on page 15 undefined on input line 491.
+
+
+! Package inputenc Error: Unicode char ≈\lst@ECì (U+9F13)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.496 ...lin> g.V() /* r√©cup√®re tous les n≈ìuds 
+                                                  du graph */
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char ≈\lst@ECì (U+9F13)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.503 gremlin> g.V(1) /* r√©cup√®re le n≈ìud 
+                                             d'Id 1 du graph*/
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char ≈\lst@ECì (U+9F13)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.505 ...1).values('name') /* r√©cup√®re le n≈ìud 
+                                                  d'Id 1 du graph et renvoie...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[15] [16] [17
 
 ]
 Chapter 4.
+
+LaTeX Warning: Reference `fig:SchoolDiagram' on page 18 undefined on input line
+ 533.
+
 [18
 
-] [19]
+]
+
+LaTeX Warning: Reference `NoSqlEvol' on page 19 undefined on input line 569.
+
+[19]
 Chapter 5.
 [20
 
@@ -1109,300 +1163,66 @@ Chapter 5.
 File: figures/Persist.png Graphic file (type png)
 
 <use figures/Persist.png>
-Package pdftex.def Info: figures/Persist.png used on input line 624.
+Package pdftex.def Info: figures/Persist.png used on input line 629.
 (pdftex.def)             Requested size: 404.51027pt x 236.38254pt.
- [21 <./figures/Persist.png>]
-<figures/query.png, id=93, 999.735pt x 721.69624pt>
+ [21 <./figures/Persist.png>] [22]
+<figures/query.png, id=97, 999.735pt x 721.69624pt>
 File: figures/query.png Graphic file (type png)
  <use figures/query.png>
-Package pdftex.def Info: figures/query.png used on input line 684.
+Package pdftex.def Info: figures/query.png used on input line 715.
 (pdftex.def)             Requested size: 399.88692pt x 288.67339pt.
 
-[22] [23 <./figures/query.png>]
+[23 <./figures/query.png>] [24]
 Chapter 6.
-[24
+[25
 
 ]
 Chapter 7.
-[25
+[26
 
-] [26
+] [27
 
-] <figures/SchoolDiag.png, id=111, 811.833pt x 255.95625pt>
+] <figures/SchoolDiag.png, id=115, 811.833pt x 255.95625pt>
 File: figures/SchoolDiag.png Graphic file (type png)
 
 <use figures/SchoolDiag.png>
-Package pdftex.def Info: figures/SchoolDiag.png used on input line 709.
+Package pdftex.def Info: figures/SchoolDiag.png used on input line 740.
 (pdftex.def)             Requested size: 649.46727pt x 204.76526pt.
- [27 <./figures/SchoolDiag.png>] [28
+ [28 <./figures/SchoolDiag.png>] [29
 
-] [29
+] [30
+
+] [31
 
 ]
-\openout2 = `./cdSource.aux'.
+(Memoire.aux)
 
+LaTeX Warning: There were undefined references.
 
-(cdSource.tex
-(../Archipelago-core/src/main/java/org/archipelago/core/annotations/Bridge.java
-)
-(../Archipelago-core/src/main/java/org/archipelago/core/builder/ArchipelagoQuer
-y.java [30
 
-])
-(../Archipelago-core/src/main/java/org/archipelago/core/builder/ArchipelagoScri
-ptBuilder.java [31] [32])
-(../Archipelago-core/src/main/java/org/archipelago/core/builder/ConditionQualif
-ier.java)
-(../Archipelago-core/src/main/java/org/archipelago/core/builder/Neo4JBuilder.ja
-va [33] [34] [35])
-(../Archipelago-core/src/main/java/org/archipelago/core/builder/Neo4JQueryImpl.
-java [36])
-(../Archipelago-core/src/main/java/org/archipelago/core/builder/OrientDBBuilder
-.java [37]
-Overfull \hbox (1.28021pt too wide) in paragraph at lines 37--38
-[][][][][][][][][][][][] 
- []
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-[38])
-(../Archipelago-core/src/main/java/org/archipelago/core/builder/OrientDBQueryIm
-pl.java [39] [40])
-(../Archipelago-core/src/main/java/org/archipelago/core/builder/QueryBuilder.ja
-va [41])
-(../Archipelago-core/src/main/java/org/archipelago/core/builder/QueryElement.ja
-va [42])
-(../Archipelago-core/src/main/java/org/archipelago/core/configurator/Archipelag
-oConfig.java [43])
-(../Archipelago-core/src/main/java/org/archipelago/core/configurator/DatabaseCo
-nfig.java [44] [45])
-(../Archipelago-core/src/main/java/org/archipelago/core/configurator/DatabaseTy
-pe.java)
-(../Archipelago-core/src/main/java/org/archipelago/core/domain/DescriptorWrappe
-r.java [46])
-(../Archipelago-core/src/main/java/org/archipelago/core/domain/OrientDBCluster.
-java) [47]
-(../Archipelago-core/src/main/java/org/archipelago/core/domain/OrientDBErrorWra
-pper.java)
-(../Archipelago-core/src/main/java/org/archipelago/core/domain/OrientDBRelation
-Wrapper.java [48] [49])
-(../Archipelago-core/src/main/java/org/archipelago/core/domain/OrientDBResponse
-Wrapper.java [50])
-(../Archipelago-core/src/main/java/org/archipelago/core/domain/OrientDBResultWr
-apper.java)
-(../Archipelago-core/src/main/java/org/archipelago/core/domain/RelationWrapper.
-java [51])
-(../Archipelago-core/src/main/java/org/archipelago/core/exception/CheckExceptio
-n.java [52])
-(../Archipelago-core/src/main/java/org/archipelago/core/framework/Archipelago.j
-ava [53] [54] [55]
-Overfull \hbox (59.3254pt too wide) in paragraph at lines 126--127
-[][][][][][][][][][][][][][][][][][][]  
- []
-
-[56] [57] [58]
-Overfull \hbox (30.91977pt too wide) in paragraph at lines 282--283
-[][][][][][][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (53.14963pt too wide) in paragraph at lines 284--285
-[][][][][][][][][][][][][][][][]  
- []
-
-[59] [60]
-Overfull \hbox (1.27945pt too wide) in paragraph at lines 337--338
-[][][][][][][][][][]  
- []
-
-
-Overfull \hbox (23.50931pt too wide) in paragraph at lines 371--372
-[][][][][][][][][][]  
- []
-
-[61]
-Overfull \hbox (30.06155pt too wide) in paragraph at lines 372--373
-[][][][][][][][][][][][][][][][][][][][] 
- []
-
-[62] [63]
-Overfull \hbox (48.20932pt too wide) in paragraph at lines 465--466
-[][][][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (124.77951pt too wide) in paragraph at lines 473--474
-[][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (155.65453pt too wide) in paragraph at lines 475--476
-[][][][][][][][][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (67.96902pt too wide) in paragraph at lines 479--480
-[][][][][][][][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (69.20448pt too wide) in paragraph at lines 487--488
-[][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (23.50931pt too wide) in paragraph at lines 490--491
-[][][][][][][][][][][][][][][] 
- []
-
-[64]
-Overfull \hbox (42.03432pt too wide) in paragraph at lines 492--493
-[][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (43.26901pt too wide) in paragraph at lines 493--494
-[][][][][][][][][][][][]  
- []
-
-[65]
-Overfull \hbox (65.49963pt too wide) in paragraph at lines 537--538
-[][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (133.42467pt too wide) in paragraph at lines 539--540
-[][][][][][][][][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (14.0067pt too wide) in paragraph at lines 542--543
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-] 
- []
-
-
-Overfull \hbox (45.73917pt too wide) in paragraph at lines 542--543
-[][][][][][][][][][]  
- []
-
-
-Overfull \hbox (52.29141pt too wide) in paragraph at lines 543--544
-[][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (36.23656pt too wide) in paragraph at lines 550--551
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-] 
- []
-
-
-Overfull \hbox (67.96902pt too wide) in paragraph at lines 550--551
-[][][][][][][][][][]  
- []
-
-
-Overfull \hbox (74.52127pt too wide) in paragraph at lines 551--552
-[][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (5.36154pt too wide) in paragraph at lines 552--553
-[][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (19.8037pt too wide) in paragraph at lines 559--560
-[][][][][][][][][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (24.744pt too wide) in paragraph at lines 563--564
-[][][][][][][][][]  
- []
-
-[66]
-Overfull \hbox (113.6642pt too wide) in paragraph at lines 569--570
-[][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (37.09401pt too wide) in paragraph at lines 570--571
-[][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (67.96902pt too wide) in paragraph at lines 572--573
-[][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (86.49403pt too wide) in paragraph at lines 574--575
-[][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (18.94624pt too wide) in paragraph at lines 575--576
-[][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (87.72873pt too wide) in paragraph at lines 575--576
-[][][][][][][][][][][][]  
- []
-
-)
-(../Archipelago-core/src/main/java/org/archipelago/core/util/ArchipelagoUtils.j
-ava [67] [68]
-Overfull \hbox (77.8504pt too wide) in paragraph at lines 89--90
-[][][][][][][][][][][][][][][][][][][] 
- []
-
-[69] [70] [71]
-Overfull \hbox (14.00746pt too wide) in paragraph at lines 220--221
-[][][][][][][][][][][][][][][][][][][][][][][]  
- []
-
-
-Overfull \hbox (100.4575pt too wide) in paragraph at lines 222--223
-[][][][][][][][][][][][][][][][][][][][][][][]  
- []
-
-[72]
-Overfull \hbox (7.45522pt too wide) in paragraph at lines 257--258
-[][][][][][][][][][][]  
- []
-
-[73]
-Overfull \hbox (66.73509pt too wide) in paragraph at lines 283--284
-[][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-)
-(../Archipelago-core/src/main/java/org/archipelago/core/util/StringTemplateFact
-ory.java [74])) [75] [76
-
-
-] (Memoire.aux (cdSource.aux)) ) 
+ ) 
 Here is how much of TeX's memory you used:
- 11730 strings out of 493333
- 164169 string characters out of 3144820
- 326799 words of memory out of 3000000
- 14911 multiletter control sequences out of 15000+200000
- 79563 words of font info for 66 fonts, out of 3000000 for 9000
+ 11169 strings out of 493333
+ 152391 string characters out of 3144820
+ 289460 words of memory out of 3000000
+ 14438 multiletter control sequences out of 15000+200000
+ 83825 words of font info for 67 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,13n,42p,844b,1659s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C
-:/Sand/miktex/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/publ
-ic/amsfonts/latxfont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pf
-b><C:/Sand/miktex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1
-/public/lm/lmr10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/m
-iktex/fonts/type1/public/lm/lmr6.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr7
-.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/miktex/fonts/type1
-/public/lm/lmsy10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt12.pfb><C:/Sand
-/miktex/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Memoire.pdf (76 pages, 666360 bytes).
+{C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/fonts/enc/dvips/
+lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/public/amsfonts/latxfont/line10.pf
+b><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Sand/miktex/fonts/type1/
+public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr10.pfb><C:/Sand/
+miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/miktex/fonts/type1/public/lm/lm
+r6.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr7.pfb><C:/Sand/miktex/fonts/typ
+e1/public/lm/lmr8.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmri12.pfb><C:/Sand
+/miktex/fonts/type1/public/lm/lmsy10.pfb><C:/Sand/miktex/fonts/type1/public/lm/
+lmtt12.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on Memoire.pdf (31 pages, 572785 bytes).
 PDF statistics:
- 310 PDF objects out of 1000 (max. 8388607)
+ 169 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
