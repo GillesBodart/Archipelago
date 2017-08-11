@@ -545,9 +545,9 @@ Dans un premier temps, il est primordial de mettre en place une liste de critèr
 \hline
 \backslashbox {Critère}{BDOG} & Neo4J & OrientDB  \tabularnewline
 \hline
-Schema de donnée strict & X & \checkmark  \tabularnewline
+Schéma de donnée strict & X & \checkmark  \tabularnewline
 \hline
-Format de donnée & JSON & JSON \tabularnewline
+Format de données & JSON & JSON \tabularnewline
 \hline
 Principe d'héritage & X & \checkmark \tabularnewline
 \hline
@@ -555,24 +555,24 @@ Clusturing & Configurable & Natif \tabularnewline
 \hline
 Communication & BOLT (protocole propriétaire) & REST (via HTTP) \tabularnewline
 \hline
-Évolutivité & L'absence de schéma strict entraîne une grande liberté dans la création et la modification des nœuds & Les classes doivent préalablement configurées sur le serveur \tabularnewline \hline
+Évolutivité & L'absence de schéma strict entraîne une grande liberté dans la création et la modification des nœuds & Les classes doivent préalablement être configurées sur le serveur \tabularnewline \hline
 Rapidité\footnotemark & 7m 10s & 4m 31s \tabularnewline \hline
 Modèle de représentation & Uniquement graph & multimodèle \tabularnewline \hline
 
 \end{tabular}
 \end{center}
-\footnotetext{10 000 requêtes sur le même graph de donnée avec la même requête au travers d'un appel Java}
+\footnotetext{10 000 requêtes sur le même graph de données avec la même requête au travers d'un appel Java}
 Une idée d'arbre de décision devrait, à la fin de cette section, permettre à un utilisateur muni de ses besoins, de choisir la BDOG la plus adaptée à son projet. 
 
 \section{Piste de normalisation}
 
-Comme nous l'avons présenter dans le point \ref{NoSqlEvol} nous nous apercevons que le problème principal du NoSql est le manque de standard d'utilisation de ces SGBD, pour ce faire, nous allons tenter de lister un des objectifs de normalisations.
+Comme nous l'avons présenté dans le point \ref{NoSqlEvol} nous nous apercevons que le problème principal du NoSql est le manque de standard d'utilisation de ces SGBD. Pour ce faire, nous allons tenter de lister un des objectifs de normalisation.
 
 \begin{itemize}
 \item Utilisation d'un langage unique
 \item Système de transaction 
-\item Opération de base de persistances CRUD
-\item Possibilité de créer des méthodes stockée 
+\item Opération de base de persistance CRUD
+\item Possibilité de créer des méthodes stockées
 \item Contrôle sur les propriétés.
 \end{itemize}
 
@@ -581,11 +581,13 @@ La suite de ce mémoire portant sur le développement d'un framework java, tente
 \chapter{Le framework}
 \section{Utilisation}
 
-Ce framework à été basé sur l'utilisation d'annotations, à l'heure actuelle, il permet d'effectuer deux opérations:
+Ce framework a été basé sur l'utilisation d'annotations, à l'heure actuelle, il permet d'effectuer deux opérations:
 
 \subsection{La persistance}
 
-La persistance est l'élément primordiale de ce framework, afin de ne pas avoir de lien avec une BDOG propre, nous nous sommes basé sur le modèle orienté objet. La persistance de celui-ci ainsi que des éléments qui lui sont lié est paramétrisation dans un fichier de configuration nécessaire à l'initialisation de cet outil.
+
+//TODO refaire 
+La persistance est l'élément primordial de ce framework. Afin de ne pas avoir de lien avec une BDOG propre, nous nous sommes basés sur le modèle orienté objet. La persistance de celui-ci ainsi que des éléments qui lui sont liés est paramétrisable dans un fichier de configuration nécessaire à l'initialisation de cet outil.
 
 Le fichier de configuration doit se nommer "config.archipelago.json" et être présent dans les ressources du projet.
 
@@ -607,9 +609,9 @@ Voici le canevas de ce fichier :
   // package où se trouve les classes du domaine 
 }
 \end{lstlisting}
-Afin d'assurer la persistance des éléments liés, nous avons opté pour une approche récursive en "depth-first" avec marquage de sommet, en effet, pour créer un lien entre deux éléments, il faut absolument que ceux si soit présent dans la base de donnée.
+Afin d'assurer la persistance des éléments liés, nous avons opté pour une approche récursive en "depth-first" avec marquage de sommet, en effet, pour créer un lien entre deux éléments, il faut absolument que ceux-si soient présents dans la base de données.
 
-La propriété "deepness" est primordiale pour la performance de ce framework, elle permet de définir la profondeur de persistance d'un objet. Ce procédé empêche de tomber dans des boucles infinies, courante lorsque nous travaillons avec de modèles ayant de relations bidirectionnelles comme suit : 
+La propriété "deepness" est primordiale pour la performance de ce framework, elle permet de définir la profondeur de persistance d'un objet. Ce procédé empêche de tomber dans des boucles infinies, problème courant lorsque nous travaillons avec de modèles ayant de relations bidirectionnelles comme suit : 
 
 \begin{lstlisting}
 Archipelago arch = Archipelago.getInstance();
@@ -623,14 +625,14 @@ antoine.setFriend(gilles);
 arch.persist(gilles);
 \end{lstlisting}
 
-Ainsi avec cette valeur sentinelle nous rompons la boucle de persistance après avoir atteint la profondeur souhaité.
+Ainsi avec cette valeur sentinelle, nous rompons la boucle de persistance après avoir atteint la profondeur souhaitée.
 
 \begin{center}
 \includegraphics[scale=0.5]{figures/Persist.png}
 \label{fig:Persist}
 \end{center}
     
-Pour ce qui est de la persistance du lien entre deux objets, nous avons fait le choix de ne créer que des relations orientée et unidirectionnelles, pour spécifier cette information de lien, il faut apposer une annotation \textit{@Bridge} sur la propriété d'où part le lien. Nous avons cependant ajouter la possibilité d'avoir une relation réciproque en spécifiant dans cette annotation que nous voulons que ce soit bidirectionnelle. 
+Pour ce qui est de la persistance du lien entre deux objets, nous avons fait le choix de ne créer que des relations orientées et unidirectionnelles. Pour spécifier cette information de lien, il faut apposer une annotation \textit{@Bridge} sur la propriété d'où part le lien. Nous avons cependant ajouté la possibilité d'avoir une relation réciproque en spécifiant dans cette annotation que nous voulons que ce soit bidirectionnel. 
 
 Exemple avec la Classe \textit{Student.java}
 
@@ -653,15 +655,15 @@ public class Student extends Person {
     
 \end{lstlisting}
 
-Le descriptor qui est obligatoire, se doit d'être unique, il va représenter dans le BDOG le type de lien entre deux noeuds.
+Le descriptor qui est obligatoire, se doit d'être unique, il va représenter dans le BDOG le type de lien entre deux nœuds.
 
-La beauté derrière cette utilisation est qu'au moindre changement de modèle, comme un ajout de propriété, l'ensemble de la couche de persistance sera adaptée à ce changement sans devoir exécuter le moindre script (exception de la création d'une nouvelle classe pour OrientDB).
+La beauté derrière cette utilisation est qu'au moindre changement de modèle, comme un ajout de propriété, l'ensemble de la couche de persistance sera adaptée à ce changement sans devoir exécuter le moindre script (à l'exception de la création d'une nouvelle classe pour OrientDB).
 
 \subsection{La récupération}
 
-La récupération de l'information est la raison pour laquelle nous la stockons. A quoi bon enregistrer une valeur dans une base de donnée si nous ne souhaitons jamais l'utiliser ultérieurement ?
+La récupération de l'information est la raison pour laquelle nous la stockons. A quoi bon enregistrer une valeur dans une base de données si nous ne souhaitons jamais l'utiliser ultérieurement ?
 
-Pour cela, Archipelago vient avec un système de création de requête. Grâce à ce procédé, que votre BDOG soit OrientDB ou Neo4J, vous serez en mesure de récupérer votre objet sans changer votre code source. 
+Pour cela, Archipelago apporte avec un système de création de requête. Grâce à ce procédé, que votre BDOG soit OrientDB ou Neo4J, vous serez en mesure de récupérer votre objet sans changer votre code source. 
 
 Voici un exemple:
 
@@ -674,9 +676,9 @@ ArchipelagoQuery aq = a.getQueryBuilder()
 List<Object> nodes = arch.execute(aq);
 \end{lstlisting}
 
-Cette requête va rechercher l'ensemble des étudiants de la base de donnée ainsi que les objets qui leurs sont liés.
+Cette requête va rechercher l'ensemble des étudiants de la base de données ainsi que les objets qui leur sont liés.
 
-Un système de condition est également mit en place, il permet d'affiner le résultat obtenu: 
+Un système de condition est également mis en place, il permet d'affiner le résultat obtenu: 
 
 \begin{lstlisting}
 Archipelago arch = Archipelago.getInstance();
@@ -690,7 +692,7 @@ List<Object> nodes = arch.execute(aq);
 
 Cette requête va quant à elle rechercher les étudiants ayant "Gilles" comme prénom.
 
-Nous pouvons aussi ajouter des opérateurs logique "OU" et "ET" comme suit :
+Nous pouvons aussi ajouter des opérateurs logiques "OU" et "ET" comme suit :
 \begin{lstlisting}
 Archipelago arch = Archipelago.getInstance();
 
@@ -703,38 +705,39 @@ ArchipelagoQuery aq = a.getQueryBuilder()
 List<Object> nodes = arch.execute(aq);
 \end{lstlisting}
 
-Le procédé mit en place à l'heure actuel ne permet pas de faire des conditions fortement complexes, il va ajouter l'élément de condition à la suite de la requête actuelle, pour l'exemple précédent, nous aurons donc : 
+Le procédé mis en place à l'heure actuelle ne permet pas de faire des conditions fortement complexes, il va ajouter l'élément de condition à la suite de la requête actuelle. 
+
+Pour l'exemple précédent, nous aurons donc : 
 
 \begin{lstlisting}[language=SQL]
 lastName = "Bodart" AND ( firstName = "Gilles" OR firstName = "Thomas")
 \end{lstlisting}
 
-ce qui se retournera donc la liste des étudiants ayant "Bodart" comme nom de famille et "Gilles" ou "Thomas" comme prénom. \`A L'heure actuelle, il n'est cependant pas possible d'effectuer des requêtes sur les relations entre les objets, cette piste est primordiale pour une deuxième version de ce framework.
+Ce qui se fournira donc la liste des étudiants ayant "Bodart" comme nom de famille et "Gilles" ou "Thomas" comme prénom. \`A L'heure actuelle, il n'est cependant pas possible d'effectuer des requêtes sur les relations entre les objets, cette piste est primordiale pour une deuxième version de ce framework.
 
 \begin{center}
 \includegraphics[scale=0.4]{figures/query.png}
 \label{fig:Query}
 \end{center}
 
-\section{Schema conceptuel}
-Les schémas conceptuels représentant une modèle exemple annoté des éléments du framework sera fourni et commenté dans cette section. Cela permettra au lecteur une meilleur compréhension.
+\section{Schéma conceptuel}
+Les schémas conceptuels représentant une modèle exemple annoté des éléments du framework seront fournis et commentés dans cette section. Cela permettra au lecteur une meilleur compréhension.
 \section{Documentation}
-Une documentation claire et précise sur l'utilisation du framework Archipelago sera présente dans cette section. Un ensemble entre une documentation fonctionnelle et une documentation technique faite avec JavaDoc.
+Une documentation claire et précise sur l'utilisation du framework Archipelago sera présente dans cette section : un ensemble entre une documentation fonctionnelle et une documentation technique réalisée avec JavaDoc.
 \section{Processus}
-Description du processus implémenté sur base d'un exemple claire. Explications des différents choix d'implémentations et de chaque étape.
+Description du processus implémenté sur base d’un exemple claire. Explications des différents choix d’implémentation et de chaque étape du processus.
 \chapter{Evaluation}
 \section{Points forts}
-Autocritique du framework, sur base de test qualitatif et ou quantitatif. Evaluations : usability, performence, qualité, cohérence
+Autocritique du framework, sur base de test qualitatif et/ou quantitatif. Evaluations :
+usability, performance, qualité, cohérence
 \section{Points faibles}
-Autocritique du framework, sur base de test qualitatif et ou quantitatif.
-Evaluations : usability, performence, qualité, cohérence
-\section{Retour d'information}
-Si le temps nous le permet, une analyse des retours utilisateur sera faite en fin de mémoire.
+Autocritique du framework, sur base de test qualitatif et/ou quantitatif. Evaluations :
+usability, performance, qualité, cohérence
 \chapter{Conclusion}
 \section{Piste de réflexions}
-Une introspection sur le projet sera expliqué dans cette section, les idées innachevés y seront décrites en tant que piste de réflexions.
+Une introspection sur le projet sera expliquée dans cette section, les idées inachevées y seront décrites en tant que piste de réflexions.
 \section{Archipelago en résumé}
-Le mémoire sera conclu avec un explication transversale et complète du framework, permettant au lecteur de garder une bonne impression sur le nouvel outil que sera ce framework.
+Le mémoire sera conclu avec une explication transversale et complète du framework, permettant au lecteur de garder une bonne impression sur le nouvel outil que sera ce nouvel outil.
 \part{Annexes}
 \begin{sidewaysfigure}[ht]
     \includegraphics[scale=0.8]{figures/SchoolDiag.png}
@@ -752,7 +755,7 @@ Le mémoire sera conclu avec un explication transversale et complète du framewo
  JSON  & JavaScript Object Notation \\ \hline
  Vertex  & Sommet \\ \hline
  Edge  & bord \\ \hline
- Cluster  & littéralement grappe, cela représente en informatique un groupe d'élément \\ \hline
+ Cluster  & littéralement grappe, cela représente en informatique un groupe d'éléments \\ \hline
  API  & Application Programming Interface  \\ \hline
  REST  & Representational state transfer, style d'architecture pour les systèmes hypermédia distribués \\ \hline
 \end{tabular}
