@@ -264,6 +264,10 @@ public class Archipelago implements AutoCloseable {
         }
     }
 
+    public void link(Object first, Object second, Object descriptor) {
+        link(first, second, descriptor, false);
+    }
+
     public void link(Object first, Object second, Object descriptor, boolean biDirectional) {
         boolean haveDescriptor = null != descriptor;
         String name;

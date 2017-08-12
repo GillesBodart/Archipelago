@@ -3,11 +3,10 @@ package org.archipelago.test.main;
 import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.archipelago.core.builder.ArchipelagoQuery;
-import org.archipelago.core.builder.ConditionQualifier;
-import org.archipelago.core.builder.OrientDBBuilder;
 import org.archipelago.core.framework.Archipelago;
-import org.archipelago.test.domain.Descriptor;
+import org.archipelago.test.domain.FriendOf;
+import org.archipelago.test.domain.Road;
+import org.archipelago.test.domain.got.City;
 import org.archipelago.test.domain.library.Author;
 import org.archipelago.test.domain.library.Book;
 import org.archipelago.test.domain.library.Librarian;
@@ -15,14 +14,9 @@ import org.archipelago.test.domain.library.Library;
 import org.archipelago.test.domain.school.*;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import static org.archipelago.core.builder.QueryElement.of;
 
 /**
  * Created by Gilles Bodart on 19/08/2016.
@@ -34,14 +28,7 @@ public class MainTest {
     public static void main(String[] args) throws Exception {
         Archipelago a = Archipelago.getInstance();
 
-        Student gilles = new Student();
-        Student antoine = new Student();
-
-        Descriptor relation = new Descriptor();
-        relation.setSince(LocalDate.now());
-
-
-        a.link(gilles,antoine,relation, false);
+        a.persist(school());
 
         //a.persist(school());
 
@@ -137,7 +124,7 @@ public class MainTest {
                 geography, religion, frans5, pE), null, null, p2002);
         Worker cassart = new Worker("", "Cassart", null, "M", null, null);
         List<Room> rooms;
-        Room library = new org.archipelago.test.domain.school.Library("Library", Lists.newArrayList("Le livre du voyage", "Le tour du monde ne 80 jours",
+        Room library = new org.archipelago.test.domain.school.Library("Library", Lists.newArrayList("Le livre du voyage", "Le tour du monde en 80 jours",
                 "La nuit des enfants roi", "Le joueur d'échecs"), cassart);
         cassart.setInChargeOf(Lists.newArrayList(library));
         Room l003 = new ClassRoom("L003", 30, true, false, true);

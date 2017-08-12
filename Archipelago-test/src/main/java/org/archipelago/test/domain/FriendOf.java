@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////
 //
-// File: Descriptor.java
-// Created: 12/07/2017
+// File: FriendOf.java
+// Created: 12/08/2017
 // Author: Gilles Bodart ABM589
 // Electrabel n.v./s.a., Regentlaan 8 Boulevard du Régent, BTW BE 0403.107.701 - 1000 Brussel/Bruxelles, Belgium.
 //
@@ -15,11 +15,9 @@ package org.archipelago.test.domain;
 
 import java.time.LocalDate;
 
-/**
- * Created by ABM589 on 12/07/2017.
- */
-public class Descriptor {
-    
+public class FriendOf {
+
+
     LocalDate since;
 
     Long weight;
@@ -39,4 +37,5 @@ public class Descriptor {
     public void setSince(LocalDate since) {
         this.since = since;
     }
+
 }

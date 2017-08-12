@@ -20,23 +20,24 @@
 \contentsline {section}{\numberline {3.2}Les frameworks}{15}
 \contentsline {subsection}{\numberline {3.2.1}Apache TinkerPop}{15}
 \contentsline {part}{II\hspace {1em}Contribution}{17}
-\contentsline {chapter}{\numberline {4}Application possibles des BDOG}{18}
+\contentsline {chapter}{\numberline {4}Applications possibles des BDOG}{18}
 \contentsline {section}{\numberline {4.1}L'exemple parfait}{18}
-\contentsline {section}{\numberline {4.2}Crit\IeC {\`e}res de comparaisons}{18}
+\contentsline {section}{\numberline {4.2}Crit\IeC {\`e}res de comparaison}{18}
 \contentsline {section}{\numberline {4.3}Comparaison des plus grandes BDOG}{19}
 \contentsline {section}{\numberline {4.4}Piste de normalisation}{19}
 \contentsline {chapter}{\numberline {5}Le framework}{20}
 \contentsline {section}{\numberline {5.1}Utilisation}{20}
-\contentsline {subsection}{\numberline {5.1.1}La persistance}{20}
-\contentsline {subsection}{\numberline {5.1.2}La r\IeC {\'e}cup\IeC {\'e}ration}{22}
-\contentsline {section}{\numberline {5.2}Schema conceptuel}{23}
-\contentsline {section}{\numberline {5.3}Documentation}{24}
-\contentsline {section}{\numberline {5.4}Processus}{24}
-\contentsline {chapter}{\numberline {6}Evaluation}{25}
-\contentsline {section}{\numberline {6.1}Points forts}{25}
-\contentsline {section}{\numberline {6.2}Points faibles}{25}
-\contentsline {section}{\numberline {6.3}Retour d'information}{25}
-\contentsline {chapter}{\numberline {7}Conclusion}{26}
-\contentsline {section}{\numberline {7.1}Piste de r\IeC {\'e}flexions}{26}
-\contentsline {section}{\numberline {7.2}Archipelago en r\IeC {\'e}sum\IeC {\'e}}{26}
-\contentsline {part}{III\hspace {1em}Annexes}{27}
+\contentsline {subsection}{\numberline {5.1.1}La configuration}{20}
+\contentsline {subsection}{\numberline {5.1.2}La persistance}{20}
+\contentsline {subsection}{\numberline {5.1.3}La liaison}{22}
+\contentsline {subsection}{\numberline {5.1.4}La r\IeC {\'e}cup\IeC {\'e}ration}{23}
+\contentsline {section}{\numberline {5.2}Sch\IeC {\'e}ma conceptuel}{25}
+\contentsline {section}{\numberline {5.3}Documentation}{25}
+\contentsline {section}{\numberline {5.4}Processus}{25}
+\contentsline {chapter}{\numberline {6}Evaluation}{26}
+\contentsline {section}{\numberline {6.1}Points forts}{26}
+\contentsline {section}{\numberline {6.2}Points faibles}{26}
+\contentsline {chapter}{\numberline {7}Conclusion}{27}
+\contentsline {section}{\numberline {7.1}Piste de r\IeC {\'e}flexions}{27}
+\contentsline {section}{\numberline {7.2}Archipelago en r\IeC {\'e}sum\IeC {\'e}}{27}
+\contentsline {part}{III\hspace {1em}Annexes}{28}

@@ -50,6 +50,8 @@
          {É}{{\'E}}1
          {ê}{{\^e}}1
          {Ê}{{\^E}}1
+         {œ}{{\oe}}1
+         {â}{{\^a}}1
 }
 \lstdefinelanguage{json}{
     basicstyle=\normalfont\ttfamily,
@@ -87,6 +89,7 @@
          {É}{{\'E}}1
          {ê}{{\^e}}1
          {Ê}{{\^E}}1
+         {œ}{{\oe}}1
 }
 % ---------------------------------------------------------------------------------------------------------
 % LISTES
@@ -583,7 +586,8 @@ La suite de ce mémoire portant sur le développement d'un framework java, tente
 
 \subsection{La configuration}
 
-Archipelago permet de se lier à Néo4J ou à OrientDB sans changer le code source de l'application, cependant, une légère configuration est nécessaire pour initialiser les paramètres d'exécutions.
+Archipelago permet de se lier à Néo4J ou à OrientDB sans changer le code source de l'application. 
+Cependant, une légère configuration est nécessaire pour initialiser les paramètres d'exécution.
 
 Le fichier de configuration doit se nommer "config.archipelago.json" et être présent dans les ressources du projet.
 
@@ -602,22 +606,22 @@ Voici le canevas de ce fichier :
   },
   "deepness": 3, // Profondeur de persistance voir ci-après
   "domainRootPackage": "org.archipelago.test.domain.school" 
-  // package où se trouve les classes du domaine 
+  // package où se trouvent les classes du domaine 
 }
 \end{lstlisting}
 
-Pour la suite, ce framework a pricipalement été basé sur l'utilisation de l'annotation "Bridge".
+Pour la suite, ce framework a pricipalement été basé sur l'utilisation de l'annotation \textit{@Bridge}.
 
 \subsection{La persistance}
 
 
-La persistance est l'élément principal de ce framework. Afin de ne pas être tenu par une syntaxe appartenant à une BDOG propre, nous nous sommes basés sur une approche de représentation orienté objet. 
+La persistance est l'élément principal de ce framework. Afin de ne pas être tenu par une syntaxe appartenant à une BDOG propre, nous nous sommes basés sur une approche de représentation orientée objet. 
 
 La persistance de ces objets ainsi que des éléments qui leur sont liés  dépend en partie du fichier de configuration venant d'être décrit dans la section précédente. 
 
-Afin d'assurer la persistance des éléments liés, nous avons opté pour une approche récursive en "depth-first" avec marquage de sommet, en effet, pour créer un lien entre deux éléments, il faut absolument que ceux-si soient présents dans la base de données.
+Afin d'assurer la persistance des éléments liés, nous avons opté pour une approche récursive en "depth-first" avec marquage de sommet. En effet, pour créer un lien entre deux éléments, il faut absolument que ceux-si soient présents dans la base de données.
 
-La propriété "deepness" est primordiale pour la performance de cet outil, elle permet de définir la profondeur de persistance d'un objet. Ce procédé empêche de tomber dans des boucles infinies, problème courant lorsque nous travaillons avec de modèles ayant de relations bidirectionnelles comme suit : 
+La propriété "deepness" est primordiale pour la performance de cet outil, elle permet de définir la profondeur de persistance d'un objet. Ce procédé empêche de tomber dans des boucles infinies, problème courant lorsque nous travaillons avec de modèles ayant des relations bidirectionnelles comme suit : 
 
 \begin{lstlisting}
 Archipelago arch = Archipelago.getInstance();
@@ -638,7 +642,9 @@ Ainsi avec la valeur sentinelle contenue dans la propriété "deepness", nous ro
 \label{fig:Persist}
 \end{center}
     
-Pour ce qui est de la persistance du lien entre deux objets, nous avons fait le choix de ne créer que des relations orientées et unidirectionnelles. Pour spécifier cette information de lien, il faut apposer une annotation \textit{@Bridge} sur la propriété d'où part le lien. Nous avons cependant ajouté la possibilité d'avoir une relation réciproque en spécifiant dans cette annotation que nous voulons que ce soit bidirectionnel. 
+Pour ce qui est de la persistance du lien entre deux objets, nous avons fait le choix de créer des relations unidirectionnelles. Afin de créer un lien, il faut apposer l'annotation \textit{@Bridge} sur la propriété d'où il part.
+
+Nous avons cependant ajouté la possibilité d'obtenir une relation réciproque en associant la valeur \texttt{true} dans l'attribut \texttt{biDirectionnal} de l'annotation. 
 
 Exemple avec la Classe \textit{Student.java}
 
@@ -661,7 +667,7 @@ public class Student extends Person {
     
 \end{lstlisting}
 
-Le descriptor qui est obligatoire, se doit d'être unique, il va représenter dans le BDOG le type de lien entre deux nœuds.
+Le \texttt{descriptor} qui est obligatoire, se doit d'être unique, il va représenter dans le BDOG le type de lien entre deux nœuds.
 
 La beauté derrière cette utilisation est qu'au moindre changement de modèle, comme un ajout de propriété, l'ensemble de la couche de persistance sera adaptée à ce changement sans devoir exécuter le moindre script (à l'exception de la création d'une nouvelle classe pour OrientDB).
 
@@ -675,21 +681,43 @@ Voici un exemple :
 
 Archipelago arch = Archipelago.getInstance();
 
-Student gilles = new Student();
-Student antoine = new Student();
+City winterfell = new City("Winterfell");
+City kingsLanding = new City("King's Landing");
 
-gilles.setFriend(antoine);
-antoine.setFriend(gilles);
-
-arch.persist(gilles);
+Road road= new Road();
+road.setDistance(500l);
+road.setUnit("leagues");
+        
+arch.link(winterfell, kingsLanding, road);
 
 \end{lstlisting}
+
+Comme nous pouvons aisément le comprendre, nous allons lier ces deux villes par une relation "Road" contenant les propriétés "distance" et "unité".
+
+\begin{center}
+\includegraphics[scale=1]{figures/Rel.png}
+\label{fig:Query}
+\end{center}
+
+Toutefois si nous le spécifions à l'aide de la valeur "true" , le quatrième attribut de la méthode nous permet de générer automatiquement une relation réciproque ou bidirectionnelle. 
+
+\begin{lstlisting}
+...
+arch.link(winterfell, kingsLanding, road, true);
+...
+\end{lstlisting}
+
+
+\begin{center}
+\includegraphics[scale=1]{figures/RelBidir.png}
+\label{fig:Query}
+\end{center}
 
 \subsection{La récupération}
 
 La récupération de l'information est la raison pour laquelle nous la stockons. A quoi bon enregistrer une valeur dans une base de données si nous ne souhaitons jamais l'utiliser ultérieurement ?
 
-Pour cela, Archipelago apporte avec un système de création de requête. Grâce à ce procédé, que votre BDOG soit OrientDB ou Neo4J, vous serez en mesure de récupérer votre objet sans changer votre code source. 
+Pour cela, Archipelago offre un système de création de requête. Grâce à ce procédé, que votre BDOG soit OrientDB ou Neo4J, vous serez en mesure de récupérer votre objet sans changer votre code source. 
 
 Voici un exemple:
 
@@ -731,15 +759,23 @@ ArchipelagoQuery aq = a.getQueryBuilder()
 List<Object> nodes = arch.execute(aq);
 \end{lstlisting}
 
-Le procédé mis en place à l'heure actuelle ne permet pas de faire des conditions fortement complexes, il va ajouter l'élément de condition à la suite de la requête actuelle. 
+Le procédé mis en place à l'heure actuelle ne permet pas de créer des conditions complexes car il va ajouter chaque élément de condition à la suite de la requête courante. 
 
 Pour l'exemple précédent, nous aurons donc : 
 
 \begin{lstlisting}[language=SQL]
-lastName = "Bodart" AND ( firstName = "Gilles" OR firstName = "Thomas")
+(lastName = "Bodart" AND ( firstName = "Gilles" OR firstName = "Thomas"))
 \end{lstlisting}
 
-Ce qui se fournira donc la liste des étudiants ayant "Bodart" comme nom de famille et "Gilles" ou "Thomas" comme prénom. \`A L'heure actuelle, il n'est cependant pas possible d'effectuer des requêtes sur les relations entre les objets, cette piste est primordiale pour une deuxième version de ce framework.
+Comme expliqué plus haut, nous sommes actuellement dans l'incapacité de générer des requêtes comme suit :
+
+\begin{lstlisting}[language=SQL]
+(lastName = "Bodart" AND  firstName = "Gilles") 
+ OR 
+(lastName = "Blondiau" AND firstName = "Thomas")
+\end{lstlisting}
+
+Dans notre troisième exemple, le système fournira donc la liste des étudiants ayant "Bodart" comme nom de famille et "Gilles" ou "Thomas" comme prénom. \`A L'heure actuelle, il n'est cependant pas possible d'effectuer des requêtes sur les relations entre les objets. Cette piste sera primordiale pour une deuxième version de ce framework.
 
 \begin{center}
 \includegraphics[scale=0.4]{figures/query.png}
@@ -749,7 +785,8 @@ Ce qui se fournira donc la liste des étudiants ayant "Bodart" comme nom de fami
 
 
 \section{Schéma conceptuel}
-Les schémas conceptuels représentant une modèle exemple annoté des éléments du framework seront fournis et commentés dans cette section. Cela permettra au lecteur une meilleur compréhension.
+
+Les schémas conceptuels représentant un modèle exemple annoté des éléments du framework seront fournis et commentés dans cette section. Cela permettra au lecteur une meilleur compréhension.
 \section{Documentation}
 Une documentation claire et précise sur l'utilisation du framework Archipelago sera présente dans cette section : un ensemble entre une documentation fonctionnelle et une documentation technique réalisée avec JavaDoc.
 \section{Processus}
@@ -772,6 +809,75 @@ Le mémoire sera conclu avec une explication transversale et complète du framew
     \caption{Diagramme de Classe du modèle École}
     \label{fig:SchoolDiagram}
 \end{sidewaysfigure}
+
+\subsubsection*{Création des objets composant l'école}
+\label{SchoolObj}
+\begin{lstlisting}
+private static School school() throws ClassNotFoundException, IOException {
+
+    Lesson math8 = new Lesson("Math", 8l);
+    Lesson math6 = new Lesson("Math", 6l);
+    Lesson math4 = new Lesson("Math", 4l);
+    Lesson science6 = new Lesson("Science", 6l);
+    Lesson science3 = new Lesson("Science", 3l);
+    Lesson frans5 = new Lesson("Frans", 5l);
+    Lesson frans6 = new Lesson("Frans", 6l);
+    Lesson dutch2 = new Lesson("Dutch", 2l);
+    Lesson dutch4 = new Lesson("Dutch", 4l);
+    Lesson english2 = new Lesson("English", 2l);
+    Lesson english4 = new Lesson("English", 4l);
+    Lesson history = new Lesson("History", 2l);
+    Lesson geography = new Lesson("Geography", 2l);
+    Lesson religion = new Lesson("Religion", 2l);
+    Lesson pE = new Lesson("Physical Education", 2l);
+    Lesson greek = new Lesson("Greek ancient", 4l);
+
+    Promotion p2011 = new Promotion(2011);
+    Promotion p2002 = new Promotion(2002);
+    Promotion p2010 = new Promotion(2010);
+
+    Teacher gys = new Teacher("Hans", "Gys", null, "M", Lists.newArrayList(dutch2, dutch4, english2, english4), Lists.newArrayList(dutch2, dutch4,english2, english4), "Master");
+    Teacher goffin = new Teacher("Michel", "Goffin", null, "M", Lists.newArrayList(math8, math6, math4), Lists.newArrayList(math8, math6, math4), "Master");
+    Teacher massart = new Teacher("Gabriel", "Massart", null, "M", Lists.newArrayList(math8, math6, math4), Lists.newArrayList(math8, math6, math4), "Master");
+    Teacher gouthers = new Teacher("Yves", "Gouthers", null, "M", Lists.newArrayList(frans5, frans6, religion), Lists.newArrayList(frans5, frans6, religion), "Master");
+    Teacher jacques = new Teacher("Christian", "Jacques", null, "M", Lists.newArrayList(geography), Lists.newArrayList(geography), "Master");
+
+    Student gilles = new Student("Gilles", "Bodart", LocalDate.of(1992, 4, 14), "M", Lists.newArrayList(math8, science6, dutch2, english4, history, geography, religion, frans5, pE), null, null, p2011);
+    Student thomasB = new Student("Thomas", "Blondiau", LocalDate.of(1992, 1, 5), "M", Lists.newArrayList(math8, science3, dutch2, english4, history, geography, religion, frans5, pE, greek), null, null, p2010);
+    Student thomasR = new Student("Thomas", "Reynders", LocalDate.of(1992, 1, 22), "M", Lists.newArrayList(math8, science6, dutch2, english4, history, geography, religion, frans5, pE), null, null, p2010);
+    Student charly = new Student("Charles-Antoine", "Van Beers", LocalDate.of(1992, 4, 28), "M", Lists.newArrayList(math8, science3, dutch2, english4, history, geography, religion, frans5, pE, greek), null, null, p2010);
+    Student antoine = new Student("Antoine", "Dumont", LocalDate.of(1992, 12, 28), "M", Lists.newArrayList(math6, science3, dutch4, english4, history, geography, religion, frans5, pE, greek), null, null, p2010);
+    Student martin = new Student("Martin", "Périlleux", LocalDate.of(1992, 2, 28), "M", Lists.newArrayList(math6, science3, dutch4, english4, history, geography, religion, frans5, pE, greek), null, null, p2010);
+    Student benjamin = new Student("Benjamin", "Leroy", LocalDate.of(1992, 10, 31), "M", Lists.newArrayList(math8, science3, dutch2, english4, history, geography, religion, frans5, pE, greek), null, null, p2010);
+    Student antoineBo = new Student("Antoine", "Bodart", LocalDate.of(1985, 10, 18), "M", Lists.newArrayList(math6, science6, dutch2, english4, history, geography, religion, frans5, pE), null, null, p2002);
+    Worker cassart = new Worker("", "Cassart", null, "M", null, null);
+    List<Room> rooms;
+    Room library = new org.archipelago.test.domain.school.Library("Library", Lists.newArrayList("Le livre du voyage", "Le tour du monde en 80 jours", "La nuit des enfants roi", "Le joueur d'échecs"), cassart);
+    cassart.setInChargeOf(Lists.newArrayList(library));
+    Room l003 = new ClassRoom("L003", 30, true, false, true);
+    Room c203 = new ClassRoom("C203", 30, true, false, true);
+    Room l306 = new ClassRoom("L306", 50, true, true, false);
+
+    gilles.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, martin, benjamin, antoineBo));
+    gilles.setFamilyMember(Lists.newArrayList(antoineBo));
+    thomasB.setFriends(Lists.newArrayList(gilles, thomasR, charly, antoine, martin, benjamin));
+    thomasR.setFriends(Lists.newArrayList(thomasB, gilles, charly, antoine, martin, benjamin));
+    charly.setFriends(Lists.newArrayList(thomasB, thomasR, gilles, antoine, martin, benjamin));
+    antoine.setFriends(Lists.newArrayList(thomasB, thomasR, charly, gilles, martin, benjamin));
+    martin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, gilles, benjamin));
+    benjamin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, martin, gilles));
+
+    School school = new School();
+    school.setName("Saint Louis Namur");
+    school.setDirector(gys);
+    school.setTeachers(Lists.newArrayList(goffin, gouthers, jacques, gys, massart));
+    school.setStudents(Lists.newArrayList(gilles, thomasB, thomasR, charly, antoine, martin, benjamin, antoineBo));
+    school.setRooms(Lists.newArrayList(library, l003, l306, c203));
+    school.setWorkers(Lists.newArrayList(cassart));
+    return school;
+
+    }
+\end{lstlisting}
 \chapter*{Lexique}
 \begin{center}
 \begin{tabular}[c]{ l p{14cm} }

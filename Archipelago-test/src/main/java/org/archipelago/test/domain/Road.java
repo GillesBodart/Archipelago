@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////
 //
-// File: Descriptor.java
-// Created: 12/07/2017
+// File: FriendOf.java
+// Created: 12/08/2017
 // Author: Gilles Bodart ABM589
 // Electrabel n.v./s.a., Regentlaan 8 Boulevard du Régent, BTW BE 0403.107.701 - 1000 Brussel/Bruxelles, Belgium.
 //
@@ -13,30 +13,27 @@
 ////////////////////////////////////////////////////////////////////
 package org.archipelago.test.domain;
 
-import java.time.LocalDate;
+public class Road {
 
-/**
- * Created by ABM589 on 12/07/2017.
- */
-public class Descriptor {
-    
-    LocalDate since;
 
-    Long weight;
+    private Long distance;
 
-    public Long getWeight() {
-        return weight;
+    private String unit;
+
+
+    public Long getDistance() {
+        return distance;
     }
 
-    public void setWeight(Long weight) {
-        this.weight = weight;
+    public void setDistance(Long distance) {
+        this.distance = distance;
     }
 
-    public LocalDate getSince() {
-        return since;
+    public String getUnit() {
+        return unit;
     }
 
-    public void setSince(LocalDate since) {
-        this.since = since;
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }
