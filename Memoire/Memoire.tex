@@ -581,13 +581,9 @@ La suite de ce mémoire portant sur le développement d'un framework java, tente
 \chapter{Le framework}
 \section{Utilisation}
 
-Ce framework a été basé sur l'utilisation d'annotations, à l'heure actuelle, il permet d'effectuer deux opérations:
+\subsection{La configuration}
 
-\subsection{La persistance}
-
-
-//TODO refaire 
-La persistance est l'élément primordial de ce framework. Afin de ne pas avoir de lien avec une BDOG propre, nous nous sommes basés sur le modèle orienté objet. La persistance de celui-ci ainsi que des éléments qui lui sont liés est paramétrisable dans un fichier de configuration nécessaire à l'initialisation de cet outil.
+Archipelago permet de se lier à Néo4J ou à OrientDB sans changer le code source de l'application, cependant, une légère configuration est nécessaire pour initialiser les paramètres d'exécutions.
 
 Le fichier de configuration doit se nommer "config.archipelago.json" et être présent dans les ressources du projet.
 
@@ -609,9 +605,19 @@ Voici le canevas de ce fichier :
   // package où se trouve les classes du domaine 
 }
 \end{lstlisting}
+
+Pour la suite, ce framework a pricipalement été basé sur l'utilisation de l'annotation "Bridge".
+
+\subsection{La persistance}
+
+
+La persistance est l'élément principal de ce framework. Afin de ne pas être tenu par une syntaxe appartenant à une BDOG propre, nous nous sommes basés sur une approche de représentation orienté objet. 
+
+La persistance de ces objets ainsi que des éléments qui leur sont liés  dépend en partie du fichier de configuration venant d'être décrit dans la section précédente. 
+
 Afin d'assurer la persistance des éléments liés, nous avons opté pour une approche récursive en "depth-first" avec marquage de sommet, en effet, pour créer un lien entre deux éléments, il faut absolument que ceux-si soient présents dans la base de données.
 
-La propriété "deepness" est primordiale pour la performance de ce framework, elle permet de définir la profondeur de persistance d'un objet. Ce procédé empêche de tomber dans des boucles infinies, problème courant lorsque nous travaillons avec de modèles ayant de relations bidirectionnelles comme suit : 
+La propriété "deepness" est primordiale pour la performance de cet outil, elle permet de définir la profondeur de persistance d'un objet. Ce procédé empêche de tomber dans des boucles infinies, problème courant lorsque nous travaillons avec de modèles ayant de relations bidirectionnelles comme suit : 
 
 \begin{lstlisting}
 Archipelago arch = Archipelago.getInstance();
@@ -625,7 +631,7 @@ antoine.setFriend(gilles);
 arch.persist(gilles);
 \end{lstlisting}
 
-Ainsi avec cette valeur sentinelle, nous rompons la boucle de persistance après avoir atteint la profondeur souhaitée.
+Ainsi avec la valeur sentinelle contenue dans la propriété "deepness", nous rompons la boucle de persistance après avoir atteint la profondeur souhaitée.
 
 \begin{center}
 \includegraphics[scale=0.5]{figures/Persist.png}
@@ -658,6 +664,26 @@ public class Student extends Person {
 Le descriptor qui est obligatoire, se doit d'être unique, il va représenter dans le BDOG le type de lien entre deux nœuds.
 
 La beauté derrière cette utilisation est qu'au moindre changement de modèle, comme un ajout de propriété, l'ensemble de la couche de persistance sera adaptée à ce changement sans devoir exécuter le moindre script (à l'exception de la création d'une nouvelle classe pour OrientDB).
+
+\subsection{La liaison}
+
+Tout graph se doit de pouvoir lier deux nœuds entre eux, Archipelago offre donc la possibilité de spécifier une liaison entre deux objets en utilisant un troisième. 
+
+Voici un exemple : 
+
+\begin{lstlisting}
+
+Archipelago arch = Archipelago.getInstance();
+
+Student gilles = new Student();
+Student antoine = new Student();
+
+gilles.setFriend(antoine);
+antoine.setFriend(gilles);
+
+arch.persist(gilles);
+
+\end{lstlisting}
 
 \subsection{La récupération}
 
@@ -719,6 +745,8 @@ Ce qui se fournira donc la liste des étudiants ayant "Bodart" comme nom de fami
 \includegraphics[scale=0.4]{figures/query.png}
 \label{fig:Query}
 \end{center}
+
+
 
 \section{Schéma conceptuel}
 Les schémas conceptuels représentant une modèle exemple annoté des éléments du framework seront fournis et commentés dans cette section. Cela permettra au lecteur une meilleur compréhension.

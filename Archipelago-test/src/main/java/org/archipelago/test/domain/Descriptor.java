@@ -24,6 +24,8 @@ public class Descriptor {
     public Descriptor(LocalDate since) {
         this.since = since;
     }
+    public Descriptor() {
+    }
 
     public LocalDate getSince() {
         return since;

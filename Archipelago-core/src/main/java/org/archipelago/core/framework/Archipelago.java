@@ -264,28 +264,28 @@ public class Archipelago implements AutoCloseable {
         }
     }
 
-    public void link(Object first, Object second, Object descriptor, boolean biDirectionnal) {
+    public void link(Object first, Object second, Object descriptor, boolean biDirectional) {
+        boolean haveDescriptor = null != descriptor;
+        String name;
+        if (haveDescriptor) {
+            name = descriptor.getClass().getSimpleName();
+        } else {
+            name = String.format("%sTo%s", first.getClass().getSimpleName(), second.getClass().getSimpleName());
+        }
         switch (databaseType) {
             case NEO4J:
-                boolean haveDescriptor = null != descriptor;
                 try (Session s = this.driver.session()) {
                     Integer idA = (Integer) getId(first);
                     Integer idB = (Integer) getId(second);
                     if (idA != null && idB != null) {
-                        String name;
                         if (haveDescriptor) {
-                            name = descriptor.getClass().getSimpleName();
-                        } else {
-                            name = String.format("%sTo%s", first.getClass().getSimpleName(), second.getClass().getSimpleName());
-                        }
-                        if (haveDescriptor) {
-                            s.run(builder.makeRelation(idA, idB, name, descriptor.getClass()), parameters(builder.fillCreate(descriptor).toArray()));
-                            if (biDirectionnal) {
-                                s.run(builder.makeRelation(idB, idA, name, descriptor.getClass()), parameters(builder.fillCreate(descriptor).toArray()));
+                            s.run(builder.makeRelation(idA, idB, name, descriptor), parameters(builder.fillCreate(descriptor).toArray()));
+                            if (biDirectional) {
+                                s.run(builder.makeRelation(idB, idA, name, descriptor), parameters(builder.fillCreate(descriptor).toArray()));
                             }
                         } else {
                             s.run(builder.makeRelation(idA, idB, name));
-                            if (biDirectionnal) {
+                            if (biDirectional) {
                                 s.run(builder.makeRelation(idB, idA, name));
                             }
                         }
@@ -293,7 +293,30 @@ public class Archipelago implements AutoCloseable {
                 }
                 break;
             case ORIENT_DB:
-                LOGGER.debug("[NOT IMPLEMENTED YET]");
+                try {
+                    String idA = (String) getId(first);
+                    String idB = (String) getId(second);
+                    if (idA != null && idB != null) {
+                        String query = builder.makeRelation(idA, idB, name, descriptor);
+                        LOGGER.debug(String.format("CREATE Relation from %s to %s : [%s]", idA, idB, query));
+                        this.rootTarget
+                                .path(String.format("command/%s/sql/%s", archipelagoConfig.getDatabase().getName(),
+                                        URLEncoder.encode(query, "UTF-8")))
+                                .request(MediaType.TEXT_PLAIN)
+                                .post(Entity.entity("", MediaType.TEXT_PLAIN));
+                        if (biDirectional) {
+                            query = builder.makeRelation(idB, idA, name, descriptor);
+                            LOGGER.debug(String.format("CREATE Relation from %s to %s : [%s]", idA, idB, query));
+                            this.rootTarget
+                                    .path(String.format("command/%s/sql/%s", archipelagoConfig.getDatabase().getName(),
+                                            URLEncoder.encode(query, "UTF-8")))
+                                    .request(MediaType.TEXT_PLAIN)
+                                    .post(Entity.entity("", MediaType.TEXT_PLAIN));
+                        }
+                    }
+                } catch (UnsupportedEncodingException e) {
+                    LOGGER.error(e.getMessage(), e);
+                }
                 break;
         }
 

@@ -52,11 +52,11 @@ public abstract class ArchipelagoScriptBuilder {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public String makeRelation(int idA, int idB, String name, Class<?> descriptor) {
+    public String makeRelation(Object idA, Object idB, String name, Object descriptor) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public String makeRelation(int idA, int idB, String name, List<String> props) {
+    public String makeRelation(Object idA, Object idB, String name, List<String> props) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 

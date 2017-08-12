@@ -5,7 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.builder.ArchipelagoQuery;
 import org.archipelago.core.builder.ConditionQualifier;
+import org.archipelago.core.builder.OrientDBBuilder;
 import org.archipelago.core.framework.Archipelago;
+import org.archipelago.test.domain.Descriptor;
 import org.archipelago.test.domain.library.Author;
 import org.archipelago.test.domain.library.Book;
 import org.archipelago.test.domain.library.Librarian;
@@ -31,7 +33,18 @@ public class MainTest {
 
     public static void main(String[] args) throws Exception {
         Archipelago a = Archipelago.getInstance();
-        a.persist(school());
+
+        Student gilles = new Student();
+        Student antoine = new Student();
+
+        Descriptor relation = new Descriptor();
+        relation.setSince(LocalDate.now());
+
+
+        a.link(gilles,antoine,relation, false);
+
+        //a.persist(school());
+
         /*ArchipelagoQuery aq = a.getQueryBuilder()
                 .of(Student.class)
                 .where(of("lastName", "Bodart"), ConditionQualifier.EQUAL)

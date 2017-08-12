@@ -8,7 +8,10 @@ import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Gilles Bodart
@@ -35,6 +38,22 @@ public class OrientDBBuilder extends ArchipelagoScriptBuilder {
     public String makeRelation(Object idA, Object idB, DescriptorWrapper description) {
         return String.format("CREATE EDGE %s FROM %s TO %s SET created = %s",
                 description.getName(), idA, idB, ArchipelagoUtils.formatQueryValue(description.getCreated(), true));
+    }
+
+    @Override
+    public String makeRelation(Object idA, Object idB, String name, Object descriptor) {
+        StringBuilder sb = new StringBuilder(String.format("CREATE EDGE %s FROM %s TO %s ", name,
+                idA, idB));
+        sb.append("SET ");
+        List<String> props = new ArrayList<>();
+        for (Field field : ArchipelagoUtils.getAllFields(descriptor.getClass())) {
+            Object o = ArchipelagoUtils.get(descriptor.getClass(), field, descriptor);
+            if (null != o) {
+                props.add(String.format("%s = %s", field.getName(), ArchipelagoUtils.formatQueryValue(o, true, true)));
+            }
+        }
+        sb.append(props.stream().collect(Collectors.joining(", ")));
+        return sb.toString();
     }
 
     public String makeMatch(Object object) {

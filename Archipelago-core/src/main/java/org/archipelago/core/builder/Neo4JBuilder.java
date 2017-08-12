@@ -77,15 +77,15 @@ public class Neo4JBuilder extends ArchipelagoScriptBuilder {
         return relationQuery;
     }
 
-    public String makeRelation(int idA, int idB, String name, Class<?> descriptor) {
-
+    @Override
+    public String makeRelation(Object idA, Object idB, String name, Object descriptor) {
         final String nodeTemplatePath = String.format("%s/%s/%s", TEMPLATE_ROOT_PATH, NEO4J_FOLDER, "\\relationWithProp.stg");
         final STGroup group = StringTemplateFactory.buildSTGroup(nodeTemplatePath);
         final ST st = group.getInstanceOf("RelationNeo4J");
         st.add("idA", idA);
         st.add("idB", idB);
         st.add("name", name);
-        for (Field field : ArchipelagoUtils.getAllFields(descriptor)) {
+        for (Field field : ArchipelagoUtils.getAllFields(descriptor.getClass())) {
             st.add("properties", field.getName());
         }
         String relationQuery = st.render();
@@ -93,7 +93,8 @@ public class Neo4JBuilder extends ArchipelagoScriptBuilder {
         return relationQuery;
     }
 
-    public String makeRelation(int idA, int idB, String name, List<String> props) {
+    @Override
+    public String makeRelation(Object idA, Object idB, String name, List<String> props) {
         final String nodeTemplatePath = String.format("%s/%s/%s", TEMPLATE_ROOT_PATH, NEO4J_FOLDER, "\\relationWithProp.stg");
         final STGroup group = StringTemplateFactory.buildSTGroup(nodeTemplatePath);
         final ST st = group.getInstanceOf("RelationNeo4J");
