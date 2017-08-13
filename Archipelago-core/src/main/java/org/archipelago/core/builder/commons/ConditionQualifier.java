@@ -1,4 +1,4 @@
-package org.archipelago.core.builder;
+package org.archipelago.core.builder.commons;
 
 /**
  * Created by Gilles Bodart on 19/07/2017.

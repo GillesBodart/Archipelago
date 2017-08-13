@@ -1,6 +1,7 @@
-package org.archipelago.core.builder;
+package org.archipelago.core.builder.neo4j;
 
 import org.archipelago.core.annotations.Bridge;
+import org.archipelago.core.builder.abstraction.ArchipelagoScriptBuilder;
 import org.archipelago.core.util.ArchipelagoUtils;
 import org.archipelago.core.util.StringTemplateFactory;
 import org.stringtemplate.v4.ST;

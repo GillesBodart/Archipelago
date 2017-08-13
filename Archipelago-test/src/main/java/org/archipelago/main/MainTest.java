@@ -3,6 +3,9 @@ package org.archipelago.test.main;
 import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.archipelago.core.builder.commons.ArchipelagoQuery;
+import org.archipelago.core.builder.commons.ConditionQualifier;
+import org.archipelago.core.exception.CheckException;
 import org.archipelago.core.framework.Archipelago;
 import org.archipelago.test.domain.FriendOf;
 import org.archipelago.test.domain.Road;
@@ -18,6 +21,8 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import static org.archipelago.core.builder.commons.QueryElement.of;
+
 /**
  * Created by Gilles Bodart on 19/08/2016.
  */
@@ -28,19 +33,12 @@ public class MainTest {
     public static void main(String[] args) throws Exception {
         Archipelago a = Archipelago.getInstance();
 
-        a.persist(school());
-
-        //a.persist(school());
-
-        /*ArchipelagoQuery aq = a.getQueryBuilder()
-                .of(Student.class)
-                .where(of("lastName", "Bodart"), ConditionQualifier.EQUAL)
-                .and(of("firstName", "gilles"), ConditionQualifier.EQUAL)
-                .or(of("firstName", "Thomas"), ConditionQualifier.EQUAL)
+        ArchipelagoQuery aq = a.getQueryBuilder()
+                .of(City.class)
+                .where(of("name","King's Landing"), ConditionQualifier.EQUAL)
                 .build();
-
-        List<Object> nodes = a.execute(aq);*/
-        //nodes.stream().forEach(System.out::println);
+        List<Object> nodes = a.execute(aq);
+        nodes.stream().forEach(System.out::println);
     }
 
     private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {
@@ -56,6 +54,28 @@ public class MainTest {
         }
     }
 
+    private static void got() throws CheckException {
+
+        Archipelago a = Archipelago.getInstance();
+
+        City winterfell = new City("Winterfell");
+        City kingsLanding = new City("King's Landing");
+        City dragonStone = new City("Dragonstone");
+
+        Road road= new Road();
+        road.setDistance(500l);
+        road.setUnit("leagues");
+
+        Road road2= new Road();
+        road2.setDistance(200l);
+        road2.setUnit("leagues");
+
+        a.persist(winterfell);
+        a.persist(kingsLanding);
+        a.persist(dragonStone);
+        a.link(kingsLanding,winterfell,road, true);
+        a.link(kingsLanding,dragonStone,road2, true);
+    }
 
     private static Library library() throws ClassNotFoundException, IOException {
         Book book = new Book();

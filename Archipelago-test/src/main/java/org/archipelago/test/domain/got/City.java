@@ -13,9 +13,18 @@
 ////////////////////////////////////////////////////////////////////
 package org.archipelago.test.domain.got;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.archipelago.core.annotations.Bridge;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class City {
 
     private String name;
+
+    @Bridge(descriptor = "Road")
+    private List<City> connected = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -27,5 +36,24 @@ public class City {
 
     public City(String name) {
         this.name = name;
+    }
+    public City() {
+        this.name = name;
+    }
+
+    public List<City> getConnected() {
+        return connected;
+    }
+
+    public void setConnected(List<City> connected) {
+        this.connected = connected;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("name", name)
+                .append("connected", connected)
+                .toString();
     }
 }

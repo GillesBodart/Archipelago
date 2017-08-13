@@ -4,7 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.archipelago.core.builder.*;
+import org.archipelago.core.builder.OrientDB.OrientDBArchipelagoQueryImpl;
+import org.archipelago.core.builder.OrientDB.OrientDBBuilder;
+import org.archipelago.core.builder.abstraction.ArchipelagoQueryBuilder;
+import org.archipelago.core.builder.abstraction.ArchipelagoScriptBuilder;
+import org.archipelago.core.builder.commons.ArchipelagoQuery;
+import org.archipelago.core.builder.neo4j.Neo4JArchipelagoQueryImpl;
+import org.archipelago.core.builder.neo4j.Neo4JBuilder;
 import org.archipelago.core.configurator.ArchipelagoConfig;
 import org.archipelago.core.configurator.DatabaseConfig;
 import org.archipelago.core.configurator.DatabaseType;
@@ -107,12 +113,12 @@ public class Archipelago implements AutoCloseable {
         return instance;
     }
 
-    public QueryBuilder getQueryBuilder() throws CheckException {
+    public ArchipelagoQueryBuilder getQueryBuilder() throws CheckException {
         switch (databaseType) {
             case NEO4J:
-                return Neo4JQueryImpl.init();
+                return Neo4JArchipelagoQueryImpl.init();
             case ORIENT_DB:
-                return OrientDBQueryImpl.init();
+                return OrientDBArchipelagoQueryImpl.init();
             default:
                 throw new CheckException("Only NEO4J and ORIENT_DB are supported for the moment!");
 
@@ -288,9 +294,9 @@ public class Archipelago implements AutoCloseable {
                                 s.run(builder.makeRelation(idB, idA, name, descriptor), parameters(builder.fillCreate(descriptor).toArray()));
                             }
                         } else {
-                            s.run(builder.makeRelation(idA, idB, name));
+                            s.run(builder.makeRelation(idA, idB, new DescriptorWrapper(name)));
                             if (biDirectional) {
-                                s.run(builder.makeRelation(idB, idA, name));
+                                s.run(builder.makeRelation(idB, idA, new DescriptorWrapper(name)));
                             }
                         }
                     }
@@ -477,57 +483,54 @@ public class Archipelago implements AutoCloseable {
         switch (databaseType) {
             case NEO4J:
                 try (Session s = this.driver.session()) {
-                    if (aq.isRelation()) {
-                        link(aq.getFrom(), aq.getTo(), aq.getDescriptor(), aq.isBiDirectionnal());
-                    } else {
-                        StatementResult result = s.run(aq.getQuery());
-                        while (result.hasNext()) {
-                            Record record = result.next();
-                            Path p = record.get("p").asPath();
-                            p.forEach(segment -> {
-                                try {
-                                    Object startNode = null;
-                                    Node start = segment.start();
-                                    if (!startNodes.containsKey(start.id())) {
-                                        startNode = aq.getTarget().getConstructor().newInstance();
-                                        ArchipelagoUtils.feedObject(startNode, start.asMap());
-                                        startNodes.put(start.id(), startNode);
 
-                                    } else {
-                                        startNode = startNodes.get(start.id());
-                                    }
-                                    Relationship rel = segment.relationship();
-                                    Field field = ArchipelagoUtils.getFieldFromBridgeName(startNode.getClass(), rel.type());
-                                    //Get the label as the ClassName
-                                    Set<Class<?>> supers = this.reflections.getSubTypesOf(ArchipelagoUtils.getClassOf(field));
-                                    Class<?> endClass = null;
-                                    if (supers.size() > 0) {
-                                        endClass = ArchipelagoUtils
-                                                .getClassOf(supers, segment.end().labels().iterator().next());
-                                    } else {
-                                        endClass = ArchipelagoUtils.getClassOf(field);
-                                    }
-                                    Object endNode = endClass
-                                            .getConstructor()
-                                            .newInstance();
-                                    ArchipelagoUtils.feedObject(endNode, segment.end().asMap());
-                                    if (Collection.class.isAssignableFrom(field.getType())) {
-                                        ((Collection) ArchipelagoUtils.get(aq.getTarget(), field, startNode)).add(endNode);
-                                    } else {
-                                        String methodName = String.format("set%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field.getName().length()));
-                                        //Must have exactly one match
-                                        Method method = ReflectionUtils.getAllMethods(aq.getTarget(),
-                                                withModifier(Modifier.PUBLIC), withPrefix(String.format(methodName)))
-                                                .stream()
-                                                .findFirst()
-                                                .get();
-                                        method.invoke(startNode, endNode);
-                                    }
-                                } catch (Exception e) {
-                                    LOGGER.error(e.getMessage(), e);
+                    StatementResult result = s.run(aq.getQuery());
+                    while (result.hasNext()) {
+                        Record record = result.next();
+                        Path p = record.get("p").asPath();
+                        p.forEach(segment -> {
+                            try {
+                                Object startNode = null;
+                                Node start = segment.start();
+                                if (!startNodes.containsKey(start.id())) {
+                                    startNode = aq.getTarget().getConstructor().newInstance();
+                                    ArchipelagoUtils.feedObject(startNode, start.asMap());
+                                    startNodes.put(start.id(), startNode);
+
+                                } else {
+                                    startNode = startNodes.get(start.id());
                                 }
-                            });
-                        }
+                                Relationship rel = segment.relationship();
+                                Field field = ArchipelagoUtils.getFieldFromBridgeName(startNode.getClass(), rel.type());
+                                //Get the label as the ClassName
+                                Set<Class<?>> supers = this.reflections.getSubTypesOf(ArchipelagoUtils.getClassOf(field));
+                                Class<?> endClass = null;
+                                if (supers.size() > 0) {
+                                    endClass = ArchipelagoUtils
+                                            .getClassOf(supers, segment.end().labels().iterator().next());
+                                } else {
+                                    endClass = ArchipelagoUtils.getClassOf(field);
+                                }
+                                Object endNode = endClass
+                                        .getConstructor()
+                                        .newInstance();
+                                ArchipelagoUtils.feedObject(endNode, segment.end().asMap());
+                                if (Collection.class.isAssignableFrom(field.getType())) {
+                                    ((Collection) ArchipelagoUtils.get(aq.getTarget(), field, startNode)).add(endNode);
+                                } else {
+                                    String methodName = String.format("set%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field.getName().length()));
+                                    //Must have exactly one match
+                                    Method method = ReflectionUtils.getAllMethods(aq.getTarget(),
+                                            withModifier(Modifier.PUBLIC), withPrefix(String.format(methodName)))
+                                            .stream()
+                                            .findFirst()
+                                            .get();
+                                    method.invoke(startNode, endNode);
+                                }
+                            } catch (Exception e) {
+                                LOGGER.error(e.getMessage(), e);
+                            }
+                        });
                     }
                 } catch (Exception e) {
                     LOGGER.error(e.getMessage(), e);
@@ -538,22 +541,14 @@ public class Archipelago implements AutoCloseable {
             case ORIENT_DB:
                 try {
                     String json;
-                    if (aq.isRelation()) {
-                        json = this.rootTarget
-                                .path(String.format("command/%s/sql/%s", archipelagoConfig.getDatabase().getName(),
-                                        URLEncoder.encode(aq.getQuery(), "UTF-8")))
-                                .request(MediaType.TEXT_PLAIN)
-                                .post(Entity.entity("", MediaType.TEXT_PLAIN), String.class);
-                    } else {
-                        json = this.rootTarget
-                                .path(String.format("command/%s/sql/%s", archipelagoConfig.getDatabase().getName(),
-                                        URLEncoder.encode(aq.getQuery(), "UTF-8")))
-                                .request(MediaType.APPLICATION_JSON)
-                                .get(String.class);
-                    }
 
+                    json = this.rootTarget
+                            .path(String.format("command/%s/sql/%s", archipelagoConfig.getDatabase().getName(),
+                                    URLEncoder.encode(aq.getQuery(), "UTF-8")))
+                            .request(MediaType.APPLICATION_JSON)
+                            .get(String.class);
                     OrientDBResultWrapper resultWrapper = OM.readValue(json, OrientDBResultWrapper.class);
-                    //TODO Too complicatted O(n^5) omg
+                    //FIXME Too complicatted O(n^5) omg
                     for (Map<String, Object> map : resultWrapper.getResult()) {
                         Object node = aq.getTarget().getConstructor().newInstance();
                         ArchipelagoUtils.feedObject(node, map);

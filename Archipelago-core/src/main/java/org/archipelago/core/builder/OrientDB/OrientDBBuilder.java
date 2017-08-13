@@ -1,6 +1,7 @@
-package org.archipelago.core.builder;
+package org.archipelago.core.builder.OrientDB;
 
 import org.archipelago.core.annotations.Bridge;
+import org.archipelago.core.builder.abstraction.ArchipelagoScriptBuilder;
 import org.archipelago.core.domain.DescriptorWrapper;
 import org.archipelago.core.util.ArchipelagoUtils;
 import org.archipelago.core.util.StringTemplateFactory;

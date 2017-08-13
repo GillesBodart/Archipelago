@@ -1,4 +1,4 @@
-package org.archipelago.core.builder;
+package org.archipelago.core.builder.abstraction;
 
 import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
@@ -61,10 +61,6 @@ public abstract class ArchipelagoScriptBuilder {
     }
 
     public String makeRelation(Object idA, Object idB, DescriptorWrapper description) {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
-    public String makeRelation(Object idA, Object idB, String description) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }
