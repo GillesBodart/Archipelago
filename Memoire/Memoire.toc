@@ -1,5 +1,5 @@
-\select@language {frenchb}
-\select@language {english}
+\select@language {francais}
+\select@language {french}
 \contentsline {part}{I\hspace {1em}\IeC {\'E}tat de l'art}{5}
 \contentsline {chapter}{\numberline {1}L'\IeC {\'e}volution du NoSql}{6}
 \contentsline {section}{\numberline {1.1}Questionnement}{7}
@@ -31,32 +31,32 @@
 \contentsline {subsection}{\numberline {5.1.1}La configuration}{20}
 \contentsline {subsection}{\numberline {5.1.2}La persistance}{20}
 \contentsline {subsection}{\numberline {5.1.3}La liaison}{23}
-\contentsline {subsection}{\numberline {5.1.4}La r\IeC {\'e}cup\IeC {\'e}ration}{23}
+\contentsline {subsection}{\numberline {5.1.4}La r\IeC {\'e}cup\IeC {\'e}ration}{24}
 \contentsline {section}{\numberline {5.2}Sch\IeC {\'e}ma conceptuel}{25}
-\contentsline {subsection}{\numberline {5.2.1}Archipelago}{26}
-\contentsline {subsubsection}{ScriptBuilders}{26}
-\contentsline {subsubsection}{QueryBuilders}{27}
-\contentsline {chapter}{\numberline {6}Evaluation}{28}
-\contentsline {section}{\numberline {6.1}Points forts}{28}
-\contentsline {subsection}{\numberline {6.1.1}La facilit\IeC {\'e}}{28}
-\contentsline {subsection}{\numberline {6.1.2}La configurabilit\IeC {\'e}}{28}
-\contentsline {subsection}{\numberline {6.1.3}L'abstraction}{28}
-\contentsline {subsection}{\numberline {6.1.4}La simplification}{29}
-\contentsline {subsection}{\numberline {6.1.5}La modularit\IeC {\'e}}{29}
-\contentsline {section}{\numberline {6.2}Points faibles}{29}
-\contentsline {subsection}{\numberline {6.2.1}La Performance}{29}
-\contentsline {subsection}{\numberline {6.2.2}Les conditions}{29}
-\contentsline {subsection}{\numberline {6.2.3}La r\IeC {\'e}cup\IeC {\'e}ration d'informations}{31}
-\contentsline {subsection}{\numberline {6.2.4}La propret\IeC {\'e} du code}{32}
-\contentsline {chapter}{\numberline {7}Conclusion}{34}
-\contentsline {section}{\numberline {7.1}Piste de r\IeC {\'e}flexions}{34}
-\contentsline {subsection}{\numberline {7.1.1}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{34}
-\contentsline {subsection}{\numberline {7.1.2}Am\IeC {\'e}lioration des performances}{34}
-\contentsline {subsection}{\numberline {7.1.3}Am\IeC {\'e}lioration de l'exploitation des relations}{34}
-\contentsline {subsection}{\numberline {7.1.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de th\IeC {\'e}orie des graphes}{34}
-\contentsline {subsection}{\numberline {7.1.5}Standardisation}{34}
-\contentsline {section}{\numberline {7.2}Archipelago en r\IeC {\'e}sum\IeC {\'e}}{34}
-\contentsline {part}{III\hspace {1em}Annexes}{35}
-\contentsline {part}{IV\hspace {1em}Glossaire}{40}
-\contentsline {part}{V\hspace {1em}Code Sources}{42}
-\contentsline {part}{VI\hspace {1em}Bibliographie}{43}
+\contentsline {subsection}{\numberline {5.2.1}Archipelago}{27}
+\contentsline {subsubsection}{ScriptBuilders}{27}
+\contentsline {subsubsection}{QueryBuilders}{28}
+\contentsline {chapter}{\numberline {6}Evaluation}{29}
+\contentsline {section}{\numberline {6.1}Points forts}{29}
+\contentsline {subsection}{\numberline {6.1.1}La facilit\IeC {\'e}}{29}
+\contentsline {subsection}{\numberline {6.1.2}La configurabilit\IeC {\'e}}{29}
+\contentsline {subsection}{\numberline {6.1.3}L'abstraction}{29}
+\contentsline {subsection}{\numberline {6.1.4}La simplification}{30}
+\contentsline {subsection}{\numberline {6.1.5}La modularit\IeC {\'e}}{30}
+\contentsline {section}{\numberline {6.2}Points faibles}{30}
+\contentsline {subsection}{\numberline {6.2.1}La Performance}{30}
+\contentsline {subsection}{\numberline {6.2.2}Les conditions}{30}
+\contentsline {subsection}{\numberline {6.2.3}La r\IeC {\'e}cup\IeC {\'e}ration d'informations}{32}
+\contentsline {subsection}{\numberline {6.2.4}La propret\IeC {\'e} du code}{33}
+\contentsline {chapter}{\numberline {7}Conclusion}{35}
+\contentsline {section}{\numberline {7.1}Piste de r\IeC {\'e}flexions}{35}
+\contentsline {subsection}{\numberline {7.1.1}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{35}
+\contentsline {subsection}{\numberline {7.1.2}Am\IeC {\'e}lioration des performances}{35}
+\contentsline {subsection}{\numberline {7.1.3}Am\IeC {\'e}lioration de l'exploitation des relations}{35}
+\contentsline {subsection}{\numberline {7.1.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de th\IeC {\'e}orie des graphes}{35}
+\contentsline {subsection}{\numberline {7.1.5}Standardisation}{35}
+\contentsline {section}{\numberline {7.2}Archipelago en r\IeC {\'e}sum\IeC {\'e}}{35}
+\contentsline {part}{III\hspace {1em}Annexes}{36}
+\contentsline {part}{IV\hspace {1em}Glossaire}{41}
+\contentsline {part}{V\hspace {1em}Code Sources}{43}
+\contentsline {part}{VI\hspace {1em}Bibliographie}{44}

@@ -31,13 +31,17 @@ public class MainTest {
     protected final static Logger LOGGER = LogManager.getLogger(MainTest.class);
 
     public static void main(String[] args) throws Exception {
+
         Archipelago a = Archipelago.getInstance();
 
         ArchipelagoQuery aq = a.getQueryBuilder()
                 .of(City.class)
                 .where(of("name","King's Landing"), ConditionQualifier.EQUAL)
+                .or(of("name","Winterfell"), ConditionQualifier.EQUAL)
+                .and(of("name","Dragonstone"), ConditionQualifier.NOT_EQUAL)
                 .build();
         List<Object> nodes = a.execute(aq);
+
         nodes.stream().forEach(System.out::println);
     }
 
@@ -60,20 +64,25 @@ public class MainTest {
 
         City winterfell = new City("Winterfell");
         City kingsLanding = new City("King's Landing");
-        City dragonStone = new City("Dragonstone");
 
         Road road= new Road();
         road.setDistance(500l);
         road.setUnit("leagues");
 
+        a.link(kingsLanding,winterfell,road, true);
+
+
+        City dragonStone = new City("Dragonstone");
+
+
+
         Road road2= new Road();
         road2.setDistance(200l);
         road2.setUnit("leagues");
-
-        a.persist(winterfell);
         a.persist(kingsLanding);
         a.persist(dragonStone);
-        a.link(kingsLanding,winterfell,road, true);
+
+
         a.link(kingsLanding,dragonStone,road2, true);
     }
 
