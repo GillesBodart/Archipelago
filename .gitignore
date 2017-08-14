@@ -5,5 +5,14 @@
 *.classpath
 .idea/
 *.iml
+*.log
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.run*
+*.toc
+*.syn*
 Archipelago-core.iml
 /Archipelago-test/src/main/resources/DataBank
