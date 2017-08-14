@@ -69,7 +69,7 @@ Pour configurer le framework, il suffit de mettre un fichier nommé `config.arch
   "domainRootPackage": "org.archipelago.test.domain.school"
 }
 ```
-![neo4J](./figures/Neo4jFriends.png "Neo4J")
+![neo4J](./Memoire/figures/Neo4jFriends.png "Neo4J")
 
 ### OrientDB configuration
 ```json
@@ -86,6 +86,6 @@ Pour configurer le framework, il suffit de mettre un fichier nommé `config.arch
   "domainRootPackage":"org.archipelago.test.domain.school"
 }
 ```
-![OrientDB](./figures/OrientFriends.png "OrientDB")
+![OrientDB](./Memoire/figures/OrientFriends.png "OrientDB")
 
 > If friendship is a graph Archipelago will persist it
