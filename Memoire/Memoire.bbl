@@ -1,0 +1,84 @@
+\begin{thebibliography}{10}
+
+\bibitem{NetworkXNeo4j}
+Rohit Aggarwal.
+\newblock Networkx to neo4j’s documentation.
+\newblock \url{https://neonx.readthedocs.io/en/latest/}, 2013.
+
+\bibitem{janusGraphSite}
+JanusGraph Authors.
+\newblock Janusgraph official website.
+\newblock \url{http://janusgraph.org/}, 2017.
+
+\bibitem{bruchez2016bases}
+Rudi Bruchez.
+\newblock Les bases de donn{\'e}es nosql et le big data.
+\newblock {\em Eyrolles,}, 2016.
+
+\bibitem{infoqSite}
+traduit par Simon~Baslé Écrit~par Peter~Neubauer.
+\newblock Les bases orientées graphes, nosql et neo4j.
+\newblock \url{https://www.infoq.com/fr/articles/graph-nosql-neo4j}, 20 mai
+  2010.
+
+\bibitem{NetworkXPythonPackage}
+NetworkX developers.
+\newblock Software for complex networks.
+\newblock \url{https://networkx.github.io/}, 2014-2017.
+
+\bibitem{fielding2000architectural}
+Roy~T Fielding and Richard~N Taylor.
+\newblock {\em Architectural styles and the design of network-based software
+  architectures}.
+\newblock University of California, Irvine Doctoral dissertation, 2000.
+
+\bibitem{tinkerPopSite}
+The Apache~Software Foundation.
+\newblock Apache tinkerpop official website.
+\newblock \url{http://tinkerpop.apache.org/}, 2017.
+
+\bibitem{arangoSite}
+ArangoDB GmbH.
+\newblock Arrangdb official website.
+\newblock \url{https://www.arangodb.com/}, 2017.
+
+\bibitem{StanfordCollection}
+Jure Leskovec.
+\newblock Stanford large network dataset collection.
+\newblock \url{https://snap.stanford.edu/data/}, 2017.
+
+\bibitem{OrientDBSite}
+OrientDB LTD.
+\newblock Orientdb official website.
+\newblock \url{https://orientdb.com/}, 2017.
+
+\bibitem{Neo4JSite}
+Inc Neo~Technology.
+\newblock Neo4j official website.
+\newblock \url{https://neo4j.com/}, 2017.
+
+\bibitem{DBEnginesSite}
+solid IT~gmbh.
+\newblock Knowledge base of relational and nosql database management systems.
+\newblock \url{https://db-engines.com}, 2017.
+
+\bibitem{NoSqlDef}
+Mohamed Tarroumi.
+\newblock Nosql (not only sql).
+\newblock \url{https://prezi.com/4flswlgipwbo/nosql-not-only-sql/}, 10
+  Décembre 2014.
+
+\bibitem{OrientDBGettingStarted}
+OrientDB Team.
+\newblock Orientdb - getting started.
+\newblock \url{https://www.udemy.com/orientdb-getting-started}, 2017.
+
+\bibitem{NoSQLVsSGBDR}
+Directeur France et Europe du Sud de~MongoDB Yann~Aubry.
+\newblock Pourquoi nosql s’impose face aux sgbdr traditionnelles (avis
+  d’expert).
+\newblock
+  \url{http://www.silicon.fr/base-donnees-nosql-impose-sgbdr-93305.html}, 19
+  mars 2014.
+
+\end{thebibliography}

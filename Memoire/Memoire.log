@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  13 AUG 2017 23:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  14 AUG 2017 09:03
 entering extended mode
 **./Memoire.tex
 (Memoire.tex
@@ -1188,19 +1188,19 @@ Package pdftex.def Info: figures/SchoolDiag.png used on input line 1080.
 ] [44
 
 ] (Memoire.bbl
-Underfull \hbox (badness 1314) in paragraph at lines 61--65
+Underfull \hbox (badness 1314) in paragraph at lines 66--70
 []\T1/lmr/m/n/12 Mohamed Tar-roumi.  Nosql (not only sql).  $\T1/lmtt/m/n/12 ht
 tps : / / prezi . com / 4flswlgipwbo /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--70
+Underfull \hbox (badness 10000) in paragraph at lines 72--75
 []\T1/lmr/m/n/12 OrientDB Team.  Orientdb - get-ting star-ted.  $\T1/lmtt/m/n/1
 2 https : / / www . udemy . com /
  []
 
 
-Underfull \hbox (badness 1019) in paragraph at lines 72--78
+Underfull \hbox (badness 1019) in paragraph at lines 77--83
 []\T1/lmr/m/n/12 Directeur France et Eu-rope du Sud de Mon-goDB Yann Au-bry.  P
 our-quoi nosql
  []
@@ -1209,10 +1209,10 @@ our-quoi nosql
 
 ] (Memoire.aux) ) 
 Here is how much of TeX's memory you used:
- 11328 strings out of 493333
- 154831 string characters out of 3144820
- 368203 words of memory out of 3000000
- 14597 multiletter control sequences out of 15000+200000
+ 11329 strings out of 493333
+ 154846 string characters out of 3144820
+ 368208 words of memory out of 3000000
+ 14598 multiletter control sequences out of 15000+200000
  68802 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,13n,42p,844b,1662s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1224,7 +1224,7 @@ tex/fonts/type1/public/lm/lmr10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12
 /public/lm/lmr8.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmri12.pfb><C:/Sand/m
 iktex/fonts/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/type1/public/amsfo
 nts/symbols/msam10.pfb>
-Output written on Memoire.pdf (45 pages, 857686 bytes).
+Output written on Memoire.pdf (45 pages, 857786 bytes).
 PDF statistics:
  215 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

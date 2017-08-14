@@ -4,5 +4,6 @@
 **/*.jar
 *.classpath
 .idea/
+*.iml
 Archipelago-core.iml
 /Archipelago-test/src/main/resources/DataBank

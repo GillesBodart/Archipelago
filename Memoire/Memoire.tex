@@ -212,7 +212,7 @@ De nos jours, les unités de stockage sont de plus en plus accessibles au grand 
 
 La grande force des SGBDR provient des fondements théoriques mis en place en 1970 par Edgar Frank Codd. IBM définit le langage "Structured Query Language" (SQL) pour utiliser ce système. Cette normalisation de la représentation de l'information génère un sentiment de sûreté pour les architectes de logiciels.
 
-A contrario, le mouvement NoSql pour "Not Only SQL" ne se base pas sur un fondement théorique commun. Que ce soient la théorie des graphes, les systèmes de hash key/value avec partitions, ... chaque système choisit ce sur quoi il va se baser. Mais s'il existait une sorte de contrat liant les SGBD NoSql entre eux afin d'assurer une cohérence d'utilisation, ce mémoire va se concentrer sur les implémentations de la théorie des graphe, en essayant de mettre en place un système de comparaison, nous allons tenter de spécifier certains objectifs communs et développer un framework Java permettant d'utiliser de manière agnostique l'une ou l'autre base de donnée.
+A contrario, le mouvement NoSql pour "Not Only SQL" ne se base pas sur un fondement théorique commun. Que ce soient la théorie des graphes, les systèmes de hash key/value avec partitions, ... chaque système choisit ce sur quoi il va se baser. Mais s'il existait une sorte de contrat liant les SGBD NoSql entre eux afin d'assurer une cohérence d'utilisation, ce mémoire va se concentrer sur les implémentations de la théorie des graphes, en essayant de mettre en place un système de comparaison. Nous allons tenter de spécifier certains objectifs communs et développer un framework Java permettant d'utiliser de manière agnostique l'une ou l'autre base de données.
  
 \part{État de l'art}
 
@@ -243,18 +243,18 @@ Nous allons aussi distinguer 4 grandes familles de représentation de schéma de
 \item Document : L'utilisation de formats spécifiques tels que le très répandu "JSON" permet de stocker les données sur base de fichier.
 \item Clé / Valeur : Le système le plus simple, il manipule des paires de clé/valeur, ou accède à un élément en fonction d'une table de hachage.
 \item Colonne : Inspiré de Google BigTable, la structure ressemble à la table relationnelle. On peut la comparer à une table de hachage qui va référencer une ou plusieurs colonnes.
-\item Graphe : La famille Graphe se distingue du fait que les entités ne sont pas considéré comme des entités indépendantes, mais que la relation entre ces objets est tout aussi importante que le contenu.
+\item Graphe : La famille Graphe se distingue du fait que les entités ne sont pas considérées comme des entités indépendantes, mais que la relation entre ces objets est tout aussi importante que le contenu.
 \end{itemize} 
 
-Les implémentations de bases de données de types graphe sont de plus en plus nombreuses, les relations entre les éléments permettent de parcourir le graphe de manière très performante les rendant de plus en plus intéressantes pour les entreprises possédant des millions de données. L'utilisation de ce genre de SGBD est dès lors tout à fait recommandée pour des entreprises intéressées entre les relations de ces données telles que des profils sociaux, des liens de cause à effet, des liens géographiques et bien d’autres encore.\cite{infoqSite}\cite{NoSqlDef}\cite{bruchez2016bases}
+Les implémentations de bases de données de types graphe sont de plus en plus nombreuses, les relations entre les éléments permettent de parcourir le graphe de manière très performante le rendant de plus en plus intéressant pour les entreprises possédant des millions de données. L'utilisation de ce genre de SGBD est dès lors tout à fait recommandée pour des entreprises intéressées entre les relations de ces données, telles que des profils sociaux, des liens de cause à effet, des liens géographiques et bien d’autres encore.\cite{infoqSite}\cite{NoSqlDef}\cite{bruchez2016bases}
 
 \section{Questionnement}
 
 \subsection*{Pourquoi utiliser une BDOG plutôt qu'une BD relationnelle comme Oracle ou MySql ?}
 
-L’utilisation des SGBD relationnelles pour tout type de problème est révolue. L’apparition de SGBD NoSQL spécifique, permet dès à présent une approche plus personnalisée. En effet, comme tout système, le relationnel a ses limites. L’approche actuelle des entreprises est plus orientée "Big Data" ; les entreprises veulent tout stocker afin d’avoir le plus d’informations possible. Or comme le relationnel cadenasse les données dans une table préalablement définie, on se doit de tronquer l’information ou de mettre à jour le schéma de définition des tables. Dans une BDOG telle que Neo4J, nous pouvons ajouter toutes les informations que nous voulons sans condition préalable. Cette approche permet davantage un contrôle de l’intégrité des données aux applications.
+L’utilisation des SGBD relationnelles pour tout type de problème est révolue. L’apparition de SGBD NoSQL spécifiques, permet dès à présent une approche plus personnalisée. En effet, comme tout système, le relationnel a ses limites. L’approche actuelle des entreprises est plus orientée "Big Data" ; les entreprises veulent tout stocker afin d’avoir le plus d’informations possible. Or comme le relationnel cadenasse les données dans une table préalablement définie, on se doit de tronquer l’information ou de mettre à jour le schéma de définition des tables. Dans une BDOG telle que Neo4J, nous pouvons ajouter toutes les informations que nous voulons sans condition préalable. Cette approche permet davantage un contrôle de l’intégrité des données aux applications.
 
-Si l’objectif de l’applicatif est de représenter un système récursif comme une arborescence de fichier, de la généalogie, ... le modèle relationnel se basera sur une table faisant référence à elle-même, l’utilisateur devra donc réaliser une jointure par profondeur. Si l’arborescence descend jusqu’à 15 niveaux, cela peut devenir problématique. L’approche BDOG permet de parcourir une arborescence sans pour autant charger l’ensemble des nœuds ayant le même label. Dès lors, plus besoin de projection « d’ensemble" pour pouvoir continuer le chemin.
+Si l’objectif de l’applicatif est de représenter un système récursif comme une arborescence de fichier, de la généalogie, ... le modèle relationnel se basera sur une table faisant référence à elle-même, l’utilisateur devra donc réaliser une jointure par profondeur. Si l’arborescence descend jusqu’à 15 niveaux, cela peut devenir problématique. L’approche BDOG permet de parcourir une arborescence sans pour autant charger l’ensemble des nœuds ayant le même label. Dès lors, plus besoin de projection "d’ensemble" pour pouvoir continuer le chemin.
 
 En relationnel, il existe de nombreux moyens d’historiser les données, cependant, lorsque le schéma comprend des relations cycliques, cette opération devient plus complexe. L’utilisation d’un BDOG rend la démarche plus simple, il suffit de créer un nouveau nœud avec les anciennes données, lier ce nœud avec une relation historique en y spécifiant la date de mise à jour, et ensuite de changer les valeurs du nœud référencé par le cycle. Ce procédé peut être mis au point dans n’importe quelle représentation et ne nécessite aucune refonte globale du modèle de données.\cite{NoSQLVsSGBDR}\label{noSqlVSRel}
 
@@ -268,7 +268,7 @@ La relation dans les BDOG est une information à part entière, elle peut possé
 
 \subsection{Description}
 
-Créé par Neo Technologie, une société américaine et suédoise, elle est actuellement la base de donnée orientée graphe, la plus utilisée dans le monde\cite{DBEnginesSite}. Développé en java sous licence GPL V3, AGPL ou licence commerciale, Neo4J représente les données sous forme de "Nœuds" et de "Relations". Chacun de ces éléments peuvent contenir une ou plusieurs propriétés. Les propriétés sont des couples clés/valeurs de type simple, comme des chaines de caractères ou des valeurs numériques, des coordonnées spatiales, ... \cite{Neo4JSite}
+Créé par Neo Technologie, une société américaine et suédoise, elle est actuellement la base de données orientée graphe, la plus utilisée dans le monde\cite{DBEnginesSite}. Développé en java sous licence GPL V3, AGPL ou licence commerciale, Neo4J représente les données sous forme de "Nœuds" et de "Relations". Chacun de ces éléments peuvent contenir une ou plusieurs propriétés. Les propriétés sont des couples clés/valeurs de type simple, comme des chaines de caractères ou des valeurs numériques, des coordonnées spatiales, ... \cite{Neo4JSite}
 
 Une des particularités de Neo4J est l’absence de structure définie, un nœud peut être labellisé afin de permettre de travailler sur un ensemble d’éléments, mais il n’y aura aucune contrainte sur les propriétés du nœud. Cette particularité rend ce SGBD bien adapté pour les modèles évoluant fréquemment.
 
@@ -305,7 +305,7 @@ RETURN DISTINCT (gp)
 	
 \end{lstlisting}
 
-Celle-ci quant à elle va retourner toutes les personnes qui sont parent de parent et donc grand-parents. 
+Celle-ci quant à elle va retourner toutes les personnes qui sont "parent de parent" et donc grands-parents. 
 
 Ces deux exemples peuvent montrer la force de l’utilisation d’un SGBD de type graphe pour représenter un ensemble hiérarchique de données par rapport aux SGBD relationnels qui nécessiteraient une double jointure sur la Table "Person".
 
@@ -325,7 +325,7 @@ Son utilisation est simple grâce à l’utilisation de la librairie native à N
 
 OrientDB est un SGBD initialement développé en C++ (Orient ODBMS), repris ensuite en 2010 en Java par Luca Garulli dans une version multi-modèle sous licence Apache 2.0, GPL et AGPL. Actuellement 3ème mondial (selon db-engines.com) il offre de nombreuses fonctionnalités intéressantes.\cite{OrientDBSite}
 
-OrientDB est base de données associant Document et Graphe. Elle combine la rapidité et la flexibilité du type document ainsi que les fonctionnalités de relations des bases de données graphe.
+OrientDB est une base de données associant Document et Graphe. Elle combine la rapidité et la flexibilité du type document ainsi que les fonctionnalités de relations des bases de données graphe.
 
 Ce SGBD est composé de trois grands éléments 
 
@@ -336,8 +336,6 @@ Ce SGBD est composé de trois grands éléments
 \end{itemize}
 
 Chaque Document ou Vertex appartient à une "Class", celle-ci peut être strictement définie ou plus laxiste. Comme dans la programmation orientée objet, OrientDB offre le principe de polymorphisme avec un système d'héritage entre les classes. 
-
-Chaque Document ou Vertex appartient à une "Class", celle-ci peut être strictement définie ou plus laxiste. Comme dans la programmation orientée objet, OrientDB offre le principe de polymorphisme avec un système d’héritage entre les classes.
 
 OrientDB vient dans sa version community avec un système de clustering permettant à l’utilisateur de gérer correctement les montées en charge. Chaque document est identifié avec une partie désignant le cluster dans lequel l’information est stockée et une autre partie désignant sa position dans ce dernier (exemple @rid: 10:12). Chaque classe peut être associée à un ou plusieurs clusters, permettant d’optimiser les accès dans des ensembles plus petits.
 
@@ -380,7 +378,7 @@ SELECT FROM V
 	\end{tabular}
 \end{center}
 
-Nous pouvons observer qu'OrientDB se charge de qualifier les documents de plusieurs métadata en leur octroyant par exemple un identifiant unique (\no cluster:position), un numéro de version pour permettre une gestion de transaction "full optimistic"\footnote{On laisse l'utilisateur continuer sa transaction et le refus se fera lors du commit si il y a eu une modification concurrente du même document} et le \@class représente la structure du document.
+Nous pouvons observer qu'OrientDB se charge de qualifier les documents de plusieurs métadata en leur octroyant par exemple un identifiant unique (\no cluster:position), un numéro de version pour permettre une gestion de transaction "full optimistic"\footnote{On laisse l'utilisateur continuer sa transaction et le refus se fera lors du "commit" s'il y a eu une modification concurrente du même document} et le \@class représente la structure du document.
 
 \begin{lstlisting}[language=SQL]
 CREATE Edge WorkAt from 10:1 to 11:0
@@ -391,7 +389,7 @@ Cette petite requête va lier le document ayant l'id 10:1 au document dont l'id 
 
 \subsection{Communication}
 
-OrientDB embarque une API Rest complète\cite{fielding2000architectural}, toute action pouvant être faite sur les interfaces web et consoles, peuvent être reproduites au travers de cette API.
+OrientDB embarque une API Rest complète\cite{fielding2000architectural}, toute action pouvant être faite sur les interfaces web et consoles, peut être reproduite au travers de cette API.
 
 
 
@@ -486,7 +484,7 @@ La librairie OrientDB pour java est composée de trois éléments:
 \item \texttt{object API}
 \end{itemize}
 
-La \texttt{graph API} d’OrientDB couvre 80\% des uses cases classiques d’un utilisateur, elle supporte tous les modèles de représentations comme un unique multi-modèle de données. Elle travaille sur des "Vertex" et des "Edges", respectivement nœuds et relations et est compatible avec le standard TinkerPop
+La \texttt{graph API} d’OrientDB couvre 80\% des uses cases classiques d’un utilisateur, elle supporte tous les modèles de représentations comme un unique multi-modèle de données. Elle travaille sur des "Vertex" et des "Edges", respectivement nœuds et relations, et est compatible avec le standard TinkerPop
 
 La \texttt{document API} permet de couvrir les 20\% restants, il est plus simple d’utilisation mais offre une utilisation plus atomique, les relations ne peuvent être par exemple qu’unidirectionnelles tandis que la bidirectionnalité est offerte dans l’API précédent. Un document API est un élément unique pour gérer les relations entre les différents nœuds de notre modèle, il faudra gérer manuellement chaque connexion.
 
@@ -496,11 +494,11 @@ La dernière librairie se focalise sur les objets java, elle n'a plus été amé
 
 \subsection{Apache TinkerPop}
 
-Apache TinkerPop est Framework open source d’utilisation de graphe, il regroupe un grand ensemble de fonctionnalités et d’algorithmes. Son écosystème est de plus en plus agrémenté de librairies externes développées par de tierces personnes.
+Apache TinkerPop est un Framework open source d’utilisation de graphe, il regroupe un grand ensemble de fonctionnalités et d’algorithmes. Son écosystème est de plus en plus agrémenté de librairies externes développées par de tierces personnes.
 
 Il se considère lui-même comme étant d’utilisation complexe pour les nouveaux développeurs car il nécessite l’utilisation d’un environnement qui lui est propre, la "Gremlin-console".
 
-Les développeurs de ce framework ont mis au point un langage de travail sur les graphes appelé "Gremlin". Le langage dont nous avons parlé en section \ref{Cypher} s’est grandement inspiré de ce dernier.
+Les développeurs de ce framework ont mis au point un langage de travail sur les graphes appelé "Gremlin". Le langage dont nous avons parlé en section \ref{Cypher} s’est grandement inspiré de ce dernier.\cite{tinkerPopSite}
 
 Exemple d’utilisation
 
@@ -626,7 +624,7 @@ Pour la suite, ce framework a pricipalement été basé sur l'utilisation de l'a
 
 La persistance est l'élément principal de ce framework. Afin de ne pas être tenu par une syntaxe appartenant à une BDOG propre, nous nous sommes basés sur une approche de représentation orientée objet. 
 
-La persistance de ces objets ainsi que des éléments qui leur sont liés  dépend en partie du fichier de configuration venant d'être décrit dans la section précédente. 
+La persistance de ces objets ainsi que des éléments qui leur sont liés dépend en partie du fichier de configuration qui vient d'être décrit dans la section précédente. 
 
 Afin d'assurer la persistance des éléments liés, nous avons opté pour une approche récursive en "depth-first" avec marquage de sommet. En effet, pour créer un lien entre deux éléments, il faut absolument que ceux-si soient présents dans la base de données.
 
@@ -680,7 +678,7 @@ Le \texttt{descriptor} qui est obligatoire, se doit d'être unique, il va repré
 
 La beauté derrière cette utilisation est qu'au moindre changement de modèle, comme un ajout de propriété, l'ensemble de la couche de persistance sera adaptée à ce changement sans devoir exécuter le moindre script (à l'exception de la création d'une nouvelle classe pour OrientDB).
 
-Si nous prenons l'exemple de l'école (méthode en annexe \ref{SchoolObj}) nous pouvons réaliser qu'en un seul graphe, nous pouvons visualiser l'ensemble des relations, qu'elles soient uni ou bidirectionnelles.
+Si nous prenons l'exemple de l'école (méthode en annexe \ref{SchoolObj}) nous pouvons réaliser qu'en un seul graphe, nous visualisons l'ensemble des relations, qu'elles soient uni ou bidirectionnelles.
 
 \begin{lstlisting}
 Archipelago arch = Archipelago.getInstance();
@@ -838,7 +836,7 @@ Grâce au fichier \texttt{config.archipelago.json}, l'environnement va se module
 
 Pour ces opérations, nous allons avoir besoin d'utilitaires nous permettant de générer des requêtes de persistance, de liaison et de recherche, pour chaque BDOG. Ces différentes implémentations doivent respecter les obligations décrites par les classes \texttt{ArchipelagoScriptBuilder} ainsi que \texttt{ArchipelagoQueryBuilder}.
 
-Nous pensons que l'on pourrait fusionner ces deux classes. Néanmoins, nous avons opté pour le choix de les scinder afin de garder une différentiation entre les requêtes qui créent de l'information et celles qui en récupèrent.
+Nous pensons que l'on pourrait fusionner ces deux classes. Néanmoins, nous avons opté pour le choix de les scinder afin de garder une différenciation entre les requêtes qui créent de l'information et celles qui en récupèrent.
 
 
 \subsubsection{ScriptBuilders}
@@ -917,13 +915,15 @@ Nous avons choisi de prendre un fichier JSON comme fichier de configuration car 
 
 \subsection{L'abstraction}
 
-L'utilisateur ne doit se soucier d'aucune mise en oeuvre spécifique à la base de données ciblée. Archipelago, grâce à ces  implémentations concrètes cachées derrière les classes abstraites \texttt{ArchipelagoScriptBuilder} ainsi que \texttt{ArchipelagoQueryBuilder} permet à l'exploiteur de se concentrer sur la partie algorithmique de son application.
+L'utilisateur ne doit se soucier d'aucune mise en oeuvre spécifique à la base de données ciblée. 
+
+Archipelago, grâce à ces  implémentations concrètes cachées derrière les classes abstraites \texttt{ArchipelagoScriptBuilder} ainsi que \texttt{ArchipelagoQueryBuilder} permet à l'exploiteur de se concentrer sur la partie algorithmique de son application.
 
 \subsection{La simplification}
 
 La manière dont nous avons imaginé ce framework permet de réutiliser n'importe quel code existant.Il suffit alors à l'utilisateur d'ajouter les annotations \texttt{@Bridge} pour que son code soit compatible avec l'application de ce framework. 
 
-Il pourra ainsi profiter de bases de données NoSql orientées graphes, au lieu de s'en tenir aux les bases de données relationnelles\footnote{voir \ref{noSqlVSRel}}; les frameworks de communication avec ces dernières étant plus courantes et mieux connues dans l'univers de la programmation.
+Il pourra ainsi profiter de bases de données NoSql orientées graphes, au lieu de s'en tenir aux bases de données relationnelles\footnote{voir \ref{noSqlVSRel}}; les frameworks de communication avec ces dernières étant plus courantes et mieux connues dans l'univers de la programmation.
 
 \subsection{La modularité}
 
