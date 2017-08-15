@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  15 AUG 2017 13:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  15 AUG 2017 20:08
 entering extended mode
 **./Memoire.tex
 (Memoire.tex
@@ -1062,13 +1062,13 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
  [5] [6
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 257.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 265.
 
  (C:\Sand\miktex\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 257.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 265.
  [7
 
 ] [8
@@ -1078,7 +1078,7 @@ Chapitre 1.
 [9
 
 ]
-Overfull \hbox (16.21677pt too wide) in paragraph at lines 304--304
+Overfull \hbox (16.21677pt too wide) in paragraph at lines 315--315
 |\T1/lmr/m/sc/14.4 Pourquoi uti-li-ser une BDOG plu-tôt qu'une BD re-la-tion-ne
 lle comme
  []
@@ -1107,108 +1107,112 @@ Chapitre 5.
 File: figures/Persist.png Graphic file (type png)
 
 <use figures/Persist.png>
-Package pdftex.def Info: figures/Persist.png used on input line 699.
+Package pdftex.def Info: figures/Persist.png used on input line 711.
 (pdftex.def)             Requested size: 404.51027pt x 236.38254pt.
  [24 <./figures/Persist.png>]
 <figures/ecoleNeo4J.png, id=102, 539.01375pt x 416.15475pt>
 File: figures/ecoleNeo4J.png Graphic file (type png)
 
 <use figures/ecoleNeo4J.png>
-Package pdftex.def Info: figures/ecoleNeo4J.png used on input line 743.
-(pdftex.def)             Requested size: 377.30704pt x 291.30634pt.
- [25]
+Package pdftex.def Info: figures/ecoleNeo4J.png used on input line 757.
+(pdftex.def)             Requested size: 285.67592pt x 220.56096pt.
+ [25 <./figures/ecoleNeo4J.png>]
 <figures/Rel.png, id=107, 190.311pt x 64.44075pt>
 File: figures/Rel.png Graphic file (type png)
  <use figures/Rel.png>
-Package pdftex.def Info: figures/Rel.png used on input line 771.
-(pdftex.def)             Requested size: 190.31052pt x 64.44058pt.
+Package pdftex.def Info: figures/Rel.png used on input line 787.
+(pdftex.def)             Requested size: 228.37202pt x 77.32849pt.
 
-[26 <./figures/ecoleNeo4J.png> <./figures/Rel.png>]
-<figures/RelBidir.png, id=111, 271.0125pt x 72.87225pt>
+<figures/RelBidir.png, id=108, 271.0125pt x 72.87225pt>
 File: figures/RelBidir.png Graphic file (type png)
 
 <use figures/RelBidir.png>
-Package pdftex.def Info: figures/RelBidir.png used on input line 785.
-(pdftex.def)             Requested size: 271.01183pt x 72.87207pt.
- [27 <./figures/RelBidir.png>]
-<figures/query.png, id=115, 999.735pt x 721.69624pt>
+Package pdftex.def Info: figures/RelBidir.png used on input line 803.
+(pdftex.def)             Requested size: 325.21335pt x 87.44626pt.
+ [26 <./figures/Rel.png> <./figures/RelBidir.png>]
+[27] <figures/query.png, id=115, 999.735pt x 721.69624pt>
 File: figures/query.png Graphic file (type png)
- <use figures/query.png>
-Package pdftex.def Info: figures/query.png used on input line 854.
-(pdftex.def)             Requested size: 399.88692pt x 288.67339pt.
 
-[28 <./figures/query.png>] [29]
-<figures/scriptBuilders.png, id=123, 163.812pt x 66.84975pt>
+<use figures/query.png>
+Package pdftex.def Info: figures/query.png used on input line 874.
+(pdftex.def)             Requested size: 499.86627pt x 360.84724pt.
+
+Overfull \hbox (16.1694pt too wide) in paragraph at lines 874--875
+ [][] 
+ []
+
+[28 <./figures/query.png>]
+<figures/scriptBuilders.png, id=120, 163.812pt x 66.84975pt>
 File: figures/scriptBuilders.png Graphic file (type png)
 
 <use figures/scriptBuilders.png>
-Package pdftex.def Info: figures/scriptBuilders.png used on input line 897.
+Package pdftex.def Info: figures/scriptBuilders.png used on input line 918.
 (pdftex.def)             Requested size: 245.71738pt x 100.27434pt.
 
-<figures/queryBuilders.png, id=124, 267.399pt x 79.497pt>
+<figures/queryBuilders.png, id=121, 267.399pt x 79.497pt>
 File: figures/queryBuilders.png Graphic file (type png)
 
 <use figures/queryBuilders.png>
-Package pdftex.def Info: figures/queryBuilders.png used on input line 920.
+Package pdftex.def Info: figures/queryBuilders.png used on input line 943.
 (pdftex.def)             Requested size: 401.09752pt x 119.2452pt.
- [30 <./figures/scriptBuilders.png>] [31 <./figures/queryBuilders.png>]
+ [29 <./figures/scriptBuilders.png>] [30 <./figures/queryBuilders.png>]
 Chapitre 6.
 
-Overfull \hbox (110.01648pt too wide) in paragraph at lines 971--972
+Overfull \hbox (110.01648pt too wide) in paragraph at lines 995--996
 []\T1/lmr/m/n/12 Archipelago, grâce à ces im-plé-men-ta-tions concrètes ca-chée
 s der-rière les classes abs-traites \T1/lmtt/m/n/12 ArchipelagoScriptBuilder
  []
 
-[32
+[31
 
-] [33] <figures/citiesRel.png, id=138, 178.266pt x 177.66376pt>
+] [32] <figures/citiesRel.png, id=135, 178.266pt x 177.66376pt>
 File: figures/citiesRel.png Graphic file (type png)
 
 <use figures/citiesRel.png>
-Package pdftex.def Info: figures/citiesRel.png used on input line 1014.
+Package pdftex.def Info: figures/citiesRel.png used on input line 1039.
 (pdftex.def)             Requested size: 142.61298pt x 142.13118pt.
 
-<figures/citiesRelFilt.png, id=139, 235.47975pt x 64.44075pt>
+<figures/citiesRelFilt.png, id=136, 235.47975pt x 64.44075pt>
 File: figures/citiesRelFilt.png Graphic file (type png)
 
 <use figures/citiesRelFilt.png>
-Package pdftex.def Info: figures/citiesRelFilt.png used on input line 1028.
+Package pdftex.def Info: figures/citiesRelFilt.png used on input line 1056.
 (pdftex.def)             Requested size: 188.38405pt x 51.55266pt.
- [34 <./figures/citiesRel.png> <./figures/citiesRelFilt.png>] <figures/friendOf
-.png, id=143, 246.32025pt x 239.09325pt>
+ [33 <./figures/citiesRel.png> <./figures/citiesRelFilt.png>] <figures/friendOf
+.png, id=140, 246.32025pt x 239.09325pt>
 File: figures/friendOf.png Graphic file (type png)
 
 <use figures/friendOf.png>
-Package pdftex.def Info: figures/friendOf.png used on input line 1043.
+Package pdftex.def Info: figures/friendOf.png used on input line 1073.
 (pdftex.def)             Requested size: 246.31964pt x 239.09265pt.
 
-<figures/friendOfFilt.png, id=144, 151.16475pt x 146.949pt>
+<figures/friendOfFilt.png, id=141, 151.16475pt x 146.949pt>
 File: figures/friendOfFilt.png Graphic file (type png)
 
 <use figures/friendOfFilt.png>
-Package pdftex.def Info: figures/friendOfFilt.png used on input line 1058.
+Package pdftex.def Info: figures/friendOfFilt.png used on input line 1090.
 (pdftex.def)             Requested size: 151.16437pt x 146.94864pt.
- [35 <./figures/friendOf.png> <./figures/friendOfFilt.png>] [36] [37]
+ [34 <./figures/friendOf.png> <./figures/friendOfFilt.png>] [35] [36]
 Chapitre 7.
-[38
+[37
 
 ]
-Overfull \hbox (3.27113pt too wide) in paragraph at lines 1164--1165
+Overfull \hbox (3.27113pt too wide) in paragraph at lines 1197--1198
 []$[]$ \T1/lmr/m/n/12 Ac-tuel-le-ment l'en-semble des condi-tions s'ap-pliquent
 
  []
 
-[39]
+[38]
 Chapitre 8.
-[40
+[39
 
 ]
-Overfull \hbox (26.70528pt too wide) in paragraph at lines 1252--1252
+Overfull \hbox (26.70528pt too wide) in paragraph at lines 1285--1285
 |[]\T1/lmr/m/sc/17.28 Ajout d'al-go-rithmes cé-lèbres de théo-rie des graphes| 
 
  []
 
-[41] (Memoire.bbl [42]
+[40] (Memoire.bbl [41]
 Underfull \hbox (badness 1314) in paragraph at lines 78--82
 []\T1/lmr/m/n/12 Mohamed Tar-roumi.  Nosql (not only sql).  $\T1/lmtt/m/n/12 ht
 tps : / / prezi . com / 4flswlgipwbo /
@@ -1226,40 +1230,40 @@ Underfull \hbox (badness 1019) in paragraph at lines 89--95
 our-quoi nosql
  []
 
-) [43
+) [42
 
-] [44
+] [43
 
-] <figures/SchoolDiag.png, id=177, 811.833pt x 255.95625pt>
+] <figures/SchoolDiag.png, id=174, 811.833pt x 255.95625pt>
 File: figures/SchoolDiag.png Graphic file (type png)
 
 <use figures/SchoolDiag.png>
-Package pdftex.def Info: figures/SchoolDiag.png used on input line 1306.
-(pdftex.def)             Requested size: 649.46727pt x 204.76526pt.
- [45] [46] [47] [48 <./figures/SchoolDiag.png>]
-[49
+Package pdftex.def Info: figures/SchoolDiag.png used on input line 1340.
+(pdftex.def)             Requested size: 811.83101pt x 255.95561pt.
+ [44 <./figures/SchoolDiag.png>] [45] [46] [47
 
-] (Memoire.aux) ) 
+]
+(Memoire.aux) ) 
 Here is how much of TeX's memory you used:
- 11363 strings out of 493333
- 155338 string characters out of 3144820
- 368089 words of memory out of 3000000
- 14629 multiletter control sequences out of 15000+200000
+ 11362 strings out of 493333
+ 155333 string characters out of 3144820
+ 372203 words of memory out of 3000000
+ 14628 multiletter control sequences out of 15000+200000
  68802 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,13n,42p,844b,1662s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/f
-onts/enc/dvips/lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/public/amsfonts/lat
-xfont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Sand/mikt
-ex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr1
-0.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/miktex/fonts/typ
-e1/public/lm/lmr6.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/m
-iktex/fonts/type1/public/lm/lmri12.pfb><C:/Sand/miktex/fonts/type1/public/lm/lm
-sy10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts
-/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Memoire.pdf (49 pages, 873419 bytes).
+{C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/fon
+ts/enc/dvips/lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/public/amsfonts/latxf
+ont/line10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Sand/miktex
+/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr10.
+pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/miktex/fonts/type1
+/public/lm/lmr6.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/mik
+tex/fonts/type1/public/lm/lmri12.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmsy
+10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/t
+ype1/public/amsfonts/symbols/msam10.pfb>
+Output written on Memoire.pdf (47 pages, 875123 bytes).
 PDF statistics:
- 233 PDF objects out of 1000 (max. 8388607)
+ 226 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

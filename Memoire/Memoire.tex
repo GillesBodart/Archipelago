@@ -214,7 +214,13 @@ Ce travail présente les points forts et les points faibles de l'implémentation
 \quad \quad \underline{mots-clés :} Framework, Base de données, Java, Graphes, Neo4J, OrienDB, Archipelago
 \section*{Abstract}
 
-This master thesis will focus on the implementations of the graph theory in the world of the databases, 
+In the scope of this master thesis, a new Java framework was developed to apply the graph theory to databases. This framework presents interesting qualities, such as abstraction, simplification and configurability. 
+
+Archipelago framework abstracts graph-oriented databases. Currently, three methods are available: a first method that persists information, a second method that links nodes together with the help of a relation with or without properties and a third method that gives the ability to query databases and to retrieve persisted objects states. The framework can be used with both \texttt{Néo4J} and \texttt{OrientDB}.
+
+This master thesis presents the framework implementation, its applications and its strengths and weaknesses.
+
+\quad \quad \underline{keywords :} Framework, databeses, Java, Graphs, Neo4J, OrienDB, Archipelago
 
 \chapter*{Avant-propos}
 
@@ -271,6 +277,9 @@ En outre, nous aimerions produire un framework qui présente les qualités suiva
 
 \chapter{L'évolution du NoSql}
 \label{NoSqlEvol}
+
+
+1.
 
 Un SGBD est par définition un ensemble de procédés permettant d'organiser et de stocker des informations (potentiellement de gros volumes). Si stocker et retrouver l'information est un des plus grand challenge d'un SGBD, une communauté de développeur pense que ces systèmes devraient pouvoir offrir d'autres fonctionnalités. 
 
@@ -444,7 +453,7 @@ Cette petite requête va lier le document ayant l'id 10:1 au document dont l'id 
 
 OrientDB embarque une API Rest complète\cite{fielding2000architectural}, toute action pouvant être faite sur les interfaces web et consoles, peut être reproduite au travers de cette API.
 
-
+Outre la communication via le protocol \texttt{http}, nous pouvons aussi accéder à la base de données via une des trois librairies java développée par OrientDB.
 
 
 \chapter{Solutions existantes}
@@ -697,10 +706,12 @@ arch.persist(gilles);
 
 Ainsi avec la valeur sentinelle contenue dans la propriété "deepness", nous rompons la boucle de persistance après avoir atteint la profondeur souhaitée.
 
-\begin{center}
+\begin{figure}[!h]
+\centering
 \includegraphics[scale=0.5]{figures/Persist.png}
+\caption{Flux de persistance d'un objet au travers du framework Archipelago}
 \label{fig:Persist}
-\end{center}
+\end{figure}
     
 Pour ce qui est de la persistance du lien entre deux objets, nous avons fait le choix de créer des relations unidirectionnelles. Afin de créer un lien, il faut apposer l'annotation \textit{@Bridge} sur la propriété d'où il part.
 
@@ -741,10 +752,12 @@ School school = genSchool()
 arch.persist(gilles);
 \end{lstlisting}
 
-\begin{center}
-\includegraphics[scale=0.7]{figures/ecoleNeo4J.png}
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.53]{figures/ecoleNeo4J.png}
+\caption{Graphe généré dans Néo4J après appel de la méthode persist du framework Archipelago}
 \label{fig:ecoleNeo4J}
-\end{center}
+\end{figure}
 
 \subsection{La liaison}
 
@@ -769,10 +782,12 @@ arch.link(winterfell, kingsLanding, road);
 
 Comme nous pouvons aisément le comprendre, nous allons lier ces deux villes par une relation "Road" contenant les propriétés "distance" et "unité".
 
-\begin{center}
-\includegraphics[scale=1]{figures/Rel.png}
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=1.2]{figures/Rel.png}
 \label{fig:Relation}
-\end{center}
+\caption{Résultat obtenu après utilisation de la méthode link d'Archipelago (avec Néo4J)}
+\end{figure}
 
 Toutefois si nous le spécifions à l'aide de la valeur "true" , le quatrième attribut de la méthode nous permet de générer automatiquement une relation réciproque ou bidirectionnelle. 
 
@@ -783,10 +798,12 @@ arch.link(winterfell, kingsLanding, road, true);
 \end{lstlisting}
 
 
-\begin{center}
-\includegraphics[scale=1]{figures/RelBidir.png}
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=1.2]{figures/RelBidir.png}
+\caption{Résultat obtenu après utilisation de la méthode link bidirectionnelle d'Archipelago (avec Néo4J)}
 \label{fig:RelationBiDir}
-\end{center}
+\end{figure}
 
 \subsection{La récupération}
 
@@ -852,10 +869,12 @@ Comme expliqué plus haut, nous sommes actuellement dans l'incapacité de géné
 \label{badCondition}
 Dans notre troisième exemple, le système fournira donc la liste des étudiants ayant "Bodart" comme nom de famille et "Gilles" ou "Thomas" comme prénom. \`A L'heure actuelle, il n'est cependant pas possible d'effectuer des requêtes sur les relations entre les objets. Cette piste sera primordiale pour une deuxième version de ce framework.
 
-\begin{center}
-\includegraphics[scale=0.4]{figures/query.png}
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.5]{figures/query.png}
+\caption{Flux de traitement d'une requête de recherche dans Archipelago}
 \label{fig:Query}
-\end{center}
+\end{figure}
 
 
 
@@ -875,7 +894,6 @@ Archipelago est un framework qui permet d'utiliser ces librairies spécifiques d
 
 Voici la démarche poursuivie :
 
-\newpage
 \subsection{Archipelago}
 
 L'objet principal du framework Archipelago est d'être une boite à outils comprenant les trois opérations décrites\footnote{voir \ref{opérations}} :
@@ -895,10 +913,12 @@ Nous pensons que l'on pourrait fusionner ces deux classes. Néanmoins, nous avon
 \subsubsection{ScriptBuilders}
 
 
-\begin{center}
+\begin{figure}[!ht]
+\centering
 \includegraphics[scale=1.5]{figures/scriptBuilders.png}
+\caption{Diagramme de classe représentant l'héritage des générateurs de script de persistance composant Archipelago}
 \label{fig:ScriptQuery}
-\end{center}
+\end{figure}
 
 Chaque classe doit correspondre à une base de données et implémenter trois méthodes\footnote{Plus un petit nombre d'overloading à implémenter} \footnote{Chacune de ces requêtes doit être écrite dans le langage ciblé par la classe.} :
 
@@ -918,10 +938,12 @@ Chaque classe doit correspondre à une base de données et implémenter trois m�
 
 \subsubsection{QueryBuilders}
 
-\begin{center}
+\begin{figure}[!ht]
+\centering
 \includegraphics[scale=1.5]{figures/queryBuilders.png}
 \label{fig:QueryBuilders}
-\end{center}
+\caption{Diagramme de classe représentant l'héritage des générateurs de script de recherche composant Archipelago}
+\end{figure}
 
 Comme précédemment, chaque classe doit correspondre à une base de données, la liste des méthodes à implémenter est légèrement plus importante.
 
@@ -1012,10 +1034,12 @@ De plus il n'est  pas possible de faire une condition sur une relation entre deu
 
 Par exemple nous pourrions avoir grâce à la requête Cypher suivante : 
 
-\begin{center}
+\begin{figure}[!ht]
+\centering
 \includegraphics[scale=0.8]{figures/citiesRel.png}
+\caption{Graphes Néo4J composé de 3 noeuds et de 4 relations}
 \label{fig:citiesRel}
-\end{center}
+\end{figure}
  
 \begin{lstlisting}[language=SQL]
 MATCH (d:City)-[rel:Road]->(a:City)
@@ -1026,10 +1050,13 @@ RETURN (a)
 // Quelles sont les villes éloignées de plus de 300 lieues ?
 \end{lstlisting} 
 
-\begin{center}
+
+\begin{figure}[!ht]
+\centering
 \includegraphics[scale=0.8]{figures/citiesRelFilt.png}
 \label{fig:citiesRelFilt}
-\end{center}
+\caption{Graphes Néo4J composé de 2 noeuds et de 2 relations après exécution du filtre généré par Archipelago}
+\end{figure}
 
 Les requêtes générées par Archipelago nous permettent donc de récupérer l'ensemble des villes liées par une route, mais nous ne pourrons pas nous limiter à celles situées à plus de 300 lieues.
 
@@ -1041,10 +1068,12 @@ Actuellement l'ensemble des conditions s'appliquent sur le nœud principal de la
 
 Voici un exemple en Cypher:
 
-\begin{center}
+\begin{figure}[!ht]
+\centering
 \includegraphics[scale=1]{figures/friendOf.png}
 \label{fig:friendOf}
-\end{center}
+\caption{Graphe représentant les amis de "Gilles"}
+\end{figure}
  
 \begin{lstlisting}[language=SQL]
 MATCH (me:Student)-[:FriendOf]->(f:Student)
@@ -1056,10 +1085,12 @@ RETURN (me)-[]-(f)
 // lie-moi sont mes amis qui se prénomment Thomas?
 \end{lstlisting} 
 
-\begin{center}
+\begin{figure}[!ht]
+\centering
 \includegraphics[scale=1]{figures/friendOfFilt.png}
+\caption{Graphe représentant les amis de "Gilles" après exécution du filtre généré par Archipelago}
 \label{fig:friendOfFilt}
-\end{center}
+\end{figure}
 
 Archipelago à nouveau, ne permet pas de filtrer les amis liés au nœud principal. Du fait de ce manque de possibilité, nous sommes exposés à des problèmes de charge, dès lors que le nœud principal est lié à plusieurs millions d'autres.
 
@@ -1304,11 +1335,12 @@ Une implémentation d'une heuristique telle que par exemple l'ACS\cite{dorigo199
 \part{Annexes}
 \section*{1. diagramme de classe "l'école"}
 
-\begin{sidewaysfigure}[ht]
-    \includegraphics[scale=0.8]{figures/SchoolDiag.png}
+\begin{figure}[!ht]
+	\centering
+    \includegraphics[angle=90,origin=c,scale=0.8]{figures/SchoolDiag.png}
     \caption{Diagramme de Classe du modèle École}
     \label{fig:SchoolDiagram}
-\end{sidewaysfigure}
+\end{figure}
 
 \section*{2. Création des objets composant l'école}
 
@@ -1331,17 +1363,14 @@ private static School genSchool() throws ClassNotFoundException, IOException {
     Lesson religion = new Lesson("Religion", 2l);
     Lesson pE = new Lesson("Physical Education", 2l);
     Lesson greek = new Lesson("Greek ancient", 4l);
-
     Promotion p2011 = new Promotion(2011);
     Promotion p2002 = new Promotion(2002);
     Promotion p2010 = new Promotion(2010);
-
     Teacher gys = new Teacher("Hans", "Gys", null, "M", Lists.newArrayList(dutch2, dutch4, english2, english4), Lists.newArrayList(dutch2, dutch4,english2, english4), "Master");
     Teacher goffin = new Teacher("Michel", "Goffin", null, "M", Lists.newArrayList(math8, math6, math4), Lists.newArrayList(math8, math6, math4), "Master");
     Teacher massart = new Teacher("Gabriel", "Massart", null, "M", Lists.newArrayList(math8, math6, math4), Lists.newArrayList(math8, math6, math4), "Master");
     Teacher gouthers = new Teacher("Yves", "Gouthers", null, "M", Lists.newArrayList(frans5, frans6, religion), Lists.newArrayList(frans5, frans6, religion), "Master");
     Teacher jacques = new Teacher("Christian", "Jacques", null, "M", Lists.newArrayList(geography), Lists.newArrayList(geography), "Master");
-
     Student gilles = new Student("Gilles", "Bodart", LocalDate.of(1992, 4, 14), "M", Lists.newArrayList(math8, science6, dutch2, english4, history, geography, religion, frans5, pE), null, null, p2011);
     Student thomasB = new Student("Thomas", "Blondiau", LocalDate.of(1992, 1, 5), "M", Lists.newArrayList(math8, science3, dutch2, english4, history, geography, religion, frans5, pE, greek), null, null, p2010);
     Student thomasR = new Student("Thomas", "Reynders", LocalDate.of(1992, 1, 22), "M", Lists.newArrayList(math8, science6, dutch2, english4, history, geography, religion, frans5, pE), null, null, p2010);
@@ -1357,7 +1386,6 @@ private static School genSchool() throws ClassNotFoundException, IOException {
     Room l003 = new ClassRoom("L003", 30, true, false, true);
     Room c203 = new ClassRoom("C203", 30, true, false, true);
     Room l306 = new ClassRoom("L306", 50, true, true, false);
-
     gilles.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, martin, benjamin, antoineBo));
     gilles.setFamilyMember(Lists.newArrayList(antoineBo));
     thomasB.setFriends(Lists.newArrayList(gilles, thomasR, charly, antoine, martin, benjamin));
@@ -1366,7 +1394,6 @@ private static School genSchool() throws ClassNotFoundException, IOException {
     antoine.setFriends(Lists.newArrayList(thomasB, thomasR, charly, gilles, martin, benjamin));
     martin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, gilles, benjamin));
     benjamin.setFriends(Lists.newArrayList(thomasB, thomasR, charly, antoine, martin, gilles));
-
     School school = new School();
     school.setName("Saint Louis Namur");
     school.setDirector(gys);
@@ -1375,12 +1402,9 @@ private static School genSchool() throws ClassNotFoundException, IOException {
     school.setRooms(Lists.newArrayList(library, l003, l306, c203));
     school.setWorkers(Lists.newArrayList(cassart));
     return school;
-
     }
 \end{lstlisting}
 \label{SchoolObj}
-
-
 
 \chapter*{Code Sources}
 
