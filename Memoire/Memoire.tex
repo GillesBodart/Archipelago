@@ -202,9 +202,26 @@ Gilles Bodart
 M\'emoire pr\'esent\'e en vue de l'obtention du grade de\\
 Master en Sciences Informatiques.
 \end{center}
+
+\chapter*{Avant-propos}
 \tableofcontents
 \newpage
-
+\chapter*{Glossaire}
+\begin{center}
+\begin{tabular}[c]{ l p{14cm} }
+ SQL  & Structured Query Language \\ \hline
+ NoSQL  & Not only SQL \\ \hline
+ SGBD  & Système de gestion de base de données \\ \hline
+ SGBDR  & Système de gestion de base de données relationnelles \\ \hline
+ BDOG  & Base de donnée orientée graphe \\ \hline
+ JSON  & JavaScript Object Notation \\ \hline
+ Vertex  & Sommet \\ \hline
+ Edge  & bord \\ \hline
+ Cluster  & littéralement grappe, cela représente en informatique un groupe d'éléments \\ \hline
+ API  & Application Programming Interface  \\ \hline
+ REST  & Representational state transfer, style d'architecture pour les systèmes hypermédia distribués \\ \hline
+\end{tabular}
+\end{center}
 
 \chapter*{Introduction}
 
@@ -212,7 +229,22 @@ De nos jours, les unités de stockage sont de plus en plus accessibles au grand 
 
 La grande force des SGBDR provient des fondements théoriques mis en place en 1970 par Edgar Frank Codd. IBM définit le langage "Structured Query Language" (SQL) pour utiliser ce système. Cette normalisation de la représentation de l'information génère un sentiment de sûreté pour les architectes de logiciels.
 
-A contrario, le mouvement NoSql pour "Not Only SQL" ne se base pas sur un fondement théorique commun. Que ce soient la théorie des graphes, les systèmes de hash key/value avec partitions, ... chaque système choisit ce sur quoi il va se baser. Mais s'il existait une sorte de contrat liant les SGBD NoSql entre eux afin d'assurer une cohérence d'utilisation, ce mémoire va se concentrer sur les implémentations de la théorie des graphes, en essayant de mettre en place un système de comparaison. Nous allons tenter de spécifier certains objectifs communs et développer un framework Java permettant d'utiliser de manière agnostique l'une ou l'autre base de données.
+A contrario, le mouvement NoSql pour "Not Only SQL" ne se base pas sur un fondement théorique commun. Que ce soient la théorie des graphes, les systèmes de hash key/value avec partitions, ... chaque système choisit ce sur quoi il va se baser. 
+
+Mais s'il existait une sorte de contrat liant les SGBD NoSql entre eux afin d'assurer une cohérence d'utilisation, ce mémoire va se concentrer sur les implémentations de la théorie des graphes, en essayant de mettre en place un système de comparaison. Nous allons tenter de spécifier certains objectifs communs et développer un framework Java permettant d'utiliser de manière agnostique l'une ou l'autre base de données.
+
+En outre, nous aimerions produire un framework qui présente les qualités suivantes :
+\begin{itemize}
+\item[•] L'abstraction
+
+\quad L'utilisateur pourra employer ce framework sans même connaitre l'existence de librairies spécifiques.
+\item[•] La simplification
+
+\quad Les différentes méthodes seront explicites et faciles à intégrer dans une application existante.
+\item[•] La configurabilité 
+
+\quad Le framework réagira en fonction d'un fichier de configuration clair et simple.
+\end{itemize}
  
 \part{État de l'art}
 
@@ -331,7 +363,7 @@ Ce SGBD est composé de trois grands éléments
 
 \begin{itemize}
 \item Document \& Vertex : Source de contenu, ces éléments peuvent être considérés comme des containers de données. On peut le comparer avec la ligne d'une base de données relationnelles.
-\item Links \& Edge : Une arrête orientée reliant deux éléments non nécessairement distincts.
+\item Links \& Edge : Une arête orientée reliant deux éléments non nécessairement distincts.
 \item Property : Typée ou embarquée dans un document JSON, ceci va représenter le contenu de l'information. Ces propriétés sont bien entendu primordiales pour ordonner, rechercher, ...
 \end{itemize}
 
@@ -915,7 +947,7 @@ Nous avons choisi de prendre un fichier JSON comme fichier de configuration car 
 
 \subsection{L'abstraction}
 
-L'utilisateur ne doit se soucier d'aucune mise en oeuvre spécifique à la base de données ciblée. 
+L'utilisateur ne doit se soucier d'aucune mise en œuvre spécifique à la base de données ciblée. 
 
 Archipelago, grâce à ces  implémentations concrètes cachées derrière les classes abstraites \texttt{ArchipelagoScriptBuilder} ainsi que \texttt{ArchipelagoQueryBuilder} permet à l'exploiteur de se concentrer sur la partie algorithmique de son application.
 
@@ -933,9 +965,9 @@ Ce genre d'architecture offre une maintenance aisée car elle permet de concentr
 
 
 \section{Points faibles}
-\subsection{La Performance}
+\subsection{Les performances}
 
-Bien que nous avons essayé d'améliorer ce point grâce au marquage des sommets, nous n'avons pas eu le temps d'approfondir ce procédé avec un marquage des arrêtes. Dans notre exemple de l'école, la partie reprenant les étudiants est fortement inter-connectée. En conséquence nous devons passer à de nombreuses reprises sur les mêmes arrêtes du graphe pour vérifier si cette relation existe dans la base de données au lieu de retenir l'information et d'éviter la démarche. Ces nombreux passages ralentissent le processus\footnote{Et plus particulièrement en ce qui concerne OrientDB}.
+Bien que nous ayons essayé d'améliorer ce point grâce au marquage des sommets, nous n'avons pas eu le temps d'approfondir ce procédé avec un marquage des arêtes. Dans notre exemple de l'école, la partie reprenant les étudiants est fortement inter-connectée. En conséquence nous devons passer à de nombreuses reprises sur les mêmes arêtes du graphe pour vérifier si cette relation existe dans la base de données au lieu de retenir l'information et d'éviter la démarche. Ces nombreux passages ralentissent le processus\footnote{Et plus particulièrement en ce qui concerne OrientDB}.
 
 \subsection{Les conditions}
 
@@ -1008,7 +1040,7 @@ RETURN (me)-[]-(f)
 \label{fig:friendOfFilt}
 \end{center}
 
-Archipelago à nouveau, ne permet pas de filtrer les amis liés au nœud principal. Du fait de ce manque de possibilité, nous somme exposés à des problèmes de charge, dès lors que le nœud principal est lié à plusieurs millions d'autres.
+Archipelago à nouveau, ne permet pas de filtrer les amis liés au nœud principal. Du fait de ce manque de possibilité, nous sommes exposés à des problèmes de charge, dès lors que le nœud principal est lié à plusieurs millions d'autres.
 
 \subsection{La récupération d'informations}
 
@@ -1063,16 +1095,193 @@ Cette implémentation de ce framework pourrait être améliorée si l'on disposa
 Le code est actuellement disponible sur un "repository github"\footnote{https://github.com/GillesBodart/Archipelago}, de façon à pouvoir récupérer\footnote{Nous n'en avons pas encore reçu.} un ensemble de commentaires constructifs par la communauté Java. 
 
 \chapter{Conclusion}
-\section{Piste de réflexions}
 
-\subsection{Amélioration du système de conditions}
-\subsection{Amélioration des performances}
-\subsection{Amélioration de l'exploitation des relations}
-\subsection{Ajout d'algorithmes célèbres de théorie des graphes}
-\subsection{Standardisation}
-\textcolor{blue}{bd orienté réseaux}
-\section{Archipelago en résumé}
-Le mémoire sera conclu avec une explication transversale et complète du framework, permettant au lecteur de garder une bonne impression sur ce nouvel outil. 
+
+Archipelago est un framework dont le but est d'abstraire l'utilisation d'une BDOG orientée graphe. 
+
+Le but de ce travail est de permettre à l'utilisateur de se centrer sur la représentation du modèle ansi qu'au traitement métier de celui-ci, plutôt que de "perdre son temps" à devoir implémenter la couche de persistance.
+
+L'état actuel du développement de ce framework est un état de "Proof of concept".
+
+Certaines fonctionnalités ont d'ores et déjà été implémentées telles que la persistance, la liaison et la récupération.
+
+Comme signalé ci-dessus, nous pouvons reprendre les points forts de ce framework à savoir :
+
+\begin{itemize}
+\item \textbf{La facilité}
+
+\quad La facilité d'enregistrement d'informations, pouvant être fortement inter-connectées dans des BDOG, ainsi que le marquage des sommets.
+
+\item \textbf{La configurabilité}
+
+\quad Une aide à la récupération d'un certain nombre de paramètres depuis un fichier de configuration permet de changer le comportement du framework ainsi que d'en ajouter ou d'en ôter aisément de nouveaux, en fonction des améliorations futures.
+
+\item \textbf{L'abstraction}
+
+\quad L'utilisateur ne doit se soucier d'aucune mise en œuvre spécifique à la base de données ciblée. 
+
+\item \textbf{La simplification}
+
+\quad Ce framework permet de réutiliser n'importe quel code existant. Il suffit alors à l'utilisateur d'ajouter les annotations \texttt{@Bridge} pour que son code soit compatible avec son application.
+
+\item \textbf{La modularité}
+
+\quad Le genre d'architecture utilisée pour développer ce framework, offre une maintenance aisée car elle permet de concentrer la recherche de problèmes dans un espace défini et bien cadré.
+
+\end{itemize}
+
+Les points faibles quant à eux sont :
+
+
+\begin{itemize}
+\item \textbf{Les performances}
+
+\quad Bien que nous ayons essayé d'améliorer ce point grâce au marquage des sommets, nous n'avons pas eu le temps d'approfondir ce procédé avec un marquage des arêtes.
+
+\item \textbf{Les conditions}
+
+\quad Notre framework possède trois faiblesses principales en ce qui concerne la manière avec laquelle nous pouvons récupérer de l'information.
+\begin{itemize}
+	\item[•] \underline{Sous-conditions :} nous pouvons actuellement générer des conditions simples. Pour créer des conditions plus complexes, il faudrait effectuer une refonte du système d'imbrication afin permettre à l'utilisateur de créer des sous-conditions. 
+	\item[•] \underline{Conditions sur les relations :} l'impossibilité de produire une condition sur une relation entre deux nœuds.
+	\item[•] \underline{Conditions sur les éléments liés :} Actuellement l'ensemble des conditions s'appliquent sur le nœud principal de la requête , il nous est impossible de filtrer les éléments qui vont être liés avec celui-ci. Nous sommes dès lors exposés à des problèmes de charge si le nœud principal est lié à plusieurs millions d'autres.
+\end{itemize}
+
+\item \textbf{La récupération d'informations}
+
+\quad Il n'existe pas encore de procédé permettant de récupérer des informations sur une relation entre deux nœuds, dans un objet Java. Les  liaisons internes dans un objet seront récupérées mais nous ne bénéficierons pas de toutes les informations fournies lors de la persistance.
+
+\item \textbf{La propreté du code}
+
+\quad L'implémentation de ce framework pourrait être améliorée si l'on disposait de temps supplémentaire pour en évacuer les morceaux de codes inutiles. En outre, il serait primordial d'y insérer des tests unitaires afin de s'assurer du bon fonctionnement de chacune des méthodes implémentées.
+
+\end{itemize}  
+
+L'ensemble de ces points faible à été pris en considération durant le développement de ce framework. Nous vous proposons dès lors des pistes d'améliorations réalistes telles que : 
+\begin{enumerate}
+\item Amélioration du système de conditions
+\item Amélioration des performances
+\item Amélioration de l'exploitation des relations
+\item Ajout d'algorithmes célèbres de théorie des graphes
+\end{enumerate}
+ 
+Et nous les développerons dans le chapitre \ref{perspectives} de ce travail.
+
+\vspace{1cm}
+
+Si l'approche d'une mise en place d'un standard commun aux BDOG semblait intéressante en soi, elle irait apparemment à l'encontre même de ces systèmes. Même si Gremlin et OpenCypher sont en voie de s'imposer vu leur importance dans l'univers des BDOG, la plupart des leurs promoteurs souhaitent les considérer comme des bases de données spécialisées.
+
+La solution proposée par ce mémoire permet quant à elle, d'abstraire les différentes implémentations standardisées ou non, et constituerait une approche unifiée pour l'univers des développeurs Java.
+
+\chapter{Perspectives}
+\label{perspectives}
+\section{Amélioration du système de conditions}
+
+Pour améliorer le système de conditions, il est primordial de refondre la manière dont les conditions sont implémentées. Pour l'avenir de ce projet, il faut que l'utilisateur soit en mesure d'émettre des conditions sur les relations ainsi que sur les éléments liés.
+
+Sur base du questionnaire que nous avons soumis, une idée de modification est apparue dans les suggestions et nous a particulièrement convaincu. 
+
+Le système pourrait être revu de la manière suivante : 
+
+\begin{lstlisting}
+Archipelago arch = Archipelago.getInstance();
+
+ArchipelagoQuery aq = arch.getQueryBuilder()
+    .of(City.class)
+    .where(and(
+              or(
+      	          eq("name","King's Landing"),
+    	          eq("name","Winterfell")
+    	        ),
+    	      neq("name","Dragonstone")
+    	      ),
+    	   ArchipelagoPosition.START
+    	  )
+    .where(and(
+      	        gt("distance",300),
+    	        eq("unit","leagues")
+    	       ),
+    	   ArchipelagoPosition.EDGE
+    	  )
+    .where(eq("name","Winterfell"),
+    	   ArchipelagoPosition.END
+    	  )
+    .build();
+List<Object> nodes = arch.execute(aq);
+
+\end{lstlisting}
+
+Avec ce procédé, chaque condition peut être imbriquée dans une autre sous-condition. Nous avons dès lors grâce à cette implémentation, la possibilité d'effectuer toutes les conditions logiques possibles sur le nœud de départ, sur l'arête ainsi que sur le nœud d'arrivée.
+
+\section{Amélioration des performances}
+
+Le premier effort, afin d'améliorer les performances, serait d'effectuer le marquage des arêtes.
+
+Les algorithmes existant de la théorie des graphes, nous permettraient d'améliorer le parcours du graphe généré par les relations entre les différents objets du modèle.
+
+\textcolor{blue}{théorie des graphes livre et algo}
+\section{Amélioration de l'exploitation des relations}
+
+Un objet générique représentant un lien entre deux objets peut être une piste d'amélioration de l'exploitation des relations. Comme la librairie de Néo4J le fait, la récupération d'information s'effectue entre autres dans un objet contenant 3 propriétés intéressantes :
+
+\begin{tabular}[c]{l M{12cm}}
+\texttt{start} & L'objet de départ.  \tabularnewline
+\texttt{relation} & L'objet comprenant les informations de relation.  \tabularnewline
+\texttt{end} & Le nœud d'arrivée.  \tabularnewline
+\end{tabular}
+
+Grâce à cette représentation, nous serons en mesure d'effectuer un grand nombre d'instructions sur ces relations essentielles dans l'utilisation d'une base de données orientée graphe.
+
+\section{Ajout d'algorithmes célèbres de théorie des graphes}
+
+\subsection*{Plus court chemin}
+
+L'utilisation des BDOG est entre autres un choix pris pour effectuer des recherches de proximité entre deux éléments de la base de données. Ces algorithmes sont souvent déjà implémentés du côté des BDOG mêmes. Il faudrait dès lors qu'Archipelago implémente une nouvelle fonction permettant d'appeler ces algorithmes tels que le très célèbre "Dijkstra"\textcolor{blue}{livre sur dijkstra}. 
+
+Exemple : 
+
+\begin{lstlisting}
+Archipelago arch = Archipelago.getInstance();
+
+ArchipelagoQuery aq = arch.getQueryBuilder()
+    .from(City.class)
+    	.where(and(
+              or(
+      	          eq("name","King's Landing"),
+    	          eq("name","Winterfell")
+    	        ),
+    	      neq("name","Dragonstone")
+    	      ),
+    	   ArchipelagoPosition.START
+    	  )
+    .to(City.class)
+    	.where(eq("name","Winterfell"),
+    	   ArchipelagoPosition.END
+    	  )
+    .with(ArchipelagoAlgo.DIJKSTRA)
+    .build();
+List<Object> nodes = arch.execute(aq);
+\end{lstlisting}
+
+\subsection*{Coloration des nœuds}
+
+La coloration des nœuds est un procédé mathématique permettant de scinder un graphe en plusieurs groupes.
+\textcolor{blue}{TODO à compléter}
+
+\subsection*{Problème du voyageur de commerce}
+
+Le problème du voyageur de commerce est un problème d'optimisation visant à lier un ensemble de nœuds en formant le plus court chemin entre ceux-ci.
+
+Une implémentation d'une heuristique telle que par exemple l'ACS\cite{dorigo1997ant} peut être une fonctionnalité intéressante pour une seconde version de ce framework. En effet, si l'utilisateur à la possibilité d'employer ce genre d'algorithme pour résoudre ce type de problème, Archipelago répondra plus facilement aux attentes d'applications logistiques.
+
+
+
+\textcolor{blue}{bd orienté réseaux}\cite{gardarin2003base}
+
+\nocite{*}
+
+\bibliography{biblio} 
+
 \part{Annexes}
 \section*{1. diagramme de classe "l'école"}
 
@@ -1152,31 +1361,12 @@ private static School genSchool() throws ClassNotFoundException, IOException {
 \end{lstlisting}
 \label{SchoolObj}
 
-\part{Glossaire}
-\begin{center}
-\begin{tabular}[c]{ l p{14cm} }
- SQL  & Structured Query Language \\ \hline
- NoSQL  & Not only SQL \\ \hline
- SGBD  & Système de gestion de base de données \\ \hline
- SGBDR  & Système de gestion de base de données relationnelles \\ \hline
- BDOG  & Base de donnée orientée graphe \\ \hline
- JSON  & JavaScript Object Notation \\ \hline
- Vertex  & Sommet \\ \hline
- Edge  & bord \\ \hline
- Cluster  & littéralement grappe, cela représente en informatique un groupe d'éléments \\ \hline
- API  & Application Programming Interface  \\ \hline
- REST  & Representational state transfer, style d'architecture pour les systèmes hypermédia distribués \\ \hline
-\end{tabular}
-\end{center}
 
-\part{Code Sources}
+
+\chapter*{Code Sources}
 
 %\include{./cdSource}
 
-\part{Bibliographie}
-
-\nocite{*}
-
-\bibliography{biblio}  
+ 
 
 \end{document}

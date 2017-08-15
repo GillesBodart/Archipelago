@@ -26,6 +26,13 @@ NetworkX developers.
 \newblock Software for complex networks.
 \newblock \url{https://networkx.github.io/}, 2014-2017.
 
+\bibitem{dorigo1997ant}
+Marco Dorigo and Luca~Maria Gambardella.
+\newblock Ant colony system: a cooperative learning approach to the traveling
+  salesman problem.
+\newblock {\em IEEE Transactions on evolutionary computation}, 1(1):53--66,
+  1997.
+
 \bibitem{fielding2000architectural}
 Roy~T Fielding and Richard~N Taylor.
 \newblock {\em Architectural styles and the design of network-based software
@@ -36,6 +43,11 @@ Roy~T Fielding and Richard~N Taylor.
 The Apache~Software Foundation.
 \newblock Apache tinkerpop official website.
 \newblock \url{http://tinkerpop.apache.org/}, 2017.
+
+\bibitem{gardarin2003base}
+Georges Gardarin.
+\newblock Base de donn{\'e}es.
+\newblock {\em {\'E}d. Eyrolles}, 2003.
 
 \bibitem{arangoSite}
 ArangoDB GmbH.
