@@ -203,7 +203,28 @@ M\'emoire pr\'esent\'e en vue de l'obtention du grade de\\
 Master en Sciences Informatiques.
 \end{center}
 
+\section*{Résumé}
+
+Ce mémoire va se concentrer sur les implémentations de la théorie des graphes dans l'univers des bases de données, et développer un framework Java présentant les qualités suivantes, l'abstraction, la simplification et la configurabilité. 
+
+Archipelago est un framework dont le but est d'abstraire l'utilisation d'une base de données orientée graphe. Cet outil dans son  état actuel, possède trois méthodes fonctionnelles, à savoir une méthode permettant de persister l'information, une autre permettant de lier deux noeuds à l'aide d'une relation, et une dernière permettant de récupérer les différents objets dans la base de données. Elle peut effectuer ces trois opérations sur \texttt{Néo4J} et sur \texttt{OrientDB}.
+
+Ce travail présente les points forts et les points faibles de l'implémentation de ce framework ainsi que des pistes d'amélioration pour une version ultérieure.
+
+\quad \quad \underline{mots-clés :} Framework, Base de données, Java, Graphes, Neo4J, OrienDB, Archipelago
+\section*{Abstract}
+
+This master thesis will focus on the implementations of the graph theory in the world of the databases, 
+
 \chapter*{Avant-propos}
+
+Nous tenons à remercier tout particulièrement mes promoteurs, Messieurs A. CLEVE et R. LAMBIOTTE pour nous avoir autorisé à réaliser cette recherche et conjointement, à nous avoir soutenu dans le développement de celle-ci. Nous les remercions aussi pour le temps consacré à la supervision de ce mémoire. 
+
+Nous remercions également les entreprises dans lesquelles nous avons travaillé, de nous avoir laissé l'opportunité de poursuivre le cursus universitaire.
+
+Et enfin, nous tenons tout autant à remercier ma belle-mère C. NIGOT pour avoir pris du temps à nous relire, et singulièrement ma compagne M. VAN CUTSEM qui m'a soutenu au quotidien pendant ces deux années, y compris pour sa patience actuelle durant sa grossesse en cours.
+
+
 \tableofcontents
 \newpage
 \chapter*{Glossaire}
@@ -1099,9 +1120,7 @@ Le code est actuellement disponible sur un "repository github"\footnote{https://
 
 Archipelago est un framework dont le but est d'abstraire l'utilisation d'une BDOG orientée graphe. 
 
-Le but de ce travail est de permettre à l'utilisateur de se centrer sur la représentation du modèle ansi qu'au traitement métier de celui-ci, plutôt que de "perdre son temps" à devoir implémenter la couche de persistance.
-
-L'état actuel du développement de ce framework est un état de "Proof of concept".
+Le but de ce travail est de permettre à l'utilisateur de se centrer sur la représentation du modèle ainsi qu'au traitement métier de celui-ci, sans perdre du temps à implémenter la couche de persistance. L'état actuel du développement de ce framework peut être considéré comme un "POC".
 
 Certaines fonctionnalités ont d'ores et déjà été implémentées telles que la persistance, la liaison et la récupération.
 
