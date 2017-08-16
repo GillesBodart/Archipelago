@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  15 AUG 2017 20:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  16 AUG 2017 09:33
 entering extended mode
 **./Memoire.tex
 (Memoire.tex
@@ -1246,8 +1246,8 @@ Package pdftex.def Info: figures/SchoolDiag.png used on input line 1340.
 (Memoire.aux) ) 
 Here is how much of TeX's memory you used:
  11362 strings out of 493333
- 155333 string characters out of 3144820
- 372203 words of memory out of 3000000
+ 155327 string characters out of 3144820
+ 372209 words of memory out of 3000000
  14628 multiletter control sequences out of 15000+200000
  68802 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1261,7 +1261,7 @@ pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/miktex/fonts/type1
 tex/fonts/type1/public/lm/lmri12.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmsy
 10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on Memoire.pdf (47 pages, 875123 bytes).
+Output written on Memoire.pdf (47 pages, 876388 bytes).
 PDF statistics:
  226 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
