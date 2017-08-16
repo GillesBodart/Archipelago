@@ -252,13 +252,23 @@ Et enfin, nous tenons tout autant à remercier ma belle-mère C. NIGOT pour avoi
 
 \chapter*{Introduction}
 
-De nos jours, les unités de stockage sont de plus en plus accessibles au grand public, les différentes entreprises impliquées dans le développement des systèmes de gestion de base de données l'ont bien compris. Depuis plusieurs années, l'hégémonie des bases de données relationnelles se fait de moins en moins écrasante, les solutions alternatives du NoSql séduisent jour après jour de grandes entreprises. 
+L'idée de réaliser ce mémoire nous est venue de notre travail en entreprise où nous utilisions un modèle de données très connectées. Nous avions comme mission de remanier ce modèle de données en le rendant totalement historisable. Pour ce faire, nous utilisions une base de données relationnelles mais ce choix nous posait des problèmes, notamment au niveau des dépendances cycliques. Ce genre de difficulté survient quand certains éléments se retrouvent dépendant d'eux-mêmes et forment ainsi un cycle.\textcolor{blue}{article dép cycliques} 
 
-La grande force des SGBDR provient des fondements théoriques mis en place en 1970 par Edgar Frank Codd. IBM définit le langage \enquote{Structured Query Language} (SQL) pour utiliser ce système. Cette normalisation de la représentation de l'information génère un sentiment de sûreté pour les architectes de logiciels.
+Nous recevions nos informations en provenance de plusieurs sources qui avaient chacune leur propre représentation. Un ensemble de méthodes devait être mise en place et maintenue pour faire correspondre ces modifications avec la représentation interne que l'entreprise avait de l'information. Toutes ces petites modifications rendaient le précédent modèle de moins en moins cohérent et stable. Il nous fallait donc penser à une structure évolutive permettant d'éviter ces ajouts qui alourdissaient les tables pour des demandes spécifiques. 
 
-A contrario, le mouvement NoSql pour \enquote{Not Only SQL} ne se base pas sur un fondement théorique commun. Que ce soient la théorie des graphes, les systèmes de hash key/value avec partitions, ... chaque système choisit ce sur quoi il va se baser. 
+Suite à ce questionnement, nous nous sommes interrogé d'une part sur la pertinence de notre modèle car nous nous heurtions sans cesse à des difficultés multiples\textcolor{blue}{citer les difficultés} , et d'autre part à \enquote{l'entêtement} de l'utilisation de bases de données relationnelles. 
 
-Mais s'il existait une sorte de contrat liant les SGBD NoSql entre eux afin d'assurer une cohérence d'utilisation, ce mémoire va se concentrer sur les implémentations de la théorie des graphes, en essayant de mettre en place un système de comparaison. Nous allons tenter de spécifier certains objectifs communs et développer un framework Java permettant d'utiliser de manière agnostique l'une ou l'autre base de données.
+C'est alors que nous avons pensé à la mise en place d'un outil permettant d'éviter toutes les démarches auxquelles notre équipe s'était confrontée. Cette réflexion nous a fait découvrir les bases de données orientées graphes et les librairies qui permettent de les utiliser.
+
+Nous avons pu observer que les BDOG étaient de plus en plus nombreuses. Nous constations que chacune développait ses propres fonctionnalités. Nous avons dès lors voulu trouver un framework permettant de communiquer avec ces dernières tel que \enquote{JPA} le fait avec les bases de données relationnelles. A notre grande surprise, nous nous sommes aperçu que ce framework semblait ne pas exister.
+
+En effet de nos jours, les unités de stockage sont de plus en plus accessibles au grand public, les différentes entreprises impliquées dans le développement des systèmes de gestion de base de données l'ont bien compris, et recherchent des solutions alternatives telles que le NoSql. \textcolor{blue}{source} 
+
+La grande force des SGBDR provient quant à elle, des fondements théoriques mis en place en 1970 par Edgar Frank Codd. IBM définit le langage \enquote{Structured Query Language} (SQL) pour utiliser ce système. Cette normalisation de la représentation de l'information génère un sentiment de sûreté pour les architectes de logiciels.\textcolor{blue}{source} 
+
+A contrario, le mouvement NoSql pour \enquote{Not Only SQL} ne se base pas sur un fondement théorique commun, mais bien sur différentes représentations : Théorie des graphes, systèmes de hash key/value avec partitions, ... \textcolor{blue}{source} 
+
+Ce mémoire va se concentrer sur les implémentations de la théorie des graphes, en essayant de mettre en place un système de comparaison. Nous allons tenter de spécifier certains objectifs communs et développer un framework Java permettant d'utiliser de manière agnostique l'une ou l'autre base de données.\textcolor{blue}{source} 
 
 En outre, nous aimerions produire un framework qui présente les qualités suivantes :
 \begin{itemize}
@@ -271,6 +281,9 @@ En outre, nous aimerions produire un framework qui présente les qualités suiva
 \item[•] La configurabilité 
 
 \quad Le framework réagira en fonction d'un fichier de configuration clair et simple.
+\item[•] L'évolutivité 
+
+\quad Le framework permettra de faire évoluer la couche de persistance en fonction du modèle de données.
 \end{itemize}
  
 \part{État de l'art}
@@ -596,7 +609,7 @@ Comme expliqué plus haut, le langage doit être exécuté dans une invite de co
 \part{Contribution}
 \chapter{Applications possibles des BDOG}
 
-\section{L'exemple parfait}
+\section{Exemple illustratif}
 
 Pour la suite de ce mémoire, il est primordial d'avoir un exemple concret de modèle habituellement persisté avec un modèle relationnel mais qui pourrait néanmoins être transposable dans une BDOG.
 

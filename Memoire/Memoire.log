@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  16 AUG 2017 09:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  16 AUG 2017 22:41
 entering extended mode
 **./Memoire.tex
 (Memoire.tex
@@ -1061,158 +1061,158 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
  [5] [6
 
+] [7
+
 ]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 265.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 275.
 
  (C:\Sand\miktex\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 265.
- [7
-
-] [8
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 275.
+ [8] [9
 
 ]
 Chapitre 1.
-[9
+[10
 
 ]
-Overfull \hbox (16.21677pt too wide) in paragraph at lines 315--315
+Overfull \hbox (16.21677pt too wide) in paragraph at lines 328--328
 |\T1/lmr/m/sc/14.4 Pourquoi uti-li-ser une BDOG plu-tôt qu'une BD re-la-tion-ne
 lle comme
  []
 
-[10] [11]
+[11] [12]
 Chapitre 2.
-[12
+[13
 
-] [13] (C:\Sand\miktex\tex\latex\listings\lstlang1.sty
+] [14] (C:\Sand\miktex\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [14] [15]
+) [15] [16]
 Chapitre 3.
-[16
+[17
 
-] [17] [18] [19] [20
+] [18] [19] [20] [21
 
 ]
 Chapitre 4.
-[21
+[22
 
-] [22]
+] [23]
 Chapitre 5.
-[23
+[24
 
-] <figures/Persist.png, id=96, 809.0225pt x 472.76625pt>
+] <figures/Persist.png, id=99, 809.0225pt x 472.76625pt>
 File: figures/Persist.png Graphic file (type png)
 
 <use figures/Persist.png>
-Package pdftex.def Info: figures/Persist.png used on input line 711.
+Package pdftex.def Info: figures/Persist.png used on input line 724.
 (pdftex.def)             Requested size: 404.51027pt x 236.38254pt.
- [24 <./figures/Persist.png>]
-<figures/ecoleNeo4J.png, id=102, 539.01375pt x 416.15475pt>
+ [25 <./figures/Persist.png>]
+<figures/ecoleNeo4J.png, id=106, 539.01375pt x 416.15475pt>
 File: figures/ecoleNeo4J.png Graphic file (type png)
 
 <use figures/ecoleNeo4J.png>
-Package pdftex.def Info: figures/ecoleNeo4J.png used on input line 757.
+Package pdftex.def Info: figures/ecoleNeo4J.png used on input line 770.
 (pdftex.def)             Requested size: 285.67592pt x 220.56096pt.
- [25 <./figures/ecoleNeo4J.png>]
-<figures/Rel.png, id=107, 190.311pt x 64.44075pt>
+ [26 <./figures/ecoleNeo4J.png>]
+<figures/Rel.png, id=110, 190.311pt x 64.44075pt>
 File: figures/Rel.png Graphic file (type png)
  <use figures/Rel.png>
-Package pdftex.def Info: figures/Rel.png used on input line 787.
+Package pdftex.def Info: figures/Rel.png used on input line 800.
 (pdftex.def)             Requested size: 228.37202pt x 77.32849pt.
 
-<figures/RelBidir.png, id=108, 271.0125pt x 72.87225pt>
+<figures/RelBidir.png, id=111, 271.0125pt x 72.87225pt>
 File: figures/RelBidir.png Graphic file (type png)
 
 <use figures/RelBidir.png>
-Package pdftex.def Info: figures/RelBidir.png used on input line 803.
+Package pdftex.def Info: figures/RelBidir.png used on input line 816.
 (pdftex.def)             Requested size: 325.21335pt x 87.44626pt.
- [26 <./figures/Rel.png> <./figures/RelBidir.png>]
-[27] <figures/query.png, id=115, 999.735pt x 721.69624pt>
+ [27 <./figures/Rel.png> <./figures/RelBidir.png>]
+[28] <figures/query.png, id=118, 999.735pt x 721.69624pt>
 File: figures/query.png Graphic file (type png)
 
 <use figures/query.png>
-Package pdftex.def Info: figures/query.png used on input line 874.
+Package pdftex.def Info: figures/query.png used on input line 887.
 (pdftex.def)             Requested size: 499.86627pt x 360.84724pt.
 
-Overfull \hbox (16.1694pt too wide) in paragraph at lines 874--875
+Overfull \hbox (16.1694pt too wide) in paragraph at lines 887--888
  [][] 
  []
 
-[28 <./figures/query.png>]
-<figures/scriptBuilders.png, id=120, 163.812pt x 66.84975pt>
+[29 <./figures/query.png>]
+<figures/scriptBuilders.png, id=123, 163.812pt x 66.84975pt>
 File: figures/scriptBuilders.png Graphic file (type png)
 
 <use figures/scriptBuilders.png>
-Package pdftex.def Info: figures/scriptBuilders.png used on input line 918.
+Package pdftex.def Info: figures/scriptBuilders.png used on input line 931.
 (pdftex.def)             Requested size: 245.71738pt x 100.27434pt.
 
-<figures/queryBuilders.png, id=121, 267.399pt x 79.497pt>
+<figures/queryBuilders.png, id=124, 267.399pt x 79.497pt>
 File: figures/queryBuilders.png Graphic file (type png)
 
 <use figures/queryBuilders.png>
-Package pdftex.def Info: figures/queryBuilders.png used on input line 943.
+Package pdftex.def Info: figures/queryBuilders.png used on input line 956.
 (pdftex.def)             Requested size: 401.09752pt x 119.2452pt.
- [29 <./figures/scriptBuilders.png>] [30 <./figures/queryBuilders.png>]
+ [30 <./figures/scriptBuilders.png>] [31 <./figures/queryBuilders.png>]
 Chapitre 6.
 
-Overfull \hbox (110.01648pt too wide) in paragraph at lines 995--996
+Overfull \hbox (110.01648pt too wide) in paragraph at lines 1008--1009
 []\T1/lmr/m/n/12 Archipelago, grâce à ces im-plé-men-ta-tions concrètes ca-chée
 s der-rière les classes abs-traites \T1/lmtt/m/n/12 ArchipelagoScriptBuilder
  []
 
-[31
+[32
 
-] [32] <figures/citiesRel.png, id=135, 178.266pt x 177.66376pt>
+] [33] <figures/citiesRel.png, id=138, 178.266pt x 177.66376pt>
 File: figures/citiesRel.png Graphic file (type png)
 
 <use figures/citiesRel.png>
-Package pdftex.def Info: figures/citiesRel.png used on input line 1039.
+Package pdftex.def Info: figures/citiesRel.png used on input line 1052.
 (pdftex.def)             Requested size: 142.61298pt x 142.13118pt.
 
-<figures/citiesRelFilt.png, id=136, 235.47975pt x 64.44075pt>
+<figures/citiesRelFilt.png, id=139, 235.47975pt x 64.44075pt>
 File: figures/citiesRelFilt.png Graphic file (type png)
 
 <use figures/citiesRelFilt.png>
-Package pdftex.def Info: figures/citiesRelFilt.png used on input line 1056.
+Package pdftex.def Info: figures/citiesRelFilt.png used on input line 1069.
 (pdftex.def)             Requested size: 188.38405pt x 51.55266pt.
- [33 <./figures/citiesRel.png> <./figures/citiesRelFilt.png>] <figures/friendOf
-.png, id=140, 246.32025pt x 239.09325pt>
+ [34 <./figures/citiesRel.png> <./figures/citiesRelFilt.png>] <figures/friendOf
+.png, id=143, 246.32025pt x 239.09325pt>
 File: figures/friendOf.png Graphic file (type png)
 
 <use figures/friendOf.png>
-Package pdftex.def Info: figures/friendOf.png used on input line 1073.
+Package pdftex.def Info: figures/friendOf.png used on input line 1086.
 (pdftex.def)             Requested size: 246.31964pt x 239.09265pt.
 
-<figures/friendOfFilt.png, id=141, 151.16475pt x 146.949pt>
+<figures/friendOfFilt.png, id=144, 151.16475pt x 146.949pt>
 File: figures/friendOfFilt.png Graphic file (type png)
 
 <use figures/friendOfFilt.png>
-Package pdftex.def Info: figures/friendOfFilt.png used on input line 1090.
+Package pdftex.def Info: figures/friendOfFilt.png used on input line 1103.
 (pdftex.def)             Requested size: 151.16437pt x 146.94864pt.
- [34 <./figures/friendOf.png> <./figures/friendOfFilt.png>] [35] [36]
+ [35 <./figures/friendOf.png> <./figures/friendOfFilt.png>] [36] [37]
 Chapitre 7.
-[37
+[38
 
 ]
-Overfull \hbox (3.27113pt too wide) in paragraph at lines 1197--1198
+Overfull \hbox (3.27113pt too wide) in paragraph at lines 1210--1211
 []$[]$ \T1/lmr/m/n/12 Ac-tuel-le-ment l'en-semble des condi-tions s'ap-pliquent
 
  []
 
-[38]
+[39]
 Chapitre 8.
-[39
+[40
 
 ]
-Overfull \hbox (26.70528pt too wide) in paragraph at lines 1285--1285
+Overfull \hbox (26.70528pt too wide) in paragraph at lines 1298--1298
 |[]\T1/lmr/m/sc/17.28 Ajout d'al-go-rithmes cé-lèbres de théo-rie des graphes| 
 
  []
 
-[40] (Memoire.bbl [41]
+[41] (Memoire.bbl [42]
 Underfull \hbox (badness 1314) in paragraph at lines 78--82
 []\T1/lmr/m/n/12 Mohamed Tar-roumi.  Nosql (not only sql).  $\T1/lmtt/m/n/12 ht
 tps : / / prezi . com / 4flswlgipwbo /
@@ -1230,24 +1230,24 @@ Underfull \hbox (badness 1019) in paragraph at lines 89--95
 our-quoi nosql
  []
 
-) [42
+) [43
 
-] [43
+] [44
 
-] <figures/SchoolDiag.png, id=174, 811.833pt x 255.95625pt>
+] <figures/SchoolDiag.png, id=177, 811.833pt x 255.95625pt>
 File: figures/SchoolDiag.png Graphic file (type png)
 
 <use figures/SchoolDiag.png>
-Package pdftex.def Info: figures/SchoolDiag.png used on input line 1340.
+Package pdftex.def Info: figures/SchoolDiag.png used on input line 1353.
 (pdftex.def)             Requested size: 811.83101pt x 255.95561pt.
- [44 <./figures/SchoolDiag.png>] [45] [46] [47
+ [45 <./figures/SchoolDiag.png>] [46] [47] [48
 
 ]
 (Memoire.aux) ) 
 Here is how much of TeX's memory you used:
  11362 strings out of 493333
  155327 string characters out of 3144820
- 372209 words of memory out of 3000000
+ 372210 words of memory out of 3000000
  14628 multiletter control sequences out of 15000+200000
  68802 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1261,9 +1261,9 @@ pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/miktex/fonts/type1
 tex/fonts/type1/public/lm/lmri12.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmsy
 10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on Memoire.pdf (47 pages, 876388 bytes).
+Output written on Memoire.pdf (48 pages, 878577 bytes).
 PDF statistics:
- 226 PDF objects out of 1000 (max. 8388607)
+ 229 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
