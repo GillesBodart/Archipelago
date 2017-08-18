@@ -1,19 +1,39 @@
 \begin{thebibliography}{10}
 
-\bibitem{NetworkXNeo4j}
-Rohit Aggarwal.
-\newblock Networkx to neo4j’s documentation.
-\newblock \url{https://neonx.readthedocs.io/en/latest/}, 2013.
-
 \bibitem{janusGraphSite}
 JanusGraph Authors.
 \newblock Janusgraph official website.
 \newblock \url{http://janusgraph.org/}, 2017.
 
+\bibitem{linternaute}
+CCM Benchmark.
+\newblock Dictionnaire français.
+\newblock
+  \url{http://www.linternaute.com/dictionnaire/fr/definition/archipel/}, 2017.
+
 \bibitem{bruchez2016bases}
 Rudi Bruchez.
 \newblock Les bases de donn{\'e}es nosql et le big data.
 \newblock {\em Eyrolles,}, 2016.
+
+\bibitem{cattell1997object}
+Roderic Geoffrey~Galton Cattell, Douglas~K Barry, Dirk Bartels, Mark Berler,
+  Jeff Eastman, Sophie Gamerman, David Jordan, Adam Springer, Henry Strickland,
+  and Drew Wade.
+\newblock {\em The object database standard: ODMG 2.0}, volume 131.
+\newblock Morgan Kaufmann Publishers San Mateo, 1997.
+
+\bibitem{cleve2010conceptual}
+Anthony Cleve, Anne-France Brogneaux, and Jean-Luc Hainaut.
+\newblock A conceptual approach to database applications evolution.
+\newblock In {\em International Conference on Conceptual Modeling}, pages
+  132--145. Springer, 2010.
+
+\bibitem{coupaye1998modeles}
+Thierry Coupaye and Christine Collet.
+\newblock Mod{\`e}les de comportement des sgbd actifs: caract{\'e}risation et
+  comparaison.
+\newblock {\em TSI. Technique et science informatiques}, 17(3):299--328, 1998.
 
 \bibitem{infoqSite}
 traduit par Simon~Baslé Écrit~par Peter~Neubauer.
@@ -21,10 +41,22 @@ traduit par Simon~Baslé Écrit~par Peter~Neubauer.
 \newblock \url{https://www.infoq.com/fr/articles/graph-nosql-neo4j}, 20 mai
   2010.
 
-\bibitem{NetworkXPythonPackage}
-NetworkX developers.
-\newblock Software for complex networks.
-\newblock \url{https://networkx.github.io/}, 2014-2017.
+\bibitem{curino2008schema}
+Carlo~A Curino, Letizia Tanca, Hyun~J Moon, and Carlo Zaniolo.
+\newblock Schema evolution in wikipedia: toward a web information system
+  benchmark.
+\newblock In {\em In International Conference on Enterprise Information Systems
+  (ICEIS}. Citeseer, 2008.
+
+\bibitem{di2012adoption}
+Matteo Di~Maglie.
+\newblock {\em Adoption d'une solution NoSQL dans l'entreprise}.
+\newblock PhD thesis, Haute {\'e}cole de gestion de Gen{\`e}ve, 2012.
+
+\bibitem{dijkstra1959note}
+Edsger~W Dijkstra.
+\newblock A note on two problems in connexion with graphs.
+\newblock {\em Numerische mathematik}, 1(1):269--271, 1959.
 
 \bibitem{dorigo1997ant}
 Marco Dorigo and Luca~Maria Gambardella.
@@ -44,6 +76,12 @@ The Apache~Software Foundation.
 \newblock Apache tinkerpop official website.
 \newblock \url{http://tinkerpop.apache.org/}, 2017.
 
+\bibitem{frishman1998comprehensive}
+Dmitrij Frishman, Klaus Heumann, Arthur Lesk, and Hans-Werner Mewes.
+\newblock Comprehensive, comprehensible, distributed and intelligent databases:
+  current status.
+\newblock {\em Bioinformatics (Oxford, England)}, 14(7):551--561, 1998.
+
 \bibitem{gardarin2003base}
 Georges Gardarin.
 \newblock Base de donn{\'e}es.
@@ -54,20 +92,47 @@ ArangoDB GmbH.
 \newblock Arrangdb official website.
 \newblock \url{https://www.arangodb.com/}, 2017.
 
-\bibitem{StanfordCollection}
-Jure Leskovec.
-\newblock Stanford large network dataset collection.
-\newblock \url{https://snap.stanford.edu/data/}, 2017.
+\bibitem{lohr2012age}
+Steve Lohr.
+\newblock The age of big data.
+\newblock {\em New York Times}, 11(2012), 2012.
 
 \bibitem{OrientDBSite}
 OrientDB LTD.
 \newblock Orientdb official website.
 \newblock \url{https://orientdb.com/}, 2017.
 
+\bibitem{miller2013graph}
+Justin~J Miller.
+\newblock Graph database applications and concepts with neo4j.
+\newblock In {\em Proceedings of the Southern Association for Information
+  Systems Conference, Atlanta, GA, USA}, volume 2324, page~36, 2013.
+
+\bibitem{miller2000schema}
+Ren{\'e}e~J Miller, Laura~M Haas, and Mauricio~A Hern{\'a}ndez.
+\newblock Schema mapping as query discovery.
+\newblock In {\em VLDB}, volume 2000, pages 77--88, 2000.
+
+\bibitem{milo1998using}
+Tova Milo and Sagit Zohar.
+\newblock Using schema matching to simplify heterogeneous data translation.
+\newblock In {\em vldb}, volume~98, pages 24--27, 1998.
+
+\bibitem{nance2013nosql}
+Cory Nance, Travis Losser, Reenu Iype, and Gary Harmon.
+\newblock Nosql vs rdbms-why there is room for both.
+\newblock 2013.
+
 \bibitem{Neo4JSite}
 Inc Neo~Technology.
 \newblock Neo4j official website.
 \newblock \url{https://neo4j.com/}, 2017.
+
+\bibitem{niswonger1999transforming}
+LHRMB Niswonger, M~Tork Roth, PM~Schwarz, and EL~Wimmers.
+\newblock Transforming heterogeneous data with database middleware: Beyond
+  integration.
+\newblock {\em Data Engineering}, 31, 1999.
 
 \bibitem{DBEnginesSite}
 solid IT~gmbh.
@@ -84,6 +149,14 @@ Mohamed Tarroumi.
 OrientDB Team.
 \newblock Orientdb - getting started.
 \newblock \url{https://www.udemy.com/orientdb-getting-started}, 2017.
+
+\bibitem{vicknair2010comparison}
+Chad Vicknair, Michael Macias, Zhendong Zhao, Xiaofei Nan, Yixin Chen, and Dawn
+  Wilkins.
+\newblock A comparison of a graph database and a relational database: a data
+  provenance perspective.
+\newblock In {\em Proceedings of the 48th annual Southeast regional
+  conference}, page~42. ACM, 2010.
 
 \bibitem{NoSQLVsSGBDR}
 Directeur France et Europe du Sud de~MongoDB Yann~Aubry.
