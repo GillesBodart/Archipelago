@@ -51,10 +51,10 @@
 \contentsline {section}{\numberline {6.3}Questionnaire}{36}
 \contentsline {subsection}{\numberline {6.3.1}Contenu quantitatif}{36}
 \contentsline {subsection}{\numberline {6.3.2}Contenu qualitatif}{42}
-\contentsline {chapter}{\numberline {7}Conclusion}{44}
-\contentsline {chapter}{\numberline {8}Perspectives}{46}
-\contentsline {section}{\numberline {8.1}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{46}
-\contentsline {section}{\numberline {8.2}Am\IeC {\'e}lioration des performances}{48}
-\contentsline {section}{\numberline {8.3}Am\IeC {\'e}lioration de l'exploitation des relations}{48}
-\contentsline {section}{\numberline {8.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de th\IeC {\'e}orie des graphes}{48}
-\contentsline {part}{III\hspace {1em}Annexes}{52}
+\contentsline {chapter}{\numberline {7}Conclusion}{45}
+\contentsline {chapter}{\numberline {8}Perspectives}{47}
+\contentsline {section}{\numberline {8.1}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{47}
+\contentsline {section}{\numberline {8.2}Am\IeC {\'e}lioration des performances}{49}
+\contentsline {section}{\numberline {8.3}Am\IeC {\'e}lioration de l'exploitation des relations}{49}
+\contentsline {section}{\numberline {8.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de th\IeC {\'e}orie des graphes}{49}
+\contentsline {part}{III\hspace {1em}Annexes}{53}

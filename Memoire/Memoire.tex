@@ -131,6 +131,7 @@
 
 \usepackage{fancybox}
 \usepackage[Lenny]{fncychap}
+\usepackage{csvsimple}
 \graphicspath{{figures/}} % dossier dans lequel sont les images
 %\usepackage{tikz} 	% outil de modélisation de formes
 
@@ -485,8 +486,8 @@ SELECT FROM V
    		\hline
    		@rid & @version & @class & firstname & lastname & name \\
    		\hline
-   		10:0 & 1 & Person & Marie & Van Cutsem &  \\
-   		10:1 & 1 & Person & Gilles & Bodart &  \\
+   		10:0 & 1 & Person & Gilles & Bodart &  \\
+   		10:1 & 1 & Person & Marie & Van Cutsem &  \\
    		11:0 & 1 & Company &  &  & ACME \\
    		\hline
 	\end{tabular}
@@ -807,7 +808,7 @@ En effet, comme nous utilisons la récursivité au travers de l'introspection de
 \vspace*{\stretch{1}}
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.5]{figures/Persist.png}
+\includegraphics[scale=0.6]{figures/Persist.png}
 \caption{Flux de persistance d'un objet au travers du framework Archipelago}
 \label{fig:Persist}
 \end{figure}
@@ -1009,7 +1010,7 @@ Comme expliqué plus haut, nous sommes actuellement dans l'incapacité de géné
 \vspace*{\stretch{1}}
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.5]{figures/query.png}
+\includegraphics[scale=0.6]{figures/query.png}
 \caption{Flux de traitement d'une requête de recherche dans Archipelago}
 \label{fig:Query}
 \end{figure}
@@ -1301,6 +1302,8 @@ Nous avons recueilli 51 réponses. Cependant nous devons soustraire de celles-ci
 Les quatre premières questions concernent l'ensemble des répondants. Nous avons décidé de ne pas filtrer les questions ayant trait à leur identification afin qu'elles témoignent de l'intérêt porté au travail.
 
 Les suivantes concerneront uniquement 32/51 réponses. 19 ayant été considérées comme sans objet. Un second filtrage sera appliqué durant l'analyse du questionnaire. Il est expliqué en légende de la figure \ref{fig:QIntFilt}.
+\newpage
+\vspace*{\stretch{1}}
 
 \begin{figure}[!ht]
 \centering
@@ -1308,24 +1311,36 @@ Les suivantes concerneront uniquement 32/51 réponses. 19 ayant été considér�
 \caption{Question 1) répartition homme/femme ayant répondu au questionnaire}
 \label{fig:QHF}
 \end{figure}
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1]{figures/QAge.png}
 \caption{Question 2) Tranche d'âge des répondants}
 \label{fig:QAge}
 \end{figure}
+
+\vspace*{\stretch{1}}
+\newpage
+\vspace*{\stretch{1}}
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1]{figures/QStatus.png}
 \caption{Question 3) Situation scolaire et/ou professionnelle des répondants}
 \label{fig:QStatus}
 \end{figure}
+
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=1]{figures/QProf.png}
+\includegraphics[scale=.8]{figures/QProf.png}
 \caption{Question 4) Domaines d'activité des répondants}
 \label{fig:QProf}
 \end{figure}
+
+\vspace*{\stretch{1}}
+\newpage
+\vspace*{\stretch{1}}
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1]{figures/QExistFilt.png}
@@ -1339,6 +1354,10 @@ Les suivantes concerneront uniquement 32/51 réponses. 19 ayant été considér�
 \caption{Question 6.a) [Données filtrées] Parmi les répondants qui ne connaissant pas les BDOG (+2 personnes ayant  répondu indûment à cette question), nous remarquons que près de la moitié d'entre eux (7/16) ne comptent pas s'intéresser aux bases de données graphes, ou n'en voient pas l'utilité actuellement. Dans la suite de l'analyse de ce questionnaire, nous filtrerons davantage encore ceux pour qui les BDOG ne présentent aucun intérêt. C'est la raison pour laquelle notre échantillon ne comptera plus que 25 réponses.}
 \label{fig:QIntFilt}
 \end{figure}
+
+\vspace*{\stretch{1}}
+\newpage
+\vspace*{\stretch{1}}
 
 \begin{figure}[!ht]
 \centering
@@ -1354,12 +1373,17 @@ Les suivantes concerneront uniquement 32/51 réponses. 19 ayant été considér�
 \label{fig:QTravFilt}
 \end{figure}
 
+\vspace*{\stretch{1}}
+\newpage
+\vspace*{\stretch{1}}
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1]{figures/QLibJavaFilt.png}
 \caption{Question 8) [Données filtrées] Seuls 24\% des répondants connaissent la manière de faire interagir du code Java et des BDOG. Cette réponse nous conforte dans le développement d'une solution simple qui leur permettrait, grâce à Archipelago, d'accéder directement à la BDOG sans passer par l'apprentissage des librairies spécifiques.}
 \label{fig:QLibJavaFilt}
 \end{figure}
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.8]{figures/QFrameworkIntFilt.png}
@@ -1367,6 +1391,9 @@ Les suivantes concerneront uniquement 32/51 réponses. 19 ayant été considér�
 \label{fig:QFrameworkIntFilt}
 \end{figure}
 
+\vspace*{\stretch{1}}
+\newpage
+\vspace*{\stretch{1}}
 
 \begin{figure}[!ht]
 \centering
@@ -1375,45 +1402,50 @@ Les suivantes concerneront uniquement 32/51 réponses. 19 ayant été considér�
 \label{fig:QAbanFilt}
 \end{figure}
 
-\newpage
-\vspace*{\stretch{1}}
-\newpage
-\vspace*{\stretch{1}}
-\newpage
-\vspace*{\stretch{1}}
-\newpage
-\vspace*{\stretch{1}}
-\newpage
-\subsection{Contenu qualitatif}
 
+
+\subsection{Contenu qualitatif}
+Nous avons décidé d'analyser la manière dont les répondants comprennent les bouts de codes utilisant le framework Archipelago. Nous ne leur avons fourni aucune documentation préalable. En légende des bouts de code ci-après, nous indiquerons le pourcentage de répondants ayant parfaitement compris la fonctionnalité que nous avons voulu préconiser (BR\footnote{\textbf{B}onne \textbf{R}éponse}), le pourcentage de personnes qui n'en ont pas saisi toutes les subtilités (MR\footnote{\textbf{M}oyenne \textbf{R}éponse}), et enfin
+le pourcentage de celles qui n'ont pas compris du tout (PC\footnote{\textbf{P}as \textbf{C}ompris}).
+
+En règle générale, nous avons été agréablement surpris par les bonnes réponses des répondants, nous pouvons supposer que l'utilisation du framework est simple car nous obtenons une moyenne de bonnes réponses de l'ordre de 78\%. Le questionnaire se terminait par une possibilité de nous fournir un commentaire, nous permettant d'entrevoir plusieurs pistes d'amélioration.
+
+\vspace*{\stretch{1}}
+\newpage
+\vspace*{\stretch{1}}
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.8]{figures/Snippet1.png}
-\caption{Bout de code n1}
+\includegraphics[scale=1]{figures/Snippet1.png}
+\caption{Bout de code permettant d'instancier un objet de type City et de le persister dans la BDOG:\\BR : 80\% MR : 4\% PC : 16\% }
 \label{fig:Snippet1}
 \end{figure}
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.8]{figures/Snippet2.png}
-\caption{Bout de code n2}
+\includegraphics[scale=1]{figures/Snippet2.png}
+\caption{Bout de code permettant de lier deux nœuds à l'aide d'un objet de type Road dans la BDOG:\\BR : 84\% MR : 0\% PC : 16\% }
 \label{fig:Snippet2}
 \end{figure}
 
+\vspace*{\stretch{1}}
+\newpage
+
+\vspace*{\stretch{1}}
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.8]{figures/Snippet3.png}
-\caption{Bout de code n3}
+\includegraphics[scale=1]{figures/Snippet3.png}
+\caption{Bout de code permettant de faire une requête dans la bases de données en recherchant toutes les instances de villes se nommant \enquote{King's Landing} (Nous avons accepté les réponses désignant \enquote{La ville de King's Landing} comme étant une bonne réponse)):\\BR : 76\% MR : 4\% PC : 20\% }
 \label{fig:Snippet3}
 \end{figure}
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.8]{figures/Snippet4.png}
-\caption{Bout de code n4}
+\includegraphics[scale=1]{figures/Snippet4.png}
+\caption{Bout de code permettant de faire une reqête dans la bases de données en recherchant toutes les instances de villes se nommant \enquote{King's Landing} OU \enquote{Winterfell} ET NON \enquote{Dragonstone}:\\BR : 72\% MR : 4\% PC : 24\% }
 \label{fig:Snippet4}
 \end{figure}
 
+\vspace*{\stretch{1}}
 \chapter{Conclusion}
 
 Archipelago est un framework dont le but est d'abstraire l'utilisation d'une BDOG orientée graphe. 
@@ -1704,6 +1736,42 @@ private static School genSchool() throws ClassNotFoundException, IOException {
     }
 \end{lstlisting}
 \label{SchoolObj}
+\section*{Les résultats du questionnaire}
+Les résultats non filtrés du questionnaire se trouvent dans un fichier CSV (\texttt{Archipelago Questionnaire.csv}), inclus dans la sauvegarde numérique de ce mémoire.
+
+Voici un export brut des images d'analyses générées par Google{\mbox{\scriptsize{\copyright}}} Form :
+
+\begin{figure}[htp]
+\centering
+    \includegraphics[width=.45\textwidth]{figures/1.png}\quad
+    \includegraphics[width=.45\textwidth]{figures/2.png}
+\end{figure}
+\begin{figure}[htp]
+\centering
+    \includegraphics[width=.45\textwidth]{figures/3.png}\quad
+    \includegraphics[width=.45\textwidth]{figures/4.png}
+\end{figure}
+\begin{figure}[htp]
+\centering
+    \includegraphics[width=.45\textwidth]{figures/5.png}\quad
+    \includegraphics[width=.45\textwidth]{figures/6.png}
+\end{figure}
+\begin{figure}[htp]
+\centering
+    \includegraphics[width=.45\textwidth]{figures/7.png}\quad
+    \includegraphics[width=.45\textwidth]{figures/8.png}
+\end{figure}
+\begin{figure}[htp]
+\centering
+    \includegraphics[width=.45\textwidth]{figures/9.png}\quad
+    \includegraphics[width=.45\textwidth]{figures/10.png}
+\end{figure}
+\begin{figure}[htp]
+\centering
+    \includegraphics[width=.45\textwidth]{figures/11.png}\quad
+    \includegraphics[width=.45\textwidth]{figures/12.png}
+\end{figure}
+
 
 \chapter*{Code Sources}
 
