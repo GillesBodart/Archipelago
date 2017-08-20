@@ -18,41 +18,43 @@
 \contentsline {chapter}{\numberline {4}Solutions existantes}{13}
 \contentsline {section}{\numberline {4.1}Les librairies}{13}
 \contentsline {subsection}{\numberline {4.1.1}Librairie Neo4J}{13}
-\contentsline {subsection}{\numberline {4.1.2}Librairie OrientDB}{13}
+\contentsline {subsection}{\numberline {4.1.2}Librairie OrientDB}{14}
 \contentsline {section}{\numberline {4.2}Les frameworks}{14}
 \contentsline {subsection}{\numberline {4.2.1}Hibernate}{14}
-\contentsline {subsection}{\numberline {4.2.2}Spring Data}{14}
-\contentsline {subsection}{\numberline {4.2.3}Apache TinkerPop}{15}
+\contentsline {subsection}{\numberline {4.2.2}Spring Data}{15}
+\contentsline {subsection}{\numberline {4.2.3}Apache TinkerPop}{16}
 \contentsline {part}{II\hspace {1em}Contribution}{17}
 \contentsline {chapter}{\numberline {5}Le framework}{18}
 \contentsline {section}{\numberline {5.1}Exemple illustratif}{18}
 \contentsline {section}{\numberline {5.2}Piste de normalisation}{18}
 \contentsline {section}{\numberline {5.3}Utilisation}{19}
-\contentsline {subsection}{\numberline {5.3.1}La configuration}{19}
-\contentsline {subsection}{\numberline {5.3.2}La persistance}{19}
-\contentsline {subsection}{\numberline {5.3.3}La liaison}{21}
-\contentsline {subsection}{\numberline {5.3.4}La r\IeC {\'e}cup\IeC {\'e}ration}{22}
-\contentsline {section}{\numberline {5.4}Sch\IeC {\'e}ma conceptuel}{24}
-\contentsline {subsection}{\numberline {5.4.1}Archipelago}{25}
-\contentsline {subsubsection}{ScriptBuilders}{25}
-\contentsline {subsubsection}{QueryBuilders}{26}
-\contentsline {chapter}{\numberline {6}Evaluation}{27}
-\contentsline {section}{\numberline {6.1}Points forts}{27}
-\contentsline {subsection}{\numberline {6.1.1}La facilit\IeC {\'e}}{27}
-\contentsline {subsection}{\numberline {6.1.2}La configurabilit\IeC {\'e}}{27}
-\contentsline {subsection}{\numberline {6.1.3}L'abstraction}{27}
-\contentsline {subsection}{\numberline {6.1.4}La simplification}{28}
-\contentsline {subsection}{\numberline {6.1.5}La modularit\IeC {\'e}}{28}
-\contentsline {section}{\numberline {6.2}Points faibles}{28}
-\contentsline {subsection}{\numberline {6.2.1}Les performances}{28}
-\contentsline {subsection}{\numberline {6.2.2}Les conditions}{28}
-\contentsline {subsection}{\numberline {6.2.3}La r\IeC {\'e}cup\IeC {\'e}ration d'informations}{31}
-\contentsline {subsection}{\numberline {6.2.4}La propret\IeC {\'e} du code}{32}
-\contentsline {section}{\numberline {6.3}Questionnaire}{32}
-\contentsline {chapter}{\numberline {7}Conclusion}{33}
-\contentsline {chapter}{\numberline {8}Perspectives}{35}
-\contentsline {section}{\numberline {8.1}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{35}
-\contentsline {section}{\numberline {8.2}Am\IeC {\'e}lioration des performances}{37}
-\contentsline {section}{\numberline {8.3}Am\IeC {\'e}lioration de l'exploitation des relations}{37}
-\contentsline {section}{\numberline {8.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de th\IeC {\'e}orie des graphes}{37}
-\contentsline {part}{III\hspace {1em}Annexes}{41}
+\contentsline {subsection}{\numberline {5.3.1}La configuration}{20}
+\contentsline {subsection}{\numberline {5.3.2}La persistance}{20}
+\contentsline {subsection}{\numberline {5.3.3}La liaison}{24}
+\contentsline {subsection}{\numberline {5.3.4}La r\IeC {\'e}cup\IeC {\'e}ration}{25}
+\contentsline {section}{\numberline {5.4}Sch\IeC {\'e}ma conceptuel}{28}
+\contentsline {subsection}{\numberline {5.4.1}La structure d'Archipelago}{28}
+\contentsline {subsubsection}{ScriptBuilders}{29}
+\contentsline {subsubsection}{QueryBuilders}{30}
+\contentsline {chapter}{\numberline {6}Evaluation}{31}
+\contentsline {section}{\numberline {6.1}Points forts}{31}
+\contentsline {subsection}{\numberline {6.1.1}La facilit\IeC {\'e}}{31}
+\contentsline {subsection}{\numberline {6.1.2}La configurabilit\IeC {\'e}}{31}
+\contentsline {subsection}{\numberline {6.1.3}L'abstraction}{32}
+\contentsline {subsection}{\numberline {6.1.4}La simplification}{32}
+\contentsline {subsection}{\numberline {6.1.5}La modularit\IeC {\'e}}{32}
+\contentsline {section}{\numberline {6.2}Points faibles}{32}
+\contentsline {subsection}{\numberline {6.2.1}Les performances}{32}
+\contentsline {subsection}{\numberline {6.2.2}Les conditions}{33}
+\contentsline {subsection}{\numberline {6.2.3}La r\IeC {\'e}cup\IeC {\'e}ration d'informations}{35}
+\contentsline {subsection}{\numberline {6.2.4}La propret\IeC {\'e} du code}{36}
+\contentsline {section}{\numberline {6.3}Questionnaire}{36}
+\contentsline {subsection}{\numberline {6.3.1}Contenu quantitatif}{36}
+\contentsline {subsection}{\numberline {6.3.2}Contenu qualitatif}{42}
+\contentsline {chapter}{\numberline {7}Conclusion}{44}
+\contentsline {chapter}{\numberline {8}Perspectives}{46}
+\contentsline {section}{\numberline {8.1}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{46}
+\contentsline {section}{\numberline {8.2}Am\IeC {\'e}lioration des performances}{48}
+\contentsline {section}{\numberline {8.3}Am\IeC {\'e}lioration de l'exploitation des relations}{48}
+\contentsline {section}{\numberline {8.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de th\IeC {\'e}orie des graphes}{48}
+\contentsline {part}{III\hspace {1em}Annexes}{52}

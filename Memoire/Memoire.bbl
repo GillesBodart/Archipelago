@@ -82,11 +82,6 @@ Dmitrij Frishman, Klaus Heumann, Arthur Lesk, and Hans-Werner Mewes.
   current status.
 \newblock {\em Bioinformatics (Oxford, England)}, 14(7):551--561, 1998.
 
-\bibitem{gardarin2003base}
-Georges Gardarin.
-\newblock Base de donn{\'e}es.
-\newblock {\em {\'E}d. Eyrolles}, 2003.
-
 \bibitem{arangoSite}
 ArangoDB GmbH.
 \newblock Arrangdb official website.
@@ -138,6 +133,11 @@ LHRMB Niswonger, M~Tork Roth, PM~Schwarz, and EL~Wimmers.
 solid IT~gmbh.
 \newblock Knowledge base of relational and nosql database management systems.
 \newblock \url{https://db-engines.com}, 2017.
+
+\bibitem{solnontheorie}
+Christine Solnon.
+\newblock Th{\'e}orie des graphes et optimisation dans les graphes.
+\newblock {\em INSA de Lyon}.
 
 \bibitem{NoSqlDef}
 Mohamed Tarroumi.

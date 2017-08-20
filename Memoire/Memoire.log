@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  19 AUG 2017 00:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  20 AUG 2017 13:06
 entering extended mode
 **./Memoire.tex
 (Memoire.tex
@@ -858,11 +858,8 @@ Package: fncychap 2007/07/30 v1.34 LaTeX package (Revised chapters)
 \py=\skip77
 \pyy=\skip78
 \pxx=\skip79
-
-
-Package fancychapter Warning: unknown style option on input line 647.
-
-) (C:\Sand\miktex\tex\latex\graphics\lscape.sty
+)
+(C:\Sand\miktex\tex\latex\graphics\lscape.sty
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 (C:\Sand\miktex\tex\latex\setspace\setspace.sty
@@ -926,32 +923,32 @@ Package csquotes Info: Redefining alias 'default' -> 'french'.
  (Memoire.aux)
 \openout1 = `Memoire.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 156.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 169.
+LaTeX Font Info:    ... okay on input line 169.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 169.
 
 (C:\Sand\miktex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \degres on input line 156.
-LaTeX Info: Redefining \dots on input line 156.
+LaTeX Info: Redefining \degres on input line 169.
+LaTeX Info: Redefining \dots on input line 169.
 Package frenchb.ldf Info: Setting StandardItemizeEnv=true for
 (frenchb.ldf)             compatibility with enumitem package,
-(frenchb.ldf)              on input line 156.
+(frenchb.ldf)              on input line 169.
 Package frenchb.ldf Info: Setting StandardEnumerateEnv=true for
 (frenchb.ldf)             compatibility with enumitem package,
-(frenchb.ldf)              on input line 156.
-LaTeX Info: Redefining \up on input line 156.
+(frenchb.ldf)              on input line 169.
+LaTeX Info: Redefining \up on input line 169.
 
 (C:\Sand\miktex\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1012,39 +1009,39 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 179.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 192.
 
 (C:\Sand\miktex\tex\latex\lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 179.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 192.
 
  (C:\Sand\miktex\tex\latex\lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 179
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 192
 .
 (C:\Sand\miktex\tex\latex\lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 179
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 192
 .
 
 (C:\Sand\miktex\tex\latex\lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 179.
+(Font)              <12> on input line 192.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 179.
+(Font)              <8> on input line 192.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 179.
-LaTeX Font Info:    Try loading font information for U+msa on input line 179.
+(Font)              <6> on input line 192.
+LaTeX Font Info:    Try loading font information for U+msa on input line 192.
 
 (C:\Sand\miktex\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 179.
+LaTeX Font Info:    Try loading font information for U+msb on input line 192.
 
 (C:\Sand\miktex\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1052,14 +1049,14 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <figures/unamur.pdf, id=1, 130.32689pt x 170.3163pt>
 File: figures/unamur.pdf Graphic file (type pdf)
  <use figures/unamur.pdf>
-Package pdftex.def Info: figures/unamur.pdf used on input line 185.
+Package pdftex.def Info: figures/unamur.pdf used on input line 198.
 (pdftex.def)             Requested size: 193.47578pt x 252.86719pt.
 
 [1
 
 {C:/Users/ABM589/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./figures/
 unamur.pdf>]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 211.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 224.
 
  (C:\Sand\miktex\tex\latex\lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1076,13 +1073,25 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 ]
 Chapitre 1.
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 270.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 273.
+
+(C:\Sand\miktex\tex\latex\psnfss\ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 273.
+
+
+(C:\Sand\miktex\tex\latex\psnfss\ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 287.
+
 
 (C:\Sand\miktex\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 270.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 287.
  [1
 
 
@@ -1093,7 +1102,7 @@ Chapitre 2.
 [4
 
 ] [5]
-Overfull \hbox (16.21677pt too wide) in paragraph at lines 334--334
+Overfull \hbox (16.21677pt too wide) in paragraph at lines 357--357
 |\T1/lmr/m/sc/14.4 Pourquoi uti-li-ser une BDOG plu-tôt qu'une BD re-la-tion-ne
 lle comme
  []
@@ -1107,131 +1116,260 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) [10] [11] [12]
 Chapitre 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 534.
+(Font)              <10> on input line 562.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 534.
+(Font)              <7> on input line 562.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 534.
+(Font)              <5> on input line 562.
 [13
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 587.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 614.
  [14] [15] [16] [17
 
 ]
 Chapitre 5.
 [18
 
-] [19] <figures/Persist.png, id=106, 809.0225pt x 472.76625pt>
+] <figures/HelocoP.png, id=105, 607.26875pt x 178.6675pt>
+File: figures/HelocoP.png Graphic file (type png)
+
+<use figures/HelocoP.png>
+Package pdftex.def Info: figures/HelocoP.png used on input line 735.
+(pdftex.def)             Requested size: 425.08524pt x 125.06639pt.
+
+<figures/HelocoG.png, id=107, 507.8975pt x 241.90375pt>
+File: figures/HelocoG.png Graphic file (type png)
+
+<use figures/HelocoG.png>
+Package pdftex.def Info: figures/HelocoG.png used on input line 742.
+(pdftex.def)             Requested size: 406.31856pt x 193.52325pt.
+ [19 <./figures/HelocoP.png> <./figures/HelocoG.png>]
+[20] <figures/Persist.png, id=117, 809.0225pt x 472.76625pt>
 File: figures/Persist.png Graphic file (type png)
 
 <use figures/Persist.png>
-Package pdftex.def Info: figures/Persist.png used on input line 768.
+Package pdftex.def Info: figures/Persist.png used on input line 810.
 (pdftex.def)             Requested size: 404.51027pt x 236.38254pt.
- [20 <./figures/Persist.png>]
-<figures/ecoleNeo4J.png, id=112, 539.01375pt x 416.15475pt>
+ [21 <./figures/Persist.png>] [22]
+<figures/ecoleNeo4J.png, id=125, 539.01375pt x 416.15475pt>
 File: figures/ecoleNeo4J.png Graphic file (type png)
 
 <use figures/ecoleNeo4J.png>
-Package pdftex.def Info: figures/ecoleNeo4J.png used on input line 814.
-(pdftex.def)             Requested size: 285.67592pt x 220.56096pt.
- [21 <./figures/ecoleNeo4J.png>]
-<figures/Rel.png, id=116, 190.311pt x 64.44075pt>
-File: figures/Rel.png Graphic file (type png)
- <use figures/Rel.png>
-Package pdftex.def Info: figures/Rel.png used on input line 844.
-(pdftex.def)             Requested size: 228.37202pt x 77.32849pt.
+Package pdftex.def Info: figures/ecoleNeo4J.png used on input line 869.
+(pdftex.def)             Requested size: 485.10788pt x 374.53581pt.
 
-<figures/RelBidir.png, id=117, 271.0125pt x 72.87225pt>
-File: figures/RelBidir.png Graphic file (type png)
-
-<use figures/RelBidir.png>
-Package pdftex.def Info: figures/RelBidir.png used on input line 860.
-(pdftex.def)             Requested size: 325.21335pt x 87.44626pt.
- [22 <./figures/Rel.png> <./figures/RelBidir.png>]
-<figures/query.png, id=121, 999.735pt x 721.69624pt>
-File: figures/query.png Graphic file (type png)
- <use figures/query.png>
-Package pdftex.def Info: figures/query.png used on input line 931.
-(pdftex.def)             Requested size: 499.86627pt x 360.84724pt.
-
-Overfull \hbox (16.1694pt too wide) in paragraph at lines 931--932
+Overfull \hbox (1.41101pt too wide) in paragraph at lines 869--870
  [][] 
  []
 
-[23] [24 <./figures/query.png>]
-<figures/scriptBuilders.png, id=129, 163.812pt x 66.84975pt>
+[23 <./figures/ecoleNeo4J.png>]
+<figures/Rel.png, id=129, 190.311pt x 64.44075pt>
+File: figures/Rel.png Graphic file (type png)
+ <use figures/Rel.png>
+Package pdftex.def Info: figures/Rel.png used on input line 906.
+(pdftex.def)             Requested size: 228.37202pt x 77.32849pt.
+
+<figures/RelBidir.png, id=130, 271.0125pt x 72.87225pt>
+File: figures/RelBidir.png Graphic file (type png)
+
+<use figures/RelBidir.png>
+Package pdftex.def Info: figures/RelBidir.png used on input line 921.
+(pdftex.def)             Requested size: 325.21335pt x 87.44626pt.
+ [24 <./figures/Rel.png> <./figures/RelBidir.png>]
+[25] [26] <figures/query.png, id=141, 999.735pt x 721.69624pt>
+File: figures/query.png Graphic file (type png)
+
+<use figures/query.png>
+Package pdftex.def Info: figures/query.png used on input line 1012.
+(pdftex.def)             Requested size: 499.86627pt x 360.84724pt.
+
+Overfull \hbox (16.1694pt too wide) in paragraph at lines 1012--1013
+ [][] 
+ []
+
+[27 <./figures/query.png>] [28]
+<figures/scriptBuilders.png, id=149, 163.812pt x 66.84975pt>
 File: figures/scriptBuilders.png Graphic file (type png)
 
 <use figures/scriptBuilders.png>
-Package pdftex.def Info: figures/scriptBuilders.png used on input line 975.
+Package pdftex.def Info: figures/scriptBuilders.png used on input line 1057.
 (pdftex.def)             Requested size: 245.71738pt x 100.27434pt.
-
-<figures/queryBuilders.png, id=130, 267.399pt x 79.497pt>
+ [29 <./figures/scriptBuilders.png>]
+<figures/queryBuilders.png, id=153, 267.399pt x 79.497pt>
 File: figures/queryBuilders.png Graphic file (type png)
 
 <use figures/queryBuilders.png>
-Package pdftex.def Info: figures/queryBuilders.png used on input line 1000.
+Package pdftex.def Info: figures/queryBuilders.png used on input line 1084.
 (pdftex.def)             Requested size: 401.09752pt x 119.2452pt.
- [25 <./figures/scriptBuilders.png>] [26 <./figures/queryBuilders.png>]
+ [30 <./figures/queryBuilders.png>]
 Chapitre 6.
+[31
 
-Overfull \hbox (110.01648pt too wide) in paragraph at lines 1052--1053
-[]\T1/lmr/m/n/12 Archipelago, grâce à ces im-plé-men-ta-tions concrètes ca-chée
-s der-rière les classes abs-traites \T1/lmtt/m/n/12 ArchipelagoScriptBuilder
- []
-
-[27
-
-] [28] <figures/citiesRel.png, id=144, 178.266pt x 177.66376pt>
+] [32] <figures/citiesRel.png, id=164, 178.266pt x 177.66376pt>
 File: figures/citiesRel.png Graphic file (type png)
 
 <use figures/citiesRel.png>
-Package pdftex.def Info: figures/citiesRel.png used on input line 1096.
+Package pdftex.def Info: figures/citiesRel.png used on input line 1180.
 (pdftex.def)             Requested size: 142.61298pt x 142.13118pt.
 
-<figures/citiesRelFilt.png, id=145, 235.47975pt x 64.44075pt>
+<figures/citiesRelFilt.png, id=165, 235.47975pt x 64.44075pt>
 File: figures/citiesRelFilt.png Graphic file (type png)
 
 <use figures/citiesRelFilt.png>
-Package pdftex.def Info: figures/citiesRelFilt.png used on input line 1113.
+Package pdftex.def Info: figures/citiesRelFilt.png used on input line 1197.
 (pdftex.def)             Requested size: 188.38405pt x 51.55266pt.
- [29 <./figures/citiesRel.png> <./figures/citiesRelFilt.png>] <figures/friendOf
-.png, id=149, 246.32025pt x 239.09325pt>
+ [33 <./figures/citiesRel.png>]
+<figures/friendOf.png, id=169, 246.32025pt x 239.09325pt>
 File: figures/friendOf.png Graphic file (type png)
 
 <use figures/friendOf.png>
-Package pdftex.def Info: figures/friendOf.png used on input line 1130.
+Package pdftex.def Info: figures/friendOf.png used on input line 1214.
 (pdftex.def)             Requested size: 246.31964pt x 239.09265pt.
 
-<figures/friendOfFilt.png, id=150, 151.16475pt x 146.949pt>
+<figures/friendOfFilt.png, id=170, 151.16475pt x 146.949pt>
 File: figures/friendOfFilt.png Graphic file (type png)
 
 <use figures/friendOfFilt.png>
-Package pdftex.def Info: figures/friendOfFilt.png used on input line 1147.
+Package pdftex.def Info: figures/friendOfFilt.png used on input line 1231.
 (pdftex.def)             Requested size: 151.16437pt x 146.94864pt.
- [30 <./figures/friendOf.png> <./figures/friendOfFilt.png>] [31] [32]
+ [34 <./figures/citiesRelFilt.png> <./figures/friendOf.png> <./figures/friendOf
+Filt.png>] [35]
+<figures/QHF.png, id=177, 426.393pt x 227.04825pt>
+File: figures/QHF.png Graphic file (type png)
+ <use figures/QHF.png>
+Package pdftex.def Info: figures/QHF.png used on input line 1307.
+(pdftex.def)             Requested size: 426.39195pt x 227.04768pt.
+
+<figures/QAge.png, id=178, 405.9165pt x 217.41225pt>
+File: figures/QAge.png Graphic file (type png)
+ <use figures/QAge.png>
+Package pdftex.def Info: figures/QAge.png used on input line 1313.
+(pdftex.def)             Requested size: 405.91551pt x 217.4117pt.
+
+<figures/QStatus.png, id=179, 464.33475pt x 222.8325pt>
+File: figures/QStatus.png Graphic file (type png)
+
+<use figures/QStatus.png>
+Package pdftex.def Info: figures/QStatus.png used on input line 1319.
+(pdftex.def)             Requested size: 464.3336pt x 222.83195pt.
+
+<figures/QProf.png, id=180, 534.19576pt x 420.97275pt>
+File: figures/QProf.png Graphic file (type png)
+ <use figures/QProf.png>
+Package pdftex.def Info: figures/QProf.png used on input line 1325.
+(pdftex.def)             Requested size: 534.19446pt x 420.97171pt.
+
+Overfull \hbox (50.49759pt too wide) in paragraph at lines 1325--1326
+ [][] 
+ []
+
+<figures/QExistFilt.png, id=181, 301.72725pt x 180.675pt>
+File: figures/QExistFilt.png Graphic file (type png)
+
+<use figures/QExistFilt.png>
+Package pdftex.def Info: figures/QExistFilt.png used on input line 1331.
+(pdftex.def)             Requested size: 301.7265pt x 180.67455pt.
+
+<figures/QIntFilt.png, id=182, 496.85625pt x 230.66174pt>
+File: figures/QIntFilt.png Graphic file (type png)
+
+<use figures/QIntFilt.png>
+Package pdftex.def Info: figures/QIntFilt.png used on input line 1338.
+(pdftex.def)             Requested size: 397.48553pt x 184.52963pt.
+
+<figures/QNbFilt.png, id=183, 526.96875pt x 241.50224pt>
+File: figures/QNbFilt.png Graphic file (type png)
+
+<use figures/QNbFilt.png>
+Package pdftex.def Info: figures/QNbFilt.png used on input line 1345.
+(pdftex.def)             Requested size: 421.57556pt x 193.20204pt.
+
+<figures/QTravFilt.png, id=184, 327.624pt x 202.95825pt>
+File: figures/QTravFilt.png Graphic file (type png)
+
+<use figures/QTravFilt.png>
+Package pdftex.def Info: figures/QTravFilt.png used on input line 1352.
+(pdftex.def)             Requested size: 262.09953pt x 162.3668pt.
+
+<figures/QLibJavaFilt.png, id=185, 398.08725pt x 246.32025pt>
+File: figures/QLibJavaFilt.png Graphic file (type png)
+
+<use figures/QLibJavaFilt.png>
+Package pdftex.def Info: figures/QLibJavaFilt.png used on input line 1359.
+(pdftex.def)             Requested size: 398.08627pt x 246.31964pt.
+
+<figures/QFrameworkIntFilt.png, id=186, 586.5915pt x 331.2375pt>
+File: figures/QFrameworkIntFilt.png Graphic file (type png)
+
+<use figures/QFrameworkIntFilt.png>
+Package pdftex.def Info: figures/QFrameworkIntFilt.png used on input line 1365.
+
+(pdftex.def)             Requested size: 469.27383pt x 264.99034pt.
+
+<figures/QAbanFilt.png, id=187, 584.1825pt x 325.215pt>
+File: figures/QAbanFilt.png Graphic file (type png)
+
+<use figures/QAbanFilt.png>
+Package pdftex.def Info: figures/QAbanFilt.png used on input line 1373.
+(pdftex.def)             Requested size: 467.34662pt x 260.17235pt.
+ [36] [37 <./figures/QHF.png> <./figures/QAge.png>]
+
+LaTeX Warning: Text page 38 contains only floats.
+
+[38 <./figures/QStatus.png> <./figures/QProf.png>] [39 <./figures/QExistFilt.pn
+g> <./figures/QIntFilt.png>] [40 <./figures/QNbFilt.png> <./figures/QTravFilt.p
+ng>] [41 <./figures/QLibJavaFilt.png> <./figures/QFrameworkIntFilt.png>]
+<figures/Snippet1.png, id=207, 466.1415pt x 153.57375pt>
+File: figures/Snippet1.png Graphic file (type png)
+
+<use figures/Snippet1.png>
+Package pdftex.def Info: figures/Snippet1.png used on input line 1391.
+(pdftex.def)             Requested size: 372.9137pt x 122.85915pt.
+
+<figures/Snippet2.png, id=208, 463.7325pt x 232.4685pt>
+File: figures/Snippet2.png Graphic file (type png)
+
+<use figures/Snippet2.png>
+Package pdftex.def Info: figures/Snippet2.png used on input line 1398.
+(pdftex.def)             Requested size: 370.9865pt x 185.97504pt.
+
+<figures/Snippet3.png, id=209, 492.03825pt x 190.311pt>
+File: figures/Snippet3.png Graphic file (type png)
+
+<use figures/Snippet3.png>
+Package pdftex.def Info: figures/Snippet3.png used on input line 1405.
+(pdftex.def)             Requested size: 393.63113pt x 152.249pt.
+
+<figures/Snippet4.png, id=210, 476.37975pt x 211.38976pt>
+File: figures/Snippet4.png Graphic file (type png)
+
+<use figures/Snippet4.png>
+Package pdftex.def Info: figures/Snippet4.png used on input line 1412.
+(pdftex.def)             Requested size: 381.10431pt x 169.11201pt.
+ [42 <./figures/QAbanFilt.png> <./figures/Snippet1.png> <./figures/Snippet2.png
+>] [43 <./figures/Snippet3.png> <./figures/Snippet4.png>]
 Chapitre 7.
-[33
+[44
 
 ]
-Overfull \hbox (3.27113pt too wide) in paragraph at lines 1258--1259
+Overfull \hbox (3.27113pt too wide) in paragraph at lines 1464--1465
 []$[]$ \T1/lmr/m/n/12 Ac-tuel-le-ment l'en-semble des condi-tions s'ap-pliquent
 
  []
 
-[34]
+[45]
 Chapitre 8.
-[35
+[46
 
-] [36]
-Overfull \hbox (26.70528pt too wide) in paragraph at lines 1389--1389
+] [47]
+Overfull \hbox (26.70528pt too wide) in paragraph at lines 1589--1589
 |[]\T1/lmr/m/sc/17.28 Ajout d'al-go-rithmes cé-lèbres de théo-rie des graphes| 
 
  []
 
-[37] (Memoire.bbl [38] [39
+[48] (Memoire.bbl [49] [50
 
 ]
 Underfull \hbox (badness 1314) in paragraph at lines 143--147
@@ -1251,44 +1389,42 @@ Underfull \hbox (badness 1019) in paragraph at lines 162--168
 our-quoi nosql
  []
 
-) [40] [41
+) [51] [52
 
-] <figures/SchoolDiag.png, id=189, 811.833pt x 255.95625pt>
+] <figures/SchoolDiag.png, id=246, 811.833pt x 255.95625pt>
 File: figures/SchoolDiag.png Graphic file (type png)
 
 <use figures/SchoolDiag.png>
-Package pdftex.def Info: figures/SchoolDiag.png used on input line 1439.
+Package pdftex.def Info: figures/SchoolDiag.png used on input line 1639.
 (pdftex.def)             Requested size: 811.83101pt x 255.95561pt.
- [42 <./figures/SchoolDiag.png>] [43] [44] [45
+ [53 <./figures/SchoolDiag.png>] [54] [55] [56
 
 ]
-(Memoire.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+(Memoire.aux) ) 
 Here is how much of TeX's memory you used:
- 11497 strings out of 493333
- 156757 string characters out of 3144820
- 372572 words of memory out of 3000000
- 14746 multiletter control sequences out of 15000+200000
- 84465 words of font info for 69 fonts, out of 3000000 for 9000
+ 11678 strings out of 493333
+ 159985 string characters out of 3144820
+ 373901 words of memory out of 3000000
+ 14898 multiletter control sequences out of 15000+200000
+ 87810 words of font info for 73 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,15n,42p,884b,1662s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/fonts/enc/dvips/
-lm/lm-mathsy.enc}<C:/Sand/miktex/fonts/type1/public/amsfonts/latxfont/line10.pf
-b><C:/Sand/miktex/fonts/type1/public/lm/lmbx10.pfb><C:/Sand/miktex/fonts/type1/
-public/lm/lmbx12.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand
-/miktex/fonts/type1/public/lm/lmr10.pfb><C:/Sand/miktex/fonts/type1/public/lm/l
-mr12.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr6.pfb><C:/Sand/miktex/fonts/t
-ype1/public/lm/lmr8.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmri12.pfb><C:/Sa
-nd/miktex/fonts/type1/public/lm/lmsy10.pfb><C:/Sand/miktex/fonts/type1/public/l
-m/lmtk10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt10.pfb><C:/Sand/miktex/f
-onts/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/sym
-bols/msam10.pfb>
-Output written on Memoire.pdf (51 pages, 965716 bytes).
+ 41i,15n,42p,873b,1622s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Sand/miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/fon
+ts/enc/dvips/lm/lm-mathsy.enc}{C:/Sand/miktex/fonts/enc/dvips/base/8r.enc}<C:/S
+and/miktex/fonts/type1/public/amsfonts/latxfont/line10.pfb><C:/Sand/miktex/font
+s/type1/public/lm/lmbx10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmbx12.pfb><
+C:/Sand/miktex/fonts/type1/public/lm/lmcsc10.pfb><C:/Sand/miktex/fonts/type1/pu
+blic/lm/lmr10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr12.pfb><C:/Sand/mikt
+ex/fonts/type1/public/lm/lmr17.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmr6.p
+fb><C:/Sand/miktex/fonts/type1/public/lm/lmr8.pfb><C:/Sand/miktex/fonts/type1/p
+ublic/lm/lmri12.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmsy10.pfb><C:/Sand/m
+iktex/fonts/type1/public/lm/lmtk10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lm
+tt10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts
+/type1/public/amsfonts/symbols/msam10.pfb><C:/Sand/miktex/fonts/type1/urw/helve
+tic/uhvr8a.pfb><C:/Sand/miktex/fonts/type1/urw/times/utmr8a.pfb>
+Output written on Memoire.pdf (62 pages, 1508288 bytes).
 PDF statistics:
- 251 PDF objects out of 1000 (max. 8388607)
+ 318 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
 
