@@ -82,7 +82,6 @@ public class MainTest {
 
         a.link(kingsLanding, winterfell, road, true);
 
-
         City dragonStone = new City("Dragonstone");
 
 
