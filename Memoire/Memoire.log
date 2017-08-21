@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  21 AUG 2017 09:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  21 AUG 2017 23:13
 entering extended mode
 **./Memoire.tex
 (Memoire.tex
@@ -1379,8 +1379,8 @@ Chapitre 7.
 [45
 
 ]
-Overfull \hbox (3.27113pt too wide) in paragraph at lines 1494--1495
-[]$[]$ \T1/lmr/m/n/12 Ac-tuel-le-ment l'en-semble des condi-tions s'ap-pliquent
+Overfull \hbox (0.66452pt too wide) in paragraph at lines 1494--1495
+[]$[]$ \T1/lmr/m/n/12 ac-tuel-le-ment l'en-semble des condi-tions s'ap-pliquent
 
  []
 
@@ -1506,11 +1506,11 @@ igures/9.png> <./figures/10.png> <./figures/11.png> <./figures/12.png>] [59
 Here is how much of TeX's memory you used:
  12628 strings out of 493333
  184747 string characters out of 3144820
- 396234 words of memory out of 3000000
+ 396256 words of memory out of 3000000
  15818 multiletter control sequences out of 15000+200000
  87810 words of font info for 73 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,12n,46p,882b,1622s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,12n,46p,874b,1622s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Sand/miktex/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Sand/mikt
 ex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/fonts/enc/dvips/base/8r.enc}<C:
 /Sand/miktex/fonts/type1/public/amsfonts/latxfont/line10.pfb><C:/Sand/miktex/fo
@@ -1525,7 +1525,7 @@ mtk10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt10.pfb><C:/Sand/miktex/font
 s/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbol
 s/msam10.pfb><C:/Sand/miktex/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Sand/mikte
 x/fonts/type1/urw/times/utmr8a.pfb>
-Output written on Memoire.pdf (65 pages, 1732833 bytes).
+Output written on Memoire.pdf (65 pages, 1733072 bytes).
 PDF statistics:
  343 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

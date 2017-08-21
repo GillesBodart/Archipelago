@@ -3,8 +3,9 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {part}{I\hspace {1em}\IeC {\'E}tat de l'art}{3}
 \contentsline {chapter}{\numberline {2}L'\IeC {\'e}volution du NoSql}{4}
-\contentsline {section}{\numberline {2.1}Questionnement}{6}
-\contentsline {section}{\numberline {2.2}Le positionnement}{7}
+\contentsline {section}{\numberline {2.1}L'historique}{4}
+\contentsline {section}{\numberline {2.2}Questionnement}{6}
+\contentsline {section}{\numberline {2.3}Le positionnement}{7}
 \contentsline {chapter}{\numberline {3}Background technique}{8}
 \contentsline {section}{\numberline {3.1}Neo4J}{8}
 \contentsline {subsection}{\numberline {3.1.1}Description}{8}
