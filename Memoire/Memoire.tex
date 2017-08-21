@@ -173,7 +173,7 @@
 \begin{center}
 \textsc{Universit\'e de Namur}\\
 Facult\'e d'informatique\\
-Ann\'ee acad\'emique 2017--2018
+Ann\'ee acad\'emique 2016--2017
 \end{center}
 \vspace{1.3cm}
 \hspace{1.4cm}
@@ -220,9 +220,9 @@ Master en Sciences Informatiques.
 
 \section*{Résumé}
 
-Ce mémoire va se concentrer sur les implémentations de la théorie des graphes dans l'univers des bases de données, et développer un framework Java présentant les qualités suivantes, l'abstraction, la simplification et la configurabilité. 
+Ce mémoire va se concentrer sur les implémentations de la théorie des graphes dans l'univers des bases de données, et le développement d'un framework Java présentant les qualités suivantes : l'abstraction, la simplification et la configurabilité. 
 
-Archipelago est un framework dont le but est d'abstraire l'utilisation d'une base de données orientée graphe. Cet outil dans son  état actuel, possède trois méthodes fonctionnelles, à savoir une méthode permettant de persister l'information, une autre permettant de lier deux nœuds à l'aide d'une relation, et une dernière permettant de récupérer les différents objets dans la base de données. Elle peut effectuer ces trois opérations sur \texttt{Néo4J} et sur \texttt{OrientDB}.
+Archipelago est un framework dont le but est d'abstraire l'utilisation d'une base de données orientée graphe. Cet outil dans son  état actuel, possède trois méthodes fonctionnelles, à savoir une méthode permettant de persister l'information, une autre permettant de lier deux nœuds à l'aide d'une relation, et une dernière permettant de récupérer les différents objets dans la base de données. Elle peut effectuer ces trois opérations sur \texttt{Neo4J} et sur \texttt{OrientDB}.
 
 Ce travail présente les points forts et les points faibles de l'implémentation de ce framework ainsi que des pistes d'amélioration pour une version ultérieure.
 
@@ -231,11 +231,11 @@ Ce travail présente les points forts et les points faibles de l'implémentation
 
 In the scope of this master thesis, a new Java framework was developed to apply the graph theory to databases. This framework presents interesting qualities, such as abstraction, simplification and configurability. 
 
-Archipelago framework abstracts graph-oriented databases. Currently, three methods are available: a first method that persists information, a second method that links nodes together with the help of a relation with or without properties and a third method that gives the ability to query databases and to retrieve persisted objects states. The framework can be used with both \texttt{Néo4J} and \texttt{OrientDB}.
+Archipelago framework abstracts graph-oriented databases. Currently, three methods are available: a first method that persists information, a second method that links nodes together with the help of a relation with or without properties and a third method that gives the ability to query databases and to retrieve persisted objects states. The framework can be used with both \texttt{Neo4J} and \texttt{OrientDB}.
 
 This master thesis presents the framework implementation, its applications and its strengths and weaknesses.
 
-\quad \quad \underline{keywords :} Framework, databeses, Java, Graphs, Neo4J, OrienDB, Archipelago
+\quad \quad \underline{keywords :} Framework, databases, Java, Graphs, Neo4J, OrienDB, Archipelago
 
 \chapter*{Avant-propos}
 
@@ -244,7 +244,7 @@ Je tiens à remercier tout particulièrement mes promoteurs, Messieurs A. CLEVE 
 
 Je remercie également les entreprises dans lesquelles j'ai travaillé, de m'avoir laissé l'opportunité de poursuivre le cursus universitaire.
 
-Et enfin, je tiens tout autant à remercier ma belle-mère C. NIGOT pour avoir pris du temps à me relire, et singulièrement ma compagne M. VAN CUTSEM qui m'a soutenu au quotidien pendant ces deux années, y compris pour sa patience actuelle durant sa grossesse en cours.
+Et enfin, je tiens tout autant à remercier ma belle-mère C. NIGOT pour avoir pris du temps à me relire, ma collègue de classe L. CASTIN  et singulièrement ma compagne M. VAN CUTSEM qui m'a soutenu au quotidien pendant ces deux années, y compris pour sa patience actuelle durant sa grossesse en cours.
 
 \vspace*{\stretch{1}}
 
@@ -273,7 +273,7 @@ Et enfin, je tiens tout autant à remercier ma belle-mère C. NIGOT pour avoir p
 \setcounter{page}{1}
 \chapter{Introduction}
 
-L'idée de réaliser ce mémoire nous est venue de notre travail en entreprise où nous utilisions un modèle de données très connectées. Nous avions comme mission de remanier ce modèle de données en le rendant totalement historisable. Pour ce faire, nous utilisions une base de données relationnelles mais ce choix nous posait problème, notamment au niveau des références circulaires. Ce genre de difficulté survient quand certains éléments identifiants se retrouvent dépendant d'eux-mêmes et forment ainsi un cycle\footnote{Une entreprise publiait un acte générant des évènements sur une entreprise (potentiellement la même)}. 
+L'idée de réaliser ce mémoire nous est venue de notre travail en entreprise où nous utilisions un modèle de données très connectées. Nous avions comme mission de remanier ce modèle de données en le rendant totalement historisable. Pour ce faire, nous utilisions une base de données relationnelle mais ce choix nous posait problème, notamment au niveau des références circulaires. Ce genre de difficulté survient quand certains éléments identifiants se retrouvent dépendants d'eux-mêmes et forment ainsi un cycle\footnote{Une entreprise publiait un acte générant des évènements sur une entreprise (potentiellement la même)}. 
 
 Nous recevions nos informations en provenance de plusieurs sources, chacune avait bien entendu sa propre représentation. Un ensemble de méthodes devait donc être mise en place et maintenue pour faire correspondre ces modifications avec la représentation interne que nous avions de l'information. Toutes ces petites modifications rendaient le précédent modèle de moins en moins cohérent et stable. Il nous fallait donc penser à une structure évolutive permettant pour ces demandes en provenance d’une source spécifique, ces ajouts qui alourdissaient les tables. 
 
@@ -301,10 +301,10 @@ Nous l'avons nommé \textbf{Archipelago}, traduction anglaise du mot archipel si
 \label{NoSqlEvol}
 
 
-Un SGBD est par définition un ensemble de procédés permettant d'organiser et de stocker des informations (potentiellement de gros volumes). Si stocker et retrouver l'information est un des plus grands challenges d'un SGBD, une communauté de développeur pense que ces systèmes devraient pouvoir offrir d'autres fonctionnalités. \cite{coupaye1998modeles}
+Un SGBD est par définition un ensemble de procédés permettant d'organiser et de stocker des informations (potentiellement de gros volumes). Si stocker et retrouver l'information est un des plus grands challenges d'un SGBD, une communauté de développeurs pense que ces systèmes devraient pouvoir offrir d'autres fonctionnalités \cite{coupaye1998modeles}.
 
 La grande force des SGBDR\footnote{\textbf{S}ysteme de \textbf{G}estion de \textbf{B}ase de \textbf{D}onnées 
-\textbf{R}elationnelles} provient des fondements théoriques mis en place en 1970 par Edgar Frank Codd. IBM définit le langage \enquote{Structured Query Language} (SQL) pour utiliser ce système. Cette normalisation de la représentation de l'information génère un sentiment de sûreté pour les architectes de logiciels.\cite{bruchez2016bases}
+\textbf{R}elationnelles} provient des fondements théoriques mis en place en 1970 par Edgar Frank Codd. IBM définit le langage \enquote{Structured Query Language} (SQL) pour utiliser ce système. Cette normalisation de la représentation de l'information génère un sentiment de sûreté pour les architectes de logiciels\cite{bruchez2016bases}.
  
 A partir des années 1980, le modèle relationnel supplante les autres formes de structures de données.
 
@@ -322,7 +322,7 @@ Les différentes entreprises impliquées dans le développement des systèmes de
 Comme le mouvement
 NoSQL veut promouvoir la haute disponibilité, il doit dès lors faire \enquote{main basse}, soit sur la
 cohérence, soit sur la tolérance au partitionnement. Cette possibilité de pouvoir choisir entre
-trois éléments ne rassure toutefois pas les adeptes du relationnel. \cite{di2012adoption}
+trois éléments ne rassure toutefois pas les adeptes du relationnel \cite{di2012adoption}.
 
 Par souci de classification, nous allons distinguer 4 usages principaux du NoSql:
 
@@ -342,16 +342,16 @@ Nous allons distinguer aussi 4 grandes familles de représentation de schéma de
 \item \textbf{Graphe} : La famille Graphe se distingue du fait que les entités ne sont pas considérées comme des entités indépendantes, mais que la relation entre ces objets est tout aussi importante que le contenu.
 \end{itemize} 
 
-Les implémentations de bases de données de types graphe sont de plus en plus nombreuses, les relations entre les éléments permettent de parcourir le graphe de manière très performante \cite{vicknair2010comparison} le rendant de plus en plus intéressant pour les entreprises possédant des millions de données. L'utilisation de ce genre de SGBD est dès lors tout à fait recommandée pour des entreprises intéressées par les relations entre ces données, telles que des profils sociaux, des liens de cause à effet, des liens géographiques et bien d’autres encore.\cite{infoqSite}\cite{NoSqlDef}\cite{bruchez2016bases}
+Les implémentations de bases de données de types graphe sont de plus en plus nombreuses, les relations entre les éléments permettent de parcourir le graphe de manière très performante \cite{vicknair2010comparison} le rendant de plus en plus intéressant pour les entreprises possédant des millions de données. L'utilisation de ce genre de SGBD est dès lors tout à fait recommandée pour des entreprises intéressées par les relations entre ces données, telles que des profils sociaux, des liens de cause à effet, des liens géographiques et bien d’autres encore \cite{infoqSite}\cite{NoSqlDef}\cite{bruchez2016bases}.
 
 L'idée de mettre en place des méthodologies de simplification entre les applications et les bases de données n'est pas nouvelle. En 1998, Tova Milo et Sagit Zohar ont proposé un système permettant de convertir des valeurs reçues depuis un fichier XML et son schéma DTD, en instance de OODB\cite{milo1998using}. 
 
 \label{frameworksAnalyse}
-En 1999, nous pouvons observer que la mise en place d'intergiciels \footnote{Logiciel permettant l'échange d'informations entre différentes applications informatiques. }permet de générer des \enquote{Wrapper} à l'aide du GDL\footnote{\textbf{G}arlic \textbf{D}efinition \textbf{L}anguage}, et offre la possibilité d'abstraire l'information\cite{niswonger1999transforming}. Les \enquote{Wrapper} ainsi que les \enquote{Unwrapper} procurent aux frameworks d'automatisation, un moyen de contrôler la structure de représentation des données. Grâce à ce contrôle, il est aisé de les utiliser et de les adapter pour les rendre conformes à une vue, une table, un schéma, ... Ces procédés de \enquote{Wrapper} et \enquote{Unwrapper} ont constitué des solutions pour communiquer avec des systèmes dits \enquote{legacy}.
+En 1999, nous pouvons observer que la mise en place d'intergiciels \footnote{Logiciel permettant l'échange d'informations entre différentes applications informatiques. }permet de générer des \enquote{Wrapper} à l'aide du GDL\footnote{\textbf{G}arlic \textbf{D}efinition \textbf{L}anguage}, et offre la possibilité d'abstraire l'information\cite{niswonger1999transforming}. Les \enquote{Wrapper} ainsi que les \enquote{Unwrapper} procurent aux frameworks d'automatisation, un moyen de contrôler la structure de représentation des données. Grâce à ce contrôle, il est aisé de les utiliser et de les adapter pour les rendre conformes à une vue, une table, un schéma, ... \newpage Ces procédés de \enquote{Wrapper} et \enquote{Unwrapper} ont constitué des solutions pour communiquer avec des systèmes dits \enquote{legacy}.
 
 Nous pouvons nous apercevoir qu'il existe des systèmes de correspondance entre différents schémas de représentation. Par le biais d'XML, il est possible de faire transiter une information depuis un ancien schéma de données vers un nouveau. \cite{miller2000schema}
 
-Nous avons pu observer également qu'il existe des frameworks permettant de se protéger contre l'évolution du modèle de représentation; en effet, une étude montre que près de 70\% des requêtes\cite{curino2008schema} sont perdues à chaque nouvelle version de schéma. Pour pallier cette perte, certains framework génèrent des API Java sur base du schéma ER\footnote{\textbf{E}ntity \textbf{R}elation} de la base de données.\cite{cleve2010conceptual}
+Nous avons pu observer également qu'il existe des frameworks permettant de se protéger contre l'évolution du modèle de représentation; en effet, une étude montre que près de 70\% des requêtes\cite{curino2008schema} sont perdues à chaque nouvelle version de schéma. Pour pallier cette perte, certains framework génèrent des API Java sur base du schéma ER\footnote{\textbf{E}ntity \textbf{R}elation} de la base de données\cite{cleve2010conceptual}.
 
 \section{Questionnement}
 
@@ -363,12 +363,12 @@ Dans une BDOG telle que Neo4J, nous pouvons ajouter toutes les informations que 
 
 Si l’objectif de l’application est de représenter un système récursif comme  par exemples, une arborescence de fichiers, des données généalogiques, etc., le modèle relationnel se basera sur une table faisant référence à elle-même. L’utilisateur devra donc réaliser une jointure par profondeur. Si l’arborescence descend jusqu’à 15 niveaux, cela peut devenir problématique.\cite{miller2013graph} L’approche BDOG permet de parcourir une arborescence sans pour autant charger l’ensemble des nœuds ayant le même label. Dès lors, plus besoin de projection ensembliste pour pouvoir continuer le chemin.
 
-En relationnel, il existe de nombreux moyens d’historiser les données. Cependant, lorsque le schéma comprend des relations cycliques, cette opération devient plus complexe. L’utilisation d’une BDOG rend la démarche plus simple, il suffit de créer un nouveau nœud avec les anciennes données, lier ce nœud avec une relation historique en y spécifiant la date de mise à jour, et ensuite de changer les valeurs du nœud référencé par le cycle. Ce procédé peut être mis au point dans n’importe quelle représentation et ne nécessite aucune refonte globale du modèle de données.\cite{NoSQLVsSGBDR}\label{noSqlVSRel}
+En relationnel, il existe de nombreux moyens d’historiser les données. Cependant, lorsque le schéma comprend des relations cycliques, cette opération devient plus complexe. L’utilisation d’une BDOG rend la démarche plus simple, il suffit de créer un nouveau nœud avec les anciennes données, lier ce nœud avec une relation historique en y spécifiant la date de mise à jour, et ensuite de changer les valeurs du nœud référencé par le cycle. Ce procédé peut être mis au point dans n’importe quelle représentation et ne nécessite aucune refonte globale du modèle de données\cite{NoSQLVsSGBDR}\label{noSqlVSRel}.
 
 \subsection*{Quelle est la différence entre une relation entre deux nœuds et une relation entre deux tables ?}
 Les relations entre deux tables se font à l’aide de clé étrangère définie lors de la création du schéma de données. Elles apportent de l’information supplémentaire en permettant de réaliser des jointures entre plusieurs tables.
 
-La relation dans les BDOG est une information à part entière, elle peut posséder autant de données que le nœud lui-même, la force de ce genre de système est de pouvoir lier deux nœuds distincts par n’importe quelle relation et ce, à tout moment.\cite{NoSQLVsSGBDR}
+La relation dans les BDOG est une information à part entière, elle peut posséder autant de données que le nœud lui-même, la force de ce genre de système est de pouvoir lier deux nœuds distincts par n’importe quelle relation et ce, à tout moment\cite{NoSQLVsSGBDR}.
 
 \section{Le positionnement}
 
@@ -376,12 +376,12 @@ La relation dans les BDOG est une information à part entière, elle peut possé
 Le framework que nous souhaitons développer ne se focalisera pas sur l’une ou l’autre spécification. Nous avons pu voir dans la section \ref{frameworksAnalyse}, lors des développements des frameworks, que certains permettaient d’aider l’application lors de son évolution, certains permettaient de réconcilier d’anciennes bases de données, ou encore aidaient au design du modèle. Nous aimerions fournir un système permettant de faciliter le design d’une application, en cachant intégralement le schéma de données au niveau de la couche de persistance. L’utilisation de ce framework permettra aussi de faire évoluer le modèle d’information, sans perte de fonctionnalités.
 
 
-\chapter{Backgroud technique}
+\chapter{Background technique}
 \section{Neo4J}
 
 \subsection{Description}
 
-Créé par Neo Technologie, une société américaine et suédoise, elle est actuellement la base de données orientée graphe, la plus utilisée dans le monde\cite{DBEnginesSite}. Développé en Java sous licence GPL V3, AGPL ou licence commerciale, Neo4J représente les données sous forme de \enquote{Nœuds} et de \enquote{Relations}. Chacun de ces éléments peut contenir une ou plusieurs propriétés. Les propriétés sont des couples clés/valeurs de type simple, comme des chaines de caractères ou des valeurs numériques, des coordonnées spatiales, ... \cite{Neo4JSite}
+Créée par Neo Technologie, une société américaine et suédoise, elle est actuellement la base de données orientée graphe, la plus utilisée dans le monde\cite{DBEnginesSite}. Développé en Java sous licence GPL V3, AGPL ou licence commerciale, Neo4J représente les données sous forme de \enquote{Nœuds} et de \enquote{Relations}. Chacun de ces éléments peut contenir une ou plusieurs propriétés. Les propriétés sont des couples clés/valeurs de type simple, comme des chaines de caractères ou des valeurs numériques, des coordonnées spatiales, ... \cite{Neo4JSite}
 
 Une des particularités de Neo4J est l’absence de structure définie, un nœud peut être labellisé afin de permettre de travailler sur un ensemble d’éléments, mais il n’y aura aucune contrainte sur les propriétés du nœud. Cette particularité rend ce SGBD bien adapté pour les modèles évoluant fréquemment.
 
@@ -427,25 +427,25 @@ Ces deux exemples peuvent montrer la force de l’utilisation d’un SGBD de typ
 
 Neo4J peut être utilisé sous plusieurs formes.
 
-La première option est une solution embarquée, ce choix peut être très intéressant en alternatif au très célèbre SQLite relationnel.
+La première option est une solution embarquée, ce choix peut être très intéressant en alternative au très célèbre SQLite relationnel.
 
-La deuxième, pour toute application distribuée, est une solution autonome pouvant tourner comme un service sur tout type de plateforme. Le protocole \enquote{Bolt}, développé par \enquote{Néo Technologie} est grandement conseillé pour communiquer avec ces serveurs distants.
+La deuxième, pour toute application distribuée, est une solution autonome pouvant tourner comme un service sur tout type de plateforme. Le protocole \enquote{Bolt}, développé par \enquote{Neo Technologie} est grandement conseillé pour communiquer avec ces serveurs distants.
 
-Son utilisation est simple grâce à l’utilisation de la librairie native à Néo4J pour Java (neo4j-java-drive) ou avec l’utilisation de l’API Rest déployée en même temps que le SGBD.
+Son utilisation est simple grâce à l’utilisation de la librairie native à Neo4J pour Java (neo4j-java-drive) ou avec l’utilisation de l’API Rest déployée en même temps que le SGBD.
 
 \section{OrientDB}
 
 
 \subsection{Description}
 
-OrientDB est un SGBD initialement développé en C++ (Orient ODBMS), repris ensuite en 2010 en Java par Luca Garulli dans une version multi-modèle sous licence Apache 2.0, GPL et AGPL. Actuellement 3ème mondial (selon db-engines.com) il offre de nombreuses fonctionnalités intéressantes.\cite{OrientDBSite}
+OrientDB est un SGBD initialement développé en C++ (Orient ODBMS), repris ensuite en 2010 en Java par Luca Garulli dans une version multi-modèle sous licence Apache 2.0, GPL et AGPL. Actuellement 3ème mondial (selon db-engines.com) il offre de nombreuses fonctionnalités intéressantes \cite{OrientDBSite}.
 
 OrientDB est une base de données associant Document et Graphe. Elle combine la rapidité et la flexibilité du type document ainsi que les fonctionnalités de relations des bases de données graphe.
 \newpage
 Ce SGBD est composé de trois grands éléments :
 
 \begin{itemize}
-\item \textbf{Document \& Vertex} : sources de contenus, pouvant être considérés comme des containers de données. On peut les comparer avec les lignes d'une base de données relationnelles.
+\item \textbf{Document \& Vertex} : sources de contenus, pouvant être considérées comme des containers de données. On peut les comparer avec les lignes d'une base de données relationnelles.
 \item \textbf{Links \& Edge} : Une arête orientée reliant deux éléments non nécessairement distincts.
 \item \textbf{Property} : Typée ou embarquée dans un document JSON, ceci va représenter le contenu de l'information. Ces propriétés sont bien entendu primordiales pour ordonner, rechercher, etc.
 \end{itemize}
@@ -457,7 +457,7 @@ OrientDB vient dans sa version community avec un système de clustering permetta
 
 \subsection{Langage de requête}
 
-OrientDB utilise une sorte de SQL avancée pour interpréter les requêtes. On peut de plus utiliser le langage Gremlin.
+OrientDB utilise une sorte de SQL avancé pour interpréter les requêtes. On peut de plus utiliser le langage Gremlin.
 
 Voici quelques exemples d'utilisation du SQL avancé dans OrientDB.
 
@@ -499,8 +499,7 @@ Nous pouvons observer qu'OrientDB se charge de qualifier les documents de plusie
 CREATE Edge WorkAt from 10:1 to 11:0
 \end{lstlisting}
 
-Cette petite requête va lier le document ayant l'id 10:1 au document dont l'id est 11:0 par une relation WorkAt. Nous pouvons traduire en français que Marie Van Cutsem travaille chez ACME.\cite{OrientDBGettingStarted}
-
+Cette petite requête va lier le document ayant l'id 10:1 au document dont l'id est 11:0 par une relation WorkAt. Nous pouvons traduire en français que Marie Van Cutsem travaille chez ACME \cite{OrientDBGettingStarted}.
 
 \subsection{Communication}
 
@@ -510,9 +509,10 @@ Outre la communication via le protocole \texttt{http}, nous pouvons aussi accéd
 
 
 \section{Comparaison} 
+\footnotetext[2]{Langage fortement similaire à SQL avec certaines légères modification}
 \begin{center}
 
-\begin{tabular}[c]{|l|M{5cm}|M{5cm}|}
+\begin{longtable}[c]{|l|M{5cm}|M{5cm}|}
 \hline
 \backslashbox {Critère}{BDOG} & Neo4J & OrientDB  \tabularnewline
 \hline
@@ -531,30 +531,28 @@ Communication & BOLT (protocole propriétaire) & REST (via HTTP) \tabularnewline
 Environement & Client/Server ou embarquée & Client/Server uniquement \tabularnewline
 \hline
 Évolutivité & L'absence de schéma strict entraîne une grande liberté dans la création et la modification des nœuds & Les classes doivent préalablement être configurées sur le serveur \tabularnewline \hline
-Rapidité\footnotemark & 7m 10s & 4m 31s \tabularnewline \hline
-Modèle de représentation & Uniquement graphe &\tabularnewline \hline
+Modèle de représentation & Uniquement graphe & Multimodèle\tabularnewline \hline
  Création de user & En cours de développement & \checkmark \tabularnewline \hline
- Sécurité & Par défaut : simple connexion donnant un accès total & Présence de groupe d'utilisateurs ainsi qu'un ensemble de droits singuliers\tabularnewline \hline
+ Sécurité & Par défaut : simple connexion donnant un accès total & Présence de groupe d'utilisateurs ainsi qu'un ensemble de droits singuliers\tabularnewline \hline 
   Interface web & \checkmark & \checkmark\tabularnewline \hline
 Implémentation de fonctions & \checkmark & \checkmark\tabularnewline \hline
-\end{tabular}
+Rapidité\footnotemark & 7m 10s & 4m 31s \tabularnewline \hline
+\end{longtable}
 \end{center}
-\footnotetext[2]{Langage fortement similaire à SQL avec certaines légères modification}
-
 \footnotetext{10 000 requêtes sur le même graphe de données avec la même requête au travers d'un appel Java}
 
 
 Au vu de ce tableau comparatif, nous nous apercevons qu’OrientDB, grâce à son système d’autorisation semble ainsi correspondre à une approche plus standardisée d’une base de données. En utilisant le langage SQL comme langage de requête, OrientDB  conforte à nouveau les utilisateurs de bases de données relationnelles, en leur permettant d’utiliser un langage connu. La rapidité d’exécution est elle aussi favorable à OrientDB. Cependant le fait de devoir configurer quelque peu le serveur, pourrait limiter son intérêt lors de l’implémentation de petites applications. 
 
-Néo4J a lui préféré jouer la carte de la spécificité :
+Neo4J a lui préféré jouer la carte de la spécificité :
 \begin{itemize}
 \item Nouveau langage
 \item Nouveau protocole
 \item Accès simple à l’information
 \end{itemize}
-Grâce à ses fonctionnalités et ses structures de représentation de l'information totalement évolutives, Néo4J se fait une place à part entière dans l’univers des BDOG.
+Grâce à ses fonctionnalités et ses structures de représentation de l'information totalement évolutives, Neo4J se fait une place à part entière dans l’univers des BDOG.
 
-Avec Archipelago, l'utilisation de Néo4J ou d'OrientDB ne nécessitera aucun apprentissage supplémentaire ni aucun changement dans l'application.
+Avec Archipelago, l'utilisation de Neo4J ou d'OrientDB ne nécessitera aucun apprentissage supplémentaire ni aucun changement dans l'application.
 
 \chapter{Solutions existantes}
 
@@ -566,7 +564,7 @@ Avec Archipelago, l'utilisation de Néo4J ou d'OrientDB ne nécessitera aucun ap
 
 \subsection{Librairie Neo4J}
 
-Une librairie Java développée par NeoTechnologie existe, elle permet de travailler aisément avec une base de données Neo4J embarquée ou à distance. Elle est en constante évolution et se trouve sur une plateforme open source. 
+Une librairie Java développée par Neo Technologie existe, elle permet de travailler aisément avec une base de données Neo4J embarquée ou à distance. Elle est en constante évolution et se trouve sur une plateforme open source. 
 
 Exemple de communication avec la librairie Neo4J le protocole \enquote{Bolt}:
 \vspace{0.6cm}
@@ -579,7 +577,7 @@ driver.close();
 
 \end{lstlisting}
 
-Bien que cette libraire permette d'accéder directement au langage Cypher depuis un code Java, elle ne peut malheureusement être utilisée avec une autre BDOG que Néo4J. 
+Bien que cette libraire permette d'accéder directement au langage Cypher depuis un code Java, elle ne peut malheureusement être utilisée avec une autre BDOG que Neo4J. 
 \newpage
 \subsection{Librairie OrientDB}
 
@@ -601,7 +599,7 @@ La dernière librairie se focalise sur les objets Java, elle n'a plus été amé
 
 \subsection{Hibernate}
 
-Hibernate, soutenu et développé par JBoss, a mis au point un système de relations entre le code Java et le SGBD Néo4J, en réutilisant les mêmes annotations de relations que celles employées pour les bases de données relationnelles, à savoir :
+Hibernate, soutenu et développé par JBoss, a mis au point un système de relations entre le code Java et le SGBD Neo4J, en réutilisant les mêmes annotations de relations que celles employées pour les bases de données relationnelles, à savoir :
 
 \begin{itemize}
 \item \textbf{@OneToOne} : Relation 1-1
@@ -616,7 +614,7 @@ En voyant la syntaxe utilisée dans ce framework, nous sommes dans l'obligation 
 
 \subsection{Spring Data}
 
-Spring data à nouveau possède un module de communication avec le SGBD Néo4J, il intègre au célèbre Framework Spring, les fonctionnalités de Néo4J-OGM\footnote{Object Graph Mapper}, permettant de qualifier une classe avec certaines annotations facilitant la sérialisation et la désérialisation vers la représentation graphique.
+Spring data à nouveau possède un module de communication avec le SGBD Neo4J, il intègre au célèbre Framework Spring, les fonctionnalités de Neo4J-OGM\footnote{Object Graph Mapper}, permettant de qualifier une classe avec certaines annotations facilitant la sérialisation et la désérialisation vers la représentation graphique.
 
 Exemple : 
 
@@ -624,7 +622,7 @@ Exemple :
 // Spécification du nom du Label du nœud
 @NodeEntity(label="Film")
 public class Movie {
-// Spécification de l'identifiant technique donné par Néo4J
+// Spécification de l'identifiant technique donné par Neo4J
    @GraphId Long id;
 // Binding de la propriété "title" spécifiée dans l'annotation
    @Property(name="title")
@@ -734,14 +732,14 @@ La suite de ce mémoire portant sur le développement de ce framework Java, vous
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.7]{figures/HelocoP.png}
-\caption{Vue hélicoptère du framework pour la persistance}
+\caption{Vue hélicoptère du framework pour la persistance.}
 \label{fig:HelocoP}
 \end{figure}
 \vspace*{\stretch{1}}
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.8]{figures/HelocoG.png}
-\caption{Vue hélicoptère du framework pour la récupération}
+\caption{Vue hélicoptère du framework pour la récupération.}
 \label{fig:HelocoG}
 \end{figure}
 \vspace*{\stretch{1}}
@@ -749,7 +747,7 @@ La suite de ce mémoire portant sur le développement de ce framework Java, vous
 \label{opérations}
 \subsection{La configuration}
 \label{configuration}
-Archipelago permet de se lier à Néo4J ou à OrientDB sans changer le code source de l'application. 
+Archipelago permet de se lier à Neo4J ou à OrientDB sans changer le code source de l'application. 
 Cependant, une légère configuration est nécessaire pour initialiser les paramètres d'exécution.
 
 Le fichier de configuration doit se nommer \enquote{\texttt{config.archipelago.json}} et être présent dans les ressources du projet. Par facilité de développement et de testing, nous avons décidé arbitrairement de figer le nom ainsi que l'emplacement de ce fichier dans la première version de ce framework. Il est cependant aisé de modifier cette obligation en la rendant paramétrisable dans une potentielle deuxième version.
@@ -809,7 +807,7 @@ En effet, comme nous utilisons la récursivité au travers de l'introspection de
 \begin{figure}[!h]
 \centering
 \includegraphics[scale=0.6]{figures/Persist.png}
-\caption{Flux de persistance d'un objet au travers du framework Archipelago}
+\caption{Flux de persistance d'un objet au travers du framework Archipelago.}
 \label{fig:Persist}
 \end{figure}
     
@@ -868,7 +866,7 @@ arch.persist(gilles);
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.9]{figures/ecoleNeo4J.png}
-\caption{Graphe généré dans Néo4J après appel de la méthode persist du framework Archipelago sur un objet School}
+\caption{Graphe généré dans Neo4J après appel de la méthode persist du framework Archipelago sur un objet School.}
 \label{fig:ecoleNeo4J}
 \end{figure}
 
@@ -906,7 +904,7 @@ Comme nous l'avons décrit dans l'exemple précédent, nous allons lier ces deux
 \centering
 \includegraphics[scale=1.2]{figures/Rel.png}
 \label{fig:Relation}
-\caption{Résultat obtenu après utilisation de la méthode link d'Archipelago (avec Néo4J)}
+\caption{Résultat obtenu après utilisation de la méthode link d'Archipelago (avec Neo4J).}
 \end{figure}
 
 Il est toutefois possible, si nous le spécifions à l'aide de la valeur \texttt{true} dans le quatrième attribut de la méthode , de générer automatiquement la relation réciproque et ainsi créer une relation bidirectionnelle. 
@@ -920,7 +918,7 @@ arch.link(winterfell, kingsLanding, road, true);
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1.2]{figures/RelBidir.png}
-\caption{Résultat obtenu après utilisation de la méthode link bidirectionnelle d'Archipelago (avec Néo4J)}
+\caption{Résultat obtenu après utilisation de la méthode link bidirectionnelle d'Archipelago (avec Neo4J).}
 \label{fig:RelationBiDir}
 \end{figure}
 \newpage
@@ -1011,7 +1009,7 @@ Comme expliqué plus haut, nous sommes actuellement dans l'incapacité de géné
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.6]{figures/query.png}
-\caption{Flux de traitement d'une requête de recherche dans Archipelago}
+\caption{Flux de traitement d'une requête de recherche dans Archipelago.}
 \label{fig:Query}
 \end{figure}
 
@@ -1056,7 +1054,7 @@ Nous pensons que l'on pourrait fusionner ces deux classes. Néanmoins, nous avon
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1.5]{figures/scriptBuilders.png}
-\caption{Diagramme de classe représentant l'héritage des générateurs de script de persistance composant Archipelago}
+\caption{Diagramme de classe représentant l'héritage des générateurs de script de persistance composant Archipelago.}
 \label{fig:ScriptQuery}
 \end{figure}
 
@@ -1084,7 +1082,7 @@ Chaque classe doit correspondre à une base de données et implémenter trois m�
 \centering
 \includegraphics[scale=1.5]{figures/queryBuilders.png}
 \label{fig:QueryBuilders}
-\caption{Diagramme de classe représentant l'héritage des générateurs de script de recherche composant Archipelago}
+\caption{Diagramme de classe représentant l'héritage des générateurs de script de recherche composant Archipelago.}
 \end{figure}
 
 Comme précédemment, chaque classe doit correspondre à une base de données, la liste des méthodes à implémenter est légèrement plus importante.
@@ -1138,7 +1136,7 @@ Archipelago, grâce à ces  implémentations concrètes cachées derrière les c
 
 \subsection{La simplification}
 
-La manière dont nous avons imaginé ce framework permet de réutiliser n'importe quel code existant.Il suffit alors à l'utilisateur d'ajouter les annotations \texttt{@Bridge} pour que son code soit compatible avec l'application de ce framework. 
+La manière dont nous avons imaginé ce framework permet de réutiliser n'importe quel code existant. Il suffit alors à l'utilisateur d'ajouter les annotations \texttt{@Bridge} pour que son code soit compatible avec l'application de ce framework. 
 
 Il pourra ainsi profiter de bases de données NoSql orientées graphes, au lieu de s'en tenir aux bases de données relationnelles\footnote{voir \ref{noSqlVSRel}}; les frameworks de communication avec ces dernières étant plus courantes et mieux connues dans l'univers de la programmation.
 
@@ -1146,10 +1144,10 @@ Il pourra ainsi profiter de bases de données NoSql orientées graphes, au lieu 
 
 Chaque utilisation de librairie spécifique de communication vers une base de données extérieure se trouve dans une classe séparée.
 
-Ce genre d'architecture offre une maintenance aisée car elle permet de concentrer la recherche de problèmes dans un espace défini et bien cadré. De plus, si deux équipes sont affectées simultanément à ce framework, elles peuvent y ajouter de nouvelles destinations sans se gêner, telles que par exemple ArangoDB\cite{arangoSite} ou encore JanusGraph\cite{janusGraphSite}. 
+Ce genre d'architecture offre une maintenance aisée car elle permet de concentrer la recherche de problèmes dans un espace défini et bien cadré. De plus, si deux équipes sont affectées simultanément à ce framework, elles peuvent y ajouter de nouvelles BDOG sans se gêner, telles que par exemple ArangoDB\cite{arangoSite} ou encore JanusGraph\cite{janusGraphSite}. 
 
 
-\section{Points faibles}
+\section{Points à améliorer}
 \subsection{Les performances}
 
 Bien que nous ayons essayé d'améliorer ce point grâce au marquage des sommets, nous n'avons pas eu le temps d'approfondir ce procédé avec un marquage des arêtes. Dans notre exemple de l'école, la partie reprenant les étudiants est fortement interconnectée. En conséquence nous devons passer à de nombreuses reprises sur les mêmes arêtes du graphe pour vérifier si cette relation existe dans la base de données au lieu de retenir l'information et d'éviter la démarche. Ces nombreux passages ralentissent le processus\footnote{Et plus particulièrement en ce qui concerne OrientDB}.
@@ -1179,7 +1177,7 @@ Par exemple nous pourrions avoir grâce à la requête Cypher suivante :
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.8]{figures/citiesRel.png}
-\caption{Graphes Néo4J composé de 3 noeuds et de 4 relations}
+\caption{Graphes Neo4J composé de 3 noeuds et de 4 relations.}
 \label{fig:citiesRel}
 \end{figure}
  
@@ -1197,7 +1195,7 @@ RETURN (a)
 \centering
 \includegraphics[scale=0.8]{figures/citiesRelFilt.png}
 \label{fig:citiesRelFilt}
-\caption{Graphes Néo4J composé de 2 nœuds et de 2 relations après exécution du filtre généré par Archipelago}
+\caption{Graphes Neo4J composé de 2 nœuds et de 2 relations après exécution du filtre généré par Archipelago.}
 \end{figure}
 
 Les requêtes générées par Archipelago nous permettent donc de récupérer l'ensemble des villes liées par une route, mais nous ne pourrons pas nous limiter à celles situées à plus de 300 lieues.
@@ -1214,7 +1212,7 @@ Voici un exemple en Cypher:
 \centering
 \includegraphics[scale=1]{figures/friendOf.png}
 \label{fig:friendOf}
-\caption{Graphe représentant les amis de \enquote{Gilles}}
+\caption{Graphe représentant les amis de \enquote{Gilles}.}
 \end{figure}
  
 \begin{lstlisting}[language=SQL]
@@ -1230,7 +1228,7 @@ RETURN (me)-[]-(f)
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1]{figures/friendOfFilt.png}
-\caption{Graphe représentant les amis de \enquote{Gilles} après exécution du filtre généré par Archipelago}
+\caption{Graphe représentant les amis de \enquote{Gilles} après exécution du filtre généré par Archipelago.}
 \label{fig:friendOfFilt}
 \end{figure}
 
@@ -1308,14 +1306,14 @@ Les suivantes concerneront uniquement 32/51 réponses. 19 ayant été considér�
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1]{figures/QHF.png}
-\caption{Question 1) répartition homme/femme ayant répondu au questionnaire}
+\caption{Question 1) répartition homme/femme ayant répondu au questionnaire.}
 \label{fig:QHF}
 \end{figure}
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1]{figures/QAge.png}
-\caption{Question 2) Tranche d'âge des répondants}
+\caption{Question 2) Tranche d'âge des répondants.}
 \label{fig:QAge}
 \end{figure}
 
@@ -1326,14 +1324,14 @@ Les suivantes concerneront uniquement 32/51 réponses. 19 ayant été considér�
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1]{figures/QStatus.png}
-\caption{Question 3) Situation scolaire et/ou professionnelle des répondants}
+\caption{Question 3) Situation scolaire et/ou professionnelle des répondants.}
 \label{fig:QStatus}
 \end{figure}
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=.8]{figures/QProf.png}
-\caption{Question 4) Domaines d'activité des répondants}
+\caption{Question 4) Domaines d'activité des répondants.}
 \label{fig:QProf}
 \end{figure}
 
@@ -1344,7 +1342,7 @@ Les suivantes concerneront uniquement 32/51 réponses. 19 ayant été considér�
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=1]{figures/QExistFilt.png}
-\caption{Question 5) [Données filtrées] Répartition des répondants connaissant les BDOG}
+\caption{Question 5) [Données filtrées] Répartition des répondants connaissant les BDOG.}
 \label{fig:QExistFilt}
 \end{figure}
 
@@ -1479,7 +1477,7 @@ Comme signalé ci-dessus, nous pouvons reprendre les points forts de ce framewor
 
 \end{itemize}
 \newpage
-Les points faibles quant à eux sont :
+Les points à améliorer quant à eux sont :
 
 
 \begin{itemize}
@@ -1608,7 +1606,7 @@ Les algorithmes existant de la théorie des graphes, nous permettraient d'améli
 
 \section{Amélioration de l'exploitation des relations}
 
-Un objet générique "Wrapper" tel que présenté dans la section \ref{frameworksAnalyse}, représentant un lien entre deux objets peut être une piste d'amélioration de l'exploitation des relations. Comme la librairie de Néo4J le fait, la récupération d'information s'effectue entre autres, dans un objet contenant 3 propriétés intéressantes :
+Un objet générique "Wrapper" tel que présenté dans la section \ref{frameworksAnalyse}, représentant un lien entre deux objets peut être une piste d'amélioration de l'exploitation des relations. Comme la librairie de Neo4J le fait, la récupération d'information s'effectue entre autres, dans un objet contenant 3 propriétés intéressantes :
 
 \begin{tabular}[c]{l M{12cm}}
 \texttt{start} & L'objet de départ.  \tabularnewline
@@ -1669,7 +1667,7 @@ Une implémentation d'une heuristique telle que par exemple l'ACS\cite{dorigo199
 \begin{figure}[!ht]
 	\centering
     \includegraphics[angle=90,origin=c,scale=0.8]{figures/SchoolDiag.png}
-    \caption{Diagramme de Classe du modèle École}
+    \caption{Diagramme de Classe du modèle École.}
     \label{fig:SchoolDiagram}
 \end{figure}
 
