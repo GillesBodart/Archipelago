@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  21 AUG 2017 23:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  22 AUG 2017 00:34
 entering extended mode
 **./Memoire.tex
 (Memoire.tex
@@ -1094,25 +1094,25 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 ]
 Chapitre 1.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 274.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 275.
 
 (C:\Sand\miktex\tex\latex\psnfss\ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 274.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 275.
 
 
 (C:\Sand\miktex\tex\latex\psnfss\ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 288.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 289.
 
 
 (C:\Sand\miktex\tex\latex\lm\omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 288.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 289.
  [1
 
 
@@ -1123,7 +1123,7 @@ Chapitre 2.
 [4
 
 ] [5]
-Overfull \hbox (16.21677pt too wide) in paragraph at lines 358--358
+Overfull \hbox (16.21677pt too wide) in paragraph at lines 361--361
 |\T1/lmr/m/sc/14.4 Pourquoi uti-li-ser une BDOG plu-tôt qu'une BD re-la-tion-ne
 lle comme
  []
@@ -1135,266 +1135,266 @@ Chapitre 3.
 ] [9] (C:\Sand\miktex\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) [10]
-Underfull \vbox (badness 10000) detected at line 540
+Underfull \vbox (badness 10000) detected at line 547
  []
 
 [11] [12]
 Chapitre 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 561.
+(Font)              <10> on input line 574.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 561.
+(Font)              <7> on input line 574.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 561.
+(Font)              <5> on input line 574.
 [13
 
-]
+] [14]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 613.
- [14] [15] [16] [17
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 625.
+ [15] [16] [17] [18
 
 ]
 Chapitre 5.
-[18
+[19
 
-] <figures/HelocoP.png, id=105, 607.26875pt x 178.6675pt>
+] <figures/HelocoP.png, id=109, 607.26875pt x 178.6675pt>
 File: figures/HelocoP.png Graphic file (type png)
 
 <use figures/HelocoP.png>
-Package pdftex.def Info: figures/HelocoP.png used on input line 734.
+Package pdftex.def Info: figures/HelocoP.png used on input line 749.
 (pdftex.def)             Requested size: 425.08524pt x 125.06639pt.
 
-<figures/HelocoG.png, id=107, 507.8975pt x 241.90375pt>
+<figures/HelocoG.png, id=111, 507.8975pt x 241.90375pt>
 File: figures/HelocoG.png Graphic file (type png)
 
 <use figures/HelocoG.png>
-Package pdftex.def Info: figures/HelocoG.png used on input line 741.
+Package pdftex.def Info: figures/HelocoG.png used on input line 756.
 (pdftex.def)             Requested size: 406.31856pt x 193.52325pt.
- [19 <./figures/HelocoP.png> <./figures/HelocoG.png>]
-[20] <figures/Persist.png, id=117, 816.04875pt x 472.76625pt>
+ [20 <./figures/HelocoP.png> <./figures/HelocoG.png>]
+[21] <figures/Persist.png, id=120, 816.04875pt x 472.76625pt>
 File: figures/Persist.png Graphic file (type png)
 
 <use figures/Persist.png>
-Package pdftex.def Info: figures/Persist.png used on input line 809.
+Package pdftex.def Info: figures/Persist.png used on input line 824.
 (pdftex.def)             Requested size: 489.63304pt x 283.66193pt.
 
-Overfull \hbox (5.93617pt too wide) in paragraph at lines 809--810
+Overfull \hbox (5.93617pt too wide) in paragraph at lines 824--825
  [][] 
  []
 
-[21 <./figures/Persist.png>] [22]
-<figures/ecoleNeo4J.png, id=125, 539.01375pt x 416.15475pt>
+[22 <./figures/Persist.png>] [23]
+<figures/ecoleNeo4J.png, id=128, 539.01375pt x 416.15475pt>
 File: figures/ecoleNeo4J.png Graphic file (type png)
 
 <use figures/ecoleNeo4J.png>
-Package pdftex.def Info: figures/ecoleNeo4J.png used on input line 868.
+Package pdftex.def Info: figures/ecoleNeo4J.png used on input line 883.
 (pdftex.def)             Requested size: 485.10788pt x 374.53581pt.
 
-Overfull \hbox (1.41101pt too wide) in paragraph at lines 868--869
+Overfull \hbox (1.41101pt too wide) in paragraph at lines 883--884
  [][] 
  []
 
-[23 <./figures/ecoleNeo4J.png>]
-<figures/Rel.png, id=129, 190.311pt x 64.44075pt>
+[24 <./figures/ecoleNeo4J.png>]
+<figures/Rel.png, id=132, 190.311pt x 64.44075pt>
 File: figures/Rel.png Graphic file (type png)
  <use figures/Rel.png>
-Package pdftex.def Info: figures/Rel.png used on input line 905.
+Package pdftex.def Info: figures/Rel.png used on input line 920.
 (pdftex.def)             Requested size: 228.37202pt x 77.32849pt.
 
-<figures/RelBidir.png, id=130, 271.0125pt x 72.87225pt>
+<figures/RelBidir.png, id=133, 271.0125pt x 72.87225pt>
 File: figures/RelBidir.png Graphic file (type png)
 
 <use figures/RelBidir.png>
-Package pdftex.def Info: figures/RelBidir.png used on input line 920.
+Package pdftex.def Info: figures/RelBidir.png used on input line 935.
 (pdftex.def)             Requested size: 325.21335pt x 87.44626pt.
- [24 <./figures/Rel.png> <./figures/RelBidir.png>]
-[25] [26] <figures/query.png, id=141, 841.1425pt x 823.075pt>
+ [25 <./figures/Rel.png> <./figures/RelBidir.png>]
+[26] [27] <figures/query.png, id=144, 841.1425pt x 823.075pt>
 File: figures/query.png Graphic file (type png)
 
 <use figures/query.png>
-Package pdftex.def Info: figures/query.png used on input line 1011.
+Package pdftex.def Info: figures/query.png used on input line 1026.
 (pdftex.def)             Requested size: 504.6894pt x 493.8488pt.
 
-Overfull \hbox (20.99254pt too wide) in paragraph at lines 1011--1012
+Overfull \hbox (20.99254pt too wide) in paragraph at lines 1026--1027
  [][] 
  []
 
-[27 <./figures/query.png>] [28]
-<figures/scriptBuilders.png, id=149, 163.812pt x 66.84975pt>
+[28 <./figures/query.png>] [29]
+<figures/scriptBuilders.png, id=152, 163.812pt x 66.84975pt>
 File: figures/scriptBuilders.png Graphic file (type png)
 
 <use figures/scriptBuilders.png>
-Package pdftex.def Info: figures/scriptBuilders.png used on input line 1056.
+Package pdftex.def Info: figures/scriptBuilders.png used on input line 1071.
 (pdftex.def)             Requested size: 245.71738pt x 100.27434pt.
- [29 <./figures/scriptBuilders.png>]
-<figures/queryBuilders.png, id=153, 267.399pt x 79.497pt>
+ [30 <./figures/scriptBuilders.png>]
+<figures/queryBuilders.png, id=156, 267.399pt x 79.497pt>
 File: figures/queryBuilders.png Graphic file (type png)
 
 <use figures/queryBuilders.png>
-Package pdftex.def Info: figures/queryBuilders.png used on input line 1083.
+Package pdftex.def Info: figures/queryBuilders.png used on input line 1101.
 (pdftex.def)             Requested size: 401.09752pt x 119.2452pt.
- [30 <./figures/queryBuilders.png>]
+ [31 <./figures/queryBuilders.png>]
 Chapitre 6.
-[31
+[32
 
-] [32] <figures/citiesRel.png, id=164, 178.266pt x 177.66376pt>
+] [33] <figures/citiesRel.png, id=167, 178.266pt x 177.66376pt>
 File: figures/citiesRel.png Graphic file (type png)
 
 <use figures/citiesRel.png>
-Package pdftex.def Info: figures/citiesRel.png used on input line 1179.
+Package pdftex.def Info: figures/citiesRel.png used on input line 1201.
 (pdftex.def)             Requested size: 142.61298pt x 142.13118pt.
 
-<figures/citiesRelFilt.png, id=165, 235.47975pt x 64.44075pt>
+<figures/citiesRelFilt.png, id=168, 235.47975pt x 64.44075pt>
 File: figures/citiesRelFilt.png Graphic file (type png)
 
 <use figures/citiesRelFilt.png>
-Package pdftex.def Info: figures/citiesRelFilt.png used on input line 1196.
+Package pdftex.def Info: figures/citiesRelFilt.png used on input line 1218.
 (pdftex.def)             Requested size: 188.38405pt x 51.55266pt.
- [33 <./figures/citiesRel.png>]
-<figures/friendOf.png, id=169, 246.32025pt x 239.09325pt>
+ [34 <./figures/citiesRel.png>]
+<figures/friendOf.png, id=172, 246.32025pt x 239.09325pt>
 File: figures/friendOf.png Graphic file (type png)
 
 <use figures/friendOf.png>
-Package pdftex.def Info: figures/friendOf.png used on input line 1213.
+Package pdftex.def Info: figures/friendOf.png used on input line 1235.
 (pdftex.def)             Requested size: 246.31964pt x 239.09265pt.
 
-<figures/friendOfFilt.png, id=170, 151.16475pt x 146.949pt>
+<figures/friendOfFilt.png, id=173, 151.16475pt x 146.949pt>
 File: figures/friendOfFilt.png Graphic file (type png)
 
 <use figures/friendOfFilt.png>
-Package pdftex.def Info: figures/friendOfFilt.png used on input line 1230.
+Package pdftex.def Info: figures/friendOfFilt.png used on input line 1252.
 (pdftex.def)             Requested size: 151.16437pt x 146.94864pt.
- [34 <./figures/citiesRelFilt.png> <./figures/friendOf.png> <./figures/friendOf
-Filt.png>] [35] [36]
-<figures/QHF.png, id=180, 426.393pt x 227.04825pt>
+ [35 <./figures/citiesRelFilt.png> <./figures/friendOf.png>] [36 <./figures/fri
+endOfFilt.png>] [37]
+<figures/QHF.png, id=184, 426.393pt x 227.04825pt>
 File: figures/QHF.png Graphic file (type png)
  <use figures/QHF.png>
-Package pdftex.def Info: figures/QHF.png used on input line 1308.
+Package pdftex.def Info: figures/QHF.png used on input line 1330.
 (pdftex.def)             Requested size: 426.39195pt x 227.04768pt.
 
-<figures/QAge.png, id=181, 405.9165pt x 217.41225pt>
+<figures/QAge.png, id=185, 405.9165pt x 217.41225pt>
 File: figures/QAge.png Graphic file (type png)
  <use figures/QAge.png>
-Package pdftex.def Info: figures/QAge.png used on input line 1315.
+Package pdftex.def Info: figures/QAge.png used on input line 1337.
 (pdftex.def)             Requested size: 405.91551pt x 217.4117pt.
 
-[37 <./figures/QHF.png> <./figures/QAge.png>]
-<figures/QStatus.png, id=186, 464.33475pt x 222.8325pt>
+[38 <./figures/QHF.png> <./figures/QAge.png>]
+<figures/QStatus.png, id=189, 464.33475pt x 222.8325pt>
 File: figures/QStatus.png Graphic file (type png)
 
 <use figures/QStatus.png>
-Package pdftex.def Info: figures/QStatus.png used on input line 1326.
+Package pdftex.def Info: figures/QStatus.png used on input line 1348.
 (pdftex.def)             Requested size: 464.3336pt x 222.83195pt.
 
-<figures/QProf.png, id=187, 534.19576pt x 420.97275pt>
+<figures/QProf.png, id=190, 534.19576pt x 420.97275pt>
 File: figures/QProf.png Graphic file (type png)
  <use figures/QProf.png>
-Package pdftex.def Info: figures/QProf.png used on input line 1333.
+Package pdftex.def Info: figures/QProf.png used on input line 1355.
 (pdftex.def)             Requested size: 427.3572pt x 336.77864pt.
 
-[38 <./figures/QStatus.png> <./figures/QProf.png>]
-<figures/QExistFilt.png, id=191, 301.72725pt x 180.675pt>
+[39 <./figures/QStatus.png> <./figures/QProf.png>]
+<figures/QExistFilt.png, id=194, 301.72725pt x 180.675pt>
 File: figures/QExistFilt.png Graphic file (type png)
 
 <use figures/QExistFilt.png>
-Package pdftex.def Info: figures/QExistFilt.png used on input line 1344.
+Package pdftex.def Info: figures/QExistFilt.png used on input line 1366.
 (pdftex.def)             Requested size: 301.7265pt x 180.67455pt.
 
-<figures/QIntFilt.png, id=192, 496.85625pt x 230.66174pt>
+<figures/QIntFilt.png, id=195, 496.85625pt x 230.66174pt>
 File: figures/QIntFilt.png Graphic file (type png)
 
 <use figures/QIntFilt.png>
-Package pdftex.def Info: figures/QIntFilt.png used on input line 1351.
+Package pdftex.def Info: figures/QIntFilt.png used on input line 1373.
 (pdftex.def)             Requested size: 397.48553pt x 184.52963pt.
- [39 <./figures/QExistFilt.png> <./figures/QIntFilt.png>] <figures/QNbFilt.png,
- id=196, 526.96875pt x 241.50224pt>
+ [40 <./figures/QExistFilt.png> <./figures/QIntFilt.png>] <figures/QNbFilt.png,
+ id=199, 526.96875pt x 241.50224pt>
 File: figures/QNbFilt.png Graphic file (type png)
 
 <use figures/QNbFilt.png>
-Package pdftex.def Info: figures/QNbFilt.png used on input line 1362.
+Package pdftex.def Info: figures/QNbFilt.png used on input line 1384.
 (pdftex.def)             Requested size: 421.57556pt x 193.20204pt.
 
-<figures/QTravFilt.png, id=197, 327.624pt x 202.95825pt>
+<figures/QTravFilt.png, id=200, 327.624pt x 202.95825pt>
 File: figures/QTravFilt.png Graphic file (type png)
 
 <use figures/QTravFilt.png>
-Package pdftex.def Info: figures/QTravFilt.png used on input line 1369.
+Package pdftex.def Info: figures/QTravFilt.png used on input line 1391.
 (pdftex.def)             Requested size: 262.09953pt x 162.3668pt.
- [40 <./figures/QNbFilt.png> <./figures/QTravFilt.png>] <figures/QLibJavaFilt.p
-ng, id=201, 398.08725pt x 246.32025pt>
+ [41 <./figures/QNbFilt.png> <./figures/QTravFilt.png>] <figures/QLibJavaFilt.p
+ng, id=204, 398.08725pt x 246.32025pt>
 File: figures/QLibJavaFilt.png Graphic file (type png)
 
 <use figures/QLibJavaFilt.png>
-Package pdftex.def Info: figures/QLibJavaFilt.png used on input line 1380.
+Package pdftex.def Info: figures/QLibJavaFilt.png used on input line 1402.
 (pdftex.def)             Requested size: 398.08627pt x 246.31964pt.
 
-<figures/QFrameworkIntFilt.png, id=202, 586.5915pt x 331.2375pt>
+<figures/QFrameworkIntFilt.png, id=205, 586.5915pt x 331.2375pt>
 File: figures/QFrameworkIntFilt.png Graphic file (type png)
 
 <use figures/QFrameworkIntFilt.png>
-Package pdftex.def Info: figures/QFrameworkIntFilt.png used on input line 1387.
+Package pdftex.def Info: figures/QFrameworkIntFilt.png used on input line 1409.
 
 (pdftex.def)             Requested size: 469.27383pt x 264.99034pt.
- [41 <./figures/QLibJavaFilt.png> <./figures/QFrameworkIntFilt.png>]
-<figures/QAbanFilt.png, id=206, 584.1825pt x 325.215pt>
+ [42 <./figures/QLibJavaFilt.png> <./figures/QFrameworkIntFilt.png>]
+<figures/QAbanFilt.png, id=209, 584.1825pt x 325.215pt>
 File: figures/QAbanFilt.png Graphic file (type png)
 
 <use figures/QAbanFilt.png>
-Package pdftex.def Info: figures/QAbanFilt.png used on input line 1398.
+Package pdftex.def Info: figures/QAbanFilt.png used on input line 1420.
 (pdftex.def)             Requested size: 467.34662pt x 260.17235pt.
- [42 <./figures/QAbanFilt.png>]
-<figures/Snippet1.png, id=210, 466.1415pt x 153.57375pt>
+ [43 <./figures/QAbanFilt.png>]
+<figures/Snippet1.png, id=214, 466.1415pt x 153.57375pt>
 File: figures/Snippet1.png Graphic file (type png)
 
 <use figures/Snippet1.png>
-Package pdftex.def Info: figures/Snippet1.png used on input line 1416.
+Package pdftex.def Info: figures/Snippet1.png used on input line 1438.
 (pdftex.def)             Requested size: 466.14035pt x 153.57336pt.
 
-<figures/Snippet2.png, id=211, 463.7325pt x 232.4685pt>
+<figures/Snippet2.png, id=215, 463.7325pt x 232.4685pt>
 File: figures/Snippet2.png Graphic file (type png)
 
 <use figures/Snippet2.png>
-Package pdftex.def Info: figures/Snippet2.png used on input line 1423.
+Package pdftex.def Info: figures/Snippet2.png used on input line 1445.
 (pdftex.def)             Requested size: 463.73135pt x 232.46793pt.
- [43 <./figures/Snippet1.png> <./figures/Snippet2.png>] <figures/Snippet3.png, 
-id=216, 492.03825pt x 190.311pt>
+ [44 <./figures/Snippet1.png> <./figures/Snippet2.png>] <figures/Snippet3.png, 
+id=219, 492.03825pt x 190.311pt>
 File: figures/Snippet3.png Graphic file (type png)
 
 <use figures/Snippet3.png>
-Package pdftex.def Info: figures/Snippet3.png used on input line 1434.
+Package pdftex.def Info: figures/Snippet3.png used on input line 1456.
 (pdftex.def)             Requested size: 492.03705pt x 190.31052pt.
 
-Overfull \hbox (8.34018pt too wide) in paragraph at lines 1434--1435
+Overfull \hbox (8.34018pt too wide) in paragraph at lines 1456--1457
  [][] 
  []
 
-<figures/Snippet4.png, id=217, 476.37975pt x 211.38976pt>
+<figures/Snippet4.png, id=220, 476.37975pt x 211.38976pt>
 File: figures/Snippet4.png Graphic file (type png)
 
 <use figures/Snippet4.png>
-Package pdftex.def Info: figures/Snippet4.png used on input line 1441.
+Package pdftex.def Info: figures/Snippet4.png used on input line 1463.
 (pdftex.def)             Requested size: 476.37857pt x 211.38922pt.
- [44 <./figures/Snippet3.png> <./figures/Snippet4.png>]
+ [45 <./figures/Snippet3.png> <./figures/Snippet4.png>]
 Chapitre 7.
-[45
+[46
 
 ]
-Overfull \hbox (0.66452pt too wide) in paragraph at lines 1494--1495
+Overfull \hbox (0.66452pt too wide) in paragraph at lines 1516--1517
 []$[]$ \T1/lmr/m/n/12 ac-tuel-le-ment l'en-semble des condi-tions s'ap-pliquent
 
  []
 
-[46]
+[47]
 Chapitre 8.
-[47
+[48
 
-] [48]
-Overfull \hbox (26.70528pt too wide) in paragraph at lines 1619--1619
+] [49]
+Overfull \hbox (26.70528pt too wide) in paragraph at lines 1641--1641
 |[]\T1/lmr/m/sc/17.28 Ajout d'al-go-rithmes cé-lèbres de théo-rie des graphes| 
 
  []
 
-[49] (Memoire.bbl [50] [51
+[50] (Memoire.bbl [51] [52
 
 ]
 Underfull \hbox (badness 1314) in paragraph at lines 143--147
@@ -1414,103 +1414,103 @@ Underfull \hbox (badness 1019) in paragraph at lines 162--168
 our-quoi nosql
  []
 
-) [52] [53
+) [53] [54
 
-] <figures/SchoolDiag.png, id=249, 811.833pt x 255.95625pt>
+] <figures/SchoolDiag.png, id=252, 811.833pt x 255.95625pt>
 File: figures/SchoolDiag.png Graphic file (type png)
 
 <use figures/SchoolDiag.png>
-Package pdftex.def Info: figures/SchoolDiag.png used on input line 1669.
+Package pdftex.def Info: figures/SchoolDiag.png used on input line 1691.
 (pdftex.def)             Requested size: 811.83101pt x 255.95561pt.
- [54 <./figures/SchoolDiag.png>] [55] [56]
+ [55 <./figures/SchoolDiag.png>] [56] [57]
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 1740.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 1762.
 
 
-<figures/1.png, id=260, 407.72325pt x 218.61674pt>
+<figures/1.png, id=263, 407.72325pt x 218.61674pt>
 File: figures/1.png Graphic file (type png)
  <use figures/1.png>
-Package pdftex.def Info: figures/1.png used on input line 1744.
+Package pdftex.def Info: figures/1.png used on input line 1766.
 (pdftex.def)             Requested size: 217.66211pt x 116.70694pt.
 
-<figures/2.png, id=261, 407.121pt x 222.8325pt>
+<figures/2.png, id=264, 407.121pt x 222.8325pt>
 File: figures/2.png Graphic file (type png)
  <use figures/2.png>
-Package pdftex.def Info: figures/2.png used on input line 1745.
+Package pdftex.def Info: figures/2.png used on input line 1767.
 (pdftex.def)             Requested size: 217.66211pt x 119.13431pt.
 
-<figures/3.png, id=262, 463.7325pt x 223.43475pt>
+<figures/3.png, id=265, 463.7325pt x 223.43475pt>
 File: figures/3.png Graphic file (type png)
  <use figures/3.png>
-Package pdftex.def Info: figures/3.png used on input line 1749.
+Package pdftex.def Info: figures/3.png used on input line 1771.
 (pdftex.def)             Requested size: 217.66211pt x 104.87456pt.
 
-<figures/4.png, id=263, 534.798pt x 413.1435pt>
+<figures/4.png, id=266, 534.798pt x 413.1435pt>
 File: figures/4.png Graphic file (type png)
  <use figures/4.png>
-Package pdftex.def Info: figures/4.png used on input line 1750.
+Package pdftex.def Info: figures/4.png used on input line 1772.
 (pdftex.def)             Requested size: 217.66211pt x 168.14803pt.
 
-<figures/5.png, id=264, 380.01974pt x 212.59425pt>
+<figures/5.png, id=267, 380.01974pt x 212.59425pt>
 File: figures/5.png Graphic file (type png)
  <use figures/5.png>
-Package pdftex.def Info: figures/5.png used on input line 1754.
+Package pdftex.def Info: figures/5.png used on input line 1776.
 (pdftex.def)             Requested size: 217.66211pt x 121.76712pt.
 
-<figures/6.png, id=265, 517.33275pt x 228.25275pt>
+<figures/6.png, id=268, 517.33275pt x 228.25275pt>
 File: figures/6.png Graphic file (type png)
  <use figures/6.png>
-Package pdftex.def Info: figures/6.png used on input line 1755.
+Package pdftex.def Info: figures/6.png used on input line 1777.
 (pdftex.def)             Requested size: 217.66211pt x 96.03267pt.
 
-<figures/7.png, id=266, 541.42274pt x 231.86626pt>
+<figures/7.png, id=269, 541.42274pt x 231.86626pt>
 File: figures/7.png Graphic file (type png)
  <use figures/7.png>
-Package pdftex.def Info: figures/7.png used on input line 1759.
+Package pdftex.def Info: figures/7.png used on input line 1781.
 (pdftex.def)             Requested size: 217.66211pt x 93.2154pt.
 
-<figures/8.png, id=267, 371.58826pt x 211.992pt>
+<figures/8.png, id=270, 371.58826pt x 211.992pt>
 File: figures/8.png Graphic file (type png)
  <use figures/8.png>
-Package pdftex.def Info: figures/8.png used on input line 1760.
+Package pdftex.def Info: figures/8.png used on input line 1782.
 (pdftex.def)             Requested size: 217.66211pt x 124.17816pt.
 
-<figures/9.png, id=268, 496.254pt x 234.27525pt>
+<figures/9.png, id=271, 496.254pt x 234.27525pt>
 File: figures/9.png Graphic file (type png)
  <use figures/9.png>
-Package pdftex.def Info: figures/9.png used on input line 1764.
+Package pdftex.def Info: figures/9.png used on input line 1786.
 (pdftex.def)             Requested size: 217.66211pt x 102.75255pt.
 
-<figures/10.png, id=269, 376.40625pt x 220.4235pt>
+<figures/10.png, id=272, 376.40625pt x 220.4235pt>
 File: figures/10.png Graphic file (type png)
  <use figures/10.png>
-Package pdftex.def Info: figures/10.png used on input line 1765.
+Package pdftex.def Info: figures/10.png used on input line 1787.
 (pdftex.def)             Requested size: 217.66211pt x 127.46564pt.
 
-<figures/11.png, id=270, 495.65175pt x 234.8775pt>
+<figures/11.png, id=273, 495.65175pt x 234.8775pt>
 File: figures/11.png Graphic file (type png)
  <use figures/11.png>
-Package pdftex.def Info: figures/11.png used on input line 1769.
+Package pdftex.def Info: figures/11.png used on input line 1791.
 (pdftex.def)             Requested size: 217.66211pt x 103.1457pt.
 
-<figures/12.png, id=271, 529.98pt x 239.09325pt>
+<figures/12.png, id=274, 529.98pt x 239.09325pt>
 File: figures/12.png Graphic file (type png)
  <use figures/12.png>
-Package pdftex.def Info: figures/12.png used on input line 1770.
+Package pdftex.def Info: figures/12.png used on input line 1792.
 (pdftex.def)             Requested size: 217.66211pt x 98.19667pt.
- [57 <./figures/1.png> <./figures/2.png> <./figures/3.png> <./figures/4.png> <.
-/figures/5.png> <./figures/6.png>] [58 <./figures/7.png> <./figures/8.png> <./f
-igures/9.png> <./figures/10.png> <./figures/11.png> <./figures/12.png>] [59
+ [58 <./figures/1.png> <./figures/2.png> <./figures/3.png> <./figures/4.png> <.
+/figures/5.png> <./figures/6.png>] [59 <./figures/7.png> <./figures/8.png> <./f
+igures/9.png> <./figures/10.png> <./figures/11.png> <./figures/12.png>] [60
 
 ] (Memoire.aux) ) 
 Here is how much of TeX's memory you used:
- 12628 strings out of 493333
- 184747 string characters out of 3144820
- 396256 words of memory out of 3000000
- 15818 multiletter control sequences out of 15000+200000
+ 12626 strings out of 493333
+ 184805 string characters out of 3144820
+ 396325 words of memory out of 3000000
+ 15816 multiletter control sequences out of 15000+200000
  87810 words of font info for 73 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,12n,46p,874b,1622s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,13n,46p,874b,1659s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Sand/miktex/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Sand/mikt
 ex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Sand/miktex/fonts/enc/dvips/base/8r.enc}<C:
 /Sand/miktex/fonts/type1/public/amsfonts/latxfont/line10.pfb><C:/Sand/miktex/fo
@@ -1525,9 +1525,9 @@ mtk10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt10.pfb><C:/Sand/miktex/font
 s/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbol
 s/msam10.pfb><C:/Sand/miktex/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Sand/mikte
 x/fonts/type1/urw/times/utmr8a.pfb>
-Output written on Memoire.pdf (65 pages, 1733072 bytes).
+Output written on Memoire.pdf (66 pages, 1737354 bytes).
 PDF statistics:
- 343 PDF objects out of 1000 (max. 8388607)
+ 346 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  211 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -24,38 +24,38 @@
 \contentsline {subsection}{\numberline {4.2.1}Hibernate}{14}
 \contentsline {subsection}{\numberline {4.2.2}Spring Data}{15}
 \contentsline {subsection}{\numberline {4.2.3}Apache TinkerPop}{16}
-\contentsline {part}{II\hspace {1em}Contribution}{17}
-\contentsline {chapter}{\numberline {5}Le framework}{18}
-\contentsline {section}{\numberline {5.1}Exemple illustratif}{18}
-\contentsline {section}{\numberline {5.2}Piste de normalisation}{18}
-\contentsline {section}{\numberline {5.3}Utilisation}{19}
-\contentsline {subsection}{\numberline {5.3.1}La configuration}{20}
-\contentsline {subsection}{\numberline {5.3.2}La persistance}{20}
-\contentsline {subsection}{\numberline {5.3.3}La liaison}{24}
-\contentsline {subsection}{\numberline {5.3.4}La r\IeC {\'e}cup\IeC {\'e}ration}{25}
-\contentsline {section}{\numberline {5.4}Sch\IeC {\'e}ma conceptuel}{28}
-\contentsline {subsection}{\numberline {5.4.1}La structure d'Archipelago}{28}
-\contentsline {subsubsection}{ScriptBuilders}{29}
-\contentsline {subsubsection}{QueryBuilders}{30}
-\contentsline {chapter}{\numberline {6}Evaluation}{31}
-\contentsline {section}{\numberline {6.1}Points forts}{31}
-\contentsline {subsection}{\numberline {6.1.1}La facilit\IeC {\'e}}{31}
-\contentsline {subsection}{\numberline {6.1.2}La configurabilit\IeC {\'e}}{31}
-\contentsline {subsection}{\numberline {6.1.3}L'abstraction}{32}
-\contentsline {subsection}{\numberline {6.1.4}La simplification}{32}
-\contentsline {subsection}{\numberline {6.1.5}La modularit\IeC {\'e}}{32}
-\contentsline {section}{\numberline {6.2}Points \IeC {\`a} am\IeC {\'e}liorer}{32}
-\contentsline {subsection}{\numberline {6.2.1}Les performances}{32}
-\contentsline {subsection}{\numberline {6.2.2}Les conditions}{33}
+\contentsline {part}{II\hspace {1em}Contribution}{18}
+\contentsline {chapter}{\numberline {5}Le framework}{19}
+\contentsline {section}{\numberline {5.1}Exemple illustratif}{19}
+\contentsline {section}{\numberline {5.2}Piste de normalisation}{19}
+\contentsline {section}{\numberline {5.3}Utilisation}{20}
+\contentsline {subsection}{\numberline {5.3.1}La configuration}{21}
+\contentsline {subsection}{\numberline {5.3.2}La persistance}{21}
+\contentsline {subsection}{\numberline {5.3.3}La liaison}{25}
+\contentsline {subsection}{\numberline {5.3.4}La r\IeC {\'e}cup\IeC {\'e}ration}{26}
+\contentsline {section}{\numberline {5.4}Sch\IeC {\'e}ma conceptuel}{29}
+\contentsline {subsection}{\numberline {5.4.1}La structure d'Archipelago}{29}
+\contentsline {subsubsection}{ScriptBuilders}{30}
+\contentsline {subsubsection}{QueryBuilders}{31}
+\contentsline {chapter}{\numberline {6}Evaluation}{32}
+\contentsline {section}{\numberline {6.1}Points forts}{32}
+\contentsline {subsection}{\numberline {6.1.1}La facilit\IeC {\'e}}{32}
+\contentsline {subsection}{\numberline {6.1.2}La configurabilit\IeC {\'e}}{32}
+\contentsline {subsection}{\numberline {6.1.3}L'abstraction}{33}
+\contentsline {subsection}{\numberline {6.1.4}La simplification}{33}
+\contentsline {subsection}{\numberline {6.1.5}La modularit\IeC {\'e}}{33}
+\contentsline {section}{\numberline {6.2}Points \IeC {\`a} am\IeC {\'e}liorer}{33}
+\contentsline {subsection}{\numberline {6.2.1}Les performances}{33}
+\contentsline {subsection}{\numberline {6.2.2}Les conditions}{34}
 \contentsline {subsection}{\numberline {6.2.3}La r\IeC {\'e}cup\IeC {\'e}ration d'informations}{35}
-\contentsline {subsection}{\numberline {6.2.4}La propret\IeC {\'e} du code}{36}
-\contentsline {section}{\numberline {6.3}Questionnaire}{36}
-\contentsline {subsection}{\numberline {6.3.1}Contenu quantitatif}{36}
-\contentsline {subsection}{\numberline {6.3.2}Contenu qualitatif}{42}
-\contentsline {chapter}{\numberline {7}Conclusion}{45}
-\contentsline {chapter}{\numberline {8}Perspectives}{47}
-\contentsline {section}{\numberline {8.1}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{47}
-\contentsline {section}{\numberline {8.2}Am\IeC {\'e}lioration des performances}{49}
-\contentsline {section}{\numberline {8.3}Am\IeC {\'e}lioration de l'exploitation des relations}{49}
-\contentsline {section}{\numberline {8.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de th\IeC {\'e}orie des graphes}{49}
-\contentsline {part}{III\hspace {1em}Annexes}{53}
+\contentsline {subsection}{\numberline {6.2.4}La propret\IeC {\'e} du code}{37}
+\contentsline {section}{\numberline {6.3}Questionnaire}{37}
+\contentsline {subsection}{\numberline {6.3.1}Contenu quantitatif}{37}
+\contentsline {subsection}{\numberline {6.3.2}Contenu qualitatif}{43}
+\contentsline {chapter}{\numberline {7}Conclusion}{46}
+\contentsline {chapter}{\numberline {8}Perspectives}{48}
+\contentsline {section}{\numberline {8.1}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{48}
+\contentsline {section}{\numberline {8.2}Am\IeC {\'e}lioration des performances}{50}
+\contentsline {section}{\numberline {8.3}Am\IeC {\'e}lioration de l'exploitation des relations}{50}
+\contentsline {section}{\numberline {8.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de th\IeC {\'e}orie des graphes}{50}
+\contentsline {part}{III\hspace {1em}Annexes}{54}

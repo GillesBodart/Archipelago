@@ -226,7 +226,7 @@ Archipelago est un framework dont le but est d'abstraire l'utilisation d'une bas
 
 Ce travail présente les points forts et les points faibles de l'implémentation de ce framework ainsi que des pistes d'amélioration pour une version ultérieure.
 
-\quad \quad \underline{mots-clés :} Framework, Base de données, Java, Graphes, Neo4J, OrienDB, Archipelago
+\quad \quad \underline{mots-clés :} Framework, Base de données, Java, Graphes, Neo4J, OrientDB, Archipelago
 \section*{Abstract}
 
 In the scope of this master thesis, a new Java framework was developed to apply the graph theory to databases. This framework presents interesting qualities such as abstraction, simplification and configurability. 
@@ -235,7 +235,7 @@ Archipelago framework abstracts graph-oriented databases. Currently, three metho
 
 This master thesis presents the framework implementation, its applications and its strengths and weaknesses.
 
-\quad \quad \underline{keywords :} Framework, databases, Java, Graphs, Neo4J, OrienDB, Archipelago
+\quad \quad \underline{keywords :} Framework, databases, Java, Graphs, Neo4J, OrientDB, Archipelago
 
 \chapter*{Avant-propos}
 
@@ -258,6 +258,7 @@ Et enfin, je tiens tout autant à remercier ma belle-mère C. NIGOT pour avoir p
  SGBD  & \textbf{S}ystème de \textbf{g}estion de \textbf{b}ase de \textbf{d}onnées \\ \hline
  SGBDR  & \textbf{S}ystème de \textbf{g}estion de \textbf{b}ase de \textbf{d}onnées \textbf{r}elationnelles \\ \hline
  BDOG  & \textbf{B}ase de \textbf{d}onnées \textbf{o}rientée \textbf{g}raphe \\ \hline
+ CRUD  & \textbf{C}reate \textbf{R}ead \textbf{U}pdate \textbf{D}elete : Ce sont les quatre opérations principales pour la persistance de données. \\ \hline
  JSON  & \textbf{J}ava\textbf{S}cript \textbf{O}bject \textbf{N}otation \\ \hline
  Vertex  & Sommet \\ \hline
  Edge  & bord \\ \hline
@@ -292,12 +293,14 @@ Le but de ce mémoire est précisément d'offrir une réponse à ce manque, en p
 \end{itemize}
 
 \begin{center}
-Nous l'avons nommé \textbf{Archipelago}, traduction anglaise du mot archipel signifiant : \\ \enquote{\textit{Ensemble d'îles disposées en groupe et qui, de fait, forment une unité géographique.}}\cite{linternaute} 
+Nous l'avons nommé \textbf{Archipelago}, traduction anglaise du mot archipel signifiant : \\ \enquote{\textit{Ensemble d'îles disposées en groupe et qui, de fait, forment une unité géographique}}\cite{linternaute}.
 \end{center}
  
 \part{État de l'art}
 
 \chapter{L'évolution du NoSql}
+
+
 \section{L'historique}
 \label{NoSqlEvol}
 
@@ -312,7 +315,7 @@ Les évolutions logicielles suivant naturellement les évolutions matérielles, 
 
 De nos jours, les unités de stockage sont de plus en plus accessibles au grand public. Les entreprises comme Google, Amazon, Facebook, Twitter, etc., sont tour à tour arrivées aux limites du modèle relationnel \cite{frishman1998comprehensive} comme la partition, l'évolutivité en fonction de la charge, etc. Que ce soit à cause de volumes astronomiques (plus de 100 pétaoctets) ou du nombre de requêtes par seconde, il fallut développer une nouvelle façon de gérer les données.
 
-Les différentes entreprises impliquées dans le développement des systèmes de gestion de base de données l'ont bien compris et recherchent des solutions alternatives telles que le NoSql. \cite{nance2013nosql}Ce mouvement NoSql pour \enquote{Not Only SQL} se base sur différentes représentations en provenance du théorème de CAP\footnote{Acronyme de \enquote{\textbf{C}oherence}, \enquote{\textbf{A}vailability} et \enquote{\textbf{P}artition tolerance}} aussi connu sous le nom de théorème de Brewer. Ce théorème prouve qu’il est impossible de garantir simultanément les trois contraintes suivantes : 
+Les différentes entreprises impliquées dans le développement des systèmes de gestion de base de données l'ont bien compris et recherchent des solutions alternatives telles que le NoSql\cite{nance2013nosql}. Ce mouvement NoSql pour \enquote{Not Only SQL} se base sur différentes représentations en provenance du théorème de CAP\footnote{Acronyme de \enquote{\textbf{C}oherence}, \enquote{\textbf{A}vailability} et \enquote{\textbf{P}artition tolerance}} aussi connu sous le nom de théorème de Brewer. Ce théorème prouve qu’il est impossible de garantir simultanément les trois contraintes suivantes : \newpage
 \begin{itemize}
 \item La cohérence
 \item La haute disponibilité
@@ -349,7 +352,7 @@ L'idée de mettre en place des méthodologies de simplification entre les applic
 \label{frameworksAnalyse}
 En 1999, nous pouvons observer que la mise en place d'intergiciels \footnote{Logiciel permettant l'échange d'informations entre différentes applications informatiques. } permet de générer des \enquote{Wrapper} à l'aide du GDL\footnote{\textbf{G}arlic \textbf{D}efinition \textbf{L}anguage}, et offre la possibilité d'abstraire l'information\cite{niswonger1999transforming}. Les \enquote{Wrapper} ainsi que les \enquote{Unwrapper} procurent aux frameworks d'automatisation un moyen de contrôler la structure de représentation des données. Grâce à ce contrôle, il est aisé de les utiliser et de les adapter pour les rendre conformes à une vue, une table, un schéma, ...  Ces procédés de \enquote{Wrapper} et \enquote{Unwrapper} ont constitué des solutions pour communiquer avec des systèmes dits \enquote{legacy}.
 
-Nous pouvons nous apercevoir qu'il existe des systèmes de correspondance entre différents schémas de représentation. Par le biais d'XML, il est possible de faire transiter une information depuis un ancien schéma de données vers un nouveau. \cite{miller2000schema}
+Nous pouvons nous apercevoir qu'il existe des systèmes de correspondance entre différents schémas de représentation. Par le biais d'XML, il est possible de faire transiter une information depuis un ancien schéma de données vers un nouveau\cite{miller2000schema}. 
 
 Nous avons pu observer également qu'il existe des frameworks permettant de se protéger contre l'évolution du modèle de représentation. En effet, une étude montre que près de 70\% des requêtes\cite{curino2008schema} sont perdues à chaque nouvelle version de schéma. Pour pallier cette perte, certains framework génèrent des API Java sur base du schéma ER\footnote{\textbf{E}ntity \textbf{R}elation} de la base de données\cite{cleve2010conceptual}.
 
@@ -372,8 +375,8 @@ La relation dans les BDOG est une information à part entière: elle peut possé
 
 \section{Le positionnement}
 
-
-Le framework que nous souhaitons développer ne se focalisera pas sur l'une ou l'autre spécification. Tel que décrit dans la section \ref{frameworksAnalyse}, certains frameworks  permettent d'aider l'application lors de son évolution, d'autres permettent de réconcilier d'anciennes bases de données, ou encore aident au design du modèle. Dans notre cas, nous aimerions fournir un système permettant de faciliter le design d'une application, en cachant intégralement le schéma de données au niveau de la couche de persistance. L'utilisation de ce framework permettra aussi de faire évoluer le modèle d'information, sans perte de fonctionnalités.
+\label{positionnement}
+Le framework que nous souhaitons développer ne se focalisera pas sur l'une ou l'autre spécification. Tel que décrit dans la section \ref{frameworksAnalyse}, certains frameworks permettent d'aider l'application lors de son évolution, d'autres permettent de réconcilier d'anciennes bases de données, ou encore aident au design du modèle. Dans notre cas, nous aimerions fournir un système simple permettant de faciliter le design d'une application, en cachant intégralement le schéma de données au niveau de la couche de persistance (abstraction de la couche de persistance). L'utilisation de ce framework permettra aussi de faire évoluer le modèle d'information, sans perte de fonctionnalités.
 
 
 \chapter{Background technique}
@@ -411,7 +414,7 @@ RETURN DISTINCT (p)
 	
 \end{lstlisting}
 
-Cette query va retourner tous les nœuds distincts qui ont une relation \texttt{:PARENT\_OF} avec un autre nœud.
+La requête ci-dessus, va retourner tous les nœuds distincts qui ont une relation \texttt{:PARENT\_OF} avec un autre nœud.
 
 \begin{lstlisting}[language=java, frame=single]
 MATCH (gp:Person)-[:PARENT_OF*2]->(c:Person) 
@@ -479,7 +482,8 @@ Cet ensemble de requêtes ressemblant au langage SQL permet de créer deux verte
 \begin{lstlisting}[language=SQL]
 SELECT FROM V
 \end{lstlisting}
-\begin{center}
+\begin{table}
+	\centering
 	\begin{tabular}{|c|c|c|c|c|c|}
    		\hline
   		\multicolumn{3}{|c|}{Metadata} & \multicolumn{3}{c|}{Properties} \\
@@ -491,7 +495,8 @@ SELECT FROM V
    		11:0 & 1 & Company &  &  & ACME \\
    		\hline
 	\end{tabular}
-\end{center}
+	\caption{Résultat de la requête \enquote{SELECT FROM V} dans le BDOG OrientDB.}
+\end{table}
 
 Nous pouvons observer qu'OrientDB se charge de qualifier les documents de plusieurs métadata en leur octroyant par exemple un identifiant unique (\no cluster : position), un numéro de version pour permettre une gestion de transaction \enquote{full optimistic}\footnote{On laisse l'utilisateur continuer sa transaction et le refus se fera lors du \enquote{commit} s'il y a eu une modification concurrente du même document} et le \texttt{@class}, quant à lui représente la structure du document.
 
@@ -510,6 +515,7 @@ Outre la communication via le protocole \texttt{http}, nous pouvons aussi accéd
 
 \section{Comparaison} 
 \footnotetext[2]{Langage fortement similaire à SQL avec certaines légères modifications}
+Suite aux recherches effectuées dans la section \ref{NoSqlEvol}, nous avons tenté de dresser un tableau comparatif permettant de distinguer Neo4J et OrientDB sur base des critères nous semblant les plus pertinents.
 \begin{center}
 
 \begin{longtable}[c]{|l|M{5cm}|M{5cm}|}
@@ -537,10 +543,10 @@ Modèle de représentation & Uniquement graphe & Multimodèle\tabularnewline \hl
   Interface web & \checkmark & \checkmark\tabularnewline \hline
 Implémentation de fonctions & \checkmark & \checkmark\tabularnewline \hline
 Rapidité\footnotemark & 7m 10s & 4m 31s \tabularnewline \hline
+\caption{Tableau comparatif entre Neo4J et OrientDB.}
 \end{longtable}
 \end{center}
 \footnotetext{10 000 requêtes sur le même graphe de données avec la même requête au travers d'un appel Java}
-
 
 Au vu de ce tableau comparatif, nous nous apercevons qu’OrientDB, grâce à son système d'autorisation, semble ainsi correspondre à une approche plus standardisée d'une base de données. En utilisant le langage SQL comme langage de requête, OrientDB  conforte à nouveau les utilisateurs de bases de données relationnelles en leur permettant d'utiliser un langage connu. La rapidité d'exécution est elle aussi favorable à OrientDB. Cependant le fait de devoir configurer quelque peu le serveur pourrait limiter son intérêt lors de l'implémentation de petites applications. 
 
@@ -555,11 +561,17 @@ Grâce à ses fonctionnalités et ses structures de représentation de l'informa
 Avec Archipelago, l'utilisation de Neo4J ou d'OrientDB ne nécessitera aucun apprentissage supplémentaire ni aucun changement dans l'application.
 
 \chapter{Solutions existantes}
+\begin{center}
+\enquote{\textit{Un peuple qui oublie son passé se condamné à le revivre.}}\footnote{Winston Churchill}
+\end{center}
+
+Dans le même état d'esprit, nous tenterons de vous décrire les solutions existantes et ce, dans le but que notre recherche puise le potentiel de ces librairies afin de construire un framework qui aspire à les utiliser à bon escient.  À l'inverse, certaines librairies ne seront pas exploitées car elles ne nous permettent pas d'atteindre nos objectifs de simplification et/ou d'abstraction (cf. \ref{positionnement}).
 
 \section{Les librairies} 
 
-\enquote{\textit{Le Java Class Library (JCL) est une bibliothèque standard du langage Java, qui contient un ensemble de bibliothèques logicielles chargées dynamiquement. ... Comme les bibliothèques standards des autres langages, il fournit aux programmeurs un ensemble de fonctions bien connues (par exemple les expressions régulières).}}\footnote{\url{https://fr.wikipedia.org/wiki/Java_Class_Library}}
+Afin que nous parlions d'un même concept, nous allons définir le terme \enquote{librairie} : 
 
+\enquote{\textit{Le Java Class Library (JCL) est une bibliothèque standard du langage Java, qui contient un ensemble de bibliothèques logicielles chargées dynamiquement. ... Comme les bibliothèques standards des autres langages, il fournit aux programmeurs un ensemble de fonctions bien connues (par exemple les expressions régulières).}}\footnote{\url{https://fr.wikipedia.org/wiki/Java_Class_Library}}
 
 
 \subsection{Librairie Neo4J}
@@ -578,7 +590,7 @@ driver.close();
 \end{lstlisting}
 
 Bien que cette libraire permette d'accéder directement au langage Cypher depuis un code Java, elle ne peut malheureusement être utilisée avec une autre BDOG que Neo4J. 
-\newpage
+
 \subsection{Librairie OrientDB}
 
 La librairie OrientDB pour Java est composée de trois éléments:
@@ -663,9 +675,9 @@ Apache TinkerPop est un Framework open source d’utilisation de graphe : il reg
 
 Il se considère lui-même comme étant d’utilisation complexe pour les nouveaux développeurs car il nécessite l’utilisation d’un environnement qui lui est propre, la \enquote{Gremlin-console}.
 
-Les développeurs de ce framework ont mis au point un langage de travail sur les graphes appelé \enquote{Gremlin}. Le langage dont nous avons parlé en section \ref{Cypher} s’est grandement inspiré de ce dernier.\cite{tinkerPopSite}
+Les développeurs de ce framework ont mis au point un langage de travail sur les graphes appelé \enquote{Gremlin}. Le langage dont nous avons parlé en section \ref{Cypher} s’est grandement inspiré de ce dernier\cite{tinkerPopSite}.
 
-Exemple d’utilisation :
+Exemple d'utilisation :
 
 \begin{lstlisting}
 gremlin> g.V() /* récupère tous les nœuds du graphe */
@@ -720,26 +732,29 @@ Dans cette partie, nous allons tenter d'abstraire un ensemble d'éléments afin 
 Notre démarche dans la proposition de cette fonctionnalité d'abstraction, est une démarche favorisant la découverte de nouvelles implémentations de BDOG afin de satisfaire au mieux les attentes des entreprises. En plus de l'abstraction des librairies spécifiques aux BDOG, Archipelago devra contenir les fonctionnalités suivantes :
  
 \begin{enumerate}
-\item Utilisation d'une librairie unique pour toutes BDOG
+\item Utilisation d'une librairie unique pour toutes BDOG.
 \item Contrôle sur les propriétés et les relations.
-\item Opération de base de persistance CRUD
-\item Système de transaction 
+\item Opération de base de persistance CRUD.
+\item Système de transaction.
 \end{enumerate}
 
 La suite de ce mémoire portant sur le développement de ce framework Java vous montrera comment utiliser Archipelago.
 \section{Utilisation}
+\label{utilisation}
+Les figures \ref{fig:HelocoP} et \ref{fig:HelocoG} offrent une approche schématisée de l'utilisation d'Archipelago. 
+\\La première vous décrit le fonctionnement de l'étape de persistance, tandis que la deuxième vous expose la manière dont nous allons récupérer l'information. Plus tard, dans les sections \ref{persistance} et \ref{récupération}, vous pourrez apercevoir des schémas plus détaillés de ces fonctionnalités.
 \vspace*{\stretch{1}}
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.7]{figures/HelocoP.png}
-\caption{Vue hélicoptère du framework pour la persistance.}
+\caption{Un développeur appose les annotations bridge sur les classes et persiste les objets Java avec Archipelago dans la BDOG.}
 \label{fig:HelocoP}
 \end{figure}
 \vspace*{\stretch{1}}
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.8]{figures/HelocoG.png}
-\caption{Vue hélicoptère du framework pour la récupération.}
+\caption{Un développeur récupère des objets depuis une BDOG en utilisant Archipelago.}
 \label{fig:HelocoG}
 \end{figure}
 \vspace*{\stretch{1}}
@@ -773,7 +788,7 @@ Voici le canevas de ce fichier :
 La seule autre modification à apporter, est l'apposition de l'annotation \texttt{@Bridge}, comme expliqué dans la section \ref{bridge}. Cette annotation sera utilisée par Archipelago afin de spécifier les relations que nous souhaitons créer entre les différents objets.
 
 \subsection{La persistance}
-
+\label{persistance}
 
 La persistance est l'élément principal de ce framework. Afin de ne pas être tenus par une syntaxe appartenant à une BDOG propre, nous nous sommes basés sur une approche de représentation OO. 
 
@@ -923,7 +938,7 @@ arch.link(winterfell, kingsLanding, road, true);
 \end{figure}
 \newpage
 \subsection{La récupération}
-
+\label{récupération}
 La récupération de l'information est la raison pour laquelle nous la stockons. A quoi bon enregistrer une valeur dans une base de données si nous ne souhaitons jamais l'utiliser ultérieurement ?
 
 Pour cela, Archipelago offre un système de création de requête. Grâce à ce procédé, que la BDOG soit OrientDB ou Neo4J, nous serons en mesure de récupérer notre objet sans changer notre code source. Dans le fichier de configuration spécifié dans la section \ref{configuration}, une propriété nommée \texttt{domainRootPackage} est présente. Celle-ci est utilisée par notre utilitaire de réflexion afin de connaitre l'ensemble des classes potentiellement récupérables depuis la BDOG. Il sera dès lors impossible de récupérer un objet si la classe qui le décrit ne fait pas partie du package ou d'un sous-package exposé par la valeur contenue dans cette propriété.
@@ -1004,7 +1019,7 @@ Comme expliqué plus haut, nous sommes actuellement dans l'incapacité de géné
 \label{badCondition}
 \`A L'heure actuelle, il n'est pas possible d'effectuer des requêtes sur les relations entre les objets. Cette piste sera primordiale pour une deuxième version de ce framework.
 \newpage
-
+Comme sus-cité dans la section \ref{utilisation}, voici un schéma récapitulatif de l'utilisation de la méthode de récupération d'Archipelago.
 \vspace*{\stretch{1}}
 \begin{figure}[!ht]
 \centering
@@ -1059,9 +1074,9 @@ Nous pensons que l'on pourrait fusionner ces deux classes. Néanmoins, nous avon
 \end{figure}
 
 Chaque classe doit correspondre à une base de données et implémenter trois méthodes\footnote{Plus un petit nombre d'overload à implémenter.} \footnote{Chacune de ces requêtes doit être écrite dans le langage ciblé par la classe.} :
-
+\begin{table}[ht!]
+\centering
 \begin{tabular}[c]{|l|M{12cm}|}
-
 \hline
 \textbf{Nom de méthode} & \textbf{Description}  \tabularnewline
 \hline
@@ -1073,6 +1088,9 @@ Chaque classe doit correspondre à une base de données et implémenter trois m�
 \hline
 
 \end{tabular}
+\caption{Relevé des méthodes à implémenter pour hériter de \texttt{ArchipelagoScriptBuilder}.}
+\label{tab:ArchipelagoScriptBuilder}
+\end{table}
 \vspace*{\stretch{1}}
 \newpage
 \vspace*{\stretch{1}}
@@ -1088,7 +1106,8 @@ Chaque classe doit correspondre à une base de données et implémenter trois m�
 Comme précédemment, chaque classe doit correspondre à une base de données car la liste des méthodes à implémenter est légèrement plus importante.
 
 En voici le détail :
-
+\begin{table}[ht!]
+\centering
 \begin{tabular}[c]{|l|M{12cm}|}
 
 \hline
@@ -1107,6 +1126,9 @@ En voici le détail :
 \texttt{build} & Finalise la requête de recherche de nœuds et génère une \texttt{ArchipelagoQuery}.   \tabularnewline \hline
 
 \end{tabular}
+\caption{Relevé des méthodes à implémenter pour hériter de \texttt{ArchipelagoQueryBuilder}.}
+\label{tab:ArchipelagoQueryBuilder}
+\end{table}
 \vspace*{\stretch{1}}
 
 
@@ -1222,7 +1244,7 @@ WHERE
 	AND me.lastName = "Bodart"
 	AND	f.firstName = "Thomas" 
 RETURN (me)-[]-(f)
-// lie-moi sont mes amis qui se prénomment Thomas?
+/* Retourne les étudiants qui se nomment "Gilles Bodart" et lie ses amis qui se prénomment "Thomas" ? */
 \end{lstlisting} 
 
 \begin{figure}[!ht]
@@ -1602,7 +1624,7 @@ value ::= '"'[a-zA-Z0-9]+'"'| [0-9]+
 
 Le premier effort, afin d'améliorer les performances, serait d'effectuer le marquage des arêtes.
 
-Les algorithmes existant de la théorie des graphes nous permettraient d'améliorer le parcours du graphe généré par les relations entre les différents objets du modèle. \cite{solnontheorie}
+Les algorithmes existant de la théorie des graphes nous permettraient d'améliorer le parcours du graphe généré par les relations entre les différents objets du modèle\cite{solnontheorie}. 
 
 \section{Amélioration de l'exploitation des relations}
 
