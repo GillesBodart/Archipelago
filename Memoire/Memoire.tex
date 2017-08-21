@@ -268,6 +268,7 @@ Et enfin, je tiens tout autant à remercier ma belle-mère C. NIGOT pour avoir p
  GDL & \textbf{G}arlic \textbf{D}efinition \textbf{L}anguage (variante de ODMG \cite{cattell1997object}) \\ \hline
  OO & \textbf{O}rienté \textbf{O}bjet \\ \hline
  POC & \textbf{P}roof \textbf{O}f \textbf{C}oncept \\ \hline
+ YAML & \textbf{Y}et \textbf{A}nother \textbf{M}arkup \textbf{L}anguage \\ \hline
 \end{tabular}
 \end{center}
 \clearpage
@@ -546,7 +547,7 @@ Rapidité\footnotemark & 7m 10s & 4m 31s \tabularnewline \hline
 \caption{Tableau comparatif entre Neo4J et OrientDB.}
 \end{longtable}
 \end{center}
-\footnotetext{10 000 requêtes sur le même graphe de données avec la même requête au travers d'un appel Java}
+\footnotetext{10 000 requêtes sur le même graphe de données avec la même requête au travers d'un appel Java depuis un ordinateur vers un serveur distant (même hébergement pour les deux BDOG).}
 
 Au vu de ce tableau comparatif, nous nous apercevons qu’OrientDB, grâce à son système d'autorisation, semble ainsi correspondre à une approche plus standardisée d'une base de données. En utilisant le langage SQL comme langage de requête, OrientDB  conforte à nouveau les utilisateurs de bases de données relationnelles en leur permettant d'utiliser un langage connu. La rapidité d'exécution est elle aussi favorable à OrientDB. Cependant le fait de devoir configurer quelque peu le serveur pourrait limiter son intérêt lors de l'implémentation de petites applications. 
 
@@ -578,7 +579,7 @@ Afin que nous parlions d'un même concept, nous allons définir le terme \enquot
 
 Une librairie Java développée par Neo Technologie existe et permet de travailler aisément avec une base de données Neo4J embarquée ou à distance. Elle est en constante évolution et se trouve sur une plateforme open source. 
 
-Exemple de communication avec la librairie Neo4J le protocole \enquote{Bolt}:
+Exemple de communication avec la librairie Neo4J et le protocole \enquote{Bolt}:
 \vspace{0.6cm}
 \begin{lstlisting}[language=java]
 Driver driver = GraphDatabase.driver("bolt://localhost:7687", AuthTokens.basic("matrix", "neo"));
@@ -601,7 +602,7 @@ La librairie OrientDB pour Java est composée de trois éléments:
 \item[•] \texttt{object API}
 \end{itemize}
 
-La \texttt{graph API} d'OrientDB couvre 80\% des uses cases classiques d'un utilisateur et supporte tous les modèles de représentations comme un unique multi-modèle de données. Elle travaille sur des \enquote{Vertex} et des \enquote{Edges}, respectivement nœuds et relations, et est compatible avec le standard TinkerPop.
+La \texttt{graph API} d'OrientDB couvre 80\% des use cases classiques d'un utilisateur et supporte tous les modèles de représentations comme un unique multi-modèle de données. Elle travaille sur des \enquote{Vertex} et des \enquote{Edges}, respectivement nœuds et relations, et est compatible avec le standard TinkerPop.
 
 La \texttt{document API} permet de couvrir les 20\% restants, elle est plus simple d'utilisation mais offre une utilisation plus atomique. Par exemple, les relations ne peuvent être qu'unidirectionnelles tandis que la bidirectionnalité est offerte dans l'API précédente (\texttt{graph API}). Un \texttt{document} est un élément représentant l'information. Par défaut, aucune relation ne sera construite, nous devons dès lors gérer manuellement chaque lien entre documents.
 
@@ -1146,7 +1147,7 @@ Le marquage des sommets lors de cette opération nous permet aussi d'améliorer 
 
 \subsection{La configurabilité}
 
-Nous avons choisi de prendre un fichier JSON comme fichier de configuration car ce format est simple d'utilisation. 
+Nous avons choisi de prendre un fichier JSON comme fichier de configuration car ce format est simple d'utilisation. À noter que l'utilisation d'un fichier YAML aurait pu fonctionner également. Néanmoins, au vu des faibles différences de représentations, nous ne voyons pas l'intérêt d'employer l'un plutôt que l'autre. C'est pourquoi nous avons opté pour le format JSON que nous affectionnons davantage. 
 
 \`A l'heure actuelle, nous disposons d'un certain nombre de paramètres nous permettant d'orienter le framework vers l'une ou l'autre base de données et d'aider la récupération depuis ces dernières. De surcroît, le modèle mis en place permet aisément d'ajouter ou d'ôter de nouveaux paramètres en fonction des améliorations futures. 
 \newpage
@@ -1305,7 +1306,7 @@ Nous récupèrerons le nœud correspondant à la ville \enquote{King's Landing} 
 \subsection{La propreté du code}
 
 Cette implémentation de ce framework pourrait être améliorée si l'on disposait de temps supplémentaire pour en évacuer les morceaux de codes inutiles. En outre, il serait primordial d'y insérer des tests unitaires afin de s'assurer du bon fonctionnement de chacune des méthodes implémentées.
-
+\label{propreteDuCode}
 Le code est actuellement disponible sur un \enquote{repository github}\footnote{https://github.com/GillesBodart/Archipelago}, de façon à pouvoir récupérer\footnote{Nous n'en avons pas encore reçu.} un ensemble de commentaires constructifs par la communauté Java. 
 
 \section{Questionnaire}
@@ -1795,6 +1796,9 @@ Voici un export brut des images d'analyses générées par Google{\mbox{\scripts
 
 \chapter*{Code Sources}
 
+Par souci d'écologie et par praticité, notre code est disponible sur le dépot GitHub (cf. lien ci-dessous) ainsi que sur la copie numérique de ce mémoire.
+
+ \url{https://github.com/GillesBodart/Archipelago}. 
 %\include{./cdSource}
 
  
