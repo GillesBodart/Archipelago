@@ -48,14 +48,14 @@
 \contentsline {subsection}{\numberline {6.2.1}Les performances}{34}
 \contentsline {subsection}{\numberline {6.2.2}Les conditions}{35}
 \contentsline {subsection}{\numberline {6.2.3}La r\IeC {\'e}cup\IeC {\'e}ration d'informations}{37}
-\contentsline {subsection}{\numberline {6.2.4}La propret\IeC {\'e} du code}{39}
-\contentsline {section}{\numberline {6.3}Questionnaire}{39}
-\contentsline {subsection}{\numberline {6.3.1}Contenu quantitatif}{39}
-\contentsline {subsection}{\numberline {6.3.2}Contenu qualitatif}{45}
-\contentsline {chapter}{\numberline {7}Conclusion}{48}
-\contentsline {chapter}{\numberline {8}Perspectives}{50}
-\contentsline {section}{\numberline {8.1}Am\IeC {\'e}lioration des performances}{50}
-\contentsline {section}{\numberline {8.2}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{50}
-\contentsline {section}{\numberline {8.3}Am\IeC {\'e}lioration de l'exploitation des relations}{52}
-\contentsline {section}{\numberline {8.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de la th\IeC {\'e}orie des graphes}{52}
-\contentsline {part}{III\hspace {1em}Annexes}{56}
+\contentsline {subsection}{\numberline {6.2.4}La propret\IeC {\'e} et fiabilit\IeC {\'e} du code}{38}
+\contentsline {section}{\numberline {6.3}Questionnaire}{38}
+\contentsline {subsection}{\numberline {6.3.1}Contenu quantitatif}{38}
+\contentsline {subsection}{\numberline {6.3.2}Contenu qualitatif}{44}
+\contentsline {chapter}{\numberline {7}Conclusion}{47}
+\contentsline {chapter}{\numberline {8}Perspectives}{49}
+\contentsline {section}{\numberline {8.1}Am\IeC {\'e}lioration des performances}{49}
+\contentsline {section}{\numberline {8.2}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{49}
+\contentsline {section}{\numberline {8.3}Am\IeC {\'e}lioration de l'exploitation des relations}{51}
+\contentsline {section}{\numberline {8.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de la th\IeC {\'e}orie des graphes}{51}
+\contentsline {part}{III\hspace {1em}Annexes}{55}
