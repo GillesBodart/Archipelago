@@ -30,30 +30,8 @@ public class MainTest {
 
         Archipelago a = Archipelago.getInstance();
 
-        ArchipelagoQuery aq = a.getQueryBuilder()
-                .of(City.class)
-                .where(and(
-                            or(
-                                eq("name","King's Landing"),
-                                eq("name","Winterfell")
-                            ),
-                            neq("name","Dragonstone")
-                        ),
-                        ArchipelagoPosition.START
-                )
-                .where(and(
-                        gt("distance",300),
-                        eq("unit","leagues")
-                        ),
-                        ArchipelagoPosition.EDGE
-                )
-                .where(eq("name","Winterfell"),
-                        ArchipelagoPosition.END
-                )
-                .build();
-        List<Object> nodes = a.execute(aq);
+        a.persist(school());
 
-        nodes.stream().forEach(System.out::println);
     }
 
     private static void testFeeder(String testCase) throws ClassNotFoundException, IOException {

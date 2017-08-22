@@ -15,7 +15,7 @@ public class Student extends Person {
     private List<Student> friends = new ArrayList<>();
     @Bridge(descriptor = "FamilyMember", biDirectionnal = true)
     private List<? extends Person> familyMember = new ArrayList<>();
-    @Bridge(descriptor = "PromotedIn")
+    @Bridge(descriptor = "GraduatedIn")
     private Promotion prom;
 
     public Student() {

@@ -226,7 +226,7 @@ Archipelago est un framework dont le but est d'abstraire l'utilisation d'une bas
 
 Ce travail présente les points forts et les points faibles de l'implémentation de ce framework ainsi que des pistes d'amélioration pour une version ultérieure.
 
-\quad \quad \underline{mots-clés :} Framework, Base de données, Java, Graphes, Neo4J, OrientDB, Archipelago
+\quad \quad \underline{Mots-clés} : Framework, Base de données, Java, Graphes, Neo4J, OrientDB, Archipelago
 \section*{Abstract}
 
 In the scope of this master thesis, a new Java framework was developed to apply the graph theory to databases. This framework presents interesting qualities such as abstraction, simplification and configurability. 
@@ -235,7 +235,7 @@ Archipelago framework abstracts graph-oriented databases. Currently, three metho
 
 This master thesis presents the framework implementation, its applications and its strengths and weaknesses.
 
-\quad \quad \underline{keywords :} Framework, databases, Java, Graphs, Neo4J, OrientDB, Archipelago
+\quad \quad \underline{Keywords} : Framework, databases, Java, Graphs, Neo4J, OrientDB, Archipelago
 
 \chapter*{Avant-propos}
 
@@ -250,21 +250,21 @@ Et enfin, je tiens tout autant à remercier ma belle-mère C. NIGOT pour avoir p
 
 \tableofcontents
 \newpage
-\chapter*{Glossaire}
+\chapter*{Glossaire :}
 \begin{center}
 \begin{tabular}[c]{ l p{14cm} }
  SQL  & \textbf{S}tructured \textbf{Q}uery \textbf{L}anguage \\ \hline
- NoSQL  & \textbf{N}ot \textbf{o}nly \textbf{SQL} \\ \hline
+ NoSQL  & \textbf{N}ot \textbf{O}nly \textbf{SQL} \\ \hline
  SGBD  & \textbf{S}ystème de \textbf{g}estion de \textbf{b}ase de \textbf{d}onnées \\ \hline
  SGBDR  & \textbf{S}ystème de \textbf{g}estion de \textbf{b}ase de \textbf{d}onnées \textbf{r}elationnelles \\ \hline
  BDOG  & \textbf{B}ase de \textbf{d}onnées \textbf{o}rientée \textbf{g}raphe \\ \hline
  CRUD  & \textbf{C}reate \textbf{R}ead \textbf{U}pdate \textbf{D}elete : Ce sont les quatre opérations principales pour la persistance de données. \\ \hline
  JSON  & \textbf{J}ava\textbf{S}cript \textbf{O}bject \textbf{N}otation \\ \hline
  Vertex  & Sommet \\ \hline
- Edge  & bord \\ \hline
- Cluster  & littéralement grappe, cela représente en informatique un groupe d'éléments \\ \hline
+ Edge  & Bord \\ \hline
+ Cluster  & Littéralement grappe, cela représente en informatique un groupe d'éléments \\ \hline
  API  & \textbf{A}pplication \textbf{P}rogramming \textbf{I}nterface  \\ \hline
- REST  & \textbf{Re}presentational \textbf{s}tate \textbf{t}ransfer, style d'architecture pour les systèmes hypermédia distribués \\ \hline
+ REST  & \textbf{Re}presentational \textbf{S}tate \textbf{T}ransfer, style d'architecture pour les systèmes hypermédia distribués \\ \hline
  GDL & \textbf{G}arlic \textbf{D}efinition \textbf{L}anguage (variante de ODMG \cite{cattell1997object}) \\ \hline
  OO & \textbf{O}rienté \textbf{O}bjet \\ \hline
  POC & \textbf{P}roof \textbf{O}f \textbf{C}oncept \\ \hline
@@ -277,14 +277,14 @@ Et enfin, je tiens tout autant à remercier ma belle-mère C. NIGOT pour avoir p
 
 L'idée de réaliser ce mémoire nous est venue de notre travail en entreprise où nous utilisions un modèle de données très connectées. Nous avions comme mission de remanier ce modèle de données en le rendant totalement historisable. Pour ce faire, nous utilisions une base de données relationnelle mais ce choix nous posait problème, notamment au niveau des références circulaires. Ce genre de difficulté survient quand certains éléments identifiants se retrouvent dépendants d'eux-mêmes et forment ainsi un cycle\footnote{Une entreprise publiait un acte générant des évènements sur une entreprise (potentiellement la même)}. 
 
-Nous recevions nos informations en provenance de plusieurs sources, chacune avait bien entendu sa propre représentation. Un ensemble de méthodes devait donc être mis en place et maintenu pour faire correspondre ces modifications avec la représentation interne que nous avions de l'information. Toutes ces petites modifications rendaient le précédent modèle de moins en moins cohérent et stable. Il nous fallait donc penser à une structure évolutive permettant pour ces demandes en provenance d’une source spécifique, ces ajouts qui alourdissaient les tables. 
+Nous recevions nos informations en provenance de plusieurs sources, chacune avait bien entendu sa propre représentation. Un ensemble de méthodes devait donc être mis en place et maintenu pour faire correspondre ces modifications avec la représentation interne que nous avions de l'information. Toutes ces petites modifications rendaient le précédent modèle de moins en moins cohérent et stable. Il nous fallait donc penser à une structure évolutive permettant, pour ces demandes en provenance d'une source spécifique, ces ajouts qui alourdissaient les tables. 
 
 Suite à ce questionnement, nous nous sommes interrogé d'une part sur la pertinence de notre modèle car nous nous heurtions sans cesse à des difficultés multiples (niveau d'abstraction trop faible, changement d'identifiant lors de l'historisation, ...), et d'autre part à \enquote{l'entêtement} de l'utilisation de bases de données relationnelles. 
 
 C'est alors que nous avons pensé à la mise en place d'un outil permettant d'éviter toutes les démarches auxquelles notre équipe s'était confrontée. Cette réflexion nous a fait découvrir les bases de données orientées graphes et les librairies qui permettent de les utiliser.
 
-Nous avons pu observer que les bases de données orientées graphes (BDOG cf. glossaire) étaient de plus en plus nombreuses. Nous constations que chacune développait ses propres fonctionnalités. Nous avons dès lors voulu trouver un framework permettant de communiquer avec ces dernières tel que \enquote{JPA} le fait avec les bases de données relationnelles. A notre grande surprise, nous nous sommes aperçus que ce framework semblait ne pas exister.
-
+Nous avons pu observer que les bases de données orientées graphes (BDOG cf. glossaire) étaient de plus en plus nombreuses. Nous constations que chacune développait ses propres fonctionnalités. Nous avons dès lors voulu trouver un framework permettant de communiquer avec ces dernières tel que \enquote{JPA} le fait avec les bases de données relationnelles. A notre grande surprise, nous nous sommes aperçu que ce framework semblait ne pas exister.
+\newpage
 Le but de ce mémoire est précisément d'offrir une réponse à ce manque, en produisant un framework qui tentera de présenter les qualités suivantes :
 \begin{itemize}
 \item[•] \textbf{Abstraction} : L'utilisateur pourra employer ce framework sans même connaitre l'existence de librairies spécifiques.
@@ -301,6 +301,7 @@ Nous l'avons nommé \textbf{Archipelago}, traduction anglaise du mot archipel si
 
 \chapter{L'évolution du NoSql}
 
+Dans ce chapitre, nous allons retracer dans un premier temps l'historique des bases de données de type NoSQL. Dans un second temps, nous aborderons les différences entre les bases de données relationnelles et les bases de données orientées graphe.Et, pour finir, nous positionnerons notre recherche au vu de ce que nous aurons appris précédemment.
 
 \section{L'historique}
 \label{NoSqlEvol}
@@ -316,7 +317,7 @@ Les évolutions logicielles suivant naturellement les évolutions matérielles, 
 
 De nos jours, les unités de stockage sont de plus en plus accessibles au grand public. Les entreprises comme Google, Amazon, Facebook, Twitter, etc., sont tour à tour arrivées aux limites du modèle relationnel \cite{frishman1998comprehensive} comme la partition, l'évolutivité en fonction de la charge, etc. Que ce soit à cause de volumes astronomiques (plus de 100 pétaoctets) ou du nombre de requêtes par seconde, il fallut développer une nouvelle façon de gérer les données.
 
-Les différentes entreprises impliquées dans le développement des systèmes de gestion de base de données l'ont bien compris et recherchent des solutions alternatives telles que le NoSql\cite{nance2013nosql}. Ce mouvement NoSql pour \enquote{Not Only SQL} se base sur différentes représentations en provenance du théorème de CAP\footnote{Acronyme de \enquote{\textbf{C}oherence}, \enquote{\textbf{A}vailability} et \enquote{\textbf{P}artition tolerance}} aussi connu sous le nom de théorème de Brewer. Ce théorème prouve qu’il est impossible de garantir simultanément les trois contraintes suivantes : \newpage
+Les différentes entreprises impliquées dans le développement des systèmes de gestion de base de données l'ont bien compris et recherchent des solutions alternatives telles que le NoSql\cite{nance2013nosql}. Ce mouvement NoSql pour \enquote{Not Only SQL} se base sur différentes représentations en provenance du théorème de CAP\footnote{Acronyme de \enquote{\textbf{C}oherence}, \enquote{\textbf{A}vailability} et \enquote{\textbf{P}artition tolerance}} aussi connu sous le nom de théorème de Brewer. Ce théorème prouve qu’il est impossible de garantir simultanément les trois contraintes suivantes : 
 \begin{itemize}
 \item La cohérence
 \item La haute disponibilité
@@ -357,7 +358,7 @@ Nous pouvons nous apercevoir qu'il existe des systèmes de correspondance entre 
 
 Nous avons pu observer également qu'il existe des frameworks permettant de se protéger contre l'évolution du modèle de représentation. En effet, une étude montre que près de 70\% des requêtes\cite{curino2008schema} sont perdues à chaque nouvelle version de schéma. Pour pallier cette perte, certains framework génèrent des API Java sur base du schéma ER\footnote{\textbf{E}ntity \textbf{R}elation} de la base de données\cite{cleve2010conceptual}.
 
-\section{Questionnement}
+\section{Le questionnement}
 
 \subsection*{Pourquoi utiliser une BDOG plutôt qu'une BD relationnelle comme Oracle ou MySql ?}
 
@@ -381,6 +382,9 @@ Le framework que nous souhaitons développer ne se focalisera pas sur l'une ou l
 
 
 \chapter{Background technique}
+
+Lors de ce point, nous vous présenterons les différentes fonctionnalités qu'offrent les bases de données Neo4J et OrientDB. Nous entreprendrons également une comparaison entre ces deux BDOG afin de mettre en lumière ce qui nous semble être les points  forts et les points faibles de chacune.
+
 \section{Neo4J}
 
 \subsection{Description}
@@ -405,7 +409,6 @@ CREATE (John)-[:PARENT_OF]->(jane)
 CREATE (jane)-[:PARENT_OF]->(tim)
 CREATE (gilles)-[:PARENT_OF]->(tim)
 \end{lstlisting}
-\newpage
 
 Ces requêtes vont créer 5 nœuds et 4 relations \texttt{:PARENT\_OF}, nous pouvons aisément comprendre que \enquote{James} est parent de \enquote{Gilles}.
 
@@ -713,6 +716,9 @@ Nous souhaitons créer Archipelago pour permettre la réutilisation des modèles
 
 \part{Contribution}
 \chapter{Le framework}
+
+Dans ce chapitre, nous allons vous décrire concrètement ce qu'est Archipelago. Nous vous introduirons un exemple illustratif d'utilisation des BDOG et nous parcourrons l'ensemble des fonctionnalités que permet ce framework.
+
 \section{Exemple illustratif}
 
 Pour la suite de ce mémoire, il est primordial d'avoir un exemple concret de modèle habituellement persisté avec un modèle relationnel mais qui pourrait néanmoins être transposable dans une BDOG.
@@ -856,8 +862,8 @@ public class Student extends Person {
     private List<? extends Person> familyMember = new ArrayList<>();
     
     // Spécification d'un lien entre Student et Promotion, 
-    // le nom de cette relation sera PromotedIn
-    @Bridge(descriptor = "PromotedIn")
+    // le nom de cette relation sera GraduatedIn
+    @Bridge(descriptor = "GraduatedIn")
     private Promotion prom;
     
     ...
@@ -1542,7 +1548,14 @@ Si l'approche d'une mise en place d'un standard commun aux BDOG semblait intére
 La solution proposée par ce mémoire permet quant à elle, d'abstraire les différentes implémentations standardisées ou non, et constituerait une approche unifiée pour l'univers des développeurs Java.
 
 \chapter{Perspectives}
+Nous avons décidé de scinder les perspectives d'améliorations des conclusions de ce mémoire, car nous aimerions dresser un ensemble de pistes auxquelles nous avons pensés mais que nous n'avons su mettre en place. Ces éléments pourront servir de \enquote{cahier des charges} pour une deuxième version de ce framework.
 \label{perspectives}
+\section{Amélioration des performances}
+
+Le premier effort, afin d'améliorer les performances, serait d'effectuer le marquage des arêtes.
+
+Les algorithmes existant de la théorie des graphes nous permettraient d'améliorer le parcours du graphe généré par les relations entre les différents objets du modèle\cite{solnontheorie}. 
+
 \section{Amélioration du système de conditions}
 
 Pour améliorer le système de conditions, il est primordial de retravailler la manière dont les conditions sont implémentées. Pour l'avenir de ce projet, il faut que l'utilisateur soit en mesure d'émettre des conditions sur les relations ainsi que sur les éléments liés.
@@ -1607,25 +1620,13 @@ Si le framework rendait possible l'utilisation d'un langage de condition simple 
 \begin{lstlisting}
 condition ::=
 	token
-	| '(' token ('AND'|'OR') token ')' 
-;
-token ::= expr symbol value 'ON' position 
-;
-position ::= ('START' | 'EDGE' | 'END') 
-;
-symbol ::= ('='|'!='|'>'|'>='|'<'|'<=') 
-;
-expr ::= '"'[a-zA-Z0-9]+'"' 
-;
-value ::= '"'[a-zA-Z0-9]+'"'| [0-9]+ 
-;
+	| '(' token ('AND'|'OR') token ')';
+token ::= expr symbol value 'ON' position ;
+position ::= ('START' | 'EDGE' | 'END') ;
+symbol ::= ('='|'!='|'>'|'>='|'<'|'<=') ;
+expr ::= '"'[a-zA-Z0-9]+'"' ;
+value ::= '"'[a-zA-Z0-9]+'"'| [0-9]+ ;
 \end{lstlisting}
-
-\section{Amélioration des performances}
-
-Le premier effort, afin d'améliorer les performances, serait d'effectuer le marquage des arêtes.
-
-Les algorithmes existant de la théorie des graphes nous permettraient d'améliorer le parcours du graphe généré par les relations entre les différents objets du modèle\cite{solnontheorie}. 
 
 \section{Amélioration de l'exploitation des relations}
 
@@ -1639,7 +1640,7 @@ Un objet générique "Wrapper" tel que présenté dans la section \ref{framework
 
 Grâce à cette représentation, nous serons en mesure d'effectuer un grand nombre d'instructions sur ces relations essentielles dans l'utilisation d'une base de données orientée graphe.
 
-\section{Ajout d'algorithmes célèbres de théorie des graphes}
+\section{Ajout d'algorithmes célèbres de la théorie des graphes}
 
 \subsection*{Plus court chemin}
 

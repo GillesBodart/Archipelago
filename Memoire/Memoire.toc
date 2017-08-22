@@ -4,7 +4,7 @@
 \contentsline {part}{I\hspace {1em}\IeC {\'E}tat de l'art}{3}
 \contentsline {chapter}{\numberline {2}L'\IeC {\'e}volution du NoSql}{4}
 \contentsline {section}{\numberline {2.1}L'historique}{4}
-\contentsline {section}{\numberline {2.2}Questionnement}{6}
+\contentsline {section}{\numberline {2.2}Le questionnement}{6}
 \contentsline {section}{\numberline {2.3}Le positionnement}{7}
 \contentsline {chapter}{\numberline {3}Background technique}{8}
 \contentsline {section}{\numberline {3.1}Neo4J}{8}
@@ -30,32 +30,32 @@
 \contentsline {section}{\numberline {5.2}Piste de normalisation}{19}
 \contentsline {section}{\numberline {5.3}Utilisation}{20}
 \contentsline {subsection}{\numberline {5.3.1}La configuration}{21}
-\contentsline {subsection}{\numberline {5.3.2}La persistance}{21}
-\contentsline {subsection}{\numberline {5.3.3}La liaison}{25}
-\contentsline {subsection}{\numberline {5.3.4}La r\IeC {\'e}cup\IeC {\'e}ration}{26}
-\contentsline {section}{\numberline {5.4}Sch\IeC {\'e}ma conceptuel}{29}
-\contentsline {subsection}{\numberline {5.4.1}La structure d'Archipelago}{29}
-\contentsline {subsubsection}{ScriptBuilders}{30}
-\contentsline {subsubsection}{QueryBuilders}{31}
-\contentsline {chapter}{\numberline {6}Evaluation}{32}
-\contentsline {section}{\numberline {6.1}Points forts}{32}
-\contentsline {subsection}{\numberline {6.1.1}La facilit\IeC {\'e}}{32}
-\contentsline {subsection}{\numberline {6.1.2}La configurabilit\IeC {\'e}}{32}
-\contentsline {subsection}{\numberline {6.1.3}L'abstraction}{33}
-\contentsline {subsection}{\numberline {6.1.4}La simplification}{33}
-\contentsline {subsection}{\numberline {6.1.5}La modularit\IeC {\'e}}{33}
-\contentsline {section}{\numberline {6.2}Points \IeC {\`a} am\IeC {\'e}liorer}{33}
-\contentsline {subsection}{\numberline {6.2.1}Les performances}{33}
-\contentsline {subsection}{\numberline {6.2.2}Les conditions}{34}
-\contentsline {subsection}{\numberline {6.2.3}La r\IeC {\'e}cup\IeC {\'e}ration d'informations}{35}
-\contentsline {subsection}{\numberline {6.2.4}La propret\IeC {\'e} du code}{37}
-\contentsline {section}{\numberline {6.3}Questionnaire}{37}
-\contentsline {subsection}{\numberline {6.3.1}Contenu quantitatif}{37}
-\contentsline {subsection}{\numberline {6.3.2}Contenu qualitatif}{43}
-\contentsline {chapter}{\numberline {7}Conclusion}{46}
-\contentsline {chapter}{\numberline {8}Perspectives}{48}
-\contentsline {section}{\numberline {8.1}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{48}
-\contentsline {section}{\numberline {8.2}Am\IeC {\'e}lioration des performances}{50}
-\contentsline {section}{\numberline {8.3}Am\IeC {\'e}lioration de l'exploitation des relations}{50}
-\contentsline {section}{\numberline {8.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de th\IeC {\'e}orie des graphes}{50}
-\contentsline {part}{III\hspace {1em}Annexes}{54}
+\contentsline {subsection}{\numberline {5.3.2}La persistance}{22}
+\contentsline {subsection}{\numberline {5.3.3}La liaison}{26}
+\contentsline {subsection}{\numberline {5.3.4}La r\IeC {\'e}cup\IeC {\'e}ration}{27}
+\contentsline {section}{\numberline {5.4}Sch\IeC {\'e}ma conceptuel}{30}
+\contentsline {subsection}{\numberline {5.4.1}La structure d'Archipelago}{30}
+\contentsline {subsubsection}{ScriptBuilders}{31}
+\contentsline {subsubsection}{QueryBuilders}{32}
+\contentsline {chapter}{\numberline {6}Evaluation}{33}
+\contentsline {section}{\numberline {6.1}Points forts}{33}
+\contentsline {subsection}{\numberline {6.1.1}La facilit\IeC {\'e}}{33}
+\contentsline {subsection}{\numberline {6.1.2}La configurabilit\IeC {\'e}}{33}
+\contentsline {subsection}{\numberline {6.1.3}L'abstraction}{34}
+\contentsline {subsection}{\numberline {6.1.4}La simplification}{34}
+\contentsline {subsection}{\numberline {6.1.5}La modularit\IeC {\'e}}{34}
+\contentsline {section}{\numberline {6.2}Points \IeC {\`a} am\IeC {\'e}liorer}{34}
+\contentsline {subsection}{\numberline {6.2.1}Les performances}{34}
+\contentsline {subsection}{\numberline {6.2.2}Les conditions}{35}
+\contentsline {subsection}{\numberline {6.2.3}La r\IeC {\'e}cup\IeC {\'e}ration d'informations}{36}
+\contentsline {subsection}{\numberline {6.2.4}La propret\IeC {\'e} du code}{38}
+\contentsline {section}{\numberline {6.3}Questionnaire}{38}
+\contentsline {subsection}{\numberline {6.3.1}Contenu quantitatif}{38}
+\contentsline {subsection}{\numberline {6.3.2}Contenu qualitatif}{44}
+\contentsline {chapter}{\numberline {7}Conclusion}{47}
+\contentsline {chapter}{\numberline {8}Perspectives}{49}
+\contentsline {section}{\numberline {8.1}Am\IeC {\'e}lioration des performances}{49}
+\contentsline {section}{\numberline {8.2}Am\IeC {\'e}lioration du syst\IeC {\`e}me de conditions}{49}
+\contentsline {section}{\numberline {8.3}Am\IeC {\'e}lioration de l'exploitation des relations}{51}
+\contentsline {section}{\numberline {8.4}Ajout d'algorithmes c\IeC {\'e}l\IeC {\`e}bres de la th\IeC {\'e}orie des graphes}{51}
+\contentsline {part}{III\hspace {1em}Annexes}{55}
