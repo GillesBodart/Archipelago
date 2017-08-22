@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  22 AUG 2017 14:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.3)  22 AUG 2017 15:47
 entering extended mode
 **./Memoire.tex
 (Memoire.tex
@@ -1351,32 +1351,28 @@ File: figures/Snippet1.png Graphic file (type png)
 
 <use figures/Snippet1.png>
 Package pdftex.def Info: figures/Snippet1.png used on input line 1450.
-(pdftex.def)             Requested size: 466.14035pt x 153.57336pt.
+(pdftex.def)             Requested size: 419.52347pt x 138.21509pt.
 
 <figures/Snippet2.png, id=221, 463.7325pt x 232.4685pt>
 File: figures/Snippet2.png Graphic file (type png)
 
 <use figures/Snippet2.png>
 Package pdftex.def Info: figures/Snippet2.png used on input line 1457.
-(pdftex.def)             Requested size: 463.73135pt x 232.46793pt.
+(pdftex.def)             Requested size: 417.35538pt x 209.21971pt.
  [46 <./figures/Snippet1.png> <./figures/Snippet2.png>] <figures/Snippet3.png, 
 id=225, 492.03825pt x 190.311pt>
 File: figures/Snippet3.png Graphic file (type png)
 
 <use figures/Snippet3.png>
 Package pdftex.def Info: figures/Snippet3.png used on input line 1468.
-(pdftex.def)             Requested size: 492.03705pt x 190.31052pt.
-
-Overfull \hbox (8.34018pt too wide) in paragraph at lines 1468--1469
- [][] 
- []
+(pdftex.def)             Requested size: 442.83034pt x 171.27829pt.
 
 <figures/Snippet4.png, id=226, 476.37975pt x 211.38976pt>
 File: figures/Snippet4.png Graphic file (type png)
 
 <use figures/Snippet4.png>
 Package pdftex.def Info: figures/Snippet4.png used on input line 1475.
-(pdftex.def)             Requested size: 476.37857pt x 211.38922pt.
+(pdftex.def)             Requested size: 428.7378pt x 190.24901pt.
  [47 <./figures/Snippet3.png> <./figures/Snippet4.png>]
 Chapitre 7.
 [48
@@ -1522,7 +1518,7 @@ mtk10.pfb><C:/Sand/miktex/fonts/type1/public/lm/lmtt10.pfb><C:/Sand/miktex/font
 s/type1/public/lm/lmtt12.pfb><C:/Sand/miktex/fonts/type1/public/amsfonts/symbol
 s/msam10.pfb><C:/Sand/miktex/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Sand/mikte
 x/fonts/type1/urw/times/utmr8a.pfb>
-Output written on Memoire.pdf (68 pages, 1745202 bytes).
+Output written on Memoire.pdf (68 pages, 1745247 bytes).
 PDF statistics:
  353 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
