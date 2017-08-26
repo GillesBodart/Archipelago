@@ -112,6 +112,11 @@
             <artifactId>reflections</artifactId>
             <version>0.9.11</version>
         </dependency>
+        <dependency>
+            <groupId>Archipelago</groupId>
+            <artifactId>Archipelago-core</artifactId>
+            <version>0.1.0</version>
+        </dependency>
     </dependencies>
     <repositories>
 

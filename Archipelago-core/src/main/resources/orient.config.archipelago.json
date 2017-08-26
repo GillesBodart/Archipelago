@@ -1,12 +1,14 @@
-{
-  "database": {
-    "type": "ORIENT_DB",
-    "username": "gilles",
-    "password": "orient",
-    "url": "gbodart.be",
-    "name": "memoire",
-    "port": 2480
-  },
-  "deepness":3,
-  "domainRootPackage":"org.archipelago.test.domain.school"
-}
+
+
+    {
+      "database": {
+        "type": "ORIENT_DB",
+        "username": "gilles",
+        "password": "orient",
+        "url": "gbodart.be",
+        "name": "memoire",
+        "port": 2480
+      },
+      "deepness":3,
+      "domainRootPackage":"org.archipelago.test.domain"
+    }

@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.archipelago.core.builder.commons.ArchipelagoQuery;
+import org.archipelago.core.builder.commons.ConditionQualifier;
+import org.archipelago.core.builder.commons.QueryElement;
 import org.archipelago.core.exception.CheckException;
 import org.archipelago.core.framework.Archipelago;
 import org.archipelago.test.domain.Road;
@@ -19,6 +21,8 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import static org.archipelago.core.builder.commons.QueryElement.of;
+
 /**
  * Created by Gilles Bodart on 19/08/2016.
  */
@@ -28,9 +32,13 @@ public class MainTest {
 
     public static void main(String[] args) throws Exception {
 
-        Archipelago a = Archipelago.getInstance();
-
-        a.persist(school());
+        Archipelago arch = Archipelago.getInstance();
+        ArchipelagoQuery query = arch.getQueryBuilder()
+                .of(City.class)
+                .where(of("name","Winterfell"), ConditionQualifier.EQUAL)
+                .or(of("name","Kings Landing"), ConditionQualifier.EQUAL)
+                .build();
+        List<Object> nodes = arch.execute(query);
 
     }
 
