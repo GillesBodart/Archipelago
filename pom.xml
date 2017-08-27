@@ -20,22 +20,21 @@
             <email>gilles@gbodart.be</email>
         </developer>
     </developers>
+
     <build>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>false</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
             </resource>
-            <!-- <resource> <directory>src/main/config</directory> <filtering>false</filtering>
-                </resource> -->
         </resources>
         <testResources>
             <testResource>
                 <directory>src/test/resources</directory>
                 <filtering>false</filtering>
             </testResource>
-            <!-- <testResource> <directory>src/test/config</directory> <filtering>false</filtering>
-                </testResource> -->
         </testResources>
         <plugins>
             <plugin>
@@ -111,11 +110,6 @@
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.11</version>
-        </dependency>
-        <dependency>
-            <groupId>Archipelago</groupId>
-            <artifactId>Archipelago-core</artifactId>
-            <version>0.1.0</version>
         </dependency>
     </dependencies>
     <repositories>

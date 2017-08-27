@@ -1,5 +1,0 @@
-MatchOrientDB(clazz,props) ::= <<
-SELECT FROM <clazz.simpleName> WHERE <props : createWhere(); separator=" AND ">
->>
-
-createWhere(property) ::= "<property.name> = <property.value>"

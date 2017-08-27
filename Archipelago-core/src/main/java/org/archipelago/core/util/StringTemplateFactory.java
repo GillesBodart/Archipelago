@@ -13,7 +13,6 @@ import java.util.Date;
 public class StringTemplateFactory {
 
     public static STGroup buildSTGroup(final String ressourcePath) {
-
         final STGroup group = new STGroupFile(ressourcePath);
         group.registerRenderer(String.class, new StringRenderer());
         group.registerRenderer(Integer.class, new NumberRenderer());

@@ -502,30 +502,35 @@ public class Archipelago implements AutoCloseable {
                                 }
                                 Relationship rel = segment.relationship();
                                 Field field = ArchipelagoUtils.getFieldFromBridgeName(startNode.getClass(), rel.type());
-                                //Get the label as the ClassName
-                                Set<Class<?>> supers = this.reflections.getSubTypesOf(ArchipelagoUtils.getClassOf(field));
-                                Class<?> endClass = null;
-                                if (supers.size() > 0) {
-                                    endClass = ArchipelagoUtils
-                                            .getClassOf(supers, segment.end().labels().iterator().next());
-                                } else {
-                                    endClass = ArchipelagoUtils.getClassOf(field);
-                                }
-                                Object endNode = endClass
-                                        .getConstructor()
-                                        .newInstance();
-                                ArchipelagoUtils.feedObject(endNode, segment.end().asMap());
-                                if (Collection.class.isAssignableFrom(field.getType())) {
-                                    ((Collection) ArchipelagoUtils.get(aq.getTarget(), field, startNode)).add(endNode);
-                                } else {
-                                    String methodName = String.format("set%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field.getName().length()));
-                                    //Must have exactly one match
-                                    Method method = ReflectionUtils.getAllMethods(aq.getTarget(),
-                                            withModifier(Modifier.PUBLIC), withPrefix(String.format(methodName)))
-                                            .stream()
-                                            .findFirst()
-                                            .get();
-                                    method.invoke(startNode, endNode);
+                                // Case of custom link
+                                if (null != field) {
+
+
+                                    //Get the label as the ClassName
+                                    Set<Class<?>> supers = this.reflections.getSubTypesOf(ArchipelagoUtils.getClassOf(field));
+                                    Class<?> endClass = null;
+                                    if (supers.size() > 0) {
+                                        endClass = ArchipelagoUtils
+                                                .getClassOf(supers, segment.end().labels().iterator().next());
+                                    } else {
+                                        endClass = ArchipelagoUtils.getClassOf(field);
+                                    }
+                                    Object endNode = endClass
+                                            .getConstructor()
+                                            .newInstance();
+                                    ArchipelagoUtils.feedObject(endNode, segment.end().asMap());
+                                    if (Collection.class.isAssignableFrom(field.getType())) {
+                                        ((Collection) ArchipelagoUtils.get(aq.getTarget(), field, startNode)).add(endNode);
+                                    } else {
+                                        String methodName = String.format("set%s%s", ("" + field.getName().charAt(0)).toUpperCase(), field.getName().substring(1, field.getName().length()));
+                                        //Must have exactly one match
+                                        Method method = ReflectionUtils.getAllMethods(aq.getTarget(),
+                                                withModifier(Modifier.PUBLIC), withPrefix(String.format(methodName)))
+                                                .stream()
+                                                .findFirst()
+                                                .get();
+                                        method.invoke(startNode, endNode);
+                                    }
                                 }
                             } catch (Exception e) {
                                 LOGGER.error(e.getMessage(), e);
@@ -557,6 +562,10 @@ public class Archipelago implements AutoCloseable {
                             if (StringUtils.startsWith(prop.getKey(), "out_")) {
                                 String name = prop.getKey().substring(4);
                                 Field field = ArchipelagoUtils.getFieldFromBridgeName(aq.getTarget(), name);
+                                // Case of custom link
+                                if (null == field) {
+                                    continue;
+                                }
                                 //Get the label as the ClassName
                                 Set<Class<?>> supers = this.reflections.getSubTypesOf(ArchipelagoUtils.getClassOf(field));
                                 for (String relations : (List<String>) prop.getValue()) {
