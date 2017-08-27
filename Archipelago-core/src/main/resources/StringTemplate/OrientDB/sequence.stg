@@ -1,0 +1,7 @@
+sequenceOrientDB(sequence) ::= <<
+
+<sequence:createSequence()>
+
+>>
+
+createSequence(sequence) ::= "CREATE SEQUENCE <sequence.simpleName>ArchipelagoSeq TYPE ORDERED<\n>"  

@@ -1,0 +1,10 @@
+insertOrientDB(insert) ::= <<
+<insert:insertion()>
+>> 
+
+insertion(insert) ::= <<
+INSERT INTO <insert.parent> (ArchipelID <insert.properties:property()>) VALUES (sequence("<if (insert.superParent)><insert.superParent><else><insert.parent><endif>ArchipelagoSeq").next() <insert.values:value()>) RETURN @this
+
+>>
+property(prop) ::= ",<prop>"
+value(val) ::= ",<val>"
